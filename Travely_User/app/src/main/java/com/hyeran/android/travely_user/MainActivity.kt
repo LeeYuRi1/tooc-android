@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(TwoFragment())
         }
         tab_three_main.setOnClickListener {
-            replaceFragment(ThreeFragment())
+            replaceFragment(ShipFragment())
         }
         tab_four_main.setOnClickListener {
             replaceFragment(FourFragment())
