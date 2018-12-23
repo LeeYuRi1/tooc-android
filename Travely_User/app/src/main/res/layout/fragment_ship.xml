@@ -18,26 +18,27 @@
             android:text="배송현황" />
 
     </RelativeLayout>
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@android:color/darker_gray"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
-                android:layout_above="@+id/tv_preparing_ship"/>
-            <TextView
-                android:id="@+id/tv_preparing_ship"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="해당 서비스는 준비중입니다.\n
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@android:color/darker_gray"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:layout_above="@+id/tv_preparing_ship"/>
+        <TextView
+            android:id="@+id/tv_preparing_ship"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="해당 서비스는 준비중입니다.\n
 더 좋은 모습으로 찾아뵙겠습니다."
-                android:gravity="center_horizontal"
-                android:layout_centerInParent="true"/>
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true"/>
+
 
     </RelativeLayout>
 
