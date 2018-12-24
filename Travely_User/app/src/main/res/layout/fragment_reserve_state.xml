@@ -14,6 +14,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
@@ -25,12 +27,16 @@
                 android:text="예약확인" />
 
             <ImageView
-                android:id="@+id/iv_qr_reserve_state"
+                android:id="@+id/iv_qrimage_reservestate"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:background="#555555" />
+            <EditText
+                android:id="@+id/ed_testtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,6 +123,13 @@
                 android:layout_height="5dp"
                 android:background="#555555" />
 
+            <ImageView
+                android:id="@+id/iv_managerpicture_reservestate"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -127,7 +140,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="캐리어"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
 
                 <TextView
                     android:id="@+id/tv_carrier_num_reservestate"
@@ -159,12 +173,7 @@
                 android:padding="5dp">
 
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="예약변경" />
-
-                <Button
+                    android:id="@+id/bt_reservecancel_reservestate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -189,6 +198,10 @@
                 android:layout_width="300dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>
