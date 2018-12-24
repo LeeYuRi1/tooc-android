@@ -65,11 +65,7 @@ class ReserveFragment : Fragment() {
         v.btn_reserve_reserve.setOnClickListener {
             ReserveCompleteDialog(context).show()
         }
-
         return v
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
 }
