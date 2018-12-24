@@ -453,13 +453,14 @@
 
             </RelativeLayout>
 
-            <TextView
+            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="위 내용을 확인하였으며 연결에 동의합니다." />
 
             <Button
+                android:id="@+id/btn_reserve_reserve"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
