@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import com.hyeran.android.travely_user.mypage.MypageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,13 +22,15 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(MapFragment())
         }
         tab_two_main.setOnClickListener {
-            replaceFragment(MapMoreFragment())
+
+            replaceFragment(ReserveStateFragment())
         }
         tab_three_main.setOnClickListener {
-            replaceFragment(ThreeFragment())
+//            replaceFragment(ShipFragment())
+            replaceFragment(ReserveFragment())
         }
         tab_four_main.setOnClickListener {
-            replaceFragment(FourFragment())
+            replaceFragment(MypageFragment())
         }
     }
 
