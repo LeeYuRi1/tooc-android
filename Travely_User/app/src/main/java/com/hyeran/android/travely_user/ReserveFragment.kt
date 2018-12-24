@@ -16,7 +16,8 @@ class ReserveFragment : Fragment() {
         v.btn_reserve_reserve.setOnClickListener {
             ReserveCompleteDialog(context).show()
         }
-
         return v
     }
+
+
 }
