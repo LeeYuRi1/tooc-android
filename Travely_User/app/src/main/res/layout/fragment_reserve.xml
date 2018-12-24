@@ -44,6 +44,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -51,10 +52,10 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
                         android:background="@android:color/holo_green_light"
                         android:orientation="vertical">
 
@@ -133,10 +134,10 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="5dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
                         android:background="@android:color/holo_green_light"
                         android:orientation="vertical">
 
@@ -227,71 +228,93 @@
                 android:layout_height="wrap_content"
                 android:text="짐선택" />
 
-            <RadioGroup
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+            <RadioGroup
+                android:id="@+id/rg_carrier_reserve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <RadioButton
+                    android:id="@+id/rb_carrier_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="캐리어" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="수량선택" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수량선택" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
 
-                    <RelativeLayout
-                        android:layout_width="150dp"
-                        android:layout_height="40dp"
-                        android:background="#ffff88">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="2" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="10dp"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:background="@android:color/holo_green_dark" />
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:background="@android:color/holo_green_light" />
-                        </LinearLayout>
-                    </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:background="#ffff88">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="개" />
-                </LinearLayout>
+                        android:layout_centerVertical="true"
+                        android:text="2" />
 
-                <RadioButton
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@android:color/holo_green_dark" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@android:color/holo_green_light" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="기타 짐" />
+                    android:layout_gravity="center_vertical"
+                    android:text="개" />
+
+
+            </LinearLayout>
+
+                    <RadioButton
+                        android:id="@+id/rb_etc_reserve"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="기타 짐" />
             </RadioGroup>
 
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:src="@android:color/holo_red_light"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"/>
+
+            </RelativeLayout>
             <LinearLayout
+                android:id="@+id/toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -302,6 +325,7 @@
                     android:text="짐선택: " />
 
                 <TextView
+                    android:id="@+id/tv_selected_luggage_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="캐리어" />
@@ -390,13 +414,15 @@
                 android:layout_height="wrap_content">
 
                 <RadioGroup
+                    android:id="@+id/temp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <RadioButton
-                        android:id="@+id/rb_kakaopay_reserve"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="카카오페이" />
+
                     <RelativeLayout
                         android:layout_width="200dp"
                         android:layout_height="100dp"
@@ -438,26 +464,33 @@
                                 android:text="1234" />
                         </LinearLayout>
                     </RelativeLayout>
+
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="현금 결제" />
 
                 </RadioGroup>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="* 카카오페이 결제 시 예약취소 불가"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:text="* 카카오페이 결제 시 예약취소 불가" />
 
             </RelativeLayout>
 
-            <RadioButton
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="위 내용을 확인하였으며 연결에 동의합니다." />
+                android:layout_gravity="center_horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="위 내용을 확인하였으며 연결에 동의합니다." />
+            </RadioGroup>
 
             <Button
                 android:id="@+id/btn_reserve_reserve"

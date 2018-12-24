@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#999999"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/tv_name_myreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="동대문 엽기떡복이 홍대점"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_date_myreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018-11-3"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_name_myreview"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_myreview" />
+
+        <TextView
+            android:id="@+id/tv_content_myreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="감사합니다~"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_date_myreview"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date_myreview" />
+
+        <RatingBar
+            android:id="@+id/ratingBar_myreview"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:rating="3"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name_myreview"
+            app:layout_constraintStart_toEndOf="@+id/tv_name_myreview" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:color/holo_blue_bright" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="@+id/imageView8"
+            app:srcCompat="@android:color/holo_red_dark" />
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

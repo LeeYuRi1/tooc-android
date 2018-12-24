@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(OneFragment())
         }
         tab_two_main.setOnClickListener {
-            replaceFragment(TwoFragment())
+            replaceFragment(ReserveListFragment())
         }
         tab_three_main.setOnClickListener {
             //            replaceFragment(ShipFragment())
-            replaceFragment(ThreeFragment())
+            replaceFragment(StorageListFragment())
         }
         tab_four_main.setOnClickListener {
             replaceFragment(FourFragment())
