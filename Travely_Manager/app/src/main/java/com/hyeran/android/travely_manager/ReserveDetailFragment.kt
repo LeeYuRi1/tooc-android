@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class TwoFragment : Fragment() {
+class ReserveDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_two, container, false)
+        val v = inflater.inflate(R.layout.fragment_reserve_detail, container, false)
 
         return v
     }
-
-
 }
