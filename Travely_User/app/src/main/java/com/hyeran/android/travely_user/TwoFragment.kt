@@ -10,7 +10,7 @@ import android.view.ViewGroup
 class TwoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_two, container, false)
+        val v = inflater.inflate(R.layout.fragment_map_more, container, false)
 
         return v
     }

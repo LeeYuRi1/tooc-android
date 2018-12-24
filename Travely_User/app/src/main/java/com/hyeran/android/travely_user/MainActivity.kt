@@ -12,16 +12,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        addFragment(OneFragment.getInstance())
+        //addFragment(MapMoreFragment())
         setOnClickListener()
     }
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
-            replaceFragment(OneFragment())
+            replaceFragment(MapFragment())
         }
         tab_two_main.setOnClickListener {
-            replaceFragment(TwoFragment())
+            replaceFragment(MapMoreFragment())
         }
         tab_three_main.setOnClickListener {
             replaceFragment(ThreeFragment())

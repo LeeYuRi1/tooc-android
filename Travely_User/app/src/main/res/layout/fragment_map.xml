@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapFragment">
+
+    <!-- Activity에서는 fragment로 구현해야되지만
+    Fragment로 구현하기 위해서는 MapView를 사용해야함 -->
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="320dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:background = "@color/colorAccent"
+                android:layout_width="48dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:text="현위치 : 서울시 강남구 역삼동 818-12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="320dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:background = "@color/colorPrimary"
+                android:layout_width="48dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:text="짐을 맡겨드릴까요?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    -->
+
+</RelativeLayout>
