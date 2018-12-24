@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".join.LoginActivity" />
+        <activity android:name=".join.JoinActivity" />
+        <activity android:name=".join.WelcomeActivity" />
+        <activity android:name=".join.ExplanationActivity"></activity>
         <activity android:name=".TempActivity">
 
         </activity>
