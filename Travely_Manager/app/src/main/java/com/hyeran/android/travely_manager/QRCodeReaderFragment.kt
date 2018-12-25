@@ -6,16 +6,19 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.zxing.integration.android.IntentIntegrator
 
-class OneFragment : Fragment() {
+
+
+class QRCodeReaderFragment : Fragment() {
 
     companion object {
-        var mInstance: OneFragment? = null
+        var mInstance: QRCodeReaderFragment? = null
 
         @Synchronized
-        fun getInstance(): OneFragment {
+        fun getInstance(): QRCodeReaderFragment {
             if (mInstance == null) {
-                mInstance = OneFragment()
+                mInstance = QRCodeReaderFragment()
             }
             return mInstance!!
         }
@@ -24,8 +27,12 @@ class OneFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_one, container, false)
 
+        IntentIntegrator(activity).initiateScan()
+
+
         return v
     }
+
 
 
 }

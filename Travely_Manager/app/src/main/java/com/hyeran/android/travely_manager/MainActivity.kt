@@ -11,14 +11,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        addFragment(OneFragment.getInstance())
+        addFragment(QRCodeReaderFragment.getInstance())
 
         setOnClickListener()
     }
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
-            replaceFragment(OneFragment())
+            replaceFragment(QRCodeReaderFragment())
         }
         tab_two_main.setOnClickListener {
             replaceFragment(ReserveListFragment())
