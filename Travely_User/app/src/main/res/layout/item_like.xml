@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/iv_storeimage_like"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/background_dark" />
+
+    <TextView
+        android:id="@+id/tv_name_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="프로마치"
+        app:layout_constraintStart_toEndOf="@+id/iv_storeimage_like"
+        app:layout_constraintTop_toTopOf="@+id/iv_storeimage_like" />
+
+    <TextView
+        android:id="@+id/tv_addr_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="성북구 안암동 123번지"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_like"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_like" />
+
+    <TextView
+        android:id="@+id/tv_time_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="매일 11:00 - 22:00"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_addr_like"
+        app:layout_constraintTop_toBottomOf="@+id/tv_addr_like" />
+
+    <TextView
+        android:id="@+id/tv_phone_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="02-222-2222"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_time_like"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time_like" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button6"
+        app:layout_constraintEnd_toStartOf="@+id/button6" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name_like"
+        app:layout_constraintStart_toEndOf="@+id/tv_name_like"
+        app:srcCompat="@android:color/background_dark" />
+
+    <TextView
+        android:id="@+id/tv_grade_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="4.3"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintStart_toEndOf="@+id/imageView9" />
+
+    <ImageView
+        android:id="@+id/iv_heart_like"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/holo_red_dark" />
+
+</android.support.constraint.ConstraintLayout>

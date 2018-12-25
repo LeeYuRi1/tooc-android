@@ -1,16 +1,15 @@
-package com.hyeran.android.travely_user
-
+package com.hyeran.android.travely_user.join
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hyeran.android.travely_user.R
 
-class ShipFragment : Fragment() {
-
+class Explanation3Fragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_ship, container, false)
+        val v = inflater.inflate(R.layout.fragment_explanation3, container, false)
         return v
     }
 }

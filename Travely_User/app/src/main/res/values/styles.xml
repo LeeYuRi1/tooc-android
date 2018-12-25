@@ -9,4 +9,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <string-array name="language_arrays">
+        <item>한국어</item>
+        <item>영어</item>
+        <item>중국어</item>
+    </string-array>
+
 </resources>
