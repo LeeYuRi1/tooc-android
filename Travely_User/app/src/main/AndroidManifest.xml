@@ -46,6 +46,7 @@
         <activity
             android:name=".MapActivity"
             android:label="@string/activity_map">
+
         </activity>
         <activity android:name=".join.LoginActivity" />
         <activity android:name=".join.JoinActivity" />
