@@ -26,7 +26,6 @@ class StorageListFragment : Fragment() {
         v.rv_storage_list_storage_list.adapter = storageListRVAdapter
         v.rv_storage_list_storage_list.layoutManager = LinearLayoutManager(context)
 
-
         return v
     }
 

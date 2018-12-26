@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(StorageListFragment())
         }
         tab_four_main.setOnClickListener {
-            replaceFragment(FourFragment())
+            replaceFragment(MypageFragment())
         }
     }
 
