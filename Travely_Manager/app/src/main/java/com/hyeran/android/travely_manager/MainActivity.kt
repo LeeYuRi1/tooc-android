@@ -1,9 +1,14 @@
 package com.hyeran.android.travely_manager
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.widget.Toast
+import com.google.zxing.integration.android.IntentIntegrator
+
+import com.hyeran.android.travely_manager.mypage.MypageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -11,14 +16,39 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        addFragment(OneFragment.getInstance())
+        addFragment(ReserveConfirmFragment.getInstance())
 
         setOnClickListener()
     }
 
+
+    //QR스캐너
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == IntentIntegrator.REQUEST_CODE) {
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+            if (result.contents == null) {
+                // 취소됨
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+            } else {
+                // 스캔된 QRCode --> result.getContents()
+                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+
+    }
+
+    fun qrCode(reserveNumberConfirm :String){
+       if(reserveNumberConfirm == "123") {
+           replaceFragment(ReserveDetailFragment())
+       }
+    }
+
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
-            replaceFragment(OneFragment())
+            replaceFragment(ReserveConfirmFragment())
         }
         tab_two_main.setOnClickListener {
             replaceFragment(ReserveListFragment())
@@ -28,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(StorageListFragment())
         }
         tab_four_main.setOnClickListener {
-            replaceFragment(FourFragment())
+            replaceFragment(MypageFragment())
         }
     }
 

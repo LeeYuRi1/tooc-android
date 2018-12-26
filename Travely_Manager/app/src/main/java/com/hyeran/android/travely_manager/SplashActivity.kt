@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Handler
+import com.hyeran.android.travely_manager.login.LoginActivity
 
 
 class SplashActivity : AppCompatActivity() {

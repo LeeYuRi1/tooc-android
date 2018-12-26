@@ -1,13 +1,19 @@
 package com.hyeran.android.travely_manager
 
+import android.app.Activity
 import android.content.Context
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import org.w3c.dom.Text
+import android.support.v7.app.AppCompatActivity
+
+
 
 class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveListTempData>) : RecyclerView.Adapter<ReserveListRVAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -27,6 +33,13 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveL
         holder.am_pm.text = dataList[position].am_pm
         holder.hour.text = dataList[position].hour.toString()
         holder.minute.text = dataList[position].minute.toString()
+
+        holder.view.setOnClickListener {
+            val manager = (ctx as AppCompatActivity).supportFragmentManager
+            val transaction : FragmentTransaction = manager.beginTransaction()
+            transaction.replace(R.id.frame_main, ReserveDetailFragment())
+            transaction.commit()
+        }
     }
 
 
@@ -40,5 +53,7 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveL
         val am_pm : TextView = itemView.findViewById(R.id.tv_am_pm_item_reserve_list) as TextView
         val hour : TextView = itemView.findViewById(R.id.tv_hour_item_reserve_list) as TextView
         val minute : TextView = itemView.findViewById(R.id.tv_minute_item_reserve_list) as TextView
+
+        val view : RelativeLayout = itemView.findViewById(R.id.item_reserve_list) as RelativeLayout
     }
 }
