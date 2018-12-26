@@ -237,6 +237,7 @@
             android:orientation="vertical">
 
             <CheckBox
+                android:id="@+id/cb_pay_agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="결제가 완료되었으면 동의하세요." />

@@ -140,7 +140,7 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/textView51"
-                app:layout_constraintTop_toTopOf="@+id/layout_like_mypage" />
+                app:layout_constraintTop_toTopOf="@+id/layout_state_mypage" />
 
             <TextView
                 android:id="@+id/textView53"
@@ -150,7 +150,7 @@
                 android:text="최근 보관한 곳"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textView51" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_like_mypage" />
 
             <TextView
                 android:id="@+id/textView54"
@@ -170,6 +170,28 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layout_like_mypage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView48"
+                app:layout_constraintEnd_toEndOf="@+id/textView48"
+                app:layout_constraintStart_toStartOf="@+id/textView48"
+                app:layout_constraintTop_toTopOf="@+id/textView47">
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layout_state_mypage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView50"
+                app:layout_constraintEnd_toEndOf="@+id/textView50"
+                app:layout_constraintStart_toStartOf="@+id/textView49"
+                app:layout_constraintTop_toTopOf="@+id/textView49">
+
+            </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/layout_myreview_mypage"
@@ -201,29 +223,7 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/textView50"
-                app:layout_constraintTop_toTopOf="@+id/layout_state_mypage" />
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/layout_state_mypage"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView48"
-                app:layout_constraintEnd_toEndOf="@+id/textView48"
-                app:layout_constraintStart_toStartOf="@+id/textView47"
-                app:layout_constraintTop_toTopOf="@+id/textView47">
-
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/layout_like_mypage"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView50"
-                app:layout_constraintEnd_toEndOf="@+id/textView50"
-                app:layout_constraintStart_toStartOf="@+id/textView49"
-                app:layout_constraintTop_toTopOf="@+id/textView49">
-
-            </android.support.constraint.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="@+id/layout_like_mypage" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
