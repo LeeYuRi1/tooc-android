@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user.adapter
+package com.hyeran.android.travely_manager.login
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

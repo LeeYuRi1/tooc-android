@@ -1,11 +1,11 @@
-package com.hyeran.android.travely_user.join
+package com.hyeran.android.travely_manager.login
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_manager.R
 
 class Explanation1Fragment : Fragment() {
 

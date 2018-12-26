@@ -8,6 +8,19 @@ import android.view.ViewGroup
 import com.hyeran.android.travely_user.R
 
 class LanguageFragment : Fragment() {
+
+    companion object {
+        private const val CATEGORY = "category"
+
+        fun newInstance(sectionCategory: String): LanguageFragment {
+            val fragment = LanguageFragment()
+            val args : Bundle? = Bundle()
+            args?.putString(CATEGORY, sectionCategory)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_language, container, false)
         return v
