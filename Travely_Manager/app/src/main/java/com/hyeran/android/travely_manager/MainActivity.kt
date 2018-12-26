@@ -52,75 +52,71 @@ class MainActivity : AppCompatActivity() {
     }
 
     //qrCode
-    fun qrCode(reserveNumberConfirm: String) {
-        if (reserveNumberConfirm == "123") {
-            fun qrCode(reserveNumberConfirm: String) {
-                if (reserveNumberConfirm == "123") {
-                    replaceFragment(ReserveDetailFragment())
-                }
-            }
-
-            //photo
-            fun gotophotoConfirm() {
-
-                val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(cameraIntent, 999)
-
-
-            }
-
-
-            fun setOnClickListener() {
-                tab_one_main.setOnClickListener {
-                    replaceFragment(ReserveConfirmFragment())
-                }
-                tab_two_main.setOnClickListener {
-                    replaceFragment(ReserveListFragment())
-                }
-                tab_three_main.setOnClickListener {
-                    //            replaceFragment(ShipFragment())
-                    replaceFragment(StorageListFragment())
-                }
-                tab_four_main.setOnClickListener {
-                    replaceFragment(MypageFragment())
-                }
-            }
-
-            fun addFragment(fragment: Fragment) {
-                val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-                transaction.add(R.id.frame_main, fragment)
-                transaction.commit()
-            }
-
-            fun replaceFragment(fragment: Fragment) {
-                val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame_main, fragment)
-                transaction.commit()
-            }
-
-            private fun checkDangerousPermission() {
-                val permissions = arrayOf<String>(permission.CAMERA)
-
-                var permissionCheck = PackageManager.PERMISSION_GRANTED
-                for (i in permissions.indices) {
-                    permissionCheck = ContextCompat.checkSelfPermission(this, permissions[i])
-                    if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-                        break
-                    }
-                }
-
-                if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show()
-
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
-                        Toast.makeText(this, "권한 설명 필요함", Toast.LENGTH_LONG).show()
-                    } else {
-                        ActivityCompat.requestPermissions(this, permissions, 1)
-                    }
-                }
-            }
-
+    fun qrCode(reserveNumberConfirm :String){
+        if(reserveNumberConfirm == "123") {
+            replaceFragment(ReserveDetailFragment())
         }
     }
+
+    //photo
+    fun gotophotoConfirm(){
+
+        val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, 999)
+
+    }
+
+
+    fun setOnClickListener() {
+        tab_one_main.setOnClickListener {
+            replaceFragment(ReserveConfirmFragment())
+        }
+        tab_two_main.setOnClickListener {
+            replaceFragment(ReserveListFragment())
+        }
+        tab_three_main.setOnClickListener {
+            //            replaceFragment(ShipFragment())
+            replaceFragment(StorageListFragment())
+        }
+        tab_four_main.setOnClickListener {
+            replaceFragment(MypageFragment())
+        }
+    }
+
+    fun addFragment(fragment : Fragment) {
+        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.frame_main, fragment)
+        transaction.commit()
+    }
+
+    fun replaceFragment(fragment : Fragment) {
+        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame_main, fragment)
+        transaction.commit()
+    }
+
+    private fun checkDangerousPermission() {
+        val permissions = arrayOf<String>(permission.CAMERA)
+
+        var permissionCheck = PackageManager.PERMISSION_GRANTED
+        for (i in permissions.indices) {
+            permissionCheck = ContextCompat.checkSelfPermission(this, permissions[i])
+            if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                break
+            }
+        }
+
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show()
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
+                Toast.makeText(this, "권한 설명 필요함", Toast.LENGTH_LONG).show()
+            } else {
+                ActivityCompat.requestPermissions(this, permissions, 1)
+            }
+        }
+    }
+
+}
