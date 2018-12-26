@@ -85,7 +85,7 @@ class WholeStatisticsFragment: Fragment() {
         //원 색깔
         dataset.setCircleColor(Color.BLUE)
 
-        
+
 
         lineChart.setData(data)
         lineChart.animateX(2500)
