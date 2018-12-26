@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReserveConfirmFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:text="예약확인"
+            android:background="#666666"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:background="@drawable/ic_launcher_background"
+                />
+            <Button
+                android:id="@+id/btn_qrcode_scan_reserve_confirm"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:layout_gravity="center"
+                android:text="QR코드 스캔하기"
+                />
+
+            <Button
+                android:id="@+id/btn_reserve_number_input"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:layout_gravity="center"
+                android:text="예약번호 입력하기"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>
