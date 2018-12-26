@@ -41,18 +41,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     //qrCode
-    fun qrCode(reserveNumberConfirm :String){
-       if(reserveNumberConfirm == "123") {
-           replaceFragment(ReserveDetailFragment())
-       }
+    fun qrCode(reserveNumberConfirm: String) {
+        if (reserveNumberConfirm == "123") {
+            replaceFragment(ReserveDetailFragment())
+        }
     }
 
     //photo
-    fun gotophotoConfirm(){
+    fun gotophotoConfirm() {
 
-            val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(cameraIntent, 999)
-        
+        val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, 999)
+
     }
 
 
@@ -72,14 +72,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun addFragment(fragment : Fragment) {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+    fun addFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.frame_main, fragment)
         transaction.commit()
     }
 
-    fun replaceFragment(fragment : Fragment) {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+    fun replaceFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
         transaction.commit()
     }
