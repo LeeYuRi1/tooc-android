@@ -24,10 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     //QR스캐너
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-       // super.onActivityResult(requestCode, resultCode, data)
-       // Toast.makeText(this, "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", Toast.LENGTH_LONG).show()
-        //  com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
-        //  = 0x0000c0de; // Only use bottom 16 bits
         if (requestCode == IntentIntegrator.REQUEST_CODE) {
             val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
             if (result.contents == null) {
@@ -44,11 +40,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //qrCode
     fun qrCode(reserveNumberConfirm :String){
        if(reserveNumberConfirm == "123") {
            replaceFragment(ReserveDetailFragment())
        }
     }
+
+    //photo
+    fun gotophotoConfirm(){
+
+            val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, 999)
+        
+    }
+
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
