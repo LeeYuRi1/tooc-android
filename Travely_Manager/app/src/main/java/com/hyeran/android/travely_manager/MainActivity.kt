@@ -40,11 +40,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //qrCode
     fun qrCode(reserveNumberConfirm :String){
        if(reserveNumberConfirm == "123") {
            replaceFragment(ReserveDetailFragment())
        }
     }
+
+    //photo
+    fun gotophotoConfirm(){
+
+            val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, 999)
+        
+    }
+
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
