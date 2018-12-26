@@ -5,18 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.*
 import com.hyeran.android.travely_user.adapter.MypageRecentStoreAdapter
 import com.hyeran.android.travely_user.data.MypageRecentStoreData
 import com.hyeran.android.travely_user.join.LoginActivity
-import com.hyeran.android.travely_user.join.WelcomeActivity
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
 class MypageFragment : Fragment() {
@@ -62,9 +58,9 @@ class MypageFragment : Fragment() {
         }
 
         iv_set_mypage.setOnClickListener {
-            //    replaceFragment(SetFragment())
-            val intent = Intent(this.activity, LoginActivity::class.java)
-            startActivity(intent)
+            replaceFragment(SetFragment())
+//            val intent = Intent(this.activity, LoginActivity::class.java)
+//            startActivity(intent)
         }
 
     }
@@ -76,9 +72,9 @@ class MypageFragment : Fragment() {
     }
 
     private fun writeReview() {
-        layout_state_mypage.setOnClickListener {
-            WriteReviewDialog(context).show()
-        }
+//        layout_lake_mypage.setOnClickListener {
+//            WriteReviewDialog(context).show()
+//        }
     }
 
 
