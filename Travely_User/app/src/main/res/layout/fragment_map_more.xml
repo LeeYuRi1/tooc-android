@@ -7,6 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_map_more_frag_photo_list"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+        </android.support.v4.view.ViewPager>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -108,7 +114,6 @@
 
                 </LinearLayout>
 
-
             </LinearLayout>
 
             <LinearLayout
@@ -191,11 +196,13 @@
 
             </LinearLayout>
 
+            <!--
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_main_frag_photo_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </android.support.v7.widget.RecyclerView>
+            -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -216,7 +223,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_main_frag_map_list"
+                android:id="@+id/rv_map_more_frag_review_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </android.support.v7.widget.RecyclerView>

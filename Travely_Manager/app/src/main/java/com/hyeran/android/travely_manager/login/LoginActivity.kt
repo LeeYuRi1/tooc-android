@@ -1,8 +1,9 @@
-package com.hyeran.android.travely_manager
+package com.hyeran.android.travely_manager.login
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.hyeran.android.travely_manager.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {

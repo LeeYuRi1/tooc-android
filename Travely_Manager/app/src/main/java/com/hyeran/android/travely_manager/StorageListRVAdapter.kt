@@ -1,11 +1,14 @@
 package com.hyeran.android.travely_manager
 
 import android.content.Context
+import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import org.w3c.dom.Text
 
@@ -26,6 +29,13 @@ class StorageListRVAdapter(val ctx : Context?, val dataList : ArrayList<StorageL
         holder.am_pm.text = dataList[position].am_pm
         holder.hour.text = dataList[position].hour.toString()
         holder.minute.text = dataList[position].minute.toString()
+
+        holder.view.setOnClickListener {
+            val manager = (ctx as AppCompatActivity).supportFragmentManager
+            val transaction : FragmentTransaction = manager.beginTransaction()
+            transaction.replace(R.id.frame_main, StorageDetailFragment())
+            transaction.commit()
+        }
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -36,5 +46,7 @@ class StorageListRVAdapter(val ctx : Context?, val dataList : ArrayList<StorageL
         val am_pm : TextView = itemView.findViewById(R.id.tv_am_pm_item_storage_list) as TextView
         val hour : TextView = itemView.findViewById(R.id.tv_hour_item_storage_list) as TextView
         val minute : TextView = itemView.findViewById(R.id.tv_minute_item_storage_list) as TextView
+
+        val view  : RelativeLayout = itemView.findViewById(R.id.item_storage_list) as RelativeLayout
     }
 }

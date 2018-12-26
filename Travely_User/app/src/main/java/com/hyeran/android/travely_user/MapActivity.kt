@@ -5,6 +5,8 @@ import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -18,6 +20,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hyeran.android.travely_user.mypage.MypageFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
@@ -42,6 +46,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         locationInit()
+        setOnClickListener()
     }
 
     /**
@@ -53,6 +58,34 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+    fun setOnClickListener() {
+        tab_one_main.setOnClickListener {
+            replaceFragment(MapFragment())
+        }
+        tab_two_main.setOnClickListener {
+            replaceFragment(ReserveStateFragment())
+        }
+        tab_three_main.setOnClickListener {
+            //            replaceFragment(ShipFragment())
+            replaceFragment(ReserveFragment())
+        }
+        tab_four_main.setOnClickListener {
+            replaceFragment(MypageFragment())
+        }
+    }
+
+    fun addFragment(fragment : Fragment) {
+        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.map, fragment)
+        transaction.commit()
+    }
+
+    fun replaceFragment(fragment : Fragment) {
+        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.map, fragment)
+        transaction.commit()
+    }
 
     // 위치 정보를 얻기 위한 각종 초기화
     private fun locationInit() {
