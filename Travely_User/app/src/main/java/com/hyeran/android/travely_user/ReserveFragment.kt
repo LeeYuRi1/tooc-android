@@ -10,6 +10,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_reserve.*
 import kotlinx.android.synthetic.main.fragment_reserve.view.*
+import org.jetbrains.anko.support.v4.toast
 
 class ReserveFragment : Fragment() {
 
@@ -17,8 +18,15 @@ class ReserveFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_reserve, container, false)
 
 
+
         v.btn_reserve_reserve.setOnClickListener {
-            ReserveCompleteDialog(context).show()
+            if(v.cb_confirm_reserve.isChecked) {
+                ReserveCompleteDialog(context).show()
+            }
+            else
+            {
+                toast("예약 동의를 체크해주세요.")
+            }
         }
         return v
     }
