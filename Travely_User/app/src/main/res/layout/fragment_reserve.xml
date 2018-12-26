@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/noto_l"
             android:text="예약하기" />
 
         <ImageView
@@ -482,16 +483,12 @@
 
             </RelativeLayout>
 
-            <RadioGroup
+            <CheckBox
+                android:id="@+id/cb_confirm_reserve"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="위 내용을 확인하였으며 연결에 동의합니다." />
-            </RadioGroup>
+                android:text="위 내용을 확인하였으며 연결에 동의합니다."
+                android:layout_gravity="center_horizontal"/>
 
             <Button
                 android:id="@+id/btn_reserve_reserve"

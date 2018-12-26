@@ -14,6 +14,7 @@ import android.R.attr.data
 import android.support.v4.app.NotificationCompat.getExtras
 import android.graphics.Bitmap
 import android.widget.ImageView
+import com.hyeran.android.travely_manager.mypage.CashInfoDialog
 
 
 class ReserveDetailFragment : Fragment() {
@@ -26,11 +27,18 @@ class ReserveDetailFragment : Fragment() {
 
 
         v.btn_store_reserve_detail.setOnClickListener {
-            StorePhotoDialog(context).show()
 
-            val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(cameraIntent, 999)
+            if(cb_pay_agree.isChecked == false) {
+                CashInfoDialog(context).show()
+
+            }
+            else{
+                StorePhotoDialog(context).show()
+
+
+            }
         }
+
         return v
     }
 
