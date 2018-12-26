@@ -3,21 +3,24 @@ package com.hyeran.android.travely_user.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.hyeran.android.travely_user.join.Explanation1Fragment
-import com.hyeran.android.travely_user.join.Explanation2Fragment
-import com.hyeran.android.travely_user.join.Explanation3Fragment
-import com.hyeran.android.travely_user.join.LanguageFragment
+import android.view.ViewGroup
 
-class ExplanationPagerAdapter(fm : FragmentManager, val fragmentCount : Int) : FragmentStatePagerAdapter(fm) {
-    override fun getItem(position: Int): Fragment? {
-        when(position){
-            0 -> return LanguageFragment()
-            1 -> return Explanation1Fragment()
-            2 -> return Explanation2Fragment()
-            3 -> return Explanation3Fragment()
-            else -> return null
-        }
+class ExplanationPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+
+    var items: ArrayList<Fragment> = ArrayList()
+
+    fun addItem(fragment: Fragment) {
+        items.add(fragment)
     }
-    override fun getCount(): Int = fragmentCount
+
+    override fun getItem(position: Int): Fragment? {
+        return items[position]
+    }
+
+    override fun getCount(): Int = items.size
+
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        return super.instantiateItem(container, position)
+    }
 
 }

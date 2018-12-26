@@ -8,6 +8,19 @@ import android.view.ViewGroup
 import com.hyeran.android.travely_user.R
 
 class Explanation3Fragment : Fragment() {
+
+    companion object {
+        private const val CATEGORY = "category"
+
+        fun newInstance(sectionCategory: String): Explanation3Fragment {
+            val fragment = Explanation3Fragment()
+            val args : Bundle? = Bundle()
+            args?.putString(CATEGORY, sectionCategory)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_explanation3, container, false)
         return v

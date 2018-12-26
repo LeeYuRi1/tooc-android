@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
+
+import com.hyeran.android.travely_manager.mypage.MypageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -60,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(StorageListFragment())
         }
         tab_four_main.setOnClickListener {
-            replaceFragment(FourFragment())
+            replaceFragment(MypageFragment())
         }
     }
 
