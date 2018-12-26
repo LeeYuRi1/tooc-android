@@ -1,19 +1,19 @@
-package com.hyeran.android.travely_user.join
+package com.hyeran.android.travely_manager.login
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_manager.R
 
-class Explanation1Fragment : Fragment() {
+class Explanation2Fragment : Fragment() {
 
     companion object {
         private const val CATEGORY = "category"
 
-        fun newInstance(sectionCategory: String): Explanation1Fragment {
-            val fragment = Explanation1Fragment()
+        fun newInstance(sectionCategory: String): Explanation2Fragment {
+            val fragment = Explanation2Fragment()
             val args : Bundle? = Bundle()
             args?.putString(CATEGORY, sectionCategory)
             fragment.arguments = args

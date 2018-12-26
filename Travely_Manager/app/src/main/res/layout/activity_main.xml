@@ -10,7 +10,8 @@
         android:id="@+id/frame_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_tab_main"></FrameLayout>
+        android:layout_above="@+id/bottom_tab_main">
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/bottom_tab_main"

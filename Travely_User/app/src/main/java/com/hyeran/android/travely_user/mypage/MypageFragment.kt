@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.R.id.*
 import com.hyeran.android.travely_user.adapter.MypageRecentStoreAdapter
 import com.hyeran.android.travely_user.data.MypageRecentStoreData
 import com.hyeran.android.travely_user.join.LoginActivity
@@ -61,9 +62,9 @@ class MypageFragment : Fragment() {
         }
 
         iv_set_mypage.setOnClickListener {
-            replaceFragment(SetFragment())
-//            val intent = Intent(this.activity, LoginActivity::class.java)
-//            startActivity(intent)
+            //    replaceFragment(SetFragment())
+            val intent = Intent(this.activity, LoginActivity::class.java)
+            startActivity(intent)
         }
 
     }
