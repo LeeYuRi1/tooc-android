@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(MapFragment.getInstance())
         }
         tab_two_main.setOnClickListener {
-            replaceFragment(ReserveStateFragment())
+             replaceFragment(ReserveStateFragment())
 
 //            val fm = supportFragmentManager
 //            val dialogFragment = TestTestTestTestTest()
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         }
         tab_three_main.setOnClickListener {
-//            replaceFragment(ShipFragment())
+            //            replaceFragment(ShipFragment())
             replaceFragment(ReserveFragment())
         }
         tab_four_main.setOnClickListener {
@@ -39,14 +39,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun addFragment(fragment : Fragment) {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+    fun addFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.frame_main, fragment)
         transaction.commit()
     }
 
-    fun replaceFragment(fragment : Fragment) {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+    fun replaceFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
         transaction.commit()
     }

@@ -1,7 +1,6 @@
 package com.hyeran.android.travely_manager.mypage
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -13,11 +12,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_whole_statistics.*
-import com.github.mikephil.charting.components.YAxis
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.utils.ColorTemplate
 
 
 class WholeStatisticsFragment: Fragment() {
@@ -56,6 +52,7 @@ class WholeStatisticsFragment: Fragment() {
         val xAxis = lineChart.getXAxis()
         // Set the xAxis position to bottom. Default is top
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM)
+
         //Customizing x axis value
         val months = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9","10", "11", "12")
 
@@ -64,14 +61,14 @@ class WholeStatisticsFragment: Fragment() {
         xAxis.setValueFormatter(formatter)
         xAxis.setLabelCount(12)
 
-        //***
+        //Customizing y axis value
+        val money = arrayOf("10만원", "20만원", "30만원", "40만원")
+
+
         // Controlling right side of y axis
         val yAxisRight = lineChart.getAxisRight()
         yAxisRight.setEnabled(false)
 
-        val money = arrayOf("10만원", "20만원", "30만원", "40만원")
-
-        //***
         // Controlling left side of y axis
         val yAxisLeft = lineChart.getAxisLeft()
         yAxisLeft.setGranularity(1f)
@@ -84,11 +81,14 @@ class WholeStatisticsFragment: Fragment() {
         dataset.setColor(Color.BLUE)
         //원 색깔
         dataset.setCircleColor(Color.BLUE)
-
+        //원 여부
+        dataset.setDrawCircles(false)
+        //값 표시
+        dataset.setDrawValues(false)
 
 
         lineChart.setData(data)
-        lineChart.animateX(2500)
+        lineChart.animateY(2500)
         //refresh
         lineChart.invalidate()
 

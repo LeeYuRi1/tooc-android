@@ -15,4 +15,10 @@
         <item>중국어</item>
     </string-array>
 
+    <string-array name="phone_arrays">
+        <item>+ 82</item>
+        <item>+ 1</item>
+        <item>+ 86</item>
+    </string-array>
+
 </resources>

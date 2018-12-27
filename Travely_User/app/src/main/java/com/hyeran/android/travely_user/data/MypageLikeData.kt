@@ -5,6 +5,5 @@ data class MypageLikeData (
         var likename : String,
         var likeaddr : String,
         var liketime: String,
-        var likephone : String,
-        var likegrade : String,
+
         var likeheart : Boolean)

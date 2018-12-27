@@ -4,6 +4,4 @@ data class MypageRecentStoreData(
         //var storeimage : Int,
                                  var storename : String,
                                  var storeaddr : String,
-                                 var storetime: String,
-                                 var storephone : String,
-                                 var storegrade : String)
+                                 var storetime: String)

@@ -22,6 +22,9 @@ class SetFragment : Fragment() {
     }
 
     private fun setClickListener() {
+        btn_whatistooc_set.setOnClickListener {
+            replaceFragment(ToocFragment())
+        }
         btn_faq_set.setOnClickListener {
             replaceFragment(FaqFragment())
         }

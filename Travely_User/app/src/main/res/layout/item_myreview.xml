@@ -1,75 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline37"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/background_dark" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline37"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#999999"
-        android:layout_margin="10dp">
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0625" />
 
-        <TextView
-            android:id="@+id/tv_name_myreview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="동대문 엽기떡복이 홍대점"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_name_myreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:text="롭스 홍대2호점"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:fontFamily="@font/noto_medium"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
-        <TextView
-            android:id="@+id/tv_date_myreview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2018-11-3"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_name_myreview"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_myreview" />
+    <TextView
+        android:id="@+id/tv_area_myreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="서울시 마포구 샬라샬라"
+        android:textSize="12sp"
+        android:fontFamily="@font/noto_light"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_myreview"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_myreview" />
 
-        <TextView
-            android:id="@+id/tv_content_myreview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:text="감사합니다~"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_date_myreview"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_myreview" />
+    <TextView
+        android:id="@+id/tv_year_myreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018"
+        android:textSize="12sp"
+        android:fontFamily="@font/noto_light"
+        app:layout_constraintStart_toStartOf="@+id/tv_area_myreview"
+        app:layout_constraintTop_toBottomOf="@+id/tv_area_myreview" />
 
-        <RatingBar
-            android:id="@+id/ratingBar_myreview"
-            style="@style/Base.Widget.AppCompat.RatingBar.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:rating="3"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_name_myreview"
-            app:layout_constraintStart_toEndOf="@+id/tv_name_myreview" />
+    <TextView
+        android:id="@+id/textView62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="."
+        android:textSize="12sp"
+        android:fontFamily="@font/noto_light"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_year_myreview"
+        app:layout_constraintStart_toEndOf="@+id/tv_year_myreview" />
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/holo_blue_bright" />
+    <TextView
+        android:id="@+id/tv_month_myreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12"
+        android:textSize="12sp"
+        android:fontFamily="@font/noto_light"
+        app:layout_constraintBottom_toBottomOf="@+id/textView62"
+        app:layout_constraintStart_toEndOf="@+id/textView62" />
 
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView8"
-            app:layout_constraintTop_toTopOf="@+id/imageView8"
-            app:srcCompat="@android:color/holo_red_dark" />
-    </android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="."
+        android:textSize="12sp"
+        android:fontFamily="@font/noto_light"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_month_myreview"
+        app:layout_constraintStart_toEndOf="@+id/tv_month_myreview" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tv_day_myreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_light"
+        android:text="23"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView64"
+        app:layout_constraintStart_toEndOf="@+id/textView64" />
+
+    <TextView
+        android:id="@+id/tv_content_myreview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="위치가 역이랑 가까워서 좋았어요!\n건물도 깨끗했고, 상가 근처에 예쁜 카페가 많아서 구경할거리도 많더라구요!"
+        android:textSize="12sp"
+        android:fontFamily="@font/noto_light"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintStart_toStartOf="@+id/guideline37"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9375" />
+
+    <RatingBar
+        android:id="@+id/ratingBar_myreview"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintTop_toTopOf="@+id/tv_name_myreview" />
+
+    <TextView
+        android:id="@+id/textView67"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:text="삭제하기"
+        android:textSize="10sp"
+        android:fontFamily="@font/noto_medium"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintTop_toBottomOf="@+id/tv_content_myreview" />
+
+    <TextView
+        android:id="@+id/textView68"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
+        android:text="수정하기"
+        android:textSize="10sp"
+        android:fontFamily="@font/noto_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/textView67"
+        app:layout_constraintEnd_toStartOf="@+id/textView67"
+        app:layout_constraintTop_toTopOf="@+id/textView67" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="13dp"
+        android:background="#CCCCCC"
+        app:layout_constraintEnd_toStartOf="@+id/guideline40"
+        app:layout_constraintStart_toStartOf="@+id/guideline39"
+        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.041666668" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9583333" />
+</android.support.constraint.ConstraintLayout>

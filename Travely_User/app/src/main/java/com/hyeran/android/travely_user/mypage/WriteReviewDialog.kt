@@ -17,10 +17,10 @@ class WriteReviewDialog(ctx : Context?) : Dialog(ctx){
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_writereview)
-
-        tv_ok_writereview.setOnClickListener {
-            dismiss()
-        }
+//
+//        tv_ok_writereview.setOnClickListener {
+//            dismiss()
+//        }
     }
 
 }
