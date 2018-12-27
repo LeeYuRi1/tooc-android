@@ -16,14 +16,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-<<<<<<< HEAD
-            android:text="예약하기" />
-=======
             android:fontFamily="@font/noto_medium"
             android:text="예약하기"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
->>>>>>> b60bf0a9c8e18d91ed2861aa1414fb8c285474a1
 
         <ImageView
             android:layout_width="8dp"
