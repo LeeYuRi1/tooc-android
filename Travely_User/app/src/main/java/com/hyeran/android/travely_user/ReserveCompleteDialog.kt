@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.Window
 import kotlinx.android.synthetic.main.dialog_reserve_complete.*
 
-class ReserveCompleteDialog(ctx : Context?) : Dialog(ctx) {
+class ReserveCompleteDialog(val ctx : Context?) : Dialog(ctx) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +19,7 @@ class ReserveCompleteDialog(ctx : Context?) : Dialog(ctx) {
 
         btn_ok_dialog_reserve_complete.setOnClickListener {
             dismiss()
+            (ctx as MainActivity).replaceFragment(ReserveStateFragment())
         }
     }
 }
