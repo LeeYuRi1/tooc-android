@@ -30,7 +30,7 @@ class FaqFragment :Fragment() {
 
 
         val season1 : MutableList<String> = ArrayList()
-        season1.add("11111111111111111")
+        season1.add("주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용하여 사용자와 인접한 상가에서 짐을 보관할 수 있는 앱입니다.")
 
         val season2 : MutableList<String> = ArrayList()
         season2.add("222222")
@@ -39,7 +39,7 @@ class FaqFragment :Fragment() {
         season3.add("333333333333")
 
 
-        header.add("트레블리는 어떤 앱인가요?")
+        header.add("tooc은 어떤 앱인가요?")
         header.add("내 짐은 누가 보관하나요?")
         header.add("짐은 얼마나 오랫동안 보관할 수 있나요?")
 

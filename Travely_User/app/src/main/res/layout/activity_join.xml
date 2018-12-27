@@ -4,109 +4,264 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".join.JoinActivity">
+    android:background="#ffffff">
+
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="프로필을 설정해주세요"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="105dp"
+        android:fontFamily="@font/nanum_bold"
+        android:text="Sign in"
+        android:textColor="@color/mainColor"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.09375" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90625" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.29438543" />
 
     <EditText
         android:id="@+id/et_name_join"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:background="#ffffffff"
         android:ems="10"
+        android:hint="이름"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:textSize="14sp"
+        android:fontFamily="@font/noto_regular"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
-    <EditText
-        android:id="@+id/et_email_join"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <View
+        android:id="@+id/view9"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#CCCCCC"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/et_name_join" />
 
     <EditText
-        android:id="@+id/et_phone_join"
-        android:layout_width="wrap_content"
+        android:id="@+id/et_email_join"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="38dp"
+        android:background="#ffffffff"
         android:ems="10"
+        android:fontFamily="@font/noto_regular"
+        android:hint="이메일"
         android:inputType="textPersonName"
-        android:text="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+    <View
+        android:id="@+id/view10"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#CCCCCC"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/et_email_join" />
 
     <EditText
         android:id="@+id/et_password_join"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="38dp"
+        android:background="#ffffffff"
         android:ems="10"
+        android:fontFamily="@font/noto_regular"
+        android:hint="비밀번호"
         android:inputType="textPersonName"
-        android:text="password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone_join" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+    <View
+        android:id="@+id/view11"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#CCCCCC"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/et_password_join" />
 
     <EditText
         android:id="@+id/et_password_confilm_join"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="38dp"
+        android:background="#ffffffff"
         android:ems="10"
+        android:fontFamily="@font/noto_regular"
+        android:hint="비밀번호 확인"
         android:inputType="textPersonName"
-        android:text="password confirm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password_join" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+    <View
+        android:id="@+id/view12"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#CCCCCC"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/et_password_confilm_join" />
+
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:entries="@array/phone_arrays"
+        android:fontFamily="@font/noto_regular"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/view12" />
+
+    <EditText
+        android:id="@+id/et_phone_join"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="8dp"
+        android:background="#ffffffff"
+        android:ems="10"
+        android:hint="전화번호"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        android:fontFamily="@font/noto_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner3"
+        app:layout_constraintEnd_toStartOf="@+id/imageView23"
+        app:layout_constraintStart_toEndOf="@+id/spinner3" />
+
+    <View
+        android:id="@+id/view13"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="15dp"
+        android:background="#CCCCCC"
+        app:layout_constraintEnd_toEndOf="@+id/spinner3"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+
+    <View
+        android:id="@+id/view14"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/et_phone_join"
+        app:layout_constraintTop_toTopOf="@+id/view13" />
 
     <Button
         android:id="@+id/btn_confirm_join"
+        android:layout_width="200dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/signin_btn_selector"
+        android:fontFamily="@font/noto_bold"
+        android:text="가입완료"
+        android:textColor="@color/mainColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/view14" />
+
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/et_name_join"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        android:src="@drawable/signin_ic_check"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_email_join"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        android:src="@drawable/signin_ic_check"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_password_join"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        android:src="@drawable/signin_ic_check"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/background_dark" />
+        app:layout_constraintBottom_toBottomOf="@+id/et_password_confilm_join"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        android:src="@drawable/signin_check_selector"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_phone_join"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        android:src="@drawable/signin_ic_check"
+        android:visibility="gone"/>
 </android.support.constraint.ConstraintLayout>

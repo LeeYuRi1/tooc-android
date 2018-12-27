@@ -22,8 +22,6 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList : ArrayList<Mypage
         holder.recent_name.text = dataList[position].storename
         holder.recent_addr.text = dataList[position].storeaddr
         holder.recent_time.text = dataList[position].storetime
-        holder.recent_phone.text = dataList[position].storephone.toString()
-        holder.recent_grade.text = dataList[position].storegrade.toString()
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,8 +29,6 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList : ArrayList<Mypage
         var recent_name : TextView = itemView.findViewById(R.id.tv_name_recentstore) as TextView
         var recent_addr : TextView = itemView.findViewById(R.id.tv_addr_recentstore) as TextView
         var recent_time : TextView = itemView.findViewById(R.id.tv_time_recentstore) as TextView
-        var recent_phone : TextView = itemView.findViewById(R.id.tv_phone_recentstore) as TextView
-        var recent_grade : TextView = itemView.findViewById(R.id.tv_grade_recentstore) as TextView
     }
 }
 

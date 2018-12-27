@@ -26,17 +26,6 @@ class LikeFragment : Fragment() {
         setRecyclerView()
     }
 
-//    private fun setRecyclerView() {
-//        var dataList: ArrayList<MypageLikeData> = ArrayList()
-//        dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", "02-111-1111", "4.3",true))
-//        dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", "02-111-1111", "4.3",false))
-//        dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", "02-111-1111", "4.3",true))
-//
-//        mypageLikeAdapter = MypageLikeAdapter(activity!!, dataList)
-//        rv_like_like.adapter = mypageLikeAdapter
-//        rv_like_like.layoutManager = LinearLayoutManager(activity)
-//    }
-
     private fun setRecyclerView() {
         var dataList: ArrayList<MypageAreaLikeData> = ArrayList()
         dataList.add(MypageAreaLikeData("홍대입구역", 1))
