@@ -1,5 +1,6 @@
 package com.hyeran.android.travely_user
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -107,7 +108,8 @@ class ReserveFragment : Fragment() {
                 if (v.cb_carrier_reserve.isChecked || v.cb_etc_reserve.isChecked) {
                     if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
                         if (v.rb_kakaopay_reserve.isChecked) {
-                            startActivity<KakaopayWebView>()
+                            val intent : Intent = Intent(context, KakaopayWebView::class.java)
+                            startActivityForResult(intent, 9999)
                         }
                         if (v.rb_cash_reserve.isChecked) {
                             ReserveCompleteDialog(context).show()
@@ -123,6 +125,11 @@ class ReserveFragment : Fragment() {
             }
         }
         return v
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        (context as MainActivity).replaceFragment(ReserveStateFragment())
     }
 
 }

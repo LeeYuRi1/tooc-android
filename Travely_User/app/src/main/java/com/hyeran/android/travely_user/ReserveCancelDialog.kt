@@ -14,7 +14,7 @@ class ReserveCancelDialog(ctx:Context?) : Dialog(ctx){
         super.onCreate(savedInstanceState)
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.GREEN))
+        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_reserve_cancel)
 
         btn_reserve_cancel_yes.setOnClickListener {
