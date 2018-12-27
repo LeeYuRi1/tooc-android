@@ -22,8 +22,13 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(MapFragment.getInstance())
         }
         tab_two_main.setOnClickListener {
-
             replaceFragment(ReserveStateFragment())
+
+//            val fm = supportFragmentManager
+//            val dialogFragment = TestTestTestTestTest()
+//            dialogFragment.show(fm, "fragment_dialog_test")
+
+
         }
         tab_three_main.setOnClickListener {
 //            replaceFragment(ShipFragment())
