@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(MapFragment.getInstance())
         }
         tab_two_main.setOnClickListener {
-
+//            replaceFragment(ReserveFragment())
             replaceFragment(ReserveStateFragment())
         }
         tab_three_main.setOnClickListener {

@@ -8,6 +8,7 @@
     tools:context=".TempActivity">
 
     <LinearLayout
+        android:id="@+id/color_temp"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
