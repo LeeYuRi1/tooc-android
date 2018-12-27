@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_temp.*
+import org.jetbrains.anko.backgroundColor
 
 class TempActivity : AppCompatActivity() {
 
@@ -13,6 +14,7 @@ class TempActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_temp)
 
+//        color_temp.backgroundColor()
         setRecyclerview()
     }
 

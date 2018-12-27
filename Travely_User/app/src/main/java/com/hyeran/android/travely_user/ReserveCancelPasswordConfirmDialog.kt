@@ -15,7 +15,7 @@ class ReserveCancelPasswordConfirmDialog(ctx:Context?) : Dialog(ctx){
         super.onCreate(savedInstanceState)
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.YELLOW))
+        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_reserve_cancel_password_confirm)
 
         btn_reserve_cancel_complete.setOnClickListener {
