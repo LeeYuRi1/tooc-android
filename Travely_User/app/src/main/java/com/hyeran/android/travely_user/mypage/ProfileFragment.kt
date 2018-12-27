@@ -25,8 +25,8 @@ class ProfileFragment : Fragment() {
             tv_confilm_profile.visibility = View.VISIBLE
             et_name_profile.isFocusableInTouchMode = true
             et_email_profile.isFocusableInTouchMode = true
-            et_phone_profile.isFocusableInTouchMode = true
             et_password_profile.isFocusableInTouchMode = true
+            et_password_confirm_profile.isFocusableInTouchMode = true
         }
 
         tv_confilm_profile.setOnClickListener {
@@ -37,8 +37,8 @@ class ProfileFragment : Fragment() {
             tv_confilm_profile.visibility = View.GONE
             et_name_profile.isFocusableInTouchMode = false
             et_email_profile.isFocusableInTouchMode = false
-            et_phone_profile.isFocusableInTouchMode = false
             et_password_profile.isFocusableInTouchMode = false
+            et_password_confirm_profile.isFocusableInTouchMode = false
 
         }
     }

@@ -23,8 +23,6 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<MypageLikeData
         holder.like_name.text = dataList[position].likename
         holder.like_addr.text = dataList[position].likeaddr
         holder.like_time.text = dataList[position].liketime
-        holder.like_phone.text = dataList[position].likephone.toString()
-        holder.like_grade.text = dataList[position].likegrade.toString()
         holder.like_heart.isSelected = true
 
         if(!dataList[position].likeheart) {
@@ -37,8 +35,6 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<MypageLikeData
         var like_name: TextView = itemView.findViewById(R.id.tv_name_like) as TextView
         var like_addr: TextView = itemView.findViewById(R.id.tv_addr_like) as TextView
         var like_time: TextView = itemView.findViewById(R.id.tv_time_like) as TextView
-        var like_phone: TextView = itemView.findViewById(R.id.tv_phone_like) as TextView
-        var like_grade: TextView = itemView.findViewById(R.id.tv_grade_like) as TextView
         var like_heart: ImageView = itemView.findViewById(R.id.iv_heart_like) as ImageView
     }
 }
