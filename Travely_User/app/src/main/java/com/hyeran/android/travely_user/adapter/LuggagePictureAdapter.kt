@@ -28,11 +28,11 @@ class LuggagePictureAdapter(val ctx: Context, val dataPicture: ArrayList<Luggage
 //                    .load(dataPicture!![position])
 //                    .into(holder.picture)
             Glide.with(ctx)
-                    .load(R.drawable.teset)
+                    .load(R.drawable.ic_google)   //teset 다른걸로 바꿔놨음!!!
                     .into(holder.picture)
         } else {
             Glide.with(ctx)
-                    .load(R.drawable.teset)
+                    .load(R.drawable.ic_google)
                     .into(holder.picture)
 
 //            holder.picture.setImageResource(R.drawable.teset)

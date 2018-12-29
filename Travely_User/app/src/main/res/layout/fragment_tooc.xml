@@ -7,22 +7,22 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="46dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
+            android:src="@drawable/setting_bt_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/background_dark" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
@@ -32,10 +32,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_regular"
+            android:fontFamily="@font/kopub_bold"
             android:text="설정"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.098958336" />
+        app:layout_constraintGuide_percent="0.10555556" />
 
     <TextView
         android:id="@+id/textView18"
@@ -56,6 +56,7 @@
         android:text="ABOUT US"
         android:textColor="@color/mainColor"
         android:textSize="30sp"
+        android:fontFamily="@font/nanum_bold"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
@@ -66,6 +67,7 @@
         android:layout_marginTop="13dp"
         android:text="tooc을 소개합니다."
         android:textSize="12sp"
+        android:fontFamily="@font/nanum_regular"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -74,15 +76,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18518518" />
+        app:layout_constraintGuide_percent="0.17813051" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
         app:layout_constraintTop_toTopOf="@+id/guideline26"
-        app:srcCompat="@android:color/holo_orange_light" />
+        android:src="@drawable/setting_ic_address" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline26"
@@ -96,7 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="서울시 강남구 테헤란로 47 201호"
-        android:textSize="13sp"
+        android:textSize="12sp"
+        android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintStart_toStartOf="@+id/guideline27"
         app:layout_constraintTop_toTopOf="@+id/imageView9" />
@@ -106,41 +109,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1953125" />
+        app:layout_constraintGuide_percent="0.20833333" />
 
     <ImageView
         android:id="@+id/imageView16"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/setting_ic_message"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:srcCompat="@android:color/holo_orange_light" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <ImageView
         android:id="@+id/imageView17"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/setting_ic_phone"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16"
-        app:srcCompat="@android:color/holo_orange_light" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
     <ImageView
         android:id="@+id/imageView18"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/setting_ic_instagram"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17"
-        app:srcCompat="@android:color/holo_orange_light" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="admin_tooc@gmail.com"
-        android:textSize="13sp"
+        android:textSize="12sp"
+        android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/imageView16"
         app:layout_constraintStart_toStartOf="@+id/guideline27"
         app:layout_constraintTop_toTopOf="@+id/imageView16" />
@@ -150,7 +154,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="02)123-4567"
-        android:textSize="13sp"
+        android:textSize="12sp"
+        android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/imageView17"
         app:layout_constraintStart_toStartOf="@+id/guideline27"
         app:layout_constraintTop_toTopOf="@+id/imageView17" />
@@ -160,7 +165,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@tooctooc"
-        android:textSize="13sp"
+        android:textSize="12sp"
+        android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
         app:layout_constraintStart_toStartOf="@+id/guideline27"
         app:layout_constraintTop_toTopOf="@+id/imageView18" />
