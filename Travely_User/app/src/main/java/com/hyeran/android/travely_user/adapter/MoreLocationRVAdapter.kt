@@ -13,6 +13,7 @@ import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import android.R.attr.fragment
 import android.app.Activity
+import android.widget.RelativeLayout
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.map.TempActivity
 import org.jetbrains.anko.startActivity
