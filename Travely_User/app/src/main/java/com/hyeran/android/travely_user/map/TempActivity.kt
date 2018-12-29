@@ -7,6 +7,7 @@ import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.LocationRVAdapter
 import com.hyeran.android.travely_user.data.LocationTempData
 import kotlinx.android.synthetic.main.activity_temp.*
+import kotlinx.android.synthetic.main.item_more_location_map.*
 
 class TempActivity : AppCompatActivity() {
 
@@ -18,6 +19,7 @@ class TempActivity : AppCompatActivity() {
 
 //        color_temp.backgroundColor()
         setRecyclerview()
+
     }
 
     fun setRecyclerview() {

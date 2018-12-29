@@ -116,7 +116,7 @@ class JoinActivity : AppCompatActivity() {
     }
 
     private fun checkEmail(email : String) : Boolean{
-        val regex : String = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$"
+        val regex = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$"
         val p : Pattern = Pattern.compile(regex)
         val m : Matcher = p.matcher(email)
         val isNormal : Boolean = m.matches()
@@ -126,7 +126,7 @@ class JoinActivity : AppCompatActivity() {
     private fun postJoinResponse() {
         val input_email = et_email_join.text.toString().trim()
         val input_pw = et_password_join.text.toString().trim()
-        val input_config_pw = et_password_confilm_join.text.toString().trim()
+        val input_config_pw = et_password_join.text.toString().trim()
         val input_name = et_name_join.text.toString().trim()
         val input_phone = et_phone_join.text.toString().trim()
 
@@ -173,4 +173,5 @@ class JoinActivity : AppCompatActivity() {
 
         })
     }
+
 }

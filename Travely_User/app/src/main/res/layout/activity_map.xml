@@ -11,88 +11,9 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="500dp">
-
-        <LinearLayout
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-
-                <ImageView
-                    android:background = "@color/colorAccent"
-                    android:layout_width="48dp"
-                    android:layout_height="40dp" />
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:text="현위치 : 서울시 강남구 역삼동 818-12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-
-                <ImageView
-                    android:background = "@color/colorPrimary"
-                    android:layout_width="48dp"
-                    android:layout_height="40dp" />
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:text="짐을 맡겨드릴까요?"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        android:layout_height="match_parent">
 
     </fragment>
-
-    <LinearLayout
-        android:id="@+id/bottom_tab_main"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-
-        <ImageView
-            android:id="@+id/tab_one_main"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_light"/>
-        <ImageView
-            android:id="@+id/tab_two_main"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"/>
-        <ImageView
-            android:id="@+id/tab_three_main"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_light"/>
-        <ImageView
-            android:id="@+id/tab_four_main"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"/>
-    </LinearLayout>
 
 </LinearLayout>
 
