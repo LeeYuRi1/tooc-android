@@ -15,33 +15,63 @@
     <LinearLayout
         android:id="@+id/bottom_tab_main"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-        <ImageView
+        android:background="#FFFFFF">
+
+        <RelativeLayout
             android:id="@+id/tab_one_main"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_light"/>
-        <ImageView
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_search_bottom_tab"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/selector_search_bottom_tab"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/tab_two_main"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"/>
-        <ImageView
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_reserve_bottom_tab"
+                android:layout_width="28dp"
+                android:layout_height="24dp"
+                android:src="@drawable/selector_reserve_bottom_tab"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/tab_three_main"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_light"/>
-        <ImageView
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_ship_bottom_tab"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/selector_ship_bottom_tab"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/tab_four_main"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"/>
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_mypage_bottom_tab"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:src="@drawable/selector_mypage_bottom_tab"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
