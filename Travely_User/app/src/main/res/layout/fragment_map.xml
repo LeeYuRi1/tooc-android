@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapFragment">
+    tools:context=".map.MapFragment">
 
     <!-- Activity에서는 fragment로 구현해야되지만
     Fragment로 구현하기 위해서는 MapView를 사용해야함 -->

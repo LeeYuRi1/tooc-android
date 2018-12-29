@@ -1,7 +1,7 @@
 package com.hyeran.android.travely_user.network
 
 import android.app.Application
-import com.hyeran.android.travely_user.NullOnEmptyConverterFactory
+import com.hyeran.android.travely_user.util.NullOnEmptyConverterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

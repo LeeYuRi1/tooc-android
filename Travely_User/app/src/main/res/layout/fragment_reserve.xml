@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#E7E7E7"
     android:orientation="vertical"
-    tools:context=".ReserveFragment">
+    tools:context=".reserve.ReserveFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

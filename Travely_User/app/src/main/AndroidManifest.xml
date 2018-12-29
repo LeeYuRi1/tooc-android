@@ -39,21 +39,24 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapActivity"
+            android:name=".map.MapActivity"
             android:label="@string/activity_map"></activity>
         <activity android:name=".join.LoginActivity">
+        </activity>
+        <activity android:name=".join.JoinActivity" />
+        <activity android:name=".join.WelcomeActivity" />
+        <activity android:name=".join.ExplanationActivity" />
+        <activity android:name=".map.TempActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".join.JoinActivity" />
-        <activity android:name=".join.WelcomeActivity" />
-        <activity android:name=".join.ExplanationActivity" />
-        <activity android:name=".TempActivity"></activity>
-        <activity android:name=".ReserveQRCodeActivity" />
-        <activity android:name=".KakaopayWebView"></activity>
+
+        <activity android:name=".reserve_state.ReserveQRCodeActivity" />
+        <activity android:name=".reserve.KakaopayWebView"></activity>
     </application>
 
 </manifest>

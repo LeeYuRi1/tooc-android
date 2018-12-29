@@ -1,12 +1,9 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.reserve
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
+import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.activity_kakaopay_web_view.*
-import kotlinx.android.synthetic.main.dialog_writereview.*
-import org.jetbrains.anko.ctx
 
 class KakaopayWebView : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.reserve
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve.view.*
 import org.jetbrains.anko.support.v4.toast
 import android.widget.CompoundButton
-import org.jetbrains.anko.support.v4.startActivity
+import com.hyeran.android.travely_user.MainActivity
+import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
+import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
 
 class ReserveFragment : Fragment() {
 

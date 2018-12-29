@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user;
+package com.hyeran.android.travely_user.util;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;

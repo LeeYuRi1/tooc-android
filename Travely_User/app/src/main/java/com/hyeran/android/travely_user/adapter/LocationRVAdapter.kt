@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.adapter
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_temp.*
+import com.hyeran.android.travely_user.data.LocationTempData
+import com.hyeran.android.travely_user.data.MoreLocationTempData
+import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.item_location_map.view.*
 
 class LocationRVAdapter(val ctx : Context, val dataList: ArrayList<LocationTempData>) : RecyclerView.Adapter<LocationRVAdapter.Holder>() {

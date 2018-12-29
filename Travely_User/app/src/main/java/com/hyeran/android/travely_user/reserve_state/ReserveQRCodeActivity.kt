@@ -1,16 +1,15 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.reserve_state
 
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.View
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
+import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.activity_qrcode_enlarge.*
-import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 
 class ReserveQRCodeActivity :AppCompatActivity(){
 

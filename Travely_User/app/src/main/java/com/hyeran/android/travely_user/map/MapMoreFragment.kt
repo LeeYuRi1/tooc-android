@@ -1,20 +1,20 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.map
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.view.PagerAdapter
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
 import android.widget.LinearLayout
+import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.data.ReviewData
+import com.hyeran.android.travely_user.adapter.PhotoRecylerViewAdapter
+import com.hyeran.android.travely_user.adapter.ReviewRecyclerViewAdapter
+import com.hyeran.android.travely_user.data.PhotoData
 import kotlinx.android.synthetic.main.fragment_map_more.*
-import org.jetbrains.anko.support.v4.startActivity
 
 class MapMoreFragment : Fragment() {
     lateinit var photoRecyclerViewAdapter : PhotoRecylerViewAdapter

@@ -1,10 +1,12 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.map
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.adapter.LocationRVAdapter
+import com.hyeran.android.travely_user.data.LocationTempData
 import kotlinx.android.synthetic.main.activity_temp.*
-import org.jetbrains.anko.backgroundColor
 
 class TempActivity : AppCompatActivity() {
 

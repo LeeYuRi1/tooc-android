@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.data.ReviewData
 
 class ReviewRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<ReviewData>)
     : RecyclerView.Adapter<ReviewRecyclerViewAdapter.Holder>() {

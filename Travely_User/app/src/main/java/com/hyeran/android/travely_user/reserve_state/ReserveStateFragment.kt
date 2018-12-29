@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.reserve_state
 
 
 import android.graphics.Bitmap
@@ -8,23 +8,16 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.google.zxing.BarcodeFormat
-import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import kotlinx.android.synthetic.main.fragment_reserve_state.*
-import android.R.attr.bitmap
-import android.R.attr.data
-import android.content.Context
-import android.content.Intent
-import android.graphics.Picture
-import android.graphics.drawable.Drawable
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.widget.EditText
-import com.bumptech.glide.Glide
-import com.google.zxing.LuminanceSource
+import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.adapter.LuggagePictureAdapter
+import com.hyeran.android.travely_user.data.LuggagePictureData
+import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.startActivity
 

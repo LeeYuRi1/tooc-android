@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Window
 import android.text.InputType
 import android.widget.EditText
+import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.dialog_reserve_cancel_password.*
 
 

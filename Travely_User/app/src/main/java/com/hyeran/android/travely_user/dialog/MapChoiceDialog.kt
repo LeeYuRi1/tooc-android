@@ -1,12 +1,12 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.dialog
 
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.content.ContextCompat.startActivity
 import android.view.Window
+import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.dialog_map_choice.*
 
 class MapChoiceDialog(ctx: Context?) : Dialog(ctx) {

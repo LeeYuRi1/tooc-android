@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user
+package com.hyeran.android.travely_user.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
+import com.hyeran.android.travely_user.data.PhotoData
+import com.hyeran.android.travely_user.R
 
 class PhotoRecylerViewAdapter (val ctx : Context, val dataList : ArrayList<PhotoData>)
     : RecyclerView.Adapter<PhotoRecylerViewAdapter.Holder>() {
