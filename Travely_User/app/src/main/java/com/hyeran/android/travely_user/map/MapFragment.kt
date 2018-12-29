@@ -18,8 +18,11 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.R
+import kotlinx.android.synthetic.main.fragment_map.*
+import kotlinx.android.synthetic.main.fragment_map.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
 
@@ -56,6 +59,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+
+        view.btn_fragment_map_question.setOnClickListener {
+            startActivity<TempActivity>()
+        }
+
         return view
     }
 
@@ -70,9 +78,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(37.578346, 127.057015)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val marker = LatLng(37.578346, 127.057015)
+        mMap.addMarker(MarkerOptions().position(marker).title("Marker in Sydney"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
     }
 
     //    override fun onStart() {
