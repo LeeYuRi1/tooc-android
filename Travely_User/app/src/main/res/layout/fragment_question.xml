@@ -19,7 +19,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_medium"
+            android:fontFamily="@font/kopub_bold"
             android:text="설정"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -30,15 +30,15 @@
 
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/holo_blue_bright" />
+           android:src="@drawable/setting_bt_back" />
     </android.support.constraint.ConstraintLayout>
 
     <ScrollView
@@ -54,7 +54,7 @@
                 android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="55dp"
                 android:fontFamily="@font/nanum_bold"
                 android:text="문의하기"
                 android:textColor="@color/mainColor"
@@ -66,10 +66,10 @@
                 android:id="@+id/editText9"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="72dp"
                 android:background="@drawable/question_box"
                 android:ems="10"
-                android:fontFamily="@font/noto_regular"
+                android:fontFamily="@font/kopub_medium"
                 android:gravity="top"
                 android:hint="문의하실 메시지를 입력해주세요."
                 android:inputType="textMultiLine"
@@ -83,11 +83,12 @@
                 android:id="@+id/textView38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/nanum_regular"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="첨부파일은 최대 5개, 100Mb까지 등록할 수 있습니다.\n파일 형식은 jpg, png, pdf, zip만 가능합니다."
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/guideline31"
+                app:layout_constraintStart_toStartOf="@+id/guideline33"
                 app:layout_constraintTop_toBottomOf="@+id/rv_file_question" />
 
             <android.support.constraint.Guideline
@@ -95,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.098958336" />
+                app:layout_constraintGuide_percent="0.10555556" />
 
             <TextView
                 android:id="@+id/textView32"
@@ -113,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.059895832" />
+                app:layout_constraintGuide_percent="0.06388889" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline34"
@@ -139,7 +140,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/noto_regular"
+                    android:fontFamily="@font/kopub_medium"
                     android:text="첨부파일 추가"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -148,13 +149,13 @@
 
                 <ImageView
                     android:id="@+id/imageView24"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="14dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:color/holo_blue_bright" />
+                    android:src="@drawable/ic_attachment" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.RecyclerView
@@ -170,12 +171,12 @@
                 android:id="@+id/button2"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="54dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="52dp"
                 android:background="@drawable/btn_background_full"
-                android:fontFamily="@font/noto_medium"
+                android:fontFamily="@font/kopub_medium"
                 android:text="작성완료"
                 android:textColor="#ffffff"
                 android:textSize="16sp"

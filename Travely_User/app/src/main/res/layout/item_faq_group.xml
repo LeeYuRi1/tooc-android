@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/noto_regular"
+        android:fontFamily="@font/kopub_medium"
         android:lineSpacingExtra="5dp"
         android:text="업데이트"
         android:textColor="#DE000000"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.098958336" />
+        app:layout_constraintGuide_percent="0.10555556" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline12"

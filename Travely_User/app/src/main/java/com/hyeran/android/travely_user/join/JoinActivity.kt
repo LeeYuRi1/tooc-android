@@ -124,7 +124,6 @@ class JoinActivity : AppCompatActivity() {
     }
 
     private fun postJoinResponse() {
-
         val input_email = et_email_join.text.toString().trim()
         val input_pw = et_password_join.text.toString().trim()
         val input_config_pw = et_password_join.text.toString().trim()
@@ -174,4 +173,5 @@ class JoinActivity : AppCompatActivity() {
 
         })
     }
+
 }

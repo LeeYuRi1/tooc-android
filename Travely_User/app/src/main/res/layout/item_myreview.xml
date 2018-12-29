@@ -11,7 +11,7 @@
         android:id="@+id/imageView3"
         android:layout_width="62dp"
         android:layout_height="62dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="22dp"
         app:layout_constraintStart_toStartOf="@+id/guideline37"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/background_dark" />
@@ -21,18 +21,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.0625" />
+        app:layout_constraintGuide_percent="0.06666667" />
 
     <TextView
         android:id="@+id/tv_name_myreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
+        android:fontFamily="@font/kopub_medium"
         android:text="롭스 홍대2호점"
         android:textColor="#000000"
         android:textSize="15sp"
-        android:fontFamily="@font/noto_medium"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -43,7 +42,7 @@
         android:layout_marginTop="2dp"
         android:text="서울시 마포구 샬라샬라"
         android:textSize="12sp"
-        android:fontFamily="@font/noto_light"
+        android:fontFamily="@font/kopub_light"
         app:layout_constraintStart_toStartOf="@+id/tv_name_myreview"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_myreview" />
 
@@ -53,7 +52,7 @@
         android:layout_height="wrap_content"
         android:text="2018"
         android:textSize="12sp"
-        android:fontFamily="@font/noto_light"
+        android:fontFamily="@font/kopub_light"
         app:layout_constraintStart_toStartOf="@+id/tv_area_myreview"
         app:layout_constraintTop_toBottomOf="@+id/tv_area_myreview" />
 
@@ -63,7 +62,7 @@
         android:layout_height="wrap_content"
         android:text="."
         android:textSize="12sp"
-        android:fontFamily="@font/noto_light"
+        android:fontFamily="@font/kopub_light"
         app:layout_constraintBottom_toBottomOf="@+id/tv_year_myreview"
         app:layout_constraintStart_toEndOf="@+id/tv_year_myreview" />
 
@@ -73,7 +72,7 @@
         android:layout_height="wrap_content"
         android:text="12"
         android:textSize="12sp"
-        android:fontFamily="@font/noto_light"
+        android:fontFamily="@font/kopub_light"
         app:layout_constraintBottom_toBottomOf="@+id/textView62"
         app:layout_constraintStart_toEndOf="@+id/textView62" />
 
@@ -83,7 +82,7 @@
         android:layout_height="wrap_content"
         android:text="."
         android:textSize="12sp"
-        android:fontFamily="@font/noto_light"
+        android:fontFamily="@font/kopub_light"
         app:layout_constraintBottom_toBottomOf="@+id/tv_month_myreview"
         app:layout_constraintStart_toEndOf="@+id/tv_month_myreview" />
 
@@ -91,7 +90,7 @@
         android:id="@+id/tv_day_myreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_light"
+        android:fontFamily="@font/kopub_light"
         android:text="23"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView64"
@@ -101,10 +100,10 @@
         android:id="@+id/tv_content_myreview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="19dp"
+        android:fontFamily="@font/kopub_light"
         android:text="위치가 역이랑 가까워서 좋았어요!\n건물도 깨끗했고, 상가 근처에 예쁜 카페가 많아서 구경할거리도 많더라구요!"
         android:textSize="12sp"
-        android:fontFamily="@font/noto_light"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintStart_toStartOf="@+id/guideline37"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -114,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9375" />
+        app:layout_constraintGuide_percent="0.93333334" />
 
     <RatingBar
         android:id="@+id/ratingBar_myreview"
@@ -129,10 +128,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/kopub_medium"
         android:text="삭제하기"
         android:textSize="10sp"
-        android:fontFamily="@font/noto_medium"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintTop_toBottomOf="@+id/tv_content_myreview" />
 
@@ -143,7 +142,7 @@
         android:layout_marginEnd="13dp"
         android:text="수정하기"
         android:textSize="10sp"
-        android:fontFamily="@font/noto_medium"
+        android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/textView67"
         app:layout_constraintEnd_toStartOf="@+id/textView67"
         app:layout_constraintTop_toTopOf="@+id/textView67" />
@@ -152,7 +151,7 @@
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="12dp"
         android:background="#CCCCCC"
         app:layout_constraintEnd_toStartOf="@+id/guideline40"
         app:layout_constraintStart_toStartOf="@+id/guideline39"
@@ -163,12 +162,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.041666668" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9583333" />
+        app:layout_constraintGuide_percent="0.95" />
 </android.support.constraint.ConstraintLayout>

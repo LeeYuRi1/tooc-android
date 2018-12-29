@@ -14,15 +14,15 @@
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
+            android:src="@drawable/setting_bt_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/background_dark" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
@@ -32,10 +32,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_regular"
+            android:fontFamily="@font/kopub_bold"
             android:text="설정"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,11 +54,11 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="42dp"
+                android:layout_marginTop="55dp"
                 android:fontFamily="@font/nanum_bold"
                 android:text="도움이\n필요하신가요?"
                 android:textColor="@color/mainColor"
-                android:textSize="30sp"
+                android:textSize="32sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline21"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,11 +66,11 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="68dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="97dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="알림설정"
                 android:textColor="#000000"
-                android:fontFamily="@font/noto_regular"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -87,7 +87,7 @@
                 android:id="@+id/view4"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="27dp"
                 android:background="#CCCCCC"
                 app:layout_constraintEnd_toStartOf="@+id/guideline23"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
@@ -97,11 +97,11 @@
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="37dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="언어 선택"
                 android:textColor="#000000"
-                android:fontFamily="@font/noto_regular"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
 
@@ -109,7 +109,7 @@
                 android:id="@+id/view5"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="38dp"
                 android:background="#CCCCCC"
                 app:layout_constraintEnd_toStartOf="@+id/guideline23"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
@@ -117,47 +117,49 @@
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="163dp"
+                android:layout_height="34dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/noto_light"
+                android:paddingLeft="24dp"
                 android:entries="@array/language_arrays"
+                android:fontFamily="@font/noto_light"
                 app:layout_constraintBottom_toTopOf="@+id/view5"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
+                app:layout_constraintTop_toBottomOf="@+id/view4"
+                android:background="@drawable/box_language"/>
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.098958336" />
+                app:layout_constraintGuide_percent="0.10555556" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.041666668" />
+                app:layout_constraintGuide_percent="0.044444446" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9583333" />
+                app:layout_constraintGuide_percent="0.95555556" />
 
             <TextView
                 android:id="@+id/btn_whatistooc_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="19dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="WHAT IS TOOC?"
                 android:textColor="#000000"
-                android:fontFamily="@font/noto_regular"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/view5" />
 
@@ -165,7 +167,7 @@
                 android:id="@+id/view16"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="19dp"
                 android:background="#CCCCCC"
                 app:layout_constraintEnd_toStartOf="@+id/guideline23"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
@@ -175,11 +177,11 @@
                 android:id="@+id/btn_howtouse_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="19dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="HOW TO USE"
                 android:textColor="#000000"
-                android:fontFamily="@font/noto_regular"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/view16" />
 
@@ -187,7 +189,7 @@
                 android:id="@+id/view17"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="19dp"
                 android:background="#CCCCCC"
                 app:layout_constraintEnd_toStartOf="@+id/guideline23"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
@@ -197,11 +199,11 @@
                 android:id="@+id/btn_faq_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="19dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="FAQ"
                 android:textColor="#000000"
-                android:fontFamily="@font/noto_regular"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/view17" />
 
@@ -209,7 +211,7 @@
                 android:id="@+id/view18"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="19dp"
                 android:background="#CCCCCC"
                 app:layout_constraintEnd_toStartOf="@+id/guideline23"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
@@ -219,11 +221,11 @@
                 android:id="@+id/btn_question_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="19dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="문의하기"
                 android:textColor="#000000"
-                android:fontFamily="@font/noto_regular"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/view18" />
 
@@ -231,7 +233,7 @@
                 android:id="@+id/view19"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="19dp"
                 android:background="#CCCCCC"
                 app:layout_constraintEnd_toStartOf="@+id/guideline23"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
@@ -241,7 +243,7 @@
                 android:id="@+id/view20"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="19dp"
                 android:background="#CCCCCC"
                 app:layout_constraintEnd_toStartOf="@+id/guideline23"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
@@ -251,11 +253,11 @@
                 android:id="@+id/btn_access_terms_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="19dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="이용약관"
                 android:textColor="#000000"
-                android:fontFamily="@font/noto_regular"
                 app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/view20" />
         </android.support.constraint.ConstraintLayout>
