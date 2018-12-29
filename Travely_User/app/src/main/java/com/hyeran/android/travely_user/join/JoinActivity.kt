@@ -1,7 +1,6 @@
 package com.hyeran.android.travely_user.join
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -117,7 +116,7 @@ class JoinActivity : AppCompatActivity() {
     }
 
     private fun checkEmail(email : String) : Boolean{
-        val regex : String = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$"
+        val regex = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$"
         val p : Pattern = Pattern.compile(regex)
         val m : Matcher = p.matcher(email)
         val isNormal : Boolean = m.matches()
@@ -125,6 +124,7 @@ class JoinActivity : AppCompatActivity() {
     }
 
     private fun postJoinResponse() {
+
         val input_email = et_email_join.text.toString().trim()
         val input_pw = et_password_join.text.toString().trim()
         val input_config_pw = et_password_join.text.toString().trim()

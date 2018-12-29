@@ -44,6 +44,7 @@ class MypageFragment : Fragment() {
     }
 
     private fun setClickListener() {
+
         iv_profile_mypage.setOnClickListener {
             replaceFragment(ProfileFragment())
         }
@@ -52,10 +53,7 @@ class MypageFragment : Fragment() {
         }
         layout_myreview_mypage.setOnClickListener {
             replaceFragment(MyreviewFragment())
-
-            //WriteReviewDialog(context).show()
         }
-
         iv_set_mypage.setOnClickListener {
             //replaceFragment(SetFragment())
             val intent = Intent(this.activity, LoginActivity::class.java)

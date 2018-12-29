@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.SplashActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
+import org.jetbrains.anko.support.v4.startActivity
 
 class ProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -20,6 +22,11 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setClickListener() {
+        btn_logout_profile.setOnClickListener {
+            SharedPreferencesController.instance!!.removeAllData(this!!.context!!)
+            startActivity<SplashActivity>()
+        }
+
         iv_modification_profile.setOnClickListener {
             iv_modification_profile.visibility = View.GONE
             tv_confilm_profile.visibility = View.VISIBLE

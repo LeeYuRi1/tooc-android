@@ -24,6 +24,5 @@ class ReserveCancelDialog(ctx:Context?) : Dialog(ctx){
         btn_reserve_cancel_no.setOnClickListener{
             dismiss()
         }
-
     }
 }

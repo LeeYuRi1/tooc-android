@@ -24,9 +24,6 @@ class LuggagePictureAdapter(val ctx: Context, val dataPicture: ArrayList<Luggage
         holder.bind(dataPicture[position],ctx)
 
         if (dataPicture != null) {
-//            Glide.with(ctx)
-//                    .load(dataPicture!![position])
-//                    .into(holder.picture)
             Glide.with(ctx)
                     .load(R.drawable.teset)
                     .into(holder.picture)
