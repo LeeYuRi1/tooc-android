@@ -13,6 +13,7 @@ import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.MypageRecentStoreAdapter
 import com.hyeran.android.travely_user.data.MypageRecentStoreData
 import com.hyeran.android.travely_user.join.LoginActivity
+import com.hyeran.android.travely_user.join.RecentstoreDetailFragment
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
 class MypageFragment : Fragment() {
@@ -44,6 +45,7 @@ class MypageFragment : Fragment() {
     }
 
     private fun setClickListener() {
+
         iv_profile_mypage.setOnClickListener {
             replaceFragment(ProfileFragment())
         }
@@ -52,14 +54,14 @@ class MypageFragment : Fragment() {
         }
         layout_myreview_mypage.setOnClickListener {
             replaceFragment(MyreviewFragment())
+//            val intent = Intent(this.activity, LoginActivity::class.java)
+//            startActivity(intent)
+
 
             //WriteReviewDialog(context).show()
         }
-
         iv_set_mypage.setOnClickListener {
-            //replaceFragment(SetFragment())
-            val intent = Intent(this.activity, LoginActivity::class.java)
-            startActivity(intent)
+            replaceFragment(SetFragment())
         }
 
     }

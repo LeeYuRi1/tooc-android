@@ -31,6 +31,7 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".MainActivity"></activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -57,6 +58,22 @@
         <activity android:name=".reserve.KakaopayWebView" />
         <activity android:name=".map.MapMoreActivity">
         </activity>
-    </application>
+            android:label="@string/activity_map" />
+        <activity android:name=".join.LoginActivity">
+        </activity>
+        <activity android:name=".join.JoinActivity" ></activity>
+        <activity android:name=".join.WelcomeActivity" />
+        <activity android:name=".join.ExplanationActivity" />
 
+        <activity android:name=".map.TempActivity"></activity>
+        <activity android:name=".reserve_state.ReserveQRCodeActivity" />
+        <activity android:name=".reserve.KakaopayWebView" />
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".map.MapMoreActivity"></activity>
+    </application>
 </manifest>

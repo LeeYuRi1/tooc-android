@@ -1,7 +1,6 @@
 package com.hyeran.android.travely_user.join
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.google.gson.JsonObject
@@ -27,8 +26,6 @@ class LoginActivity : AppCompatActivity() {
 
         init()
 
-        SharedPreferencesController.instance!!.load(this)
-
         setClickListener()
     }
 
@@ -51,12 +48,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun postLoinResponse() {
-        val input_email = et_email_login.text.toString()
-        val input_pw = et_password_login.text.toString()
+        val input_email = et_email_login.text.toString().trim()
+        val input_pw = et_password_login.text.toString().trim()
 
         var jsonObject = JSONObject()
-        jsonObject.put("email", input_email.trim())
-        jsonObject.put("password", input_pw.trim())
+        jsonObject.put("email", input_email)
+        jsonObject.put("password", input_pw)
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
@@ -70,19 +67,17 @@ class LoginActivity : AppCompatActivity() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
+                            toast("로그인 성공")
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
-//                            Log.v("“wo:“, response.message().toString())
+                            SharedPreferencesController.instance!!.setPrefData("auto_login", true)
+                            SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
+                            SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         }
                         403 -> {
                             toast("로그인 실패")
                         }
-
-                        400 -> {
-                            toast("요청 실패")
-                        }
-
                         500 -> {
                             toast("서버 에러")
                         }

@@ -21,12 +21,14 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.PhotoRecylerViewAdapter
 import com.hyeran.android.travely_user.adapter.ReviewRecyclerViewAdapter
 import com.hyeran.android.travely_user.data.PhotoData
 import com.hyeran.android.travely_user.data.ReviewData
 import com.hyeran.android.travely_user.map.MapFragment.Companion.mInstance
+import com.hyeran.android.travely_user.reserve.ReserveFragment
 import kotlinx.android.synthetic.main.fragment_map_more.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.view.*
@@ -64,6 +66,16 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback {
         mapView2 = view.findViewById(R.id.mapView2)
         mapView2.onCreate(savedInstanceState)
         mapView2.getMapAsync(this)
+
+
+        view.btn_fragment_map_more_preview.setOnClickListener {
+            startActivity<MapMoreActivity>()
+        }
+
+
+        view.iv_reserve_map_more_preview.setOnClickListener {
+            (activity as MainActivity).replaceFragment(ReserveFragment())
+        }
 
         return view
     }
