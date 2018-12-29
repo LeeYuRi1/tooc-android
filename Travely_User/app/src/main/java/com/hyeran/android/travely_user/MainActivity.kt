@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
+            replaceFragment(MapFragment())
             clearSelected()
             iv_search_bottom_tab.isSelected = true
             replaceFragment(MapFragment.getInstance())

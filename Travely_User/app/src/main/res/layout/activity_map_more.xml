@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,6 +32,10 @@
             -->
 
             <LinearLayout
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_marginLeft="20dp"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -51,6 +54,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/kopub_bold"
+                            android:lineSpacingExtra="4sp"
+                            android:text="동대문엽기떡볶이 홍대점"
+                            android:textColor="#262626"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="17dp"
                             android:text="동대문엽기떡볶이 홍대점"
@@ -62,6 +69,13 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_star" />
                             android:layout_marginLeft="10dp"
                             android:orientation="horizontal">
 
@@ -73,6 +87,12 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="5.3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="17sp"
+                                android:text="4.5점"
+                                android:textColor="#8D8D8D"
+                                android:textSize="14sp" />
                                 android:fontFamily="@font/noto_regular"
                                 android:textColor="#8D8D8D"
                                 android:textSize="13dp"
@@ -81,6 +101,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="13dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:lineSpacingExtra="10sp"
+                                android:text="123m"
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+                          
                                 android:layout_marginLeft="16dp"
                                 android:fontFamily="@font/noto_regular"
                                 android:textColor="#262626"
@@ -89,6 +116,11 @@
                         </LinearLayout>
 
                     </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_resevation" />
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -118,14 +150,31 @@
                 </LinearLayout>
 
                 <ImageView
+
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="338dp"
+                    android:layout_height="0.5dp"
+                    android:background="#c6c6c6" />
+
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
                     android:background="#999999" />
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_address" />
+
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
                     android:layout_margin="5dp"
                     android:orientation="horizontal">
 
@@ -135,6 +184,7 @@
                         android:background="@color/colorAccent" />
 
                     <LinearLayout
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -142,6 +192,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/kopub_medium"
+                            android:textColor="#262626"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="10sp"
+                            android:text="서울 동대문구 전농로 151 2층 (우)02546" />
+
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/kopub_medium"
+                            android:textColor="#8D8D8D"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="10sp"
                             android:fontFamily="@font/noto_medium"
                             android:textColor="#262626"
                             android:textSize="12dp"
@@ -160,6 +224,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="17dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src = "@drawable/ic_time_fill" />
+
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -183,6 +259,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/kopub_medium"
+                                android:textColor="#262626"
+                                android:textSize="14sp"
+                                android:lineSpacingExtra="10sp"
                                 android:fontFamily="@font/noto_medium"
                                 android:textColor="#262626"
                                 android:textSize="12dp"
@@ -190,6 +270,10 @@
 
                             <ImageView
                                 android:layout_gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:layout_width="58dp"
+                                android:layout_height="18dp"
+                                android:src = "@drawable/ic_working" />
                                 android:layout_marginLeft="9dp"
                                 android:layout_width="39dp"
                                 android:layout_height="16dp"
@@ -198,6 +282,13 @@
                         </LinearLayout>
 
                         <TextView
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/kopub_medium"
+                            android:textColor="#262626"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="10sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_regular"
@@ -210,6 +301,49 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_email_address" />
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopub_medium"
+                        android:textColor="#262626"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="10sp"
+                        android:text="http://www.yupdduk.com" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopub_medium"
+                        android:textColor="#262626"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="10sp"
+                        android:text="02-2212-5689" />
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -261,6 +395,45 @@
                 </android.support.v7.widget.RecyclerView>
                 -->
 
+
+                <ImageView
+                    android:layout_marginTop="22dp"
+                    android:layout_marginBottom="21dp"
+                    android:src="#e8e8e8"
+                    android:layout_width="360dp"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src = "@drawable/ic_bubble"/>
+
+                    <TextView
+                        android:layout_marginLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopub_medium"
+                        android:textColor="#262626"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="17sp"
+                        android:text="리뷰" />
+
+                    <TextView
+                        android:layout_marginLeft="6dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_bold"
+                        android:textSize="14sp"
+                        android:textColor="#4c64fd"
+                        android:lineSpacingExtra="17sp"
+                        android:text="5" />
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -279,6 +452,7 @@
                         android:textColor="#262626"
                         android:textSize="12dp"
                         android:text="리뷰" />
+
 
                 </LinearLayout>
 
