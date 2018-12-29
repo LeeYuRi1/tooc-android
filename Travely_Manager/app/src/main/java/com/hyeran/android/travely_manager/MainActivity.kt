@@ -10,6 +10,15 @@ import com.google.zxing.integration.android.IntentIntegrator
 
 import com.hyeran.android.travely_manager.mypage.MypageFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import android.support.v4.app.ActivityCompat
+import android.content.pm.PackageManager
+import android.support.v4.content.ContextCompat
+import android.Manifest.permission
+import android.Manifest.permission.RECORD_AUDIO
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import java.util.jar.Manifest
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         addFragment(ReserveConfirmFragment.getInstance())
+
+        checkDangerousPermission()
 
         setOnClickListener()
     }
@@ -40,11 +51,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //qrCode
     fun qrCode(reserveNumberConfirm :String){
-       if(reserveNumberConfirm == "123") {
-           replaceFragment(ReserveDetailFragment())
-       }
+        if(reserveNumberConfirm == "123") {
+            replaceFragment(ReserveDetailFragment())
+        }
     }
+
+    //photo
+    fun gotophotoConfirm(){
+
+        val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, 999)
+
+    }
+
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
@@ -73,4 +94,29 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.frame_main, fragment)
         transaction.commit()
     }
+
+    private fun checkDangerousPermission() {
+        val permissions = arrayOf<String>(permission.CAMERA)
+
+        var permissionCheck = PackageManager.PERMISSION_GRANTED
+        for (i in permissions.indices) {
+            permissionCheck = ContextCompat.checkSelfPermission(this, permissions[i])
+            if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                break
+            }
+        }
+
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show()
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
+                Toast.makeText(this, "권한 설명 필요함", Toast.LENGTH_LONG).show()
+            } else {
+                ActivityCompat.requestPermissions(this, permissions, 1)
+            }
+        }
+    }
+
 }

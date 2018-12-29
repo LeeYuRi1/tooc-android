@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TempActivity">
+    tools:context=".map.TempActivity">
 
     <LinearLayout
+        android:id="@+id/color_temp"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 

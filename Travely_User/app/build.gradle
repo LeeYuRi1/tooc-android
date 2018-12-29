@@ -33,7 +33,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:design:27.1.1'
-
     implementation 'org.jetbrains.anko:anko:0.10.5'
     // 위치 정보
     implementation 'com.google.android.gms:play-services-location:15.0.1'
@@ -42,16 +41,16 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.airbnb.android:lottie:2.6.0-beta19'
     //QR코드 라이브러리
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
-
     //recycler
     implementation 'com.android.support:recyclerview-v7:27.1.1'
-
-    implementation 'com.github.bumptech.glide:glide:3.6.0'
-
     implementation "org.jetbrains.anko:anko:0.10.7"
-
     //indicator
     implementation 'me.relex:circleindicator:2.1.0'
+    //통신
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 }

@@ -15,4 +15,14 @@
         <item>중국어</item>
     </string-array>
 
+    <string-array name="phone_arrays">
+        <item>+ 82</item>
+        <item>+ 1</item>
+        <item>+ 86</item>
+    </string-array>
+
+    <style name="WriteReviewRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="colorControlNormal">#dbdbdb</item>
+        <item name="colorControlActivated">#ffd752</item>
+    </style>
 </resources>

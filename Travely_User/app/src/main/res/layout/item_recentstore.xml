@@ -9,11 +9,9 @@
 
     <ImageView
         android:id="@+id/iv_storeimage_recentstore"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="97dp"
+        android:layout_height="97dp"
+        android:layout_marginBottom="27dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,9 +21,10 @@
         android:id="@+id/tv_name_recentstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/kopub_medium"
         android:text="프로마치"
+        android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/iv_storeimage_recentstore"
         app:layout_constraintTop_toTopOf="@+id/iv_storeimage_recentstore" />
 
@@ -33,7 +32,8 @@
         android:id="@+id/tv_addr_recentstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/kopub_light"
         android:text="성북구 안암동 123번지"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_name_recentstore"
@@ -43,54 +43,41 @@
         android:id="@+id/tv_time_recentstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/kopub_light"
         android:text="매일 11:00 - 22:00"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_addr_recentstore"
         app:layout_constraintTop_toBottomOf="@+id/tv_addr_recentstore" />
 
-    <TextView
-        android:id="@+id/tv_phone_recentstore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="02-222-2222"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_time_recentstore"
-        app:layout_constraintTop_toBottomOf="@+id/tv_time_recentstore" />
-
     <Button
         android:id="@+id/button6"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="62dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/btn_background_full"
+        android:fontFamily="@font/kopub_medium"
+        android:text="예약하기"
+        android:textColor="#ffffff"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button7"
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toTopOf="@+id/button7" />
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button6"
-        app:layout_constraintEnd_toStartOf="@+id/button6" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_name_recentstore"
-        app:layout_constraintStart_toEndOf="@+id/tv_name_recentstore"
-        app:srcCompat="@android:color/background_dark" />
-
-    <TextView
-        android:id="@+id/tv_grade_recentstore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:text="4.3"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintStart_toEndOf="@+id/imageView9" />
+        android:layout_width="62dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_background_empty"
+        android:fontFamily="@font/kopub_medium"
+        android:text="리뷰쓰기"
+        android:textColor="@color/mainColor"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_storeimage_recentstore"
+        app:layout_constraintStart_toEndOf="@+id/iv_storeimage_recentstore"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time_recentstore" />
 
 </android.support.constraint.ConstraintLayout>

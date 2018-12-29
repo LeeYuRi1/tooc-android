@@ -29,9 +29,9 @@ class MyreviewFragment:Fragment() {
 
     private fun setRecyclerView() {
         var dataList: ArrayList<MypageMyReviewData> = ArrayList()
-        dataList.add(MypageMyReviewData("동대문엽기떡볶이 홍대점", "2018-11-3", "감사합니다!~~"))
-        dataList.add(MypageMyReviewData("동대문엽기떡볶이 강남점", "2016-11-3", "ㄳㄳ"))
-        dataList.add(MypageMyReviewData("동대문엽기떡볶이 수유점", "2017-11-3", "ㅏㅏ"))
+        dataList.add(MypageMyReviewData("동대문엽기떡볶이 홍대점", "서울시 마포구 샬라샬라", "2018","3","11", "위치가 역이랑 가까워서 좋았어요!\n건물도 깨끗했고, 상가 근처에 예쁜 카페가 많아서 구경할거리도 많더라구요!"))
+        dataList.add(MypageMyReviewData("동대문엽기떡볶이 강남점", "서울시 마포구 샬라샬라2", "2017","1","23","감사합니다." ))
+        dataList.add(MypageMyReviewData("동대문엽기떡볶이 수유점", "서울시 마포구 샬라샬라3", "2016","7","9", "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"))
 
         mypageMyReviewAdapter = MypageMyReviewAdapter(activity!!, dataList)
         rv_review_myreview.adapter = mypageMyReviewAdapter
