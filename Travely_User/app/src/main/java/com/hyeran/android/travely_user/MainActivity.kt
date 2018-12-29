@@ -25,16 +25,11 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(MapFragment.getInstance())
         }
         tab_two_main.setOnClickListener {
-             replaceFragment(ReserveStateFragment())
-
-//            val fm = supportFragmentManager
-//            val dialogFragment = TestTestTestTestTest()
-//            dialogFragment.show(fm, "fragment_dialog_test")
-
+            //123 자리에 서버에서 받은 password값을 넣어야함
+            replaceFragment(ReserveStateFragment.getInstance("123"))
 
         }
         tab_three_main.setOnClickListener {
-            //            replaceFragment(ShipFragment())
             replaceFragment(ReserveFragment())
         }
         tab_four_main.setOnClickListener {

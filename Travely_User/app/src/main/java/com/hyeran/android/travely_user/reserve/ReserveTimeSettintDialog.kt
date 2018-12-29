@@ -8,21 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.hyeran.android.travely_user.R
-import kotlinx.android.synthetic.main.testtsttesttesttesttest.*
-import kotlinx.android.synthetic.main.testtsttesttesttesttest.view.*
+import kotlinx.android.synthetic.main.dialog_reserve_time_setting.*
+import kotlinx.android.synthetic.main.dialog_reserve_time_setting.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class TestTestTestTestTest : DialogFragment() {
+class ReserveTimeSettintDialog : DialogFragment() {
 
     var dates: Array<String>? = null
     var rightNow = Calendar.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        val v = inflater.inflate(R.layout.testtsttesttesttesttest, container, false)
+        val v = inflater.inflate(R.layout.dialog_reserve_time_setting, container, false)
         dates = datesFromCalender()
 
         var calen = Calendar.getInstance()
