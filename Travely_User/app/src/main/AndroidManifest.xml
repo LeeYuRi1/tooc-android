@@ -24,6 +24,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!--
@@ -40,19 +45,14 @@
 
         <activity
             android:name=".map.MapActivity"
-            android:label="@string/activity_map"></activity>
+            android:label="@string/activity_map">
+        </activity>
         <activity android:name=".join.LoginActivity">
         </activity>
         <activity android:name=".join.JoinActivity" />
         <activity android:name=".join.WelcomeActivity" />
         <activity android:name=".join.ExplanationActivity" />
         <activity android:name=".map.TempActivity">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".reserve_state.ReserveQRCodeActivity" />
