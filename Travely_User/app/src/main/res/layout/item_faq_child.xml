@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:text="TextView"
         android:textSize="10sp"
-        android:fontFamily="@font/noto_light"
+        android:fontFamily="@font/kopub_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline14"
         app:layout_constraintStart_toStartOf="@+id/guideline13"
@@ -27,12 +27,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.111979164" />
+        app:layout_constraintGuide_percent="0.119444445" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8880208" />
+        app:layout_constraintGuide_percent="0.85" />
 </android.support.constraint.ConstraintLayout>
