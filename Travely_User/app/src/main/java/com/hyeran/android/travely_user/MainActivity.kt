@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import com.hyeran.android.travely_user.map.MapFragment
+import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.mypage.MypageFragment
 import com.hyeran.android.travely_user.reserve.ReserveFragment
 import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
-            replaceFragment(MapFragment.getInstance())
+            replaceFragment(MapFragment())
         }
         tab_two_main.setOnClickListener {
              replaceFragment(ReserveStateFragment())

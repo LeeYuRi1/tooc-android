@@ -29,6 +29,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <!--
@@ -47,16 +48,15 @@
             android:name=".map.MapActivity"
             android:label="@string/activity_map">
         </activity>
-        <activity android:name=".join.LoginActivity">
-        </activity>
+        <activity android:name=".join.LoginActivity"></activity>
         <activity android:name=".join.JoinActivity" />
         <activity android:name=".join.WelcomeActivity" />
         <activity android:name=".join.ExplanationActivity" />
-        <activity android:name=".map.TempActivity">
-        </activity>
-
+        <activity android:name=".map.TempActivity"></activity>
         <activity android:name=".reserve_state.ReserveQRCodeActivity" />
-        <activity android:name=".reserve.KakaopayWebView"></activity>
+        <activity android:name=".reserve.KakaopayWebView" />
+        <activity android:name=".map.MapMoreActivity">
+        </activity>
     </application>
 
 </manifest>

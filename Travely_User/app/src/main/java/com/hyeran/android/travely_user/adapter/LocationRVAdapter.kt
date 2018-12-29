@@ -11,9 +11,7 @@ import android.widget.TextView
 import com.hyeran.android.travely_user.data.LocationTempData
 import com.hyeran.android.travely_user.data.MoreLocationTempData
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.map.MapMoreActivity
 import kotlinx.android.synthetic.main.item_location_map.view.*
-import org.jetbrains.anko.startActivity
 
 class LocationRVAdapter(val ctx : Context, val dataList: ArrayList<LocationTempData>) : RecyclerView.Adapter<LocationRVAdapter.Holder>() {
 
@@ -62,9 +60,9 @@ class LocationRVAdapter(val ctx : Context, val dataList: ArrayList<LocationTempD
         holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
         holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx)
 
-        holder.item_btn.setOnClickListener {
-            ctx.startActivity<MapMoreActivity>()
-        }
+//        holder.item_btn.setOnClickListener {
+//            ctx.startActivity<MapMoreActivity>()
+//        }
 
     }
 

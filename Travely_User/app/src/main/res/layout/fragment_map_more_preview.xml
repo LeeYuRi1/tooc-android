@@ -8,11 +8,9 @@
     Fragment로 구현하기 위해서는 MapView를 사용해야함 -->
 
     <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+        android:id="@+id/mapView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
-
     </com.google.android.gms.maps.MapView>
 
     <RelativeLayout
@@ -30,7 +28,7 @@
             android:textColor="#4c64fd"
             android:lineSpacingExtra="3sp"
             android:gravity="center_horizontal"
-            tools:text="tooc" />
+            android:text="tooc" />
 
         <LinearLayout
             android:layout_gravity="end"
@@ -41,7 +39,7 @@
             android:layout_height="112dp">
 
             <LinearLayout
-                android:layout_marginTop="25.4dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginLeft="15dp"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -50,9 +48,9 @@
                 <TextView
                     android:text="동대문엽기떡볶이 홍대점"
                     android:fontFamily="@font/kopub_bold"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:textColor="#262626"
-                    android:lineSpacingExtra="8sp"
+                    android:lineSpacingExtra="7sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -72,9 +70,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kopub_medium"
-                        android:textSize="11sp"
+                        android:textSize="14sp"
                         android:textColor="#494949"
-                        android:lineSpacingExtra="11sp"
+                        android:lineSpacingExtra="8sp"
                         android:text="매일 12:00 ~ 24:00"/>
 
                 </LinearLayout>
@@ -84,42 +82,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:textSize="11sp"
+                    android:textSize="14sp"
                     android:textColor="#494949"
-                    android:lineSpacingExtra="11sp"
+                    android:lineSpacingExtra="8sp"
                     android:text="서울 동대문구 전농로 151 2층 (전농동)"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_marginRight="17dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="22dp"
-                    android:src="@drawable/ic_resevation" />
-
-                <TextView
-                    android:clickable="true"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="2dp"
-                    android:text="예약하기"
-                    android:fontFamily="@font/noto_regular"
-                    android:textSize="12sp"
-                    android:textColor="#494949"
-                    android:lineSpacingExtra="12sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+            <ImageView
+                android:layout_marginLeft="62dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_resevation"
+                android:layout_width="60dp"
+                android:layout_height="70dp" />
 
         </LinearLayout>
-
     </RelativeLayout>
 </RelativeLayout>
 

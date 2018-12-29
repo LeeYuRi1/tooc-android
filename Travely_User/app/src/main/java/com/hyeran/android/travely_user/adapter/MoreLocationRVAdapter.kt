@@ -1,20 +1,13 @@
 package com.hyeran.android.travely_user.adapter
 
-import android.app.FragmentManager
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
-import com.google.android.gms.dynamic.SupportFragmentWrapper
-import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.data.MoreLocationTempData
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.map.MapMoreActivity
-import com.hyeran.android.travely_user.map.MapMorePreviewFragment
-import org.jetbrains.anko.startActivity
 
 class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<MoreLocationTempData>) : RecyclerView.Adapter<MoreLocationRVAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
