@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import com.hyeran.android.travely_user.map.MapFragment
+import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.mypage.MypageFragment
 import com.hyeran.android.travely_user.reserve.ReserveFragment
 import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             clearSelected()
             iv_reserve_bottom_tab.isSelected = true
             replaceFragment(ReserveStateFragment())
+//            replaceFragment(MapMorePreviewFragment())
         }
         tab_three_main.setOnClickListener {
             clearSelected()
@@ -44,6 +46,10 @@ class MainActivity : AppCompatActivity() {
             iv_mypage_bottom_tab.isSelected = true
             replaceFragment(MypageFragment())
         }
+    }
+
+    fun temp() {
+        replaceFragment(MapMorePreviewFragment())
     }
 
     fun clearSelected() {

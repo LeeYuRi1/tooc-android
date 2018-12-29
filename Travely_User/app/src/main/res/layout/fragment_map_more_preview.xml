@@ -8,7 +8,7 @@
     Fragment로 구현하기 위해서는 MapView를 사용해야함 -->
 
     <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+        android:id="@+id/mapView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -98,6 +98,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_reserve_map_more_preview"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:layout_gravity="right"

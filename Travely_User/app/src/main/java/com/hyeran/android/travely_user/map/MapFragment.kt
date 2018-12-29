@@ -1,6 +1,7 @@
 package com.hyeran.android.travely_user.map
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -17,12 +18,14 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_map.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
 
@@ -61,10 +64,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mapView.getMapAsync(this)
 
         view.btn_fragment_map_question.setOnClickListener {
-            startActivity<TempActivity>()
+            startActivityForResult<TempActivity>(999)
+//            startActivity<TempActivity>()
         }
 
         return view
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 999) {
+            (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
