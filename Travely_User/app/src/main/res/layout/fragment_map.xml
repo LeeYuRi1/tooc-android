@@ -11,7 +11,93 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+    </com.google.android.gms.maps.MapView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_bold"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="3sp"
+            android:textColor="#4c64fd"
+            android:textSize="20sp"
+            android:text="tooc" />
+
+        <LinearLayout
+            android:layout_marginTop="39dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#fbfbf9"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:layout_width="313dp"
+            android:layout_height="80dp">
+
+            <LinearLayout
+                android:background="#fbfbf9"
+                android:orientation="horizontal"
+                android:layout_width="313dp"
+                android:layout_height="40dp">
+
+                <ImageView
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_circle_gray"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="현위치 : 서울시 강남구 역삼동 818-12"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="14sp"
+                    android:textColor="#cecece"
+                    android:lineSpacingExtra="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:id = "@+id/btn_fragment_map_question"
+                android:background="#ffffff"
+                android:orientation="horizontal"
+                android:layout_width="313dp"
+                android:layout_height="40dp">
+
+                <ImageView
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:layout_gravity="center"
+                    android:background = "@drawable/ic_rectangle_fill"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="짐을 맡겨드릴까요?"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="14sp"
+                    android:textColor="#262626"
+                    android:lineSpacingExtra="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <!--
     <LinearLayout

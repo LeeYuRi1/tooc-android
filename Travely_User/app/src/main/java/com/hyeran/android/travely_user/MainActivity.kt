@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import com.hyeran.android.travely_user.map.MapFragment
+import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.mypage.MypageFragment
 import com.hyeran.android.travely_user.reserve.ReserveFragment
 import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
+import com.hyeran.android.travely_user.ship.ShipFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_reserve.*
 import org.jetbrains.anko.ctx
@@ -22,11 +24,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         addFragment(MapFragment.getInstance())
+        iv_search_bottom_tab.isSelected = true
         setOnClickListener()
     }
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
+            replaceFragment(MapFragment())
+            clearSelected()
+            iv_search_bottom_tab.isSelected = true
             replaceFragment(MapFragment.getInstance())
         }
         tab_two_main.setOnClickListener {
@@ -48,8 +54,11 @@ class MainActivity : AppCompatActivity() {
             var fragment : Fragment = ReserveFragment()
             fragment.arguments = args
             replaceFragment(fragment)
+
         }
         tab_four_main.setOnClickListener {
+            clearSelected()
+            iv_mypage_bottom_tab.isSelected = true
             replaceFragment(MypageFragment())
         }
     }
@@ -62,14 +71,14 @@ class MainActivity : AppCompatActivity() {
     var tmm : String? = null
 
 
-    fun getTimeSettingDialog(tsmmddee: String,tshh:String,tsmm:String,ttmmddee:String,tthh:String,ttmm:String){
+    fun getTimeSettingDialog(tsmmddee: String,tshh:String,tsmm:String,ttmmddee:String,tthh:String,ttmm:String) {
         smmddee = tsmmddee
         shh = tshh
         smm = tsmm
         tmmddee = ttmmddee
         thh = tthh
         tmm = ttmm
-        toast("날짜"+smmddee.toString()+"시간"+shh.toString()+"분"+smm.toString())
+        toast("날짜" + smmddee.toString() + "시간" + shh.toString() + "분" + smm.toString())
 
         args!!.putString("smmddee", smmddee)
         args!!.putString("shh", shh)
@@ -78,12 +87,21 @@ class MainActivity : AppCompatActivity() {
         args!!.putString("thh", thh)
         args!!.putString("tmm", tmm)
 
-        var fragment : Fragment = ReserveFragment()
+        var fragment: Fragment = ReserveFragment()
         fragment.arguments = args
         replaceFragment(fragment)
 
+    }
 
-//        replaceFragment(ReserveFragment.getInstance(smmddee.toString(),shh.toString(),smm.toString(),tmmddee.toString(),thh.toString(),tmm.toString()))
+    fun temp() {
+        replaceFragment(MapMorePreviewFragment())
+    }
+
+    fun clearSelected() {
+        iv_search_bottom_tab.isSelected = false
+        iv_reserve_bottom_tab.isSelected = false
+        iv_ship_bottom_tab.isSelected = false
+        iv_mypage_bottom_tab.isSelected = false
     }
 
     fun addFragment(fragment: Fragment) {

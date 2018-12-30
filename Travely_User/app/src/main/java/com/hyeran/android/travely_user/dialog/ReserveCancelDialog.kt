@@ -25,7 +25,6 @@ class ReserveCancelDialog(var ctx:Context?,var password:String?) : Dialog(ctx){
         btn_reserve_cancel_no.setOnClickListener{
             dismiss()
         }
-
     }
 
 }

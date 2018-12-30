@@ -1,6 +1,7 @@
 package com.hyeran.android.travely_user.map
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -17,9 +18,14 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
+import kotlinx.android.synthetic.main.fragment_map.*
+import kotlinx.android.synthetic.main.fragment_map.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
 
@@ -56,7 +62,20 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+
+        view.btn_fragment_map_question.setOnClickListener {
+            startActivityForResult<TempActivity>(999)
+//            startActivity<TempActivity>()
+        }
+
         return view
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 999) {
+            (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -70,9 +89,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(37.578346, 127.057015)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val marker = LatLng(37.578346, 127.057015)
+//        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
     //    override fun onStart() {
@@ -156,6 +175,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 // 14 level로 확대하고 현재 위치로 카메라 이동
                 val latLng = LatLng(latitude, longitude)
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+//                mMap.animateCamera(CameraUpdateFactory.zoomTo())
 
                 Log.d("MapActivity", "위도 : $latitude, 경도 : $longitude")
             }
