@@ -42,6 +42,166 @@
             android:layout_alignParentTop="true"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/noto_medium"
+                android:text="날짜 및 시간"
+                android:textColor="#494949"
+                android:textSize="14sp" />
+
+
+            <LinearLayout
+                android:id="@+id/btn_alldate_reserve"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="맡기는 시간" />
+
+                        <TextView
+                            android:id="@+id/tv_store_date_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12월 05일 (수)" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="#888888" />
+
+                        <TextView
+                            android:id="@+id/tv_store_hour_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="01" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":" />
+
+                        <TextView
+                            android:id="@+id/tv_store_minute_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_take_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="찾는 시간" />
+
+                        <TextView
+                            android:id="@+id/tv_take_date_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12월 05일 (수)" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="#888888" />
+
+                        <TextView
+                            android:id="@+id/tv_take_hour_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="01" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":" />
+
+                        <TextView
+                            android:id="@+id/tv_take_minute_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="총 "
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="4"
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="시간"
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -90,6 +250,7 @@
                 android:text="캐리어"
                 android:textColor="#494949"
                 android:textSize="14sp" />
+
             <LinearLayout
                 android:id="@+id/linear_carrier_more_reserve"
                 android:layout_width="match_parent"
@@ -97,123 +258,126 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="수량선택"
-                android:fontFamily="@font/noto_regular"
-                android:textSize="12sp"
-                android:textColor="#000000"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="50dp"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="52.5dp"
-                android:layout_marginRight="24dp">
-
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="수량선택"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
 
                 <RelativeLayout
-                    android:id="@+id/relative_carrier_amount_reserve"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:background="#ffff88">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="52.5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="24dp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/relative_carrier_amount_reserve"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:background="#ffff88">
+
+                        <TextView
+                            android:id="@+id/tv_carrier_changing_amount_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="18dp"
+                            android:fontFamily="@font/noto_regular"
+                            android:text="1"
+                            android:textColor="#494949"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_carrier_amount_up_reserve"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:background="#707070" />
+
+                            <ImageView
+                                android:id="@+id/iv_carrier_amount_down_reserve"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginTop="1dp"
+                                android:background="#707070" />
+                        </LinearLayout>
+                    </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/tv_carrier_changing_amount_reserve"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="18dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/relative_carrier_amount_reserve"
                         android:fontFamily="@font/noto_regular"
-                        android:textSize="12sp"
+                        android:text="개"
                         android:textColor="#494949"
-                        android:text="1" />
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/iv_carrier_amount_up_reserve"
-                            android:layout_width="8dp"
-                            android:layout_height="8dp"
-                            android:background="#707070" />
+                        <TextView
+                            android:id="@+id/tv_carrier_amount_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:text="1"
+                            android:textColor="#262626"
+                            android:textSize="12sp" />
 
-                        <ImageView
-                            android:id="@+id/iv_carrier_amount_down_reserve"
-                            android:layout_width="8dp"
-                            android:layout_height="8dp"
-                            android:layout_marginTop="1dp"
-                            android:background="#707070" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:text="개 : "
+                            android:textColor="#262626"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_price_carrier_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:text="3500"
+                            android:textColor="#262626"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:text="원"
+                            android:textColor="#262626"
+                            android:textSize="12sp" />
                     </LinearLayout>
+
+
                 </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/noto_regular"
-                    android:textSize="12sp"
-                    android:textColor="#494949"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/relative_carrier_amount_reserve"
-                    android:text="개" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true">
-                    <TextView
-                        android:id="@+id/tv_carrier_amount_reserve"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_regular"
-                        android:textSize="12sp"
-                        android:textColor="#262626"
-                        android:text="1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_regular"
-                        android:textSize="12sp"
-                        android:textColor="#262626"
-                        android:text="개 : "/>
-                    <TextView
-                        android:id="@+id/tv_price_carrier_reserve"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_regular"
-                        android:textSize="12sp"
-                        android:textColor="#262626"
-                        android:text="3500"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_regular"
-                        android:textSize="12sp"
-                        android:textColor="#262626"
-                        android:text="원"/>
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0.5pt"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="24dp"
-                android:background="#C6C6C6"></RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5pt"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="24dp"
+                    android:background="#C6C6C6"></RelativeLayout>
 
             </LinearLayout>
 
@@ -251,21 +415,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="수량선택"
-                    android:fontFamily="@font/noto_regular"
-                    android:textSize="12sp"
-                    android:textColor="#000000"
+                    android:layout_marginLeft="50dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="50dp"/>
+                    android:fontFamily="@font/noto_regular"
+                    android:text="수량선택"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
 
                 <RelativeLayout
                     android:id="@+id/gesture"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="52.5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="24dp">
-
 
 
                     <RelativeLayout
@@ -281,9 +444,9 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="18dp"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="12sp"
+                            android:text="1"
                             android:textColor="#494949"
-                            android:text="1" />
+                            android:textSize="12sp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -312,49 +475,53 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:fontFamily="@font/noto_regular"
-                        android:textSize="12sp"
-                        android:textColor="#494949"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/relative_etc_amount_reserve"
-                        android:text="개" />
+                        android:fontFamily="@font/noto_regular"
+                        android:text="개"
+                        android:textColor="#494949"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true">
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/tv_etc_amount_reserve"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="12sp"
+                            android:text="1"
                             android:textColor="#262626"
-                            android:text="1"/>
+                            android:textSize="12sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="12sp"
+                            android:text="개 : "
                             android:textColor="#262626"
-                            android:text="개 : "/>
+                            android:textSize="12sp" />
+
                         <TextView
                             android:id="@+id/tv_price_etc_reserve"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="12sp"
+                            android:text="3500"
                             android:textColor="#262626"
-                            android:text="3500"/>
+                            android:textSize="12sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="12sp"
+                            android:text="원"
                             android:textColor="#262626"
-                            android:text="원"/>
+                            android:textSize="12sp" />
                     </LinearLayout>
 
 
@@ -365,117 +532,76 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="짐 선택 : 캐리어 "
-                android:fontFamily="@font/noto_regular"
-                android:textSize="14sp"
-                android:textColor="#262626"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="짐 선택 : 캐리어 "
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_result_amount_carrier_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
                     android:text="0"
-                    android:fontFamily="@font/noto_regular"
-                    android:textSize="14sp"
-                    android:textColor="#262626"/>
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
                     android:text="개, "
-                    android:fontFamily="@font/noto_regular"
-                    android:textSize="14sp"
-                    android:textColor="#262626"/>
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="일반 짐 "
                     android:fontFamily="@font/noto_regular"
-                    android:textSize="14sp"
-                    android:textColor="#262626"/>
+                    android:text="일반 짐 "
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_result_amount_etc_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
                     android:fontFamily="@font/noto_regular"
-                    android:textSize="14sp"
-                    android:textColor="#262626"/>
+                    android:text="0"
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="개"
                     android:fontFamily="@font/noto_regular"
-                    android:textSize="14sp"
-                    android:textColor="#262626"/>
+                    android:text="개"
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.5pt"
-                android:layout_marginBottom="23.5dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22.5dp"
+                android:layout_marginBottom="23.5dp"
                 android:background="#C6C6C6"></RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:fontFamily="@font/noto_medium"
-                android:text="날짜 및 시간"
-                android:textColor="#494949"
-                android:textSize="14sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="28dp"
-            android:layout_marginTop="22dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="총 "
-                android:fontFamily="@font/noto_regular"
-                android:textSize="14sp"
-                android:textColor="#262626"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4"
-                android:fontFamily="@font/noto_regular"
-                android:textSize="14sp"
-                android:textColor="#262626"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="시간"
-                android:fontFamily="@font/noto_regular"
-                android:textSize="14sp"
-                android:textColor="#262626"/>
-
-        </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:layout_marginBottom="24dp"
                 android:layout_marginTop="23dp"
+                android:layout_marginBottom="24dp"
                 android:background="#E7E7E7"></RelativeLayout>
 
             <TextView
@@ -497,94 +623,103 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="결제금액"
-                android:fontFamily="@font/noto_regular"
-                android:textSize="14sp"
-                android:textColor="#262626"
-                android:layout_marginLeft="24dp"
-                android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="결제금액"
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/tv_total_price_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:layout_toLeftOf="@+id/tv_won_reserve"
                     android:fontFamily="@font/noto_bold"
-                    android:textSize="18sp"
+                    android:text="0"
                     android:textColor="#4C64FD"
-                    android:layout_toLeftOf="@+id/tv_won_reserve"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/tv_won_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="원"
-                    android:fontFamily="@font/noto_bold"
-                    android:textSize="18sp"
-                    android:textColor="#4C64FD"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="31dp"/>
+                    android:layout_marginRight="31dp"
+                    android:fontFamily="@font/noto_bold"
+                    android:text="원"
+                    android:textColor="#4C64FD"
+                    android:textSize="18sp" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:layout_marginBottom="24dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="24dp"
                 android:background="#E7E7E7"></RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
                 android:fontFamily="@font/noto_medium"
-                android:textColor="#262626"
-                android:textSize="14sp"
                 android:text="결제 방법 선택"
-                android:layout_marginLeft="24dp"/>
+                android:textColor="#262626"
+                android:textSize="14sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="139dp">
+
                 <RadioGroup
                     android:id="@+id/rg_payment_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="22dp">
+
                     <RadioButton
                         android:id="@+id/rb_kakaopay_reserve"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:textSize="14sp"
                         android:fontFamily="@font/noto_regular"
+                        android:text="카카오페이"
                         android:textColor="#262626"
-                        android:text="카카오페이"/>
+                        android:textSize="14sp" />
+
                     <RadioButton
                         android:id="@+id/rb_cash_reserve"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:textSize="14sp"
                         android:fontFamily="@font/noto_regular"
+                        android:text="현금 결제"
                         android:textColor="#262626"
-                        android:text="현금 결제"/>
+                        android:textSize="14sp" />
                 </RadioGroup>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:text="*카카오페이 결제 시 예약취소 불가"
-                        android:gravity="center_vertical"
+                        android:layout_gravity="right"
                         android:layout_marginRight="24dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="*카카오페이 결제 시 예약취소 불가"
                         android:textColor="#262626"
-                        android:textSize="12sp"
-                        android:layout_gravity="right"/>
+                        android:textSize="12sp" />
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -594,37 +729,38 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.5pt"
-                    android:layout_marginHorizontal="20dp"
                     android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="20dp"
                     android:background="#C6C6C6"></RelativeLayout>
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="127dp"
-                android:orientation="vertical"
-                android:background="#E7E7E7">
+                android:background="#E7E7E7"
+                android:orientation="vertical">
+
                 <CheckBox
                     android:id="@+id/cb_confirm_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="위 내용을 확인하였으며 결제에 동의합니다."
-                    android:textSize="12sp"
-                    android:textColor="#000000"
-                    android:fontFamily="@font/noto_light"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginVertical="17dp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:fontFamily="@font/noto_light"
+                    android:text="위 내용을 확인하였으며 결제에 동의합니다."
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btn_reserve_reserve"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
-                    android:background="@color/mainColor"
                     android:layout_gravity="center_horizontal"
+                    android:background="@color/mainColor"
+                    android:fontFamily="@font/noto_regular"
                     android:text="예약하기"
                     android:textColor="#FFFFFF"
-                    android:fontFamily="@font/noto_regular"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
