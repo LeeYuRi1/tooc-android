@@ -9,24 +9,24 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="50dp"
         android:background="@color/mainColor">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/kopub_bold"
+            android:fontFamily="@font/noto_medium"
             android:text="예약하기"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="8dp"
+            android:layout_height="18dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_back_reservation" />
+            android:background="#FFFFFF" />
 
     </RelativeLayout>
 
@@ -42,43 +42,201 @@
             android:layout_alignParentTop="true"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/noto_medium"
+                android:text="날짜 및 시간"
+                android:textColor="#494949"
+                android:textSize="14sp" />
+
+
+            <LinearLayout
+                android:id="@+id/btn_alldate_reserve"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="맡기는 시간" />
+
+                        <TextView
+                            android:id="@+id/tv_store_date_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12월 05일 (수)" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="#888888" />
+
+                        <TextView
+                            android:id="@+id/tv_store_hour_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="01" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":" />
+
+                        <TextView
+                            android:id="@+id/tv_store_minute_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_take_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="찾는 시간" />
+
+                        <TextView
+                            android:id="@+id/tv_take_date_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12월 05일 (수)" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="#888888" />
+
+                        <TextView
+                            android:id="@+id/tv_take_hour_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="01" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":" />
+
+                        <TextView
+                            android:id="@+id/tv_take_minute_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="총 "
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="4"
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:text="시간"
+                    android:textColor="#262626"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="22dp">
+                android:layout_marginVertical="24dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
+                    android:fontFamily="@font/noto_medium"
                     android:text="짐 종류"
                     android:textColor="#494949"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginRight="12dp"
-                        android:fontFamily="@font/kopub_medium"
+                        android:layout_marginRight="6dp"
+                        android:fontFamily="@font/noto_regular"
                         android:text="요금정보"
                         android:textColor="#656565"
                         android:textSize="12sp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_info" />
+                        android:src="#6F6F6F" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -87,7 +245,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="23dp"
-                android:fontFamily="@font/kopub_medium"
+                android:fontFamily="@font/noto_regular"
                 android:gravity="center_vertical"
                 android:text="캐리어"
                 android:textColor="#494949"
@@ -103,9 +261,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="53dp"
-                    android:layout_marginTop="11dp"
-                    android:fontFamily="@font/kopub_medium"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_regular"
                     android:text="수량선택"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -113,80 +271,61 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="53dp"
-                    android:layout_marginRight="23dp"
-                    android:layout_marginTop="13dp">
+                    android:layout_marginLeft="52.5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="24dp">
 
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:id="@+id/relative_carrier_amount_reserve"
-                        android:layout_width="164dp"
-                        android:layout_height="38dp"
-                        android:background="@drawable/box_number"
-                        android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:background="#ffff88">
 
-                        <RelativeLayout
-                            android:id="@+id/iv_carrier_amount_down_reserve"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/tv_carrier_changing_amount_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="18dp"
+                            android:fontFamily="@font/noto_regular"
+                            android:text="1"
+                            android:textColor="#494949"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/iv_carrier_amount_up_reserve"
                                 android:layout_width="8dp"
-                                android:layout_height="1dp"
-                                android:layout_centerInParent="true"
-                                android:background="#8d8d8d" />
-                        </RelativeLayout>
-
-                        <ImageView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="6dp"
-                            android:background="#8d8d8d" />
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2">
-
-                            <TextView
-                                android:id="@+id/tv_carrier_changing_amount_reserve"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:fontFamily="@font/kopub_medium"
-                                android:text="1"
-                                android:textColor="#494949"
-                                android:textSize="16sp" />
-                        </RelativeLayout>
-
-                        <ImageView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="6dp"
-                            android:background="#8d8d8d" />
-
-                        <RelativeLayout
-                            android:id="@+id/iv_carrier_amount_up_reserve"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <ImageView
-                                android:layout_width="8dp"
-                                android:layout_height="1dp"
-                                android:layout_centerInParent="true"
-                                android:background="#8d8d8d" />
-
-                            <ImageView
-                                android:layout_width="1dp"
                                 android:layout_height="8dp"
-                                android:layout_centerInParent="true"
-                                android:background="#8d8d8d" />
-                        </RelativeLayout>
+                                android:background="#707070" />
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/iv_carrier_amount_down_reserve"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginTop="1dp"
+                                android:background="#707070" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/relative_carrier_amount_reserve"
+                        android:fontFamily="@font/noto_regular"
+                        android:text="개"
+                        android:textColor="#494949"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -199,35 +338,35 @@
                             android:id="@+id/tv_carrier_amount_reserve"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/kopub_medium"
+                            android:fontFamily="@font/noto_regular"
                             android:text="1"
                             android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/kopub_medium"
+                            android:fontFamily="@font/noto_regular"
                             android:text="개 : "
                             android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_price_carrier_reserve"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/kopub_medium"
+                            android:fontFamily="@font/noto_regular"
                             android:text="3500"
                             android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/kopub_medium"
+                            android:fontFamily="@font/noto_regular"
                             android:text="원"
                             android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
 
@@ -236,37 +375,34 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.5pt"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginHorizontal="17dp"
-                    android:layout_marginTop="29dp"
-                    android:background="#C6C6C6">
-                </RelativeLayout>
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="24dp"
+                    android:background="#C6C6C6"></RelativeLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
+                android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/cb_etc_reserve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="23dp"
-                    android:fontFamily="@font/kopub_medium"
+                    android:fontFamily="@font/noto_regular"
                     android:gravity="center_vertical"
                     android:text="일반 짐"
                     android:textColor="#494949"
                     android:textSize="14sp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="11dp"
-                    android:src="@drawable/ic_ask" />
+                    android:layout_marginLeft="9dp"
+                    android:src="#6F6F6F" />
             </LinearLayout>
 
             <LinearLayout
@@ -279,9 +415,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="53dp"
-                    android:layout_marginTop="11dp"
-                    android:fontFamily="@font/kopub_medium"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_regular"
                     android:text="수량선택"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -290,80 +426,61 @@
                     android:id="@+id/gesture"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="53dp"
-                    android:layout_marginRight="23dp"
-                    android:layout_marginTop="13dp">
+                    android:layout_marginLeft="52.5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="24dp">
 
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:id="@+id/relative_etc_amount_reserve"
-                        android:layout_width="164dp"
-                        android:layout_height="38dp"
-                        android:background="@drawable/box_number"
-                        android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:background="#ffff88">
 
-                        <RelativeLayout
-                            android:id="@+id/iv_etc_amount_down_reserve"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/tv_etc_changing_amount_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="18dp"
+                            android:fontFamily="@font/noto_regular"
+                            android:text="1"
+                            android:textColor="#494949"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/iv_etc_amount_up_reserve"
                                 android:layout_width="8dp"
-                                android:layout_height="1dp"
-                                android:layout_centerInParent="true"
-                                android:background="#8d8d8d" />
-                        </RelativeLayout>
-
-                        <ImageView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="6dp"
-                            android:background="#8d8d8d" />
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2">
-
-                            <TextView
-                                android:id="@+id/tv_etc_changing_amount_reserve"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:fontFamily="@font/kopub_medium"
-                                android:text="1"
-                                android:textColor="#494949"
-                                android:textSize="16sp" />
-                        </RelativeLayout>
-
-                        <ImageView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="6dp"
-                            android:background="#8d8d8d" />
-
-                        <RelativeLayout
-                            android:id="@+id/iv_etc_amount_up_reserve"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <ImageView
-                                android:layout_width="8dp"
-                                android:layout_height="1dp"
-                                android:layout_centerInParent="true"
-                                android:background="#8d8d8d" />
-
-                            <ImageView
-                                android:layout_width="1dp"
                                 android:layout_height="8dp"
-                                android:layout_centerInParent="true"
-                                android:background="#8d8d8d" />
-                        </RelativeLayout>
+                                android:background="#707070" />
 
-                    </LinearLayout>
+                            <ImageView
+                                android:id="@+id/iv_etc_amount_down_reserve"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginTop="1dp"
+                                android:background="#707070" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/relative_etc_amount_reserve"
+                        android:fontFamily="@font/noto_regular"
+                        android:text="개"
+                        android:textColor="#494949"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -376,50 +493,41 @@
                             android:id="@+id/tv_etc_amount_reserve"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/kopub_medium"
+                            android:fontFamily="@font/noto_regular"
                             android:text="1"
                             android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/kopub_medium"
+                            android:fontFamily="@font/noto_regular"
                             android:text="개 : "
                             android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_price_etc_reserve"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/kopub_medium"
+                            android:fontFamily="@font/noto_regular"
                             android:text="3500"
                             android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/kopub_medium"
+                            android:fontFamily="@font/noto_regular"
                             android:text="원"
                             android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
 
                 </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5pt"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginHorizontal="17dp"
-                    android:layout_marginTop="29dp"
-                    android:background="#C6C6C6">
-                </RelativeLayout>
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -483,57 +591,17 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.5pt"
-                android:layout_marginBottom="23.5dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22.5dp"
+                android:layout_marginBottom="23.5dp"
                 android:background="#C6C6C6"></RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:fontFamily="@font/noto_medium"
-                android:text="날짜 및 시간"
-                android:textColor="#494949"
-                android:textSize="14sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="22dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
-                    android:text="총 "
-                    android:textColor="#262626"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
-                    android:text="4"
-                    android:textColor="#262626"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
-                    android:text="시간"
-                    android:textColor="#262626"
-                    android:textSize="14sp" />
-            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:layout_marginBottom="24dp"
                 android:layout_marginTop="23dp"
+                android:layout_marginBottom="24dp"
                 android:background="#E7E7E7"></RelativeLayout>
 
             <TextView
@@ -592,8 +660,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:layout_marginBottom="24dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="24dp"
                 android:background="#E7E7E7"></RelativeLayout>
 
             <TextView

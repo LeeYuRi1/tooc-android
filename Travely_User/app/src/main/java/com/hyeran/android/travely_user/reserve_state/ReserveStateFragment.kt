@@ -20,11 +20,33 @@ import com.hyeran.android.travely_user.data.LuggagePictureData
 import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 
 class ReserveStateFragment : Fragment() {
 
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
+
+    companion object {
+        private var instance: ReserveStateFragment? = null
+
+        fun getInstance(password: String): ReserveStateFragment {
+            if (instance == null) {
+                instance = ReserveStateFragment().apply {
+                    arguments = Bundle().apply { putString("password", password) }
+                }
+            }
+            return instance!!
+        }
+    }
+
+    var password : String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let { password = it.getString("password") }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_reserve_state, container, false)
@@ -32,12 +54,11 @@ class ReserveStateFragment : Fragment() {
         generateQRCode(v, testt)
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
-            ReserveCancelDialog(context).show()
+            ReserveCancelDialog(context,password).show()
         }
         v.iv_qrimage_reservestate.setOnClickListener {
             startActivity<ReserveQRCodeActivity>()
         }
-
         return v
     }
 

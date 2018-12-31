@@ -2,7 +2,8 @@
 <RelativeLayout
     android:id = "@+id/btn_rv_item_review"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="10dp"
+    android:layout_marginTop="22dp"
+    android:layout_marginLeft="24dp"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <LinearLayout
@@ -17,11 +18,12 @@
 
             <ImageView
                 android:id="@+id/iv_rv_item_reviewer"
-                android:src="@drawable/reviewer"
-                android:layout_width="60dp"
-                android:layout_height="60dp" />
+                android:src="@drawable/ic_default_mypage"
+                android:layout_width="35dp"
+                android:layout_height="35dp" />
 
             <LinearLayout
+                android:layout_marginLeft="12dp"
                 android:layout_gravity="center"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -30,13 +32,15 @@
                 <TextView
                     android:id="@+id/tv_rv_item_review_name"
                     android:text="김민수"
-                    android:fontFamily="@font/noto_medium"
+                    android:fontFamily="@font/kopub_bold"
                     android:textColor="#262626"
-                    android:textSize="12dp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="17sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
+                    android:layout_marginTop="4dp"
                     android:orientation="horizontal"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content">
@@ -44,17 +48,19 @@
                     <TextView
                         android:id="@+id/tv_rv_item_review_time"
                         android:text="22"
-                        android:fontFamily="@font/noto_regular"
+                        android:fontFamily="@font/kopub_medium"
                         android:textColor="#8D8D8D"
-                        android:textSize="10dp"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="19sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:text="시간 전"
-                        android:fontFamily="@font/noto_regular"
+                        android:fontFamily="@font/kopub_medium"
                         android:textColor="#8D8D8D"
-                        android:textSize="10dp"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="19sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -68,25 +74,28 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:src="@color/colorAccent" />
+                    android:layout_marginRight="9.3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_star" />
 
                 <TextView
                     android:id="@+id/tv_rv_item_review_grade"
-                    android:layout_marginLeft="10dp"
                     android:text="4.5"
-                    android:fontFamily="@font/noto_regular"
+                    android:fontFamily="@font/kopub_medium"
                     android:textColor="#494949"
-                    android:textSize="13dp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="17sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:text="점"
-                    android:fontFamily="@font/noto_regular"
+                    android:fontFamily="@font/kopub_medium"
                     android:textColor="#494949"
-                    android:textSize="13dp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="17sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -94,30 +103,33 @@
         </LinearLayout>
 
         <TextView
+            android:layout_marginTop="15dp"
             android:id="@+id/tv_rv_item_review_content"
-            android:fontFamily="@font/noto_regular"
+            android:fontFamily="@font/kopub_medium"
             android:textColor="#262626"
-            android:textSize="12dp"
+            android:textSize="12sp"
+            android:lineSpacingExtra="19sp"
             android:text="사장님이 굉장히 친절하고 덕분에 편안하게 여행했어요 최고~!"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_margin="10dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="22dp"
             android:layout_gravity="right"
-            android:fontFamily="@font/noto_regular"
+            android:fontFamily="@font/kopub_medium"
             android:textColor="#022B18"
-            android:textSize="10dp"
+            android:textSize="12sp"
+            android:lineSpacingExtra="19sp"
             android:text="신고하기"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <ImageView
-            android:clickable="true"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="#999999" />
+            android:background="#cccccc" />
     </LinearLayout>
 
 </RelativeLayout>

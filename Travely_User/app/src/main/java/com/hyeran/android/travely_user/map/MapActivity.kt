@@ -49,7 +49,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         locationInit()
-        setOnClickListener()
+//        setOnClickListener()
     }
 
     /**
@@ -62,6 +62,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
 
+    /*
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
             replaceFragment(MapFragment())
@@ -89,6 +90,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         transaction.replace(R.id.map, fragment)
         transaction.commit()
     }
+    */
 
     // 위치 정보를 얻기 위한 각종 초기화
     private fun locationInit() {
@@ -115,9 +117,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val marker = LatLng(37.578346, 127.057015)
+        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
     override fun onResume() {
