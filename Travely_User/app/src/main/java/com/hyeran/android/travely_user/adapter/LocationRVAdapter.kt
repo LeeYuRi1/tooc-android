@@ -64,6 +64,11 @@ class LocationRVAdapter(val ctx : Context, val dataList: ArrayList<LocationTempD
         holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
         holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx)
 
+
+//        holder.item_btn.setOnClickListener {
+//            ctx.startActivity<MapMoreActivity>()
+//        }
+
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {

@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,20 +22,12 @@
                 android:layout_height="200dp">
             </android.support.v7.widget.RecyclerView>
 
-
-            <!--
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_map_more_act_photo_list"
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-            </android.support.v4.view.ViewPager>
-            -->
-
             <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="23dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -44,97 +35,83 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="280dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="17dp"
-                            android:text="동대문엽기떡볶이 홍대점"
                             android:fontFamily="@font/kopub_bold"
-                            android:textColor="#262626"
                             android:lineSpacingExtra="4sp"
+                            android:text="동대문엽기떡볶이 홍대점"
+                            android:textColor="#262626"
                             android:textSize="20sp" />
 
                         <LinearLayout
+                            android:layout_marginTop="9dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:background="@color/colorPrimary" />
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_star" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_regular"
+                                android:layout_marginLeft="5.3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="17sp"
+                                android:text="4.5점"
                                 android:textColor="#8D8D8D"
-                                android:textSize="13dp"
-                                android:text="4.5점" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="16dp"
-                                android:fontFamily="@font/noto_regular"
+                                android:layout_marginLeft="13dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text="123m"
                                 android:textColor="#262626"
-                                android:textSize="12dp"
-                                android:text="123m" />
+                                android:textSize="14sp" />
+
                         </LinearLayout>
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:clickable="true"
-                            android:id="@+id/button_button"
-                            android:layout_gravity="right"
-                            android:layout_marginRight="17dp"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@color/colorAccent" />
-
-                        <TextView
-                            android:layout_gravity="right"
-                            android:layout_marginRight="17dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_regular"
-                            android:textColor="#494949"
-                            android:textSize="12dp"
-                            android:text="예약하기" />
-                    </LinearLayout>
+                    <ImageView
+                        android:layout_marginLeft="80dp"
+                        android:layout_gravity="right"
+                        android:layout_width="40dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_resevation" />
 
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="10dp"
-                    android:background="#999999" />
+                    android:layout_width="338dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#c6c6c6" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="16dp"
+                        android:layout_width="14dp"
                         android:layout_height="16dp"
-                        android:background="@color/colorAccent" />
+                        android:src="@drawable/ic_address" />
 
                     <LinearLayout
+                        android:layout_marginLeft="11dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -142,18 +119,21 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_medium"
+                            android:fontFamily="@font/kopub_medium"
+                            android:lineSpacingExtra="10sp"
+                            android:text="서울 동대문구 전농로 151 2층"
                             android:textColor="#262626"
-                            android:textSize="12dp"
-                            android:text="서울 동대문구 전농로 151 2층 (우)02546" />
+                            android:textSize="14sp" />
 
                         <TextView
+                            android:layout_marginTop="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_regular"
+                            android:fontFamily="@font/kopub_medium"
+                            android:text="지번: 전농동 296-93"
                             android:textColor="#8D8D8D"
-                            android:textSize="12dp"
-                            android:text="지번: 전농동 296-93" />
+                            android:lineSpacingExtra="10sp"
+                            android:textSize="14sp"/>
 
                     </LinearLayout>
 
@@ -162,15 +142,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="18dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:background="@color/colorPrimary" />
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_time_fill" />
 
                     <LinearLayout
+                        android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -183,27 +164,30 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_medium"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text="영업시간"
                                 android:textColor="#262626"
-                                android:textSize="12dp"
-                                android:text="영업시간" />
+                                android:textSize="14sp" />
 
                             <ImageView
+                                android:layout_width="58dp"
+                                android:layout_height="18dp"
                                 android:layout_gravity="center"
-                                android:layout_marginLeft="9dp"
-                                android:layout_width="39dp"
-                                android:layout_height="16dp"
-                                android:src = "@color/colorAccent" />
+                                android:layout_marginLeft="18dp"
+                                android:src="@drawable/ic_working" />
 
                         </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/kopub_medium"
+                            android:lineSpacingExtra="10sp"
+                            android:text="매일 12:00 ~ 24:00"
                             android:textColor="#262626"
-                            android:textSize="12dp"
-                            android:text="매일 12:00 ~ 24:00" />
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 
@@ -212,46 +196,48 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="18dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_email_address" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_regular"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kopub_medium"
+                        android:lineSpacingExtra="10sp"
+                        android:text="http://www.yupdduk.com"
                         android:textColor="#262626"
-                        android:textSize="12dp"
-                        android:text="http://www.yupdduk.com" />
-
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="18dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:background="@color/colorPrimary" />
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_phone" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_regular"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kopub_medium"
+                        android:lineSpacingExtra="10sp"
+                        android:text="02-2212-5689"
                         android:textColor="#262626"
-                        android:textSize="12dp"
-                        android:text="02-2212-5689" />
-
-
+                        android:textSize="14sp" />
                 </LinearLayout>
+
 
                 <!--
                 <android.support.v7.widget.RecyclerView
@@ -261,38 +247,51 @@
                 </android.support.v7.widget.RecyclerView>
                 -->
 
+
+                <ImageView
+                    android:layout_width="360dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginBottom="21dp"
+                    android:src="#e8e8e8" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_bubble" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_medium"
+                        android:layout_marginLeft="9dp"
+                        android:fontFamily="@font/kopub_medium"
+                        android:lineSpacingExtra="17sp"
+                        android:text="리뷰"
                         android:textColor="#262626"
-                        android:textSize="12dp"
-                        android:text="리뷰" />
+                        android:textSize="14sp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:fontFamily="@font/noto_bold"
+                        android:lineSpacingExtra="17sp"
+                        android:text="5"
+                        android:textColor="#4c64fd"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_map_more_act_review_list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </android.support.v7.widget.RecyclerView>
+                    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
-
 </RelativeLayout>

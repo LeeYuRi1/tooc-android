@@ -90,8 +90,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val marker = LatLng(37.578346, 127.057015)
-        mMap.addMarker(MarkerOptions().position(marker).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
+//        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
     //    override fun onStart() {
@@ -175,6 +175,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 // 14 level로 확대하고 현재 위치로 카메라 이동
                 val latLng = LatLng(latitude, longitude)
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+//                mMap.animateCamera(CameraUpdateFactory.zoomTo())
 
                 Log.d("MapActivity", "위도 : $latitude, 경도 : $longitude")
             }

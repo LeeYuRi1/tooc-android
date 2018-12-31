@@ -246,7 +246,8 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/custom_picker_set"
+            android:id="@+id/btn_time_confirm"
+            android:text="확인"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

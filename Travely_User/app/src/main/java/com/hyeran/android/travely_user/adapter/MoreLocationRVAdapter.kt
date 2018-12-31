@@ -7,13 +7,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.hyeran.android.travely_user.data.MoreLocationTempData
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import android.R.attr.fragment
 import android.app.Activity
+import android.widget.RelativeLayout
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.map.TempActivity
 import org.jetbrains.anko.startActivity

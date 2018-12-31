@@ -67,9 +67,11 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback {
         mapView2.onCreate(savedInstanceState)
         mapView2.getMapAsync(this)
 
+
         view.btn_fragment_map_more_preview.setOnClickListener {
             startActivity<MapMoreActivity>()
         }
+
 
         view.iv_reserve_map_more_preview.setOnClickListener {
             (activity as MainActivity).replaceFragment(ReserveFragment())

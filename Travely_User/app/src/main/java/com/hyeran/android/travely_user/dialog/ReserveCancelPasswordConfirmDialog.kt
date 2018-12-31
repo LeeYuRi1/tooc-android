@@ -20,6 +20,7 @@ class ReserveCancelPasswordConfirmDialog(ctx:Context?) : Dialog(ctx){
         btn_reserve_cancel_complete.setOnClickListener {
             dismiss()
 
+
             //지도 초기화면으로 보내야함!!
         }
     }
