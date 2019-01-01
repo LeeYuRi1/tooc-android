@@ -24,12 +24,20 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        init()
+    }
+
+    private fun init() {
         // 초기 화면에 SharedPreferenceContorller의 pref 활성화
         SharedPreferencesController.instance!!.load(this)
 
-        init()
+        networkService = ApplicationController.instance.networkService
 
         // 3초 뒤 MainActivity로 이동
+        moveActivity()
+    }
+
+    private fun moveActivity() {
         val handler = Handler()
         handler.postDelayed(Runnable {
             val auto_login_flag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
@@ -44,11 +52,7 @@ class SplashActivity : AppCompatActivity() {
             }
             startActivity(intent)
             finish()
-        }, 3000)
-    }
-
-    private fun init() {
-        networkService = ApplicationController.instance.networkService
+        }, 1000)
     }
 
     private fun postLoinResponse() {

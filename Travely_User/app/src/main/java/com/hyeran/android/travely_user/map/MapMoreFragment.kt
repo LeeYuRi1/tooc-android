@@ -66,7 +66,7 @@ class MapMoreFragment : Fragment() {
 //    }
 
     private fun setRecyclerView() {
-        // 임시 데이터 1
+        // 임시 데이터 1 (사진)
         val dataList1: ArrayList<PhotoData> = ArrayList()
         dataList1.add(PhotoData("filter1"))
         dataList1.add(PhotoData("filter2"))
@@ -79,7 +79,7 @@ class MapMoreFragment : Fragment() {
         rv_map_more_frag_photo_list.adapter = photoRecyclerViewAdapter
         rv_map_more_frag_photo_list.layoutManager = LinearLayoutManager(activity, LinearLayout.HORIZONTAL, false)
 
-        // 임시 데이터 2
+        // 임시 데이터 2 (리뷰)
         val dataList2: ArrayList<ReviewData> = ArrayList()
 
         dataList2.add(ReviewData("reviewer", "김민수", 22, 4.5,

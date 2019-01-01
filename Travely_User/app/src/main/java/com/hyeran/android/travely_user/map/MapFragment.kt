@@ -17,20 +17,18 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
-import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_map.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
+
 
     //lateinit var mapView: MapView
     private lateinit var mMap: GoogleMap
@@ -53,6 +51,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Fragment 내에서는 mapView로 지도 실행
         val view: View = inflater.inflate(R.layout.fragment_map, container, false)
@@ -63,9 +63,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
+
         view.btn_fragment_map_question.setOnClickListener {
-            startActivityForResult<TempActivity>(999)
-//            startActivity<TempActivity>()
+            startActivityForResult<LocationListActivity>(999)
+//            startActivity<LocationListActivity>()
         }
 
         return view
@@ -238,6 +239,5 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         // 현재 위치 요청을 삭제
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
     }
-
 
 }
