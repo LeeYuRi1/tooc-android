@@ -156,6 +156,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback {
         override fun onLocationResult(locationResult: LocationResult?) {
             super.onLocationResult(locationResult)
 
+            // dddd
+
             val location = locationResult?.lastLocation
 
             location?.run {
