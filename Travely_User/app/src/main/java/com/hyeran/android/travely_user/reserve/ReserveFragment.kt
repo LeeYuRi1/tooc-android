@@ -1,23 +1,32 @@
 package com.hyeran.android.travely_user.reserve
 
+import android.app.Application
+import android.app.Dialog
+import android.app.DialogFragment
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import android.telecom.Call
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve.view.*
 import org.jetbrains.anko.support.v4.toast
 import android.widget.CompoundButton
-import com.hyeran.android.travely_user.MainActivity
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
-import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
-import kotlinx.android.synthetic.main.fragment_reserve.*
+import com.hyeran.android.travely_user.model.ReservationResponseData
+import com.hyeran.android.travely_user.network.ApplicationController
+import com.hyeran.android.travely_user.network.NetworkService
 import org.jetbrains.anko.support.v4.ctx
+import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
+import javax.security.auth.callback.Callback
+import kotlin.collections.ArrayList
 
 class ReserveFragment : Fragment() {
 
@@ -26,117 +35,82 @@ class ReserveFragment : Fragment() {
     var carrier_price: Int = 0
     var etc_price: Int = 0
 
-    var smmddee: String? = null
-    var tmmddee: String? = null
-    var shh: String? = null
-    var smm: String? = null
-    var thh: String? = null
-    var tmm: String? = null
-//
-//
-//    fun getTimeSettingDialog(tsmmddee: String, tshh: String, tsmm: String, ttmmddee: String, tthh: String, ttmm: String) {
-//        smmddee = tsmmddee
-//        shh = tshh
-//        smm = tsmm
-//        tmmddee = ttmmddee
-//        thh = tthh
-//        tmm = ttmm
-//
-//        tv_store_date_reserve.text = smmddee.toString()
-//        tv_store_hour_reserve.text = shh.toString()
-//        tv_store_minute_reserve.text = smm.toString()
-//        tv_take_date_reserve.text = tmmddee.toString()
-//        tv_take_hour_reserve.text = thh.toString()
-//        tv_take_minute_reserve.text = tmm.toString()
-//    }
+    var smmddee:String? =null
+    var tmmddee:String? =null
+    var svalue:Int = 0
+    var tvalue:Int=0
+    var snumhh : Int=0
+    var snummm :Int = 0
+    var tnumhh :Int =0
+    var tnummm : Int=0
 
-    companion object {
-        //static in java
-        private var instance: ReserveFragment? = null
+    var afterParseStore :Long = 0
+    var afterParseTake :Long = 0
 
-        fun getInstance(smmddee: String, shh: String, smm: String, tmmddee: String, thh: String, tmm: String): ReserveFragment {
-            if (instance == null) {
-                instance = ReserveFragment().apply {
-                    //초기화와 동시에 ㅓ어떤작업을 해주기위해 aply 사용
-                    arguments = Bundle().apply {
-                        putString("smmddee", smmddee)
-                        putString("shh", shh)
-                        putString("smm", smm)
-                        putString("tmmddee", tmmddee)
-                        putString("thh", thh)
-                        putString("tmm", tmm)
-
-                        var a = smmddee
-                        var b = shh
-                        var c = smm
-                        var d = tmmddee
-                        var e = thh
-                        var f = tmm
-
-                        tv_store_date_reserve.text = a
-                        tv_store_hour_reserve.text = b
-                        tv_store_minute_reserve.text = c
-                        tv_take_date_reserve.text = d
-                        tv_take_hour_reserve.text =e
-                        tv_take_minute_reserve.text = f
-
-                    }
-                }
-            }
-            return instance!!
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            //argumnet가 null이면 수행안되게하는 코드
-            smmddee = it.getString("smmddeee")//it은 번들을 참조하는 것 바로위의 argument, argument가 번들이다
-            shh = it.getString("shh")
-            smm = it.getString("smm")
-            tmmddee = it.getString("tmmddeee")//it은 번들을 참조하는 것 바로위의 argument, argument가 번들이다
-            thh = it.getString("thh")
-            tmm = it.getString("tmm")
-        }
-    }
-
+    lateinit var networkService : NetworkService
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_reserve, container, false)
+        //1월 01일 (화) 17:48
 
+        networkService = ApplicationController.instance.networkService
+
+
+        //피커뷰와 데이터 통신을 하기 위한 코드
         var args : Bundle? = arguments
-        args!!.getString("smmddeee", "")
-        args!!.getString("shh", "")
-        args!!.getString("smm", "")
-        args!!.getString("tmmddeee", "")
-        args!!.getString("thh", "")
-        args!!.getString("tmm", "")
 
-        v.tv_store_date_reserve.text = args!!.getString("smmddeee")
-        v.tv_store_hour_reserve.text = args!!.getString("shh")
-        v.tv_store_minute_reserve.text = args!!.getString("smm")
-        v.tv_take_date_reserve.text = args!!.getString("tmmddeee")
-        v.tv_take_hour_reserve.text = args!!.getString("thh")
-        v.tv_take_minute_reserve.text = args!!.getString("tmm")
+        var rightNow = Calendar.getInstance()
+        var dateFormat =SimpleDateFormat("MMM dd일 (EE)")
+        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) hh:mm")
+        var yearDateFormat = SimpleDateFormat("yyyy")
 
+        var defaultHourValue = rightNow.get(Calendar.HOUR_OF_DAY)
+        var defaultMinuteValue = rightNow.get(Calendar.MINUTE)
+        var presentYearValue = yearDateFormat.format(rightNow.time)
 
+        //Store -> 피커에서 받은 데이터들을 뷰에 띄워줌
+        v.tv_store_date_reserve.text = args!!.getString("smmddee",dateFormat.format(rightNow.time))
+        snumhh = args!!.getInt("shh",defaultHourValue)
+        if(snumhh<10){
+            v.tv_store_hour_reserve.text = "0" + snumhh.toString()
+        }else  v.tv_store_hour_reserve.text = snumhh.toString()
+        snummm = args!!.getInt("smm",defaultMinuteValue)
+        if(snummm<10){
+            v.tv_store_minute_reserve.text = "0" + snummm.toString()
+        }else  v.tv_store_minute_reserve.text = snummm.toString()
 
+        //Take -> 피커에서 받은 데이터들을 뷰에 띄워줌
+        v.tv_take_date_reserve.text = args!!.getString("tmmddee",dateFormat.format(rightNow.time))
+        tnumhh = args!!.getInt("thh",defaultHourValue)
+        if(tnumhh<10){
+            v.tv_take_hour_reserve.text = "0" + tnumhh.toString()
+        }else  v.tv_take_hour_reserve.text = tnumhh.toString()
+        tnummm = args!!.getInt("tmm",defaultMinuteValue)
+        if(tnummm<10){
+            v.tv_take_minute_reserve.text = "0" + tnummm.toString()
+        }else  v.tv_take_minute_reserve.text = tnummm.toString()
 
+        //Send String Date
+        smmddee = v.tv_store_date_reserve.text.toString()
+        tmmddee=v.tv_take_date_reserve.text.toString()
+        svalue = args!!.getInt("svalue")
+        tvalue = args!!.getInt("tvalue")
+
+        //서버로 time값을 전달해주기 위한 작업
+        afterParseStore = dateParseFormat.parse(presentYearValue.toString()+smmddee.toString() +" "+snumhh.toString()+":"+snummm.toString()).time
+        afterParseTake = dateParseFormat.parse(presentYearValue.toString()+tmmddee.toString() + " "+tnumhh.toString()+":"+tnummm.toString()).time
+        if(afterParseStore < afterParseTake) {
+            toast(afterParseStore.toString() + "~~~" + afterParseTake)
+       }
         setOnClickListener(v)
-        toast("@@@@@@@@@@@@@@@@@")
-
         return v
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        toast("ASDASDASDDASASDASDASD")
     }
 
     fun setOnClickListener(v: View) {
         v.btn_alldate_reserve.setOnClickListener {
-            val dialog = ReserveTimeSettintDialog(ctx)
+            var timeArray : ArrayList<Any> = arrayListOf(smmddee.toString(),snumhh,snummm,tmmddee.toString(),tnumhh,tnummm
+            ,svalue,tvalue)
+            val dialog = ReserveTimeSettintDialog(ctx,timeArray)
             dialog.show()
         }
 
@@ -227,12 +201,20 @@ class ReserveFragment : Fragment() {
             if (v.cb_confirm_reserve.isChecked) {
                 if (v.cb_carrier_reserve.isChecked || v.cb_etc_reserve.isChecked) {
                     if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
-                        if (v.rb_kakaopay_reserve.isChecked) {
-                            val intent: Intent = Intent(context, KakaopayWebView::class.java)
-                            startActivityForResult(intent, 9999)
+                        if(afterParseStore < afterParseTake) {
+
+                            postReserveInfo()
+
+                            if (v.rb_kakaopay_reserve.isChecked) {
+                                val intent: Intent = Intent(context, KakaopayWebView::class.java)
+                                startActivityForResult(intent, 9999)
+                            }
+                            if (v.rb_cash_reserve.isChecked) {
+                                ReserveCompleteDialog(context).show()
+                            }
                         }
-                        if (v.rb_cash_reserve.isChecked) {
-                            ReserveCompleteDialog(context).show()
+                        else{
+                            toast("날짜 및 시간을 선택해주세요.")
                         }
                     } else {
                         toast("결제 방법을 선택해주세요.")
@@ -244,6 +226,33 @@ class ReserveFragment : Fragment() {
                 toast("결제 동의를 체크해주세요.")
             }
         }
+    }
+
+    fun postReserveInfo(){
+        var in_storeIdx : Int =1
+        var in_startTime :Long = 1
+        var in_endTime : Long = 1
+        var in_bagDtos:ArrayList<Any> = ArrayList<Any>()
+        var in_payType :String = "aaa"
+
+        in_bagDtos.add("aaa")
+        in_bagDtos.add(123)
+
+        var jsonObject : JSONObject = JSONObject()
+        jsonObject.put("storeIdx",in_storeIdx)
+        jsonObject.put("startTime",in_startTime)
+        jsonObject.put("endTime",in_endTime)
+        jsonObject.put("bagDtos",in_bagDtos)
+        jsonObject.put("payType",in_payType)
+
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        var postReservationSaveResponse = networkService.postReservationSaveResponse("application/json",jwt,gsonObject)
+
+      //  postReservationSaveResponse.enqueue(object : Callback<ReservationResponseData>{
+
+        //})
     }
 
 }

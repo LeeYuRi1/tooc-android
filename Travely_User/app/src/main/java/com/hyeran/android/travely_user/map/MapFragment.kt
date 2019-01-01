@@ -19,7 +19,6 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.R.id.mapView
@@ -32,7 +31,6 @@ import kotlinx.android.synthetic.main.item_myreview.*
 import kotlinx.coroutines.experimental.NonCancellable.cancel
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
@@ -157,7 +155,9 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity!!)
 
         view.btn_fragment_map_question.setOnClickListener {
-            startActivityForResult<TempActivity>(999)
+
+            startActivityForResult<LocationListActivity>(999)
+//            startActivity<LocationListActivity>()
         }
 
         return view

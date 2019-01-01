@@ -20,12 +20,12 @@ import kotlinx.android.synthetic.main.item_location_map.view.*
 class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponseData>) : RecyclerView.Adapter<LocationRVAdapter.Holder>() {
 
     lateinit var moreLocationRVAdapter: MoreLocationRVAdapter
+//
+//    val more_dataList: ArrayList<SimpleStoreResponseData> by lazy {
+//        ArrayList<SimpleStoreResponseData>()
+//    }
 
-    val more_dataList: ArrayList<SimpleStoreResponseData> by lazy {
-        ArrayList<SimpleStoreResponseData>()
-    }
-
-    //lateinit var more_dataList : ArrayList<SimpleStoreResponseData>
+    lateinit var more_dataList : ArrayList<SimpleStoreResponseData>
     lateinit var moreLocationRVAdapterList : List<MoreLocationRVAdapter>
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -54,7 +54,7 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
         Log.d("LocationRVAdapter", "@@@@@@@@@@@@@"+dataList[position])
 
 
-        //more_dataList = dataList[position].simpleStoreResponseDtos
+        more_dataList = dataList[position].simpleStoreResponseDtos
         //moreLocationRVAdapterList
         //moreLocationRVAdapterList!!.indexOf(MoreLocationRVAdapter(ctx, more_dataList))
         moreLocationRVAdapter = MoreLocationRVAdapter(ctx, more_dataList)
@@ -65,10 +65,10 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
 
 //        moreLocationRVAdapter.dataList.clear()
         Log.v("Woo 929",more_dataList_by_area.toString())
-        moreLocationRVAdapter.dataList.addAll(more_dataList_by_area)
+//        moreLocationRVAdapter.dataList.addAll(more_dataList_by_area)
         Log.v("Woo 914",moreLocationRVAdapter.dataList.size.toString())
-//        moreLocationRVAdapter.dataList.add(more_dataList_by_area)
-
+//        moreLocationRVAdapter.dataList.add(more_dataList)
+//
         holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
         holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx)
         moreLocationRVAdapter.notifyItemInserted(position)
