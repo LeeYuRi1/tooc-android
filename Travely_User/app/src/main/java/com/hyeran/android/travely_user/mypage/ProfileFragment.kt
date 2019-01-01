@@ -1,5 +1,6 @@
 package com.hyeran.android.travely_user.mypage
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -24,7 +25,12 @@ class ProfileFragment : Fragment() {
     private fun setClickListener() {
         btn_logout_profile.setOnClickListener {
             SharedPreferencesController.instance!!.removeAllData(this!!.context!!)
-            startActivity<SplashActivity>()
+
+            val intent = Intent(activity, SplashActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            startActivity(intent)
         }
 
         iv_modification_profile.setOnClickListener {
