@@ -13,15 +13,20 @@ import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import android.R.attr.fragment
 import android.app.Activity
+import android.util.Log
 import android.widget.RelativeLayout
+import android.widget.Toast
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.map.TempActivity
+import com.hyeran.android.travely_user.model.SimpleStoreResponseData
 import org.jetbrains.anko.startActivity
 
 
-class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<MoreLocationTempData>) : RecyclerView.Adapter<MoreLocationRVAdapter.Holder>() {
+class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<SimpleStoreResponseData>) : RecyclerView.Adapter<MoreLocationRVAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.item_more_location_map, parent, false)
+
+        Toast.makeText(ctx, dataList.toString(), Toast.LENGTH_SHORT).show()
 
         return Holder(view)
     }
@@ -29,7 +34,8 @@ class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<MoreLocat
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.name.text = dataList[position].name
+        holder.name.text = dataList[position].storeName
+        Log.d("MoreLocationRVAdapter", "@@@@@@@@@@@@@"+dataList[position])
         holder.item_more_location_map.setOnClickListener {
             (ctx as TempActivity).finish()
         }
