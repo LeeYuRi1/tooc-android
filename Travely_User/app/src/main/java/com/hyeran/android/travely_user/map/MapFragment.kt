@@ -17,23 +17,14 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.model.RegionResponseData
-import com.hyeran.android.travely_user.network.ApplicationController
-import com.hyeran.android.travely_user.network.NetworkService
-import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_map.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -74,8 +65,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
 
         view.btn_fragment_map_question.setOnClickListener {
-            startActivityForResult<TempActivity>(999)
-//            startActivity<TempActivity>()
+            startActivityForResult<LocationListActivity>(999)
+//            startActivity<LocationListActivity>()
         }
 
         return view

@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TempActivity : AppCompatActivity() {
+class LocationListActivity : AppCompatActivity() {
 
     lateinit var networkService: NetworkService
 
