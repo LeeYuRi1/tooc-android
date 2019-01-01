@@ -62,36 +62,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
 
-    /*
-    fun setOnClickListener() {
-        tab_one_main.setOnClickListener {
-            replaceFragment(MapFragment())
-        }
-        tab_two_main.setOnClickListener {
-            replaceFragment(ReserveStateFragment())
-        }
-        tab_three_main.setOnClickListener {
-            //            replaceFragment(ShipFragment())
-            replaceFragment(ReserveFragment())
-        }
-        tab_four_main.setOnClickListener {
-            replaceFragment(MypageFragment())
-        }
-    }
-
-    fun addFragment(fragment : Fragment) {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.map, fragment)
-        transaction.commit()
-    }
-
-    fun replaceFragment(fragment : Fragment) {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.map, fragment)
-        transaction.commit()
-    }
-    */
-
     // 위치 정보를 얻기 위한 각종 초기화
     private fun locationInit() {
         fusedLocationProviderClient = FusedLocationProviderClient(this)
