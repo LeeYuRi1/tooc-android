@@ -103,19 +103,6 @@
                     android:layout_marginTop="22dp"
                     android:src="@drawable/ic_resevation" />
 
-                <TextView
-                    android:clickable="true"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="2dp"
-                    android:text="예약하기"
-                    android:fontFamily="@font/noto_regular"
-                    android:textSize="12sp"
-                    android:textColor="#494949"
-                    android:lineSpacingExtra="12sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
