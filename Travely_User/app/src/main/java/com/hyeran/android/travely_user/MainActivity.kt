@@ -19,12 +19,26 @@ class MainActivity : AppCompatActivity() {
 
     var args : Bundle = Bundle()
 
+    var smmddee : String? = null
+    var tmmddee : String? = null
+    var shh : String? = null
+    var smm : String? = null
+    var thh : String? = null
+    var tmm : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        addFragment(MapFragment.getInstance())
+        init()
+    }
+
+    fun init() {
+
+        addFragment(MapFragment())
+
         iv_search_bottom_tab.isSelected = true
+
         setOnClickListener()
     }
 
@@ -33,16 +47,19 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(MapFragment())
             clearSelected()
             iv_search_bottom_tab.isSelected = true
-            replaceFragment(MapFragment.getInstance())
         }
         tab_two_main.setOnClickListener {
             //123 자리에 서버에서 받은 password값을 넣어야함
             replaceFragment(ReserveStateFragment.getInstance("123"))
-
+            clearSelected()
+            iv_reserve_bottom_tab.isSelected = true
         }
         tab_three_main.setOnClickListener {
             //123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!!
 //            replaceFragment(ReserveFragment())
+
+            clearSelected()
+            iv_ship_bottom_tab.isSelected = true
 
             args!!.putString("smmddee", "")
             args!!.putString("shh", "")
@@ -63,15 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var smmddee : String? = null
-    var tmmddee : String? = null
-    var shh : String? = null
-    var smm : String? = null
-    var thh : String? = null
-    var tmm : String? = null
-
-
-    fun getTimeSettingDialog(tsmmddee: String,tshh:String,tsmm:String,ttmmddee:String,tthh:String,ttmm:String) {
+    fun getTimeSettingDialog(tsmmddee : String, tshh : String, tsmm : String, ttmmddee : String, tthh : String, ttmm : String) {
         smmddee = tsmmddee
         shh = tshh
         smm = tsmm
@@ -90,21 +99,16 @@ class MainActivity : AppCompatActivity() {
         var fragment: Fragment = ReserveFragment()
         fragment.arguments = args
         replaceFragment(fragment)
-
     }
 
-    fun temp() {
-        replaceFragment(MapMorePreviewFragment())
-    }
-
-    fun clearSelected() {
+    private fun clearSelected() {
         iv_search_bottom_tab.isSelected = false
         iv_reserve_bottom_tab.isSelected = false
         iv_ship_bottom_tab.isSelected = false
         iv_mypage_bottom_tab.isSelected = false
     }
 
-    fun addFragment(fragment: Fragment) {
+    private fun addFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.frame_main, fragment)
         transaction.commit()
