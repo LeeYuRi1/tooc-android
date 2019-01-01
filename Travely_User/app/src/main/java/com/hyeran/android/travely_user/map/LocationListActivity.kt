@@ -3,9 +3,11 @@ package com.hyeran.android.travely_user.map
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.LocationRVAdapter
 import com.hyeran.android.travely_user.model.RegionResponseData
+import com.hyeran.android.travely_user.model.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.activity_temp.*
@@ -27,7 +29,6 @@ class LocationListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_temp)
-//        color_temp.backgroundColor()
 
         init()
     }
@@ -36,39 +37,15 @@ class LocationListActivity : AppCompatActivity() {
         networkService = ApplicationController.instance.networkService
         setRecyclerview()
         getRegionResponse()
+//        postReservationCancelResponse()
     }
 
     fun setRecyclerview() {
-
-//        dataList_by_area.add(LocationTempData("홍대입구역", 3))
-//        dataList_by_area.add(LocationTempData("혜화역", 1))
-//        dataList_by_area.add(LocationTempData("동대문역사문화공원역", 1))
 
         locationRVAdapter = LocationRVAdapter(this, dataList)
         rv_by_area_temp.adapter = locationRVAdapter
         rv_by_area_temp.layoutManager = LinearLayoutManager(this)
 
-
-//        // 가까운 보관장소
-//        var dataList_nearby: ArrayList<LocationTempData> = ArrayList()
-//        dataList_nearby.add(LocationTempData("홍대입구역", 3))
-//        dataList_nearby.add(LocationTempData("혜화역", 1))
-//        dataList_nearby.add(LocationTempData("동대문역사문화공원역", 1))
-//
-//        locationRVAdapter = LocationRVAdapter(this, dataList_nearby)
-//        rv_nearby_temp.adapter = locationRVAdapter
-//        rv_nearby_temp.layoutManager = LinearLayoutManager(this)
-//
-//
-//        // 즐겨찾는 장소
-//        var dataList_favorite : ArrayList<LocationTempData> = ArrayList()
-//        dataList_favorite.add(LocationTempData("홍대입구역", 3))
-//        dataList_favorite.add(LocationTempData("혜화역", 1))
-//        dataList_favorite.add(LocationTempData("동대문역사문화공원역", 1))
-//
-//        locationRVAdapter = LocationRVAdapter(this, dataList_favorite)
-//        rv_favorite_temp.adapter = locationRVAdapter
-//        rv_favorite_temp.layoutManager = LinearLayoutManager(this)
     }
 
     private fun getRegionResponse() {
@@ -111,4 +88,66 @@ class LocationListActivity : AppCompatActivity() {
 
         })
     }
+
+    // 세부 정보 조회 함수
+    private fun getStoreResponse() {
+
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        val getStoreResponse = networkService.getStoreResponse(jwt, 1)
+
+        getStoreResponse!!.enqueue(object : Callback<StoreResponseData> {
+            override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            toast("세부정보 조회 성공")
+                            toast(response.body().toString())
+
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error"+it.code())
+                        }
+                    }
+                }
+            }
+
+        })
+    }
+
+    // 예약 취소 함수
+//    private fun postReservationCancelResponse() {
+//
+//        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+//        val postReservationCancelResponse = networkService.postReservationCancelResponse(jwt)
+//
+//        postReservationCancelResponse!!.enqueue(object : Callback<Any> {
+//            override fun onFailure(call: Call<Any>, t: Throwable) {
+//                Log.d("예약 취소", "#####"+t.message)
+//            }
+//
+//            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+//                response?.let {
+//                    when (it.code()) {
+//                        200 -> {
+//                            toast("예약 취소 성공 / 예약 내역 없음")
+//                            toast(response.body().toString())
+//                        }
+//                        500 -> {
+//                            toast("서버 에러")
+//                        }
+//                        else -> {
+//                            toast("error"+it.code())
+//                        }
+//                    }
+//                }
+//            }
+//
+//        })
+//    }
 }

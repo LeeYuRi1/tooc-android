@@ -43,6 +43,12 @@ interface NetworkService {
     fun getStoreResponse(
             @Header("jwt") jwt : String?,
             @Path("storeIdx") storeIdx : Int
-    ) : Call<ArrayList<StoreResponseData>>
+    ) : Call<StoreResponseData>
 
+    //@@@@@@@@@@@@@@@ reservation-controller @@@@@@@@@@@@@@@
+    //TODO: 서버 배포되면 다시 확인하기
+    @POST("/api/reservation/cancel")
+    fun postReservationCancelResponse(
+            @Header("jwt") jwt : String?
+    ) : Call<Any>
 }
