@@ -15,7 +15,6 @@
 
     <RelativeLayout
         android:clickable="true"
-        android:id="@+id/btn_fragment_map_more_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -31,6 +30,7 @@
             android:text="tooc" />
 
         <LinearLayout
+            android:id="@+id/btn_fragment_map_more_preview"
             android:layout_gravity="end"
             android:background="#ffffff"
             android:layout_alignParentBottom="true"
@@ -89,12 +89,6 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_marginLeft="62dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_resevation"
-                android:layout_width="60dp"
-                android:layout_height="70dp" />
             <LinearLayout
                 android:layout_marginRight="17dp"
                 android:orientation="vertical"

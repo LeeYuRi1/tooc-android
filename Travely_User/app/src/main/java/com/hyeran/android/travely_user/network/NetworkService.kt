@@ -3,6 +3,7 @@ package com.hyeran.android.travely_user.network
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.model.RegionResponseData
 import com.hyeran.android.travely_user.model.ReservationResponseData
+import com.hyeran.android.travely_user.model.StoreResponseData
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -46,4 +47,20 @@ interface NetworkService {
             @Body() body: JsonObject
     ) : Call<ReservationResponseData>
 
+    //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
+
+    // 상가 세부정보 저회
+    // - 상가 테이블과 지역 테이블을 조인한 모든 칼럼 반환
+    @GET("/api/store/{storeIdx}")
+    fun getStoreResponse(
+            @Header("jwt") jwt : String?,
+            @Path("storeIdx") storeIdx : Int
+    ) : Call<StoreResponseData>
+
+    //@@@@@@@@@@@@@@@ reservation-controller @@@@@@@@@@@@@@@
+    //TODO: 서버 배포되면 다시 확인하기
+    @POST("/api/reservation/cancel")
+    fun postReservationCancelResponse(
+            @Header("jwt") jwt : String?
+    ) : Call<Any>
 }
