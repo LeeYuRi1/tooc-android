@@ -87,6 +87,7 @@ class ReserveFragment : Fragment() {
             dialog.show()
         }
 
+        //tv_result_amount_carrier_reserve, tv_result_amount_etc_reserve 뺌
         v.cb_carrier_reserve.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
                 if (isChecked) {
@@ -94,12 +95,12 @@ class ReserveFragment : Fragment() {
                     carrier_price = 3500
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     carrier_amount = 1
-                    v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
+                    //v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
 
                     v.iv_carrier_amount_up_reserve.setOnClickListener {
                         carrier_amount = Integer.parseInt(v.tv_carrier_changing_amount_reserve.text as String?)
                         carrier_amount++
-                        v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
+                       // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                         v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                         v.tv_carrier_amount_reserve.text = carrier_amount.toString()
                         carrier_price = carrier_amount * 3500
@@ -110,7 +111,7 @@ class ReserveFragment : Fragment() {
                         carrier_amount = Integer.parseInt(v.tv_carrier_amount_reserve.text as String?)
                         if ((carrier_amount - 1) >= 0) {
                             carrier_amount--
-                            v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
+                           // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                             v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                             v.tv_carrier_amount_reserve.text = carrier_amount.toString()
                             carrier_price = carrier_amount * 3500
@@ -123,7 +124,7 @@ class ReserveFragment : Fragment() {
                     carrier_price = 0
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     carrier_amount = 0
-                    v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
+                   // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                 }
             }
         })
@@ -135,7 +136,7 @@ class ReserveFragment : Fragment() {
                     etc_price = 3500
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     etc_amount = 1
-                    v.tv_result_amount_etc_reserve.text = etc_amount.toString()
+                   // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
 
                     v.iv_etc_amount_up_reserve.setOnClickListener {
                         etc_amount = Integer.parseInt(v.tv_etc_changing_amount_reserve.text as String?)
@@ -145,7 +146,7 @@ class ReserveFragment : Fragment() {
                         etc_price = etc_amount * 3500
                         v.tv_price_etc_reserve.text = etc_price.toString()
                         v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
-                        v.tv_result_amount_etc_reserve.text = etc_amount.toString()
+                      //  v.tv_result_amount_etc_reserve.text = etc_amount.toString()
                     }
                     v.iv_etc_amount_down_reserve.setOnClickListener {
                         etc_amount = Integer.parseInt(v.tv_etc_amount_reserve.text as String?)
@@ -156,7 +157,7 @@ class ReserveFragment : Fragment() {
                             etc_price = etc_amount * 3500
                             v.tv_price_etc_reserve.text = etc_price.toString()
                             v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
-                            v.tv_result_amount_etc_reserve.text = etc_amount.toString()
+                           // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
                         }
                     }
                 } else {
@@ -164,7 +165,7 @@ class ReserveFragment : Fragment() {
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     v.linear_etc_more_reserve.visibility = View.GONE
                     etc_amount = 0
-                    v.tv_result_amount_etc_reserve.text = etc_amount.toString()
+                   // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
                 }
             }
         })
