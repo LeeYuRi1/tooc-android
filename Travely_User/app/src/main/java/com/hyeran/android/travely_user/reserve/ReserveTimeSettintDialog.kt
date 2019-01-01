@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.dialog_reserve_time_setting.*
 import kotlinx.android.synthetic.main.dialog_reserve_time_setting.view.*
 import kotlinx.android.synthetic.main.fragment_faq.view.*
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -110,7 +111,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<A
 
         pv_store_date.wrapSelectorWheel = false
 
-        smmddee = dateformat.format(scalen.time)
+        smmddee = sText
 
         pv_store_date.setOnValueChangedListener { numberPicker, i, j ->
             scalen.add(Calendar.DATE, pv_store_date.value)
@@ -161,7 +162,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<A
         } else tmm = pv_take_minute.value.toString()
         tv_take_minute.text = tmm
 
-        tmmddee = dateformat.format(tcalen.time)
+        tmmddee = tText
 
         pv_take_date.wrapSelectorWheel = false
 
@@ -199,7 +200,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<A
     private fun datesFromCalender(): Array<String> {
         val c1 = Calendar.getInstance()
         val dates = ArrayList<String>()
-        val dateFormat = SimpleDateFormat("MMM dd일 EE")
+        val dateFormat = SimpleDateFormat("MMM dd일 (EE)")
 
         if (weekFormat.format(c1.time) == offday) {
             dates.add(dateFormat.format(c1.time) + " (휴무)")
@@ -281,6 +282,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<A
             } else {
                 (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(),  tnumhh, tnummm, svalue,tvalue)
                 dismiss()
+
                 //Toast.makeText(context, "^^^^", Toast.LENGTH_LONG).show()
             }
 

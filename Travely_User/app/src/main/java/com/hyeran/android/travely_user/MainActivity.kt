@@ -13,6 +13,7 @@ import com.hyeran.android.travely_user.ship.ShipFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_reserve.*
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
@@ -55,13 +56,6 @@ class MainActivity : AppCompatActivity() {
             clearSelected()
             iv_ship_bottom_tab.isSelected = true
 
-            args!!.putString("smmddee", "")
-            args!!.putString("shh", "")
-            args!!.putString("smm", "")
-            args!!.putString("tmmddee", "")
-            args!!.putString("thh", "")
-            args!!.putString("tmm", "")
-
             var fragment: Fragment = ReserveFragment()
             fragment.arguments = args
             replaceFragment(fragment)
@@ -101,6 +95,7 @@ class MainActivity : AppCompatActivity() {
         args!!.putInt("tmm", tmm as Int)
         args!!.putInt("svalue", svalue)
         args!!.putInt("tvalue", tvalue)
+
 
         var fragment: Fragment = ReserveFragment()
         fragment.arguments = args

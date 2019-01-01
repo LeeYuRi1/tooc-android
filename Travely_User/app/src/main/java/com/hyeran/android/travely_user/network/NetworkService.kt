@@ -2,6 +2,7 @@ package com.hyeran.android.travely_user.network
 
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.model.RegionResponseData
+import com.hyeran.android.travely_user.model.ReservationResponseData
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -33,5 +34,16 @@ interface NetworkService {
     fun getRegionResponse(
             @Header("jwt") jwt : String?
     ) : Call<ArrayList<RegionResponseData>>
+
+
+    //@@@@@@@@@@@@@@@ reservation-controller @@@@@@@@@@@@@@@
+    // 예약 상태 저장
+    // - 예약 상태 저장 후 예약 정보 반환
+    @POST("/api/reservation/save")
+    fun postReservationSaveResponse(
+            @Header("Content-Type") content_type : String,
+            @Header("jwt") jwt : String?,
+            @Body() body: JsonObject
+    ) : Call<ReservationResponseData>
 
 }
