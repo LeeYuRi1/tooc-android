@@ -13,7 +13,6 @@ import android.widget.Toast
 import com.hyeran.android.travely_user.map.LocationListActivity
 import com.hyeran.android.travely_user.model.SimpleStoreResponseData
 
-
 class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<SimpleStoreResponseData>) : RecyclerView.Adapter<MoreLocationRVAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.item_more_location_map, parent, false)
