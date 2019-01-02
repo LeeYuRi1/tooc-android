@@ -58,7 +58,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="69dp"
+                    android:layout_marginBottom="60dp"
                     android:layout_marginTop="55dp"
                     android:fontFamily="@font/nanum_bold"
                     android:text="나의 장소"

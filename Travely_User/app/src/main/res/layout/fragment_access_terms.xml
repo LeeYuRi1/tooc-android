@@ -53,11 +53,11 @@
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:text="이용약관"
-                android:textSize="30sp"
-                android:textColor="@color/mainColor"
+                android:layout_marginTop="55dp"
                 android:fontFamily="@font/nanum_bold"
+                android:text="이용약관"
+                android:textColor="@color/mainColor"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline32"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,22 +66,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.10555556" />
+                app:layout_constraintGuide_percent="0.106770836" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.09166667" />
+                app:layout_constraintGuide_percent="0.072916664" />
 
             <TextView
                 android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="78dp"
+                android:fontFamily="@font/kopub_bold"
+                android:textColor="#707070"
                 android:text="제 1조 1항"
-                android:fontFamily="@font/kopub_medium"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -90,10 +92,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/kopub_light"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#707070"
                 android:text="주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다. 주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다. 주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다."
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline32"
                 app:layout_constraintTop_toBottomOf="@+id/textView34" />
@@ -109,9 +112,11 @@
                 android:id="@+id/textView39"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="59dp"
+                android:fontFamily="@font/kopub_bold"
                 android:text="제 1조 2항"
-                android:fontFamily="@font/kopub_medium"
+                android:textColor="#707070"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
                 app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
@@ -119,10 +124,11 @@
                 android:id="@+id/textView44"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/kopub_light"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다. 주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다. 주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다."
-                android:textSize="10sp"
+                android:textSize="12sp"
+                android:textColor="#707070"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline32"
                 app:layout_constraintTop_toBottomOf="@+id/textView39" />
@@ -131,9 +137,11 @@
                 android:id="@+id/textView55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="59dp"
+                android:fontFamily="@font/kopub_bold"
                 android:text="제 2조 1항"
-                android:fontFamily="@font/kopub_medium"
+                android:textColor="#707070"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
                 app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
@@ -141,12 +149,13 @@
                 android:id="@+id/textView57"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="59dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/kopub_light"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다. 주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다. 주요 관광지에 위치한 상가 또는 건물이 소유한 여유 공간들을 활용 사용자와 인접한 상가에서 짐을 보관/배송할 수 있는 앱입니다."
-                android:textSize="10sp"
+                android:textColor="#707070"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline32"
