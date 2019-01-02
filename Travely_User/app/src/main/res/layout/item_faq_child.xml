@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:text="TextView"
         android:textSize="12sp"
-        android:textColor="262626"
+        android:textColor="#262626"
         android:fontFamily="@font/kopub_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline14"
