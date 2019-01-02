@@ -204,6 +204,7 @@ class ReserveFragment : Fragment() {
                     if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
                         if(afterParseStore < afterParseTake) {
 
+                            //통신
                             postReserveInfo()
 
                             if (v.rb_kakaopay_reserve.isChecked) {
@@ -233,10 +234,10 @@ class ReserveFragment : Fragment() {
         var in_storeIdx : Int =1
         var in_startTime :Long = 1
         var in_endTime : Long = 1
-        var in_bagDtos:ArrayList<Any> = ArrayList<Any>()
+        var in_bagDtos:ArrayList<Any> = ArrayList()
         var in_payType :String = "aaa"
 
-        in_bagDtos.add("aaa")
+        in_bagDtos.add("bagType","Asd")
         in_bagDtos.add(123)
 
         var jsonObject : JSONObject = JSONObject()
@@ -256,7 +257,21 @@ class ReserveFragment : Fragment() {
             }
 
             override fun onResponse(call: retrofit2.Call<ReservationSaveResponseData>, response: Response<ReservationSaveResponseData>) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                response?.let {
+                    when(it.code()){
+                        200->{
+                            toast("200")
+                        }
+                        201-> toast("201")
+                        400-> toast("400")
+                        500->toast("500")
+                        else ->toast("xxxx")
+
+                    }
+
+
+                }
+
             }
         })
     }
