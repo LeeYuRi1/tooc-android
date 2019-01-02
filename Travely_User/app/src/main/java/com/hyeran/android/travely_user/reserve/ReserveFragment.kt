@@ -19,6 +19,7 @@ import com.hyeran.android.travely_user.model.reservation.ReservationSaveResponse
 import com.hyeran.android.travely_user.model.reservation.bagInfo
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_reserve.*
 import org.jetbrains.anko.support.v4.ctx
 import retrofit2.Response
 import java.text.SimpleDateFormat
@@ -228,17 +229,25 @@ class ReserveFragment : Fragment() {
 
         var reserveSave : ReservationSaveRequestData
         var bagData:ArrayList<bagInfo> = ArrayList()
-        bagData.add(bagInfo("CARRIER",2))
-        reserveSave = ReservationSaveRequestData(1,afterParseStore,afterParseTake,bagData,"CARD")
-
+        if(carrier_amount>=1) {
+            bagData.add(bagInfo("CARRIER", carrier_amount))
+        }else if(etc_amount>=1){
+            bagData.add(bagInfo("ETC", etc_amount))
+        }
+        if(rb_kakaopay_reserve.isChecked) {
+            reserveSave = ReservationSaveRequestData(1, afterParseStore, afterParseTake, bagData, "CARD")
+        }
+        else {
+            reserveSave = ReservationSaveRequestData(1, afterParseStore, afterParseTake, bagData, "CASH")
+        }
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var postReservationSaveResponse = networkService.postReservationSaveResponse("application/json",jwt,reserveSave)
-        postReservationSaveResponse.enqueue(object : retrofit2.Callback<ReservationSaveResponseData>{
-            override fun onFailure(call: retrofit2.Call<ReservationSaveResponseData>, t: Throwable) {
+        postReservationSaveResponse.enqueue(object : retrofit2.Callback<Any>{
+            override fun onFailure(call: retrofit2.Call<Any>, t: Throwable) {
                 toast(("asdasdasdasd"))
                 Log.d("postReservation: ", "@@@"+t.message)
             }
-            override fun onResponse(call: retrofit2.Call<ReservationSaveResponseData>, response: Response<ReservationSaveResponseData>) {
+            override fun onResponse(call: retrofit2.Call<Any>, response: Response<Any>) {
                 response?.let {
                     when(it.code()){
                         200->{
@@ -249,6 +258,7 @@ class ReserveFragment : Fragment() {
                             toast("400")
                             var gson : Gson = Gson()
                             //var errorData: ErrorData = gson.toJson(response.body(),ErrorData.class)
+                            toast(response.body().toString())
                             if(response.body() != null) {
                                 var errorData: ErrorData = gson.fromJson(response.body().toString(),ErrorData::class.java)
                             //    toast("TAGG" + )

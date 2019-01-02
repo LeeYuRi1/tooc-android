@@ -46,7 +46,7 @@ interface NetworkService {
             @Header("Content-Type") content_type : String,
             @Header("jwt") jwt : String?,
             @Body() reservationSaveRequest : ReservationSaveRequestData
-    ) : Call<ReservationSaveResponseData>
+    ) : Call<Any>
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
 
