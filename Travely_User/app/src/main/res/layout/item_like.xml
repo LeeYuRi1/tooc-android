@@ -58,7 +58,7 @@
         android:background="@drawable/btn_background_full"
         android:text="예약하기"
         android:textColor="#ffffff"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
         app:layout_constraintEnd_toStartOf="@+id/guideline17" />

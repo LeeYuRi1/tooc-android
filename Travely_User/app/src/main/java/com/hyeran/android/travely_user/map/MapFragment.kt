@@ -24,6 +24,7 @@ import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.fragment_map.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
@@ -34,8 +35,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(activity!!,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                && ActivityCompat.checkSelfPermission(activity!!,
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return
         }
 
@@ -53,7 +54,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         }
     }
 
-    protected fun startLocationUpdates() {
+    private fun startLocationUpdates() {
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 
@@ -90,6 +91,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
             mGoogleApiClient.disconnect()
         }
     }
+
 
     override fun onLocationChanged(p0: Location?) {}
 
@@ -144,9 +146,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity!!)
 
         view.btn_fragment_map_question.setOnClickListener {
-
             startActivityForResult<LocationListActivity>(999)
-//            startActivity<LocationListActivity>()
         }
 
         return view
@@ -174,7 +174,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 //                .addOnConnectFailedListener(activity!!)
                 .build()
 
-//        mGoogleApiClient.connect()
+        mGoogleApiClient.connect()
 
     }
 
@@ -185,9 +185,10 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
-            mMap.uiSettings.isMyLocationButtonEnabled = true
+//            mMap.uiSettings.isMyLocationButtonEnabled = true
             mMap.uiSettings.isCompassEnabled = true
             mMap.uiSettings.isZoomGesturesEnabled = true
+
         }
 
 
@@ -289,7 +290,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
 //                mMap.animateCamera(CameraUpdateFactory.zoomTo())
 
-                Log.d("MapActivity", "위도 : $latitude, 경도 : $longitude")
+                Log.d("MapFragment", "위도 : $latitude, 경도 : $longitude")
             }
         }
     }

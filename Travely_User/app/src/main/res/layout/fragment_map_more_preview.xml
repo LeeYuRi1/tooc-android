@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".map.MapMorePreviewFragment">
 
     <!-- Activity에서는 fragment로 구현해야되지만
     Fragment로 구현하기 위해서는 MapView를 사용해야함 -->
@@ -10,32 +11,103 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.google.android.gms.maps.MapView>
+        android:layout_height="match_parent" >
 
-    <RelativeLayout
+    </com.google.android.gms.maps.MapView>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true">
+        android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/nanum_bold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="3sp"
-            android:text="tooc"
-            android:textColor="#4c64fd"
-            android:textSize="20sp" />
+            android:textColor="@color/mainColor"
+            android:textSize="20sp"
+            android:text="tooc" />
 
         <LinearLayout
-            android:id="@+id/btn_fragment_map_more_preview"
-            android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="end"
-            android:background="#ffffff"
-            android:orientation="horizontal">
+            android:layout_marginTop="39dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#fbfbf9"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:layout_width="313dp"
+            android:layout_height="80dp">
+
+            <LinearLayout
+                android:background="#fbfbf9"
+                android:orientation="horizontal"
+                android:layout_width="313dp"
+                android:layout_height="40dp">
+
+                <ImageView
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_circle_gray"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="현위치 : 서울시 강남구 역삼동 818-12"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="14sp"
+                    android:textColor="#cecece"
+                    android:lineSpacingExtra="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:background="#ffffff"
+                android:orientation="horizontal"
+                android:layout_width="313dp"
+                android:layout_height="40dp">
+
+                <ImageView
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:layout_gravity="center"
+                    android:background = "@drawable/ic_rectangle_fill"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="짐을 맡겨드릴까요?"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="14sp"
+                    android:textColor="#262626"
+                    android:lineSpacingExtra="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_fragment_map_more_preview"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end"
+        android:background="#ffffff"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -87,25 +159,24 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="17dp"
-            android:orientation="vertical"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp">
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_reserve_map_more_preview"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="right"
                 android:layout_marginTop="22dp"
                 android:src="@drawable/ic_resevation" />
 
         </LinearLayout>
-    </RelativeLayout>
-</RelativeLayout>
+    </LinearLayout>
 
+</RelativeLayout>
