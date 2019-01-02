@@ -104,6 +104,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         }
     }
 
+
     override fun onLocationChanged(p0: Location?) {}
 
 
