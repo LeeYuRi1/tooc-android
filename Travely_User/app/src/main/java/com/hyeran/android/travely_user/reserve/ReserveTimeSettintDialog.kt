@@ -25,7 +25,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<Any>) : Dialog(ctx) {
+class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<Any>) : Dialog(ctx) {
 
     //TODO : 휴무일 넣어야함
     var offday: String? = "일"
@@ -56,20 +56,20 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<A
     var thh: String? = null
     var tmm: String? = null
 
-    var sText : String = reiceveArray[0].toString()
-    var tText : String = reiceveArray[3].toString()
-    var svalue : Int = reiceveArray[6] as Int
-    var tvalue : Int = reiceveArray[7] as Int
-    var snumhh : Int = reiceveArray[1] as Int
-    var snummm:Int = reiceveArray[2] as Int
-    var tnumhh:Int =reiceveArray[4] as Int
-    var tnummm:Int =reiceveArray[5] as Int
+    var sText: String = reiceveArray[0].toString()
+    var tText: String = reiceveArray[3].toString()
+    var svalue: Int = reiceveArray[6] as Int
+    var tvalue: Int = reiceveArray[7] as Int
+    var snumhh: Int = reiceveArray[1] as Int
+    var snummm: Int = reiceveArray[2] as Int
+    var tnumhh: Int = reiceveArray[4] as Int
+    var tnummm: Int = reiceveArray[5] as Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_reserve_time_setting)
 
-       // Toast.makeText(context,svalue.toString()+"   "+tvalue,Toast.LENGTH_LONG).show()
+        // Toast.makeText(context,svalue.toString()+"   "+tvalue,Toast.LENGTH_LONG).show()
 
         dates = datesFromCalender()
         hours = hourFromCalender()
@@ -115,7 +115,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<A
 
         pv_store_date.setOnValueChangedListener { numberPicker, i, j ->
             scalen.add(Calendar.DATE, pv_store_date.value)
-            svalue=pv_store_date.value
+            svalue = pv_store_date.value
             tv_store_date.text = dateformat.format(scalen.time)
             smmddee = dateformat.format(scalen.time)
             storeProhibit = weekFormat.format(scalen.time).toString()
@@ -154,7 +154,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<A
 
         pv_take_minute.minValue = 0
         pv_take_minute.maxValue = 59
-       // pv_take_minute.value = rightNow.get(Calendar.MINUTE)
+        // pv_take_minute.value = rightNow.get(Calendar.MINUTE)
         pv_take_minute.displayedValues = minutes
         pv_take_minute.value = tnummm
         if (pv_take_minute.value < 10) {
@@ -263,29 +263,49 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray : ArrayList<A
         }
 
         btn_time_confirm.setOnClickListener {
-            if ((0 > pv_take_date.value - pv_store_date.value)) {
-                Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
-            } else if ((0 == pv_take_date.value - pv_store_date.value)) {
-                if (0 > pv_take_hour.value - pv_store_hour.value) {
+
+            if (takeProhibit == offday) {
+                var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+                ttoast.setGravity(Gravity.CENTER, 0, 0)
+                ttoast.show()
+            } else {
+                if ((0 > pv_take_date.value - pv_store_date.value)) {
                     Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
-                } else if (0 == pv_take_hour.value - pv_store_hour.value) {
-                    if (0 > pv_take_minute.value - pv_store_minute.value) {
+                } else if ((0 == pv_take_date.value - pv_store_date.value)) {
+                    if (0 > pv_take_hour.value - pv_store_hour.value) {
                         Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+                    } else if (0 == pv_take_hour.value - pv_store_hour.value) {
+                        if (0 > pv_take_minute.value - pv_store_minute.value) {
+                            Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+                        } else {
+                            (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+                            dismiss()
+                        }
                     } else {
-                        (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue,tvalue)
+                        (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                         dismiss()
                     }
                 } else {
-                    (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(),  tnumhh, tnummm, svalue,tvalue)
+                    (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                     dismiss()
                 }
-            } else {
-                (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(),  tnumhh, tnummm, svalue,tvalue)
-                dismiss()
-
-                //Toast.makeText(context, "^^^^", Toast.LENGTH_LONG).show()
             }
-
+//            if (takeProhibit == offday) {
+//                var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+//                ttoast.setGravity(Gravity.CENTER, 0, 0)
+//                ttoast.show()
+//            } else {
+//                if (pv_store_date.value >= pv_take_date.value) {
+//                    if (pv_store_hour.value >= pv_take_hour.value) {
+//                        if (pv_store_minute.value >= pv_take_minute.value) {
+//                            Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+//                        }
+//                    }
+//                } else {
+//                    (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+//                    dismiss()
+//                }
+//            }
         }
 
     }
