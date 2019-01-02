@@ -30,12 +30,15 @@ import com.hyeran.android.travely_user.data.PhotoData
 import com.hyeran.android.travely_user.data.ReviewData
 import com.hyeran.android.travely_user.map.MapFragment.Companion.mInstance
 import com.hyeran.android.travely_user.reserve.ReserveFragment
+import kotlinx.android.synthetic.main.fragment_map.view.*
 import kotlinx.android.synthetic.main.fragment_map_more.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.view.*
+import kotlinx.android.synthetic.main.item_myreview.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
 
@@ -143,6 +146,9 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         mapView2.onCreate(savedInstanceState)
         mapView2.getMapAsync(this)
 
+        view2.btn_fragment_map_question2.setOnClickListener {
+            startActivity<LocationListActivity>()
+        }
 
         view2.btn_fragment_map_more_preview.setOnClickListener {
             startActivity<MapMoreActivity>()
@@ -154,6 +160,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         return view2
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
