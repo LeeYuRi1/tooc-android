@@ -66,7 +66,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         }
     }
 
-    protected fun startLocationUpdates() {
+    private fun startLocationUpdates() {
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 
@@ -103,6 +103,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
             mGoogleApiClient.disconnect()
         }
     }
+
 
     override fun onLocationChanged(p0: Location?) {}
 
@@ -185,7 +186,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 //                .addOnConnectFailedListener(activity!!)
                 .build()
 
-//        mGoogleApiClient.connect()
+        mGoogleApiClient.connect()
 
     }
 
