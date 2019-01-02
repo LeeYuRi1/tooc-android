@@ -38,6 +38,7 @@ import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
 
+
 class MapMorePreviewFragment : Fragment(), OnMapReadyCallback {
     //lateinit var mapView: MapView
     private lateinit var mMap2: GoogleMap
@@ -71,7 +72,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback {
         view.btn_fragment_map_more_preview.setOnClickListener {
             startActivity<MapMoreActivity>()
         }
-
 
         view.iv_reserve_map_more_preview.setOnClickListener {
             (activity as MainActivity).replaceFragment(ReserveFragment())
@@ -225,7 +225,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback {
         // 현재 위치 요청을 삭제
         fusedLocationProviderClient2.removeLocationUpdates(locationCallback2)
     }
-
 
 
 }

@@ -3,6 +3,9 @@ package com.hyeran.android.travely_user.map
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Camera
+import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -11,26 +14,99 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.R.id.mapView
+import com.hyeran.android.travely_user.model.RegionResponseData
+import com.hyeran.android.travely_user.network.ApplicationController
+import com.hyeran.android.travely_user.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_map.view.*
+import kotlinx.android.synthetic.main.item_myreview.*
+import kotlinx.coroutines.experimental.NonCancellable.cancel
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.jar.Manifest
 
 
-class MapFragment : Fragment(), OnMapReadyCallback {
+class MapFragment : Fragment(), OnMapReadyCallback,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+    override fun onConnected(bundle: Bundle?) {
+        if (ActivityCompat.checkSelfPermission(activity!!,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(activity!!,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return
+        }
+
+        startLocationUpdates()
+
+        mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient)
+        if (mLocation == null) {
+            startLocationUpdates()
+        }
+        if (mLocation != null) {
+            var latitude : Double = mLocation.latitude
+            var longtitude : Double = mLocation.longitude
+        } else {
+
+        }
+    }
+
+    protected fun startLocationUpdates() {
+        mLocationRequest = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+
+        if (ActivityCompat.checkSelfPermission(activity!!,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(activity!!,
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return
+        }
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this)
+    }
+    override fun onConnectionSuspended(p0: Int) {
+        Log.i(TAG, "Connection Suspended")
+        mGoogleApiClient.connect()
+    }
+
+    override fun onConnectionFailed(connectResult: ConnectionResult) {
+        Log.i(TAG, "Connection failed. Error : " + connectResult.getErrorCode())
+    }
+
+    override fun onStart() {
+        super.onStart()
+//        mapView.onStart()
+
+        mGoogleApiClient.connect()
+    }
+
+    override fun onStop() {
+        super.onStop()
+//        mapView.onStop()
+
+        if(mGoogleApiClient.isConnected) {
+            mGoogleApiClient.disconnect()
+        }
+    }
+
+    override fun onLocationChanged(p0: Location?) {}
 
 
-    //lateinit var mapView: MapView
+
     private lateinit var mMap: GoogleMap
     private lateinit var mapView: MapView
 
@@ -39,6 +115,16 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var locationCallback: MyLocationCallBack
 
     private val REQUEST_ACCESS_FINE_LOCATION = 1000
+
+    // Google API Client 생성
+    private lateinit var mGoogleApiClient : GoogleApiClient
+    private lateinit var mLocation : Location
+    private lateinit var locationManager : LocationManager
+    private lateinit var mLocationRequest : LocationRequest
+
+    private val TAG = javaClass.simpleName
+
+    public var locationPermissionGranted:Boolean = false
 
     companion object {
         var mInstance: MapFragment? = null
@@ -49,22 +135,28 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
             return mInstance!!
         }
+//
+//        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
+    private lateinit var  lastLocation : Location
 
-
+    // 레이아웃 설정
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Fragment 내에서는 mapView로 지도 실행
         val view: View = inflater.inflate(R.layout.fragment_map, container, false)
-        //SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+//        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 //        val mapView : SupportMapFragment = (childFragmentManager.findFragmentById(R.id.mapView) as? SupportMapFragment)!!
 //        mapView.getMapAsync(this)
-        mapView = view.findViewById(R.id.mapView)
+
+        mapView = view!!.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
+//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity!!)
 
         view.btn_fragment_map_question.setOnClickListener {
+
             startActivityForResult<LocationListActivity>(999)
 //            startActivity<LocationListActivity>()
         }
@@ -80,34 +172,57 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        // 액티비티가 처음 생성될 때 실행되는 함수
         super.onActivityCreated(savedInstanceState)
         locationInit()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        mGoogleApiClient = GoogleApiClient.Builder(activity!!)
+                .addApi(LocationServices.API)
+//                .addConnectionCallbacks(activity!!)
+//                .addOnConnectFailedListener(activity!!)
+                .build()
+
+//        mGoogleApiClient.connect()
+
+    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
         mMap = googleMap
 
+        if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mMap.isMyLocationEnabled = true
+            mMap.uiSettings.isMyLocationButtonEnabled = true
+            mMap.uiSettings.isCompassEnabled = true
+            mMap.uiSettings.isZoomGesturesEnabled = true
+        }
+
+
+//        setUpMap()
+
         // Add a marker in Sydney and move the camera
         val marker = LatLng(37.578346, 127.057015)
-//        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17f))
+
     }
 
-    //    override fun onStart() {
-//        super.onStart()
-//        mapView.onStart()
-//    }
 //
-//    override fun onStop() {
-//        super.onStop()
-//        mapView.onStop()
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        mapView.onSaveInstanceState(outState)
 //    }
-//
+
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+
         addLocationListener()
 
         // 권한 요청
@@ -120,18 +235,24 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         })
     }
 
-    //
-//    override fun onPause() {
-//        super.onPause()
-//        mapView.onPause()
-//    }
-//
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+
+        removeLocationListener()
+    }
+
+    private fun removeLocationListener() {
+        // 현재 위치 요청을 삭제
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
+    }
+
     override fun onLowMemory() {
         super.onLowMemory()
         mapView.onLowMemory()
     }
 
-    //
+
     override fun onDestroy() {
         super.onDestroy()
         mapView.onDestroy()
@@ -140,6 +261,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     // 위치 정보를 얻기 위한 각종 초기화
     private fun locationInit() {
         fusedLocationProviderClient = FusedLocationProviderClient(activity!!)
+//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity!!)
 
         locationCallback = MyLocationCallBack()
 
@@ -164,6 +286,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest,
                 locationCallback,
                 null)
+
     }
 
     inner class MyLocationCallBack : LocationCallback() {
@@ -201,6 +324,37 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+//    private fun setUpMap() {
+//        if (ActivityCompat.checkSelfPermission(activity!!,
+//                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(activity!!,
+//                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+//            return
+//        }
+//
+//        mMap.isMyLocationEnabled = true
+//
+//        fusedLocationProviderClient.lastLocation.addOnSuccessListener(activity!!) { location ->
+//            if (location != null) {
+//                lastLocation = location
+//                val currentLatLng = LatLng (location.latitude, location.longitude)
+//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 17f))
+//            }
+//        }
+//    }
+
+//    // 앱에 런타임 퍼미션 요청
+//    private fun getDevicePermission() {
+//        if (ContextCompat.checkSelfPermission(activity!!,
+//                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            locationPermissionGranted = true
+//        } else {
+//            ActivityCompat.requestPermissions(activity!!,
+//                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+//                    REQUEST_ACCESS_FINE_LOCATION)
+//        }
+//    }
+
     private fun showPermissionInfoDialog() {
         alert("현재 위치 정보를 얻으려면 위치 권한이 필요합니다", "권한이 필요한 이유") {
             yesButton {
@@ -212,8 +366,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }.show()
     }
 
+    // 콜백 메서드 오버라이드
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        locationPermissionGranted = false
+
         when (requestCode) {
             REQUEST_ACCESS_FINE_LOCATION -> {
                 if ((grantResults.isNotEmpty()
@@ -226,18 +383,33 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 }
                 return
             }
+//
+//                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+//                    locationPermissionGranted = true
+//                }
+//            }
+        }
+//        updateLocationUI()
+    }
+
+    fun updateLocationUI() {
+        if (mMap == null) {
+            return
+        }
+        try {
+            if (locationPermissionGranted) {
+                mMap.isMyLocationEnabled = true
+                mMap.uiSettings.isMyLocationButtonEnabled = true
+            } else {
+                mMap.isMyLocationEnabled = false
+                mMap.uiSettings.isMyLocationButtonEnabled = false
+                //lastKnownLocation = null
+//                getLocationPermission()
+            }
+        } catch (e: SecurityException) {
+            Log.e("Exception: %s", e.message)
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-
-        removeLocationListener()
-    }
-
-    private fun removeLocationListener() {
-        // 현재 위치 요청을 삭제
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
-    }
 
 }

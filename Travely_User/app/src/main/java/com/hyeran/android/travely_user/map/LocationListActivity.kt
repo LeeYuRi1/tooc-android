@@ -3,14 +3,13 @@ package com.hyeran.android.travely_user.map
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.LocationRVAdapter
 import com.hyeran.android.travely_user.model.RegionResponseData
 import com.hyeran.android.travely_user.model.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
-import kotlinx.android.synthetic.main.activity_temp.*
+import kotlinx.android.synthetic.main.activity_location_list.*
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +27,7 @@ class LocationListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_temp)
+        setContentView(R.layout.activity_location_list)
 
         init()
     }
@@ -150,4 +149,6 @@ class LocationListActivity : AppCompatActivity() {
 //
 //        })
 //    }
+
+    // dd
 }

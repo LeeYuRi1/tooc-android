@@ -6,5 +6,6 @@ data class ReviewResponseData (
         var like : Int,
         var reviewIdx : Int,
         var storeIdx : Int,
-        var userIdx : Int
+        var userIdx : Int,
+        var userName : String
 )
