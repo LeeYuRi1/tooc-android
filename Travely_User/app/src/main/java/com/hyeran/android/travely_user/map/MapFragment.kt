@@ -197,9 +197,10 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
-            mMap.uiSettings.isMyLocationButtonEnabled = true
+//            mMap.uiSettings.isMyLocationButtonEnabled = true
             mMap.uiSettings.isCompassEnabled = true
             mMap.uiSettings.isZoomGesturesEnabled = true
+
         }
 
 
@@ -301,7 +302,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
 //                mMap.animateCamera(CameraUpdateFactory.zoomTo())
 
-                Log.d("MapActivity", "위도 : $latitude, 경도 : $longitude")
+                Log.d("MapFragment", "위도 : $latitude, 경도 : $longitude")
             }
         }
     }
