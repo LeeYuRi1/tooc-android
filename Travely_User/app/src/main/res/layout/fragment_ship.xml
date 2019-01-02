@@ -30,9 +30,9 @@
 
         <ImageView
             android:id="@+id/imageView27"
-            android:layout_width="100dp"
-            android:layout_height="37dp"
-            android:src="@android:color/background_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_plane"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline52" />
@@ -41,13 +41,12 @@
             android:id="@+id/textView146"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:fontFamily="@font/kopub_medium"
             android:gravity="center"
-            android:text="현재 배송 서비스 준비중입니다.\n감사합니다."
             android:lineSpacingExtra="6sp"
+            android:text="현재 배송 서비스 준비중입니다.\n감사합니다."
             android:textColor="#494949"
             android:textSize="18sp"
-            android:fontFamily="@font/kopub_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline53" />

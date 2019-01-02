@@ -12,6 +12,8 @@ import org.jetbrains.anko.support.v4.toast
 import android.widget.CompoundButton
 import com.google.gson.Gson
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.dialog.KeepPriceDialog
+import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
 import com.hyeran.android.travely_user.model.ErrorData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
@@ -108,6 +110,10 @@ class ReserveFragment : Fragment() {
             ,svalue,tvalue)
             val dialog = ReserveTimeSettintDialog(ctx,timeArray)
             dialog.show()
+        }
+
+        v.btn_price_reserve.setOnClickListener {
+            KeepPriceDialog(context).show()
         }
 
         //tv_result_amount_carrier_reserve, tv_result_amount_etc_reserve 뺌

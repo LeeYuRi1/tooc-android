@@ -21,7 +21,7 @@ class ReserveCancelPasswordDialog(val ctx : Context?, val password : String?) : 
         super.onCreate(savedInstanceState)
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.GRAY))
+        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_reserve_cancel_password)
 
         var mEtPassword = findViewById(R.id.et_input_password_reserve_cancel) as EditText

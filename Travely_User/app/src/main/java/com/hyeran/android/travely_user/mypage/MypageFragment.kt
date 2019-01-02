@@ -29,7 +29,6 @@ class MypageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
         setRecyclerView()
-        writeReview()
     }
 
     private fun setRecyclerView() {
@@ -72,11 +71,7 @@ class MypageFragment : Fragment() {
         transaction.commit()
     }
 
-    private fun writeReview() {
-//        layout_lake_mypage.setOnClickListener {
-//            WriteReviewDialog(context).show()
-//        }
-    }
+
 
 
 }
