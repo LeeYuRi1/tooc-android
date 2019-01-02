@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user.model
+package com.hyeran.android.travely_user.model.store
 
 data class StoreImageResponseData (
         var storeImage : String,

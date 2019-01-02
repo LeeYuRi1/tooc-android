@@ -3,7 +3,6 @@ package com.hyeran.android.travely_user.map
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Camera
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -22,23 +21,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.mapView
-import com.hyeran.android.travely_user.model.RegionResponseData
-import com.hyeran.android.travely_user.network.ApplicationController
-import com.hyeran.android.travely_user.network.NetworkService
-import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_map.view.*
-import kotlinx.android.synthetic.main.item_myreview.*
-import kotlinx.coroutines.experimental.NonCancellable.cancel
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.jar.Manifest
 
 
 class MapFragment : Fragment(), OnMapReadyCallback,

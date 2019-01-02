@@ -8,14 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.hyeran.android.travely_user.MainActivity
-import com.hyeran.android.travely_user.data.LocationTempData
-import com.hyeran.android.travely_user.data.MoreLocationTempData
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.map.MapMorePreviewFragment
-import com.hyeran.android.travely_user.model.RegionResponseData
-import com.hyeran.android.travely_user.model.SimpleStoreResponseData
-import kotlinx.android.synthetic.main.item_location_map.view.*
+import com.hyeran.android.travely_user.model.region.RegionResponseData
+import com.hyeran.android.travely_user.model.region.SimpleStoreResponseData
 
 class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponseData>) : RecyclerView.Adapter<LocationRVAdapter.Holder>() {
 

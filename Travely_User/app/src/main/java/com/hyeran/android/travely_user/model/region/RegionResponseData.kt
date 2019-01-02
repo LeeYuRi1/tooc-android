@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_user.model
+package com.hyeran.android.travely_user.model.region
 
 data class RegionResponseData(
         var regionIdx: Int,

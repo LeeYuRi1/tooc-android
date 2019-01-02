@@ -1,7 +1,7 @@
-package com.hyeran.android.travely_user.model
+package com.hyeran.android.travely_user.model.reservation
 
 data class ReservationSaveResponseData(
-        var bagDtos: ArrayList<bagData>,
+        var bagResponseDtos: ArrayList<BagResponseData>,
         var bagImages: String,
         var endTime: Long,
         var payType: String,
@@ -9,6 +9,5 @@ data class ReservationSaveResponseData(
         var reserveCode: String,
         var startTime: Long,
         var stateType: String,
-        var storeDto: ArrayList<storeData>
+        var storeDto: ArrayList<StoreData>
 )
-
