@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="294dp"
+    android:layout_width="280dp"
     android:layout_height="329dp"
     android:background="@drawable/rectangle_round_dialog">
 
@@ -14,19 +14,21 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="27dp"
             android:src="@drawable/img_pop_check"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="예약이 완료되었습니다."
+            android:text="예약이 완료되었습니다.
+예약 내역을 확인해주세요."
+            android:gravity="center"
             android:fontFamily="@font/kopub_bold"
             android:textSize="16sp"
             android:textColor="#545454"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="47.8dp"/>
+            android:layout_marginBottom="29dp"/>
 
         <Button
             android:id="@+id/btn_ok_dialog_reserve_complete"

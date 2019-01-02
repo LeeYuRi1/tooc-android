@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.SplashActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.jetbrains.anko.support.v4.startActivity
 
 class ProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,27 +32,26 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        iv_modification_profile.setOnClickListener {
-            iv_modification_profile.visibility = View.GONE
-            tv_confilm_profile.visibility = View.VISIBLE
-            et_name_profile.isFocusableInTouchMode = true
-            et_email_profile.isFocusableInTouchMode = true
-            et_password_profile.isFocusableInTouchMode = true
-            et_password_confirm_profile.isFocusableInTouchMode = true
+        tv_modification_profile.setOnClickListener {
+
+            if(tv_modification_profile.text == "수정") {
+                et_name_profile.isFocusableInTouchMode = true
+                et_email_profile.isFocusableInTouchMode = true
+                et_password_profile.isFocusableInTouchMode = true
+                et_password_confirm_profile.isFocusableInTouchMode = true
+
+                tv_modification_profile.setText("완료")
+            }else if(tv_modification_profile.text == "완료") {
+                et_name_profile.isFocusableInTouchMode = false
+                et_email_profile.isFocusableInTouchMode = false
+                et_password_profile.isFocusableInTouchMode = false
+                et_password_confirm_profile.isFocusableInTouchMode = false
+
+                tv_modification_profile.setText("수정")
+
+            }
         }
 
-        tv_confilm_profile.setOnClickListener {
-
-            et_name_profile.setText(et_name_profile.text)
-
-            iv_modification_profile.visibility = View.VISIBLE
-            tv_confilm_profile.visibility = View.GONE
-            et_name_profile.isFocusableInTouchMode = false
-            et_email_profile.isFocusableInTouchMode = false
-            et_password_profile.isFocusableInTouchMode = false
-            et_password_confirm_profile.isFocusableInTouchMode = false
-
-        }
     }
 
 }
