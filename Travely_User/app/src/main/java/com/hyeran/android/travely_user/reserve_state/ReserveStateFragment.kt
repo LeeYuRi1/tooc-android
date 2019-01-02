@@ -81,7 +81,9 @@ class ReserveStateFragment : Fragment() {
 
         luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
         rv_luggage_picture.adapter = luggagePictureAdapter
-        rv_luggage_picture.layoutManager = LinearLayoutManager(context)
+        var mLayoutManager = LinearLayoutManager(context)
+        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        rv_luggage_picture.layoutManager = mLayoutManager
     }
 
     fun generateQRCode(view: View, contents: String) {

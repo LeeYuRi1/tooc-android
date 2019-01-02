@@ -34,14 +34,14 @@ class MypageFragment : Fragment() {
             val intent = Intent(this.activity, LoginActivity::class.java)
             startActivity(intent)
         }
-
-        btn_review_mypage.setOnClickListener {
-            replaceFragment(ReviewFragment())
-        }
-
-        btn_whole_statistics_mypage.setOnClickListener {
-            replaceFragment(WholeStatisticsFragment())
-        }
+//
+//        btn_review_mypage.setOnClickListener {
+//            replaceFragment(ReviewFragment())
+//        }
+//
+//        btn_whole_statistics_mypage.setOnClickListener {
+//            replaceFragment(WholeStatisticsFragment())
+//        }
 
     }
 
