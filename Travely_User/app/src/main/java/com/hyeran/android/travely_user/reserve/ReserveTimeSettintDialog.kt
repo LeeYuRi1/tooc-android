@@ -234,8 +234,8 @@ class ReserveTimeSettintDialog(val ctx: Context?) : Dialog(ctx) {
 
             if ((0 > pv_take_date.value - pv_store_date.value)) {
                 if (0 > pv_take_hour.value - pv_store_hour.value) {
-                    if (0 > pv_take_minute.value - pv_store_minute.value) {
-                        Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+                        if (0 > pv_take_minute.value - pv_store_minute.value) {
+                            Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
                     }
                 }
             } else {

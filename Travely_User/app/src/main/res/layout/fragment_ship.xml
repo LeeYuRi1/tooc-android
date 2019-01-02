@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,37 +15,56 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#ffffff"
+            android:layout_centerInParent="true"
             android:lineSpacingExtra="9sp"
-            android:gravity="center_horizontal"
-            tools:text="배송하기"
-
-            />
+            android:textColor="#ffffff"
+            android:fontFamily="@font/kopub_bold"
+            android:textSize="18sp"
+            tools:text="배송하기" />
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/imageView27"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@android:color/darker_gray"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:layout_above="@+id/tv_preparing_ship"/>
+            android:layout_height="37dp"
+            android:src="@android:color/background_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline52" />
+
         <TextView
-            android:id="@+id/tv_preparing_ship"
+            android:id="@+id/textView146"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="해당 서비스는 준비중입니다.\n
-더 좋은 모습으로 찾아뵙겠습니다."
-            android:gravity="center_horizontal"
-            android:layout_centerInParent="true"/>
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="현재 배송 서비스 준비중입니다.\n감사합니다."
+            android:lineSpacingExtra="6sp"
+            android:textColor="#494949"
+            android:textSize="18sp"
+            android:fontFamily="@font/kopub_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline53" />
 
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.243762" />
 
-    </RelativeLayout>
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4606526" />
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>
