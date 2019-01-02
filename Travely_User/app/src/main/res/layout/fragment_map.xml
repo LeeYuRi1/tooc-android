@@ -24,11 +24,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/nanum_bold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="3sp"
-            android:textColor="#4c64fd"
+            android:textColor="@color/mainColor"
             android:textSize="20sp"
             android:text="tooc" />
 
@@ -98,51 +98,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <!--
-    <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="320dp"
-            android:layout_height="40dp">
-
-            <ImageView
-                android:background = "@color/colorAccent"
-                android:layout_width="48dp"
-                android:layout_height="40dp" />
-
-            <TextView
-                android:layout_gravity="center"
-                android:text="현위치 : 서울시 강남구 역삼동 818-12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="320dp"
-            android:layout_height="40dp">
-
-            <ImageView
-                android:background = "@color/colorPrimary"
-                android:layout_width="48dp"
-                android:layout_height="40dp" />
-
-            <TextView
-                android:layout_gravity="center"
-                android:text="짐을 맡겨드릴까요?"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-    -->
 
 </RelativeLayout>
