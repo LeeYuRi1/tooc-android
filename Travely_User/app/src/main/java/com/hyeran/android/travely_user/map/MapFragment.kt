@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.R.id.mapView
+import com.hyeran.android.travely_user.model.RegionResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_map.*
@@ -156,7 +157,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity!!)
 
         view.btn_fragment_map_question.setOnClickListener {
-            startActivityForResult<TempActivity>(999)
+            startActivityForResult<LocationListActivity>(999)
         }
 
         return view

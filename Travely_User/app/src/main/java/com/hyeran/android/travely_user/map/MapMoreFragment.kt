@@ -1,14 +1,24 @@
 package com.hyeran.android.travely_user.map
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.tasks.OnCompleteListener
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.data.ReviewData
 import com.hyeran.android.travely_user.adapter.PhotoRecylerViewAdapter
@@ -16,7 +26,13 @@ import com.hyeran.android.travely_user.adapter.ReviewRecyclerViewAdapter
 import com.hyeran.android.travely_user.data.PhotoData
 import kotlinx.android.synthetic.main.fragment_map_more.*
 
+
 class MapMoreFragment : Fragment() {
+
+
+
+
+    /*
     lateinit var photoRecyclerViewAdapter : PhotoRecylerViewAdapter
     lateinit var reviewRecyclerViewAdapter : ReviewRecyclerViewAdapter
 
@@ -66,7 +82,7 @@ class MapMoreFragment : Fragment() {
 //    }
 
     private fun setRecyclerView() {
-        // 임시 데이터 1
+        // 임시 데이터 1 (사진)
         val dataList1: ArrayList<PhotoData> = ArrayList()
         dataList1.add(PhotoData("filter1"))
         dataList1.add(PhotoData("filter2"))
@@ -79,7 +95,7 @@ class MapMoreFragment : Fragment() {
         rv_map_more_frag_photo_list.adapter = photoRecyclerViewAdapter
         rv_map_more_frag_photo_list.layoutManager = LinearLayoutManager(activity, LinearLayout.HORIZONTAL, false)
 
-        // 임시 데이터 2
+        // 임시 데이터 2 (리뷰)
         val dataList2: ArrayList<ReviewData> = ArrayList()
 
         dataList2.add(ReviewData("reviewer", "김민수", 22, 4.5,
@@ -91,4 +107,5 @@ class MapMoreFragment : Fragment() {
         rv_map_more_frag_review_list.adapter = reviewRecyclerViewAdapter
         rv_map_more_frag_review_list.layoutManager = LinearLayoutManager(activity)
     }
+    */
 }
