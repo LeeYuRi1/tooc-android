@@ -1,6 +1,6 @@
 package com.hyeran.android.travely_user.model
 
-data class ReservationResponseData(
+data class ReservationSaveResponseData(
         var bagDtos: ArrayList<bagData>,
         var bagImages: String,
         var endTime: Long,

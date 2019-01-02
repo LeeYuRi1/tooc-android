@@ -18,11 +18,12 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
-import com.hyeran.android.travely_user.model.ReservationResponseData
+import com.hyeran.android.travely_user.model.ReservationSaveResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import org.jetbrains.anko.support.v4.ctx
 import org.json.JSONObject
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.security.auth.callback.Callback
@@ -250,9 +251,14 @@ class ReserveFragment : Fragment() {
 
         var postReservationSaveResponse = networkService.postReservationSaveResponse("application/json",jwt,gsonObject)
 
-      //  postReservationSaveResponse.enqueue(object : Callback<ReservationResponseData>{
+        postReservationSaveResponse.enqueue(object : retrofit2.Callback<ReservationSaveResponseData>{
+            override fun onFailure(call: retrofit2.Call<ReservationSaveResponseData>, t: Throwable) {
+            }
 
-        //})
+            override fun onResponse(call: retrofit2.Call<ReservationSaveResponseData>, response: Response<ReservationSaveResponseData>) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
     }
 
 }
