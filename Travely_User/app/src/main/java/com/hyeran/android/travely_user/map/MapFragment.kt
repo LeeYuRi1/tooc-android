@@ -185,7 +185,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
-//            mMap.uiSettings.isMyLocationButtonEnabled = true
+            mMap.uiSettings.isMyLocationButtonEnabled = true
             mMap.uiSettings.isCompassEnabled = true
             mMap.uiSettings.isZoomGesturesEnabled = true
 
@@ -381,24 +381,24 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 //        updateLocationUI()
     }
 
-    fun updateLocationUI() {
-        if (mMap == null) {
-            return
-        }
-        try {
-            if (locationPermissionGranted) {
-                mMap.isMyLocationEnabled = true
-                mMap.uiSettings.isMyLocationButtonEnabled = true
-            } else {
-                mMap.isMyLocationEnabled = false
-                mMap.uiSettings.isMyLocationButtonEnabled = false
-                //lastKnownLocation = null
-//                getLocationPermission()
-            }
-        } catch (e: SecurityException) {
-            Log.e("Exception: %s", e.message)
-        }
-    }
+//    fun updateLocationUI() {
+//        if (mMap == null) {
+//            return
+//        }
+//        try {
+//            if (locationPermissionGranted) {
+//                mMap.isMyLocationEnabled = true
+//                mMap.uiSettings.isMyLocationButtonEnabled = true
+//            } else {
+//                mMap.isMyLocationEnabled = false
+//                mMap.uiSettings.isMyLocationButtonEnabled = false
+//                //lastKnownLocation = null
+////                getLocationPermission()
+//            }
+//        } catch (e: SecurityException) {
+//            Log.e("Exception: %s", e.message)
+//        }
+//    }
 
 
 }
