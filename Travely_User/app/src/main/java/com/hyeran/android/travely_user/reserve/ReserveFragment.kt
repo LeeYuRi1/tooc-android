@@ -1,34 +1,31 @@
 package com.hyeran.android.travely_user.reserve
 
-import android.app.Application
-import android.app.Dialog
-import android.app.DialogFragment
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.support.v4.app.Fragment
-import android.telecom.Call
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve.view.*
 import org.jetbrains.anko.support.v4.toast
 import android.widget.CompoundButton
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.google.gson.Gson
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.dialog.KeepPriceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
-import com.hyeran.android.travely_user.model.ReservationResponseData
+import com.hyeran.android.travely_user.model.ErrorData
+import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
+import com.hyeran.android.travely_user.model.reservation.ReservationSaveResponseData
+import com.hyeran.android.travely_user.model.reservation.bagInfo
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve.*
 import org.jetbrains.anko.support.v4.ctx
-import org.json.JSONObject
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.security.auth.callback.Callback
 import kotlin.collections.ArrayList
 
 class ReserveFragment : Fragment() {
@@ -54,10 +51,8 @@ class ReserveFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_reserve, container, false)
-        //1월 01일 (화) 17:48
 
         networkService = ApplicationController.instance.networkService
-
 
         //피커뷰와 데이터 통신을 하기 위한 코드
         var args : Bundle? = arguments
@@ -102,9 +97,9 @@ class ReserveFragment : Fragment() {
         //서버로 time값을 전달해주기 위한 작업
         afterParseStore = dateParseFormat.parse(presentYearValue.toString()+smmddee.toString() +" "+snumhh.toString()+":"+snummm.toString()).time
         afterParseTake = dateParseFormat.parse(presentYearValue.toString()+tmmddee.toString() + " "+tnumhh.toString()+":"+tnummm.toString()).time
-        if(afterParseStore < afterParseTake) {
-            toast(afterParseStore.toString() + "~~~" + afterParseTake)
-       }
+//        if(afterParseStore < afterParseTake) {
+//            toast(afterParseStore.toString() + "~~~" + afterParseTake)
+//       }
         setOnClickListener(v)
         return v
     }
@@ -210,6 +205,7 @@ class ReserveFragment : Fragment() {
                     if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
                         if(afterParseStore < afterParseTake) {
 
+                            //통신
                             postReserveInfo()
 
                             if (v.rb_kakaopay_reserve.isChecked) {
@@ -236,30 +232,61 @@ class ReserveFragment : Fragment() {
     }
 
     fun postReserveInfo(){
-        var in_storeIdx : Int =1
-        var in_startTime :Long = 1
-        var in_endTime : Long = 1
-        var in_bagDtos:ArrayList<Any> = ArrayList<Any>()
-        var in_payType :String = "aaa"
 
-        in_bagDtos.add("aaa")
-        in_bagDtos.add(123)
-
-        var jsonObject : JSONObject = JSONObject()
-        jsonObject.put("storeIdx",in_storeIdx)
-        jsonObject.put("startTime",in_startTime)
-        jsonObject.put("endTime",in_endTime)
-        jsonObject.put("bagDtos",in_bagDtos)
-        jsonObject.put("payType",in_payType)
-
-        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        var reserveSave : ReservationSaveRequestData
+        var bagData:ArrayList<bagInfo> = ArrayList()
+        if(carrier_amount>=1) {
+            bagData.add(bagInfo("CARRIER", carrier_amount))
+        }else if(etc_amount>=1){
+            bagData.add(bagInfo("ETC", etc_amount))
+        }
+        if(rb_kakaopay_reserve.isChecked) {
+            reserveSave = ReservationSaveRequestData(1, afterParseStore, afterParseTake, bagData, "CARD")
+        }
+        else {
+            reserveSave = ReservationSaveRequestData(1, afterParseStore, afterParseTake, bagData, "CASH")
+        }
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        var postReservationSaveResponse = networkService.postReservationSaveResponse("application/json",jwt,reserveSave)
+        postReservationSaveResponse.enqueue(object : retrofit2.Callback<Any>{
+            override fun onFailure(call: retrofit2.Call<Any>, t: Throwable) {
+                toast(("asdasdasdasd"))
+                Log.d("postReservation: ", "@@@"+t.message)
+            }
+            override fun onResponse(call: retrofit2.Call<Any>, response: Response<Any>) {
+                response?.let {
+                    when(it.code()){
+                        200->{
+                            toast("200")
+                        }
+                        201-> toast("201")
+                        400-> {
+                            toast("400")
+                            var gson : Gson = Gson()
+                            //var errorData: ErrorData = gson.toJson(response.body(),ErrorData.class)
+                            toast(response.body().toString())
+                            if(response.body() != null) {
+                                var errorData: ErrorData = gson.fromJson(response.body().toString(),ErrorData::class.java)
+                            //    toast("TAGG" + )
+                                Log.v("TAGG",errorData.toString())
+                            }
+                            Log.v("TAGG",reserveSave.toString())
+                            Log.v("TAGG",response.body().toString()+"")
+                          //  toast("TAGG"+response.raw().toString())
+                           // Log.d("SaveResponse: ", "@@@@@2"+response.)
+                        }
+                        //이미 예약했는데 예약취소안하고 했을시 500뜸
+                        500->{
+                            Log.v("TAGG",reserveSave.toString())
+                            Log.v("TAGG",response.body().toString())
+                            toast("500")
+                        }
+                        else ->toast("xxxx")
+                    }
+                }
 
-        var postReservationSaveResponse = networkService.postReservationSaveResponse("application/json",jwt,gsonObject)
-
-      //  postReservationSaveResponse.enqueue(object : Callback<ReservationResponseData>{
-
-        //})
+            }
+        })
     }
 
 }

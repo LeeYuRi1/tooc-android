@@ -11,7 +11,7 @@ import android.util.Log
 import android.widget.RelativeLayout
 import android.widget.Toast
 import com.hyeran.android.travely_user.map.LocationListActivity
-import com.hyeran.android.travely_user.model.SimpleStoreResponseData
+import com.hyeran.android.travely_user.model.region.SimpleStoreResponseData
 
 class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<SimpleStoreResponseData>) : RecyclerView.Adapter<MoreLocationRVAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

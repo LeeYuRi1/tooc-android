@@ -96,7 +96,6 @@ class MainActivity : AppCompatActivity() {
         args!!.putInt("svalue", svalue)
         args!!.putInt("tvalue", tvalue)
 
-
         var fragment: Fragment = ReserveFragment()
         fragment.arguments = args
         replaceFragment(fragment)

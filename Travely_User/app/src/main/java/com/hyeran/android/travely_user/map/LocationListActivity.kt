@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.LocationRVAdapter
-import com.hyeran.android.travely_user.model.RegionResponseData
-import com.hyeran.android.travely_user.model.StoreResponseData
+import com.hyeran.android.travely_user.model.region.RegionResponseData
+import com.hyeran.android.travely_user.model.store.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.activity_location_list.*

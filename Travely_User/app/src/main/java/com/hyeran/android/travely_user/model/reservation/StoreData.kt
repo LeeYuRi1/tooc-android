@@ -1,7 +1,7 @@
-package com.hyeran.android.travely_user.model
+package com.hyeran.android.travely_user.model.reservation
 
 
-data class storeData(
+data class StoreData(
         var address : String,
         var avgLike: Int,
         var closeTime : String,
