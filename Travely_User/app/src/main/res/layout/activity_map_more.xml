@@ -33,6 +33,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_store_name_map_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kopub_bold"
@@ -54,24 +55,34 @@
                             android:src="@drawable/ic_star" />
 
                         <TextView
+                            android:id="@+id/tv_grade_map_more"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5.3dp"
                             android:fontFamily="@font/kopub_medium"
                             android:lineSpacingExtra="17sp"
-                            android:text="4.5점"
+                            android:text="4.5"
                             android:textColor="#8D8D8D"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="13dp"
                             android:fontFamily="@font/kopub_medium"
-                            android:lineSpacingExtra="10sp"
-                            android:text="123m"
-                            android:textColor="#262626"
+                            android:lineSpacingExtra="17sp"
+                            android:text="점"
+                            android:textColor="#8D8D8D"
                             android:textSize="14sp" />
+
+                        <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="13dp"-->
+                        <!--android:fontFamily="@font/kopub_medium"-->
+                        <!--android:lineSpacingExtra="10sp"-->
+                        <!--android:text="123m"-->
+                        <!--android:textColor="#262626"-->
+                        <!--android:textSize="14sp" />-->
 
                     </LinearLayout>
 
@@ -81,8 +92,8 @@
                     android:layout_width="60dp"
                     android:layout_height="75dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="14dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginTop="14dp"
                     android:src="@drawable/ic_resevation" />
 
             </RelativeLayout>
@@ -90,9 +101,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginHorizontal="11dp"
                 android:layout_marginTop="13dp"
-                android:layout_marginBottom="20dp"
                 android:background="#c6c6c6" />
 
 
@@ -101,9 +112,9 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_marginLeft="24dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -118,6 +129,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_address_map_more"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/kopub_medium"
@@ -126,24 +138,24 @@
                             android:textColor="#262626"
                             android:textSize="14sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="@font/kopub_medium"
-                            android:lineSpacingExtra="10sp"
-                            android:text="지번: 전농동 296-93"
-                            android:textColor="#8D8D8D"
-                            android:textSize="14sp" />
+                        <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="4dp"-->
+                        <!--android:fontFamily="@font/kopub_medium"-->
+                        <!--android:lineSpacingExtra="10sp"-->
+                        <!--android:text="지번: 전농동 296-93"-->
+                        <!--android:textColor="#8D8D8D"-->
+                        <!--android:textSize="14sp" />-->
 
                     </LinearLayout>
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_marginRight="25dp"
-                    android:layout_alignParentRight="true"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
                     android:src="@drawable/ic_un_favorite" />
 
             </RelativeLayout>
@@ -185,6 +197,7 @@
                                 android:textSize="14sp" />
 
                             <ImageView
+                                android:id="@+id/iv_working_map_more"
                                 android:layout_width="58dp"
                                 android:layout_height="18dp"
                                 android:layout_gravity="center"
@@ -193,26 +206,106 @@
 
                         </LinearLayout>
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:fontFamily="@font/kopub_medium"
-                            android:lineSpacingExtra="10sp"
-                            android:text="매일 12:00 ~ 24:00"
-                            android:textColor="#262626"
-                            android:textSize="14sp" />
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text="매일 "
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_opentime_hour_map_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text="12"
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text=":"
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_opentime_minute_map_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text="00"
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text="~"
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_closetime_hour_map_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text="00"
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text=":"
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_closetime_minute_map_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/kopub_medium"
+                                android:lineSpacingExtra="10sp"
+                                android:text="00"
+                                android:textColor="#262626"
+                                android:textSize="14sp" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_marginTop="13dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25dp"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="13dp"
                     android:src="@drawable/bt_find_road" />
 
             </RelativeLayout>
@@ -231,6 +324,7 @@
                     android:src="@drawable/ic_email_address" />
 
                 <TextView
+                    android:id="@+id/tv_store_url_map_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -255,6 +349,7 @@
                     android:src="@drawable/ic_phone" />
 
                 <TextView
+                    android:id="@+id/tv_store_call_map_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -266,59 +361,63 @@
             </LinearLayout>
 
 
+            <!--
+            리뷰 추가 하면 밑에 꺼 변경
+            android:layout_height="10dp"-->
+
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="22dp"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="22dp"
                 android:src="#e8e8e8" />
 
-            <LinearLayout
-                android:layout_marginLeft="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+            <!--android:layout_marginLeft="24dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:src="@drawable/ic_bubble"
-                    android:layout_gravity="center_vertical"/>
+            <!--<ImageView-->
+            <!--android:layout_width="14dp"-->
+            <!--android:layout_height="14dp"-->
+            <!--android:src="@drawable/ic_bubble"-->
+            <!--android:layout_gravity="center_vertical"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="9dp"
-                    android:fontFamily="@font/kopub_medium"
-                    android:lineSpacingExtra="17sp"
-                    android:text="리뷰"
-                    android:textColor="#262626"
-                    android:textSize="14sp" />
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="9dp"-->
+            <!--android:fontFamily="@font/kopub_medium"-->
+            <!--android:lineSpacingExtra="17sp"-->
+            <!--android:text="리뷰"-->
+            <!--android:textColor="#262626"-->
+            <!--android:textSize="14sp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:fontFamily="@font/noto_bold"
-                    android:lineSpacingExtra="17sp"
-                    android:text="5"
-                    android:textColor="#4c64fd"
-                    android:textSize="14sp" />
-            </LinearLayout>
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="6dp"-->
+            <!--android:fontFamily="@font/noto_bold"-->
+            <!--android:lineSpacingExtra="17sp"-->
+            <!--android:text="5"-->
+            <!--android:textColor="#4c64fd"-->
+            <!--android:textSize="14sp" />-->
+            <!--</LinearLayout>-->
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_map_more_act_review_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </android.support.v7.widget.RecyclerView>
+            <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/rv_map_more_act_review_list"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+            <!--</android.support.v7.widget.RecyclerView>-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="17dp"
-                android:layout_marginRight="13dp"
-                android:src="@drawable/ic_arrow_down_small" />
+            <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:layout_marginTop="17dp"-->
+            <!--android:layout_marginRight="13dp"-->
+            <!--android:src="@drawable/ic_arrow_down_small" />-->
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

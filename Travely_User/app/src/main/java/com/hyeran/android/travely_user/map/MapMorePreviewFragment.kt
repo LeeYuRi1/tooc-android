@@ -29,14 +29,12 @@ import kotlinx.android.synthetic.main.fragment_map_more_preview.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.sql.Time
 import java.sql.Timestamp
 
 
@@ -183,7 +181,9 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         }
 
         view2.btn_fragment_map_more_preview.setOnClickListener {
-            startActivity<MapMoreActivity>()
+            var intent = Intent(activity, MapMoreActivity::class.java)
+            intent.putExtra("storeIdx", storeIdx)
+            startActivity(intent)
         }
 
         view2.iv_reserve_map_more_preview.setOnClickListener {
@@ -427,8 +427,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                             var current_time : Long = System.currentTimeMillis()
 
-                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString()+"~"+Timestamp(close_time).hours.toString())
-                            Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
                             if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < Timestamp(close_time).hours)) {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                             }
@@ -440,8 +438,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             }
-                            else if(Timestamp(close_time).hours == Timestamp(close_time).hours) {
-                                if((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
+                            else if(Timestamp(close_time).hours == Timestamp(current_time).hours) {
+                                if((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                                 }
                                 else {
@@ -451,11 +449,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             else {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                             }
-
-
-
-        //                            Timestamp(current_time).minutes
-
                         }
                         500 -> {
                             toast("서버 에러")
