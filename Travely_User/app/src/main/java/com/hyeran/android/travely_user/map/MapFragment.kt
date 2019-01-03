@@ -200,13 +200,14 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         }
 
 
+
 //        setUpMap()
 
         // Add a marker in Sydney and move the camera
-        val marker = LatLng(37.578346, 127.057015)
-        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17f))
+//        val marker = LatLng(37.578346, 127.057015)
+//        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(17f))
 
     }
 

@@ -91,7 +91,9 @@ class ReserveFragment : Fragment() {
         var presentYearValue = yearDateFormat.format(rightNow.time)
 
         //Store -> 피커에서 받은 데이터들을 뷰에 띄워줌
-        v.tv_store_date_reserve.text = args!!.getString("smmddee", dateFormat.format(rightNow.time))
+        v.tv_store_date_reserve.text = args?.getString("smmddee", dateFormat.format(rightNow.time))
+        Log.d("TAGGG",(args?.getString("smmddee", dateFormat.format(rightNow.time))).toString())
+        Log.d("TAGGGGG",dateFormat.format(rightNow.time))
         snumhh = args!!.getInt("shh", defaultHourValue)
         if (snumhh < 10) {
             v.tv_store_hour_reserve.text = "0" + snumhh.toString()
@@ -322,6 +324,14 @@ class ReserveFragment : Fragment() {
                             toast("xxxx")
                             errorCheck = true
                             toast("ErroerCheck=" + errorCheck.toString())
+                            Log.d("TAGGGGGGGGGGGGGGGGGG",it.code().toString())
+                            if (response.errorBody() != null) {
+                                var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
+                                //    toast("TAGG" + )
+                                toast(errorData.message)
+                            }
+                            Log.v("TAGG", reserveSave.toString())
+                            Log.v("TAGG@@@@@@@@@@@@@@@@2", response.errorBody()?.string())
                         }
                     }
                 }

@@ -128,9 +128,21 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     companion object {
         var mInstance2: MapMorePreviewFragment? = null
         @Synchronized
-        fun getInstance(): MapMorePreviewFragment {
+        fun getInstance(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int): MapMorePreviewFragment {
             if (mInstance2 == null) {
-                mInstance2 = MapMorePreviewFragment()
+                mInstance2 = MapMorePreviewFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("smmddee", tsmmddee)
+                        putInt("shh", tshh)
+                        putInt("smm", tsmm)
+                        putString("tmmddee", ttmmddee)
+                        putInt("thh", tthh)
+                        putInt("tmm", ttmm)
+                        putInt("svalue", tsValue)
+                        putInt("tvalue", ttValue)
+                        Log.d("TAG", tsmmddee + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+                    }
+                }
             }
             return mInstance2!!
         }
@@ -178,6 +190,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
 */
 
+
         view2.btn_fragment_map_question2.setOnClickListener {
             startActivityForResult<LocationListActivity>(999)
         }
@@ -187,12 +200,49 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         }
 
         view2.iv_reserve_map_more_preview.setOnClickListener {
-            (activity as MainActivity).replaceFragment(ReserveFragment())
+
+            var fragment: Fragment = ReserveFragment()
+//            fragment.arguments = args
+            (activity as MainActivity).replaceFragment(fragment)
         }
 
         return view2
     }
-
+//    }
+//    var smmddee: String? = null
+//    var tmmddee: String? = null
+//    var shh: Int? = null
+//    var smm: Int? = null
+//    var thh: Int? = null
+//    var tmm: Int? = null
+//    var svalue: Int = 0
+//    var tvalue: Int = 0
+//    var args: Bundle = Bundle()
+//
+//    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int) {
+//        smmddee = tsmmddee
+//        shh = tshh
+//        smm = tsmm
+//        tmmddee = ttmmddee
+//        thh = tthh
+//        tmm = ttmm
+//        svalue = tsValue
+//        tvalue = ttValue
+//
+//        args!!.putString("smmddee", smmddee)
+//        args!!.putInt("shh", shh as Int)
+//        args!!.putInt("smm", smm as Int)
+//        args!!.putString("tmmddee", tmmddee)
+//        args!!.putInt("thh", thh as Int)
+//        args!!.putInt("tmm", tmm as Int)
+//        args!!.putInt("svalue", svalue)
+//        args!!.putInt("tvalue", tvalue)
+//
+//        var fragment: Fragment = ReserveFragment()
+//        fragment.arguments = args
+//        (activity as MainActivity).replaceFragment(fragment)
+//    }
+//
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -398,63 +448,57 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
 
-                            var open_time : Long = response.body()!!.openTime.toLong()
+                            var open_time: Long = response.body()!!.openTime.toLong()
 
-                            if(Timestamp(open_time).hours.toString().trim().length == 1) {
-                                tv_opentime_hour_map_more_preview.text = "0"+Timestamp(open_time).hours.toString().trim()
+                            if (Timestamp(open_time).hours.toString().trim().length == 1) {
+                                tv_opentime_hour_map_more_preview.text = "0" + Timestamp(open_time).hours.toString().trim()
                             } else {
                                 tv_opentime_hour_map_more_preview.text = Timestamp(open_time).hours.toString().trim()
                             }
 
-                            if(Timestamp(open_time).minutes.toString().trim().length == 1) {
-                                tv_opentime_minute_map_more_preview.text = "0"+Timestamp(open_time).minutes.toString().trim()
+                            if (Timestamp(open_time).minutes.toString().trim().length == 1) {
+                                tv_opentime_minute_map_more_preview.text = "0" + Timestamp(open_time).minutes.toString().trim()
                             } else {
                                 tv_opentime_minute_map_more_preview.text = Timestamp(open_time).minutes.toString().trim()
                             }
 
-                            var close_time : Long = response.body()!!.closeTime.toLong()
-                            if(Timestamp(close_time).hours.toString().trim().length == 1) {
-                                tv_closetime_hour_map_more_preview.text = "0"+Timestamp(close_time).hours.toString().trim()
+                            var close_time: Long = response.body()!!.closeTime.toLong()
+                            if (Timestamp(close_time).hours.toString().trim().length == 1) {
+                                tv_closetime_hour_map_more_preview.text = "0" + Timestamp(close_time).hours.toString().trim()
                             } else {
                                 tv_closetime_hour_map_more_preview.text = Timestamp(close_time).hours.toString().trim()
                             }
 
-                            if(Timestamp(close_time).minutes.toString().trim().length == 1) {
-                                tv_closetime_minute_map_more_preview.text = "0"+Timestamp(close_time).minutes.toString().trim()
+                            if (Timestamp(close_time).minutes.toString().trim().length == 1) {
+                                tv_closetime_minute_map_more_preview.text = "0" + Timestamp(close_time).minutes.toString().trim()
                             } else {
                                 tv_closetime_minute_map_more_preview.text = Timestamp(close_time).minutes.toString().trim()
                             }
 
-                            var current_time : Long = System.currentTimeMillis()
+                            var current_time: Long = System.currentTimeMillis()
 
-                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString()+"~"+Timestamp(close_time).hours.toString())
+                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
                             Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
-                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                            }
-                            else if(Timestamp(open_time).hours == Timestamp(current_time).hours) {
-                                if((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {
+                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                }
-                                else {
+                                } else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
-                            }
-                            else if(Timestamp(close_time).hours == Timestamp(close_time).hours) {
-                                if((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
+                            } else if (Timestamp(close_time).hours == Timestamp(close_time).hours) {
+                                if ((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                }
-                                else {
+                                } else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
-                            }
-                            else {
+                            } else {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                             }
 
 
-
-        //                            Timestamp(current_time).minutes
+                            //                            Timestamp(current_time).minutes
 
                         }
                         500 -> {

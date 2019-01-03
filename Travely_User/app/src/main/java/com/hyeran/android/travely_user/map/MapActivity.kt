@@ -118,7 +118,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             location?.run {
                 // 14 level로 확대하고 현재 위치로 카메라 이동
                 val latLng = LatLng(latitude, longitude)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
 
                 Log.d("MapActivity", "위도 : $latitude, 경도 : $longitude")
             }

@@ -16,6 +16,7 @@ import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.R.color.mainColor
 import com.hyeran.android.travely_user.R.id.*
+import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import kotlinx.android.synthetic.main.dialog_reserve_time_setting.*
 import kotlinx.android.synthetic.main.dialog_reserve_time_setting.view.*
 import kotlinx.android.synthetic.main.fragment_faq.view.*
@@ -307,14 +308,20 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                                 Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
                             } else {
                                 (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+//                                MapMorePreviewFragment.getInstance(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                                 dismiss()
                             }
                         } else {
                             (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+//                            MapMorePreviewFragment.getInstance(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+
+
                             dismiss()
                         }
                     } else {
+//                        (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                         (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+
                         dismiss()
                     }
                 }

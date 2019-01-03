@@ -25,12 +25,16 @@
                     android:id="@+id/tv_store_time_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:lineSpacingExtra="14sp"
                     android:text="맡기는 시간" />
 
                 <TextView
                     android:id="@+id/tv_store_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:lineSpacingExtra="13sp"
                     android:text="12월 05일 (수)" />
             </LinearLayout>
 
@@ -245,6 +249,16 @@
 
     </ViewSwitcher>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#ff7c49"
+        android:lineSpacingExtra="2sp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:text="*매주 화요일은 정기휴무일입니다."
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

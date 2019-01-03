@@ -52,7 +52,7 @@ interface NetworkService {
 
     // 예약 상태 저장
     // - 예약 상태 저장 후 예약 정보 반환
-    @POST("/api/reservation/save")
+    @POST("/api/reservation")
     fun postReservationSaveResponse(
             @Header("Content-Type") content_type : String,
             @Header("jwt") jwt : String?,
