@@ -36,59 +36,59 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="27dp">
 
-    <LinearLayout
-        android:background="#fbfbf9"
-        android:orientation="horizontal"
-        android:layout_width="313dp"
-        android:layout_height="40dp">
+        <LinearLayout
+            android:background="#fbfbf9"
+            android:orientation="horizontal"
+            android:layout_width="313dp"
+            android:layout_height="40dp">
 
-        <ImageView
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="23dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_circle_gray"
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            <ImageView
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_circle_gray"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
-        <TextView
-            android:layout_gravity="center"
-            android:text="현위치 : 서울시 강남구 역삼동 818-12"
-            android:fontFamily="@font/kopub_medium"
-            android:textSize="14sp"
-            android:textColor="#cecece"
-            android:lineSpacingExtra="2sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_gravity="center"
+                android:text="현위치 : 서울시 강남구 역삼동 818-12"
+                android:fontFamily="@font/kopub_medium"
+                android:textSize="14sp"
+                android:textColor="#cecece"
+                android:lineSpacingExtra="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:clickable="true"
-        android:id = "@+id/btn_fragment_map_question"
-        android:background="#ffffff"
-        android:orientation="horizontal"
-        android:layout_width="313dp"
-        android:layout_height="40dp">
+        <LinearLayout
+            android:clickable="true"
+            android:id = "@+id/btn_fragment_map_question"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:layout_width="313dp"
+            android:layout_height="40dp">
 
-        <ImageView
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="23dp"
-            android:layout_gravity="center"
-            android:background = "@drawable/ic_rectangle_fill"
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            <ImageView
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:layout_gravity="center"
+                android:background = "@drawable/ic_rectangle_fill"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
-        <TextView
-            android:layout_gravity="center"
-            android:text="짐을 맡겨드릴까요?"
-            android:fontFamily="@font/kopub_medium"
-            android:textSize="14sp"
-            android:textColor="#262626"
-            android:lineSpacingExtra="2sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_gravity="center"
+                android:text="짐을 맡겨드릴까요?"
+                android:fontFamily="@font/kopub_medium"
+                android:textSize="14sp"
+                android:textColor="#262626"
+                android:lineSpacingExtra="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -155,60 +155,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
     <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:background="@android:color/darker_gray">-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="@android:color/darker_gray">-->
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:text="가까운 보관장소(" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text="가까운 보관장소(" />-->
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:text="1" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text="1" />-->
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:text=")" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text=")" />-->
     <!--</LinearLayout>-->
 
     <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/rv_nearby_temp"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
+    <!--android:id="@+id/rv_nearby_temp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
 
     <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:background="@android:color/darker_gray">-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="@android:color/darker_gray">-->
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:text="즐겨찾는 장소(" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text="즐겨찾는 장소(" />-->
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:text="2" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text="2" />-->
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:text=")" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text=")" />-->
     <!--</LinearLayout>-->
     <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/rv_favorite_temp"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
+    <!--android:id="@+id/rv_favorite_temp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
 
 </LinearLayout>
