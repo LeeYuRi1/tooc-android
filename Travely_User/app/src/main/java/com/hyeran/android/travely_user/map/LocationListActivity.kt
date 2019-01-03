@@ -119,36 +119,7 @@ class LocationListActivity : AppCompatActivity() {
         })
     }
 
-    // 예약 취소 함수
-//    private fun postReservationCancelResponse() {
-//
-//        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-//        val postReservationCancelResponse = networkService.postReservationCancelResponse(jwt)
-//
-//        postReservationCancelResponse!!.enqueue(object : Callback<Any> {
-//            override fun onFailure(call: Call<Any>, t: Throwable) {
-//                Log.d("예약 취소", "#####"+t.message)
-//            }
-//
-//            override fun onResponse(call: Call<Any>, response: Response<Any>) {
-//                response?.let {
-//                    when (it.code()) {
-//                        200 -> {
-//                            toast("예약 취소 성공 / 예약 내역 없음")
-//                            toast(response.body().toString())
-//                        }
-//                        500 -> {
-//                            toast("서버 에러")
-//                        }
-//                        else -> {
-//                            toast("error"+it.code())
-//                        }
-//                    }
-//                }
-//            }
-//
-//        })
-//    }
+
 
     // dd
 }
