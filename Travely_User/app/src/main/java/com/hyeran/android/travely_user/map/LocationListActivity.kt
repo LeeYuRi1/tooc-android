@@ -48,11 +48,8 @@ class LocationListActivity : AppCompatActivity() {
 
     fun getStoreIdx(storeIdx : Int) {
 
-        Log.d("@storeIdx통신@: ", "어댑터에서 호출한 getStoreIdx() 함수에 들어왔습니다.")
-
         this.storeIdx = storeIdx
 
-        Log.d("@storeIdx통신@", "전달받은 storeIdx는? "+this.storeIdx)
         var intent : Intent = Intent()
         intent.putExtra("storeIdx", storeIdx)
         setResult(2, intent)
@@ -88,9 +85,6 @@ class LocationListActivity : AppCompatActivity() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            toast("목록조회 성공")
-                            toast(response.body().toString())
-
                             // 지역별 보관장소
                             var dataList_by_area: ArrayList<RegionResponseData> = response.body()!!
 

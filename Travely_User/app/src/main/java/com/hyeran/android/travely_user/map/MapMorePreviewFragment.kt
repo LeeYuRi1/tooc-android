@@ -5,17 +5,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
@@ -24,32 +21,23 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.action_bar_root
-import com.hyeran.android.travely_user.R.id.mapView2
-import com.hyeran.android.travely_user.adapter.PhotoRecylerViewAdapter
-import com.hyeran.android.travely_user.adapter.ReviewRecyclerViewAdapter
-import com.hyeran.android.travely_user.data.PhotoData
-import com.hyeran.android.travely_user.data.ReviewData
-import com.hyeran.android.travely_user.map.MapFragment.Companion.mInstance
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import com.hyeran.android.travely_user.reserve.ReserveFragment
-import kotlinx.android.synthetic.main.fragment_map.view.*
-import kotlinx.android.synthetic.main.fragment_map_more.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.view.*
-import kotlinx.android.synthetic.main.item_myreview.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Time
+import java.sql.Timestamp
 
 
 class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
@@ -96,7 +84,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     }
 
     override fun onConnectionFailed(connectResult: ConnectionResult) {
-        Log.i(TAG2, "Connection failed. Error : " + connectResult.getErrorCode())
+        Log.i(TAG2, "Connection failed. Error : " + connectResult.errorCode)
     }
 
     override fun onStart() {
@@ -132,7 +120,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
     private val TAG2 = javaClass.simpleName
 
-    public var locationPermissionGranted2: Boolean = false
+    var locationPermissionGranted2: Boolean = false
 
     private lateinit var lastLocation2: Location
 
@@ -157,13 +145,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         mapView2.onCreate(savedInstanceState)
         mapView2.getMapAsync(this)
 
-        Log.d("@storeIdx통신@", "MapMorePreviewFragment에 들어왔다. 번들 만나기 전임")
-
-
         var bundle: Bundle? = arguments
         storeIdx = bundle!!.getInt("storeIdx")
-
-        Log.d("@storeIdx통신@", "MapMorePreviewFragment의 전달받은 번들 값 " + storeIdx)
 
 
         toast(storeIdx.toString())
@@ -219,10 +202,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
-            Log.d("@storeIdx통신@", "MapFragment로 돌아왔다.")
             storeIdx = data!!.getIntExtra("storeIdx", 0)
-            Log.d("@storeIdx통신@", "storeIdx는? " + storeIdx)
-//            (activity as MainActivity).getStoreIdx(storeIdx)
 
             getStoreResponse()
         }
@@ -407,18 +387,74 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     private fun getStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         val getStoreResponse = networkService.getStoreResponse(jwt, storeIdx)
-        getStoreResponse!!.enqueue(object : Callback<StoreResponseData> {
+        getStoreResponse.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
             }
 
             override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
-                response?.let {
+                response.let {
                     when (it.code()) {
                         200 -> {
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
-                            tv_opentime_map_more_preview.text = response.body()!!.openTime
-                            tv_closetime_map_more_preview.text = response.body()!!.closeTime
+
+                            var open_time : Long = response.body()!!.openTime.toLong()
+
+                            if(Timestamp(open_time).hours.toString().trim().length == 1) {
+                                tv_opentime_hour_map_more_preview.text = "0"+Timestamp(open_time).hours.toString().trim()
+                            } else {
+                                tv_opentime_hour_map_more_preview.text = Timestamp(open_time).hours.toString().trim()
+                            }
+
+                            if(Timestamp(open_time).minutes.toString().trim().length == 1) {
+                                tv_opentime_minute_map_more_preview.text = "0"+Timestamp(open_time).minutes.toString().trim()
+                            } else {
+                                tv_opentime_minute_map_more_preview.text = Timestamp(open_time).minutes.toString().trim()
+                            }
+
+                            var close_time : Long = response.body()!!.closeTime.toLong()
+                            if(Timestamp(close_time).hours.toString().trim().length == 1) {
+                                tv_closetime_hour_map_more_preview.text = "0"+Timestamp(close_time).hours.toString().trim()
+                            } else {
+                                tv_closetime_hour_map_more_preview.text = Timestamp(close_time).hours.toString().trim()
+                            }
+
+                            if(Timestamp(close_time).minutes.toString().trim().length == 1) {
+                                tv_closetime_minute_map_more_preview.text = "0"+Timestamp(close_time).minutes.toString().trim()
+                            } else {
+                                tv_closetime_minute_map_more_preview.text = Timestamp(close_time).minutes.toString().trim()
+                            }
+
+                            var current_time : Long = System.currentTimeMillis()
+
+                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString()+"~"+Timestamp(close_time).hours.toString())
+                            Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
+                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                            }
+                            else if(Timestamp(open_time).hours == Timestamp(current_time).hours) {
+                                if((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                }
+                                else {
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                }
+                            }
+                            else if(Timestamp(close_time).hours == Timestamp(close_time).hours) {
+                                if((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                }
+                                else {
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                }
+                            }
+                            else {
+                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                            }
+
+
+
+        //                            Timestamp(current_time).minutes
 
                         }
                         500 -> {
