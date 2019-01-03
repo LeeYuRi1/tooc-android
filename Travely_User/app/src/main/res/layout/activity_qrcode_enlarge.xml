@@ -50,9 +50,9 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_qrimage_enlarge"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:id="@+id/iv_qrimage_background_enlarge"
+            android:layout_width="218dp"
+            android:layout_height="218dp"
             android:layout_marginBottom="234dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -61,7 +61,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/background_dark" />
+            android:src="@drawable/qr_shadow" />
+
+        <ImageView
+            android:id="@+id/iv_qrimage_enlarge"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_qrimage_background_enlarge"
+            app:layout_constraintEnd_toEndOf="@+id/iv_qrimage_background_enlarge"
+            app:layout_constraintStart_toStartOf="@+id/iv_qrimage_background_enlarge"
+            app:layout_constraintTop_toTopOf="@+id/iv_qrimage_background_enlarge"
+            app:srcCompat="@android:color/holo_blue_bright" />
 
     </android.support.constraint.ConstraintLayout>
 

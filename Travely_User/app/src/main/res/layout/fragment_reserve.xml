@@ -321,7 +321,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
-                    android:text="짐 종류"
+                    android:text="보관 형태"
                     android:textColor="#262626"
                     android:textSize="16sp" />
 
@@ -330,7 +330,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/btn_price_reserve">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -359,7 +360,9 @@
                 android:gravity="center_vertical"
                 android:text="캐리어"
                 android:textColor="#545454"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:button="@drawable/checkbox_selector"
+                android:paddingStart="9dp"/>
 
             <LinearLayout
                 android:id="@+id/linear_carrier_more_reserve"
@@ -526,7 +529,9 @@
                     android:gravity="center_vertical"
                     android:text="물품 보관 가방"
                     android:textColor="#545454"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:button="@drawable/checkbox_selector"
+                    android:paddingStart="9dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -804,7 +809,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/kopub_medium"
-                        android:text="현금 결제"
+                        android:text="현장 결제"
                         android:textColor="#262626"
                         android:textSize="14sp" />
                 </RadioGroup>
@@ -839,7 +844,9 @@
                     android:fontFamily="@font/kopub_light"
                     android:text="위 내용을 확인하였으며 결제에 동의합니다."
                     android:textColor="#464646"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:button="@drawable/checkbox_circle_selector"
+                    android:paddingStart="8dp"/>
 
                 <Button
                     android:id="@+id/btn_reserve_reserve"

@@ -113,4 +113,5 @@ class LocationListActivity : AppCompatActivity() {
             }
         })
     }
+
 }
