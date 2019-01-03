@@ -5,6 +5,7 @@ import com.hyeran.android.travely_user.model.region.RegionResponseData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveResponseData
 import com.hyeran.android.travely_user.model.store.StoreResponseData
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -46,7 +47,7 @@ interface NetworkService {
             @Header("Content-Type") content_type : String,
             @Header("jwt") jwt : String?,
             @Body() reservationSaveRequest : ReservationSaveRequestData
-    ) : Call<Any>
+    ) : Call<JsonObject>
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
 

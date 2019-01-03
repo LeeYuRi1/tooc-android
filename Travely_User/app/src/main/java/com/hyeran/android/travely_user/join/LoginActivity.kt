@@ -23,17 +23,12 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         init()
-
         setClickListener()
     }
 
     fun init() {
-//        signUpCompleteBtn.setOnClickListener(this)
-//        signUpXBtn.setOnClickListener(this)
         networkService = ApplicationController.instance.networkService
-//        SharedPreference.instance!!.load(this)
     }
 
     private fun setClickListener() {
@@ -62,7 +57,6 @@ class LoginActivity : AppCompatActivity() {
         postLoginResponse!!.enqueue(object : Callback<Any> {
             override fun onFailure(call: Call<Any>, t: Throwable) {
             }
-
             override fun onResponse(call: Call<Any>, response: Response<Any>) {
                 response?.let {
                     when (it.code()) {

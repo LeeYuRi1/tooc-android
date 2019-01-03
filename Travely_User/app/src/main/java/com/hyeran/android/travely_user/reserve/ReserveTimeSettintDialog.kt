@@ -48,7 +48,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
     var allstore: String? = null
     var alltake: String? = null
 
-
     var smmddee: String? = null
     var tmmddee: String? = null
     var shh: String? = null
@@ -64,12 +63,11 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
     var snummm: Int = reiceveArray[2] as Int
     var tnumhh: Int = reiceveArray[4] as Int
     var tnummm: Int = reiceveArray[5] as Int
+    var timeLimit : Int = reiceveArray[8] as Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_reserve_time_setting)
-
-        // Toast.makeText(context,svalue.toString()+"   "+tvalue,Toast.LENGTH_LONG).show()
 
         dates = datesFromCalender()
         hours = hourFromCalender()
@@ -191,7 +189,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
 
         btn_store_time.setBackgroundColor(Color.parseColor("#4C64FD"))
 
-
         //버튼클릭시~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         setOnClickListner()
     }
@@ -220,8 +217,17 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
 
     private fun hourFromCalender(): Array<String> {
         val dates = ArrayList<String>()
-        for (i in 0..9) dates.add("0" + i)
-        for (i in 10..23) dates.add(i.toString())
+        if(timeLimit<10) {
+            for (i in 0..timeLimit) dates.add("0" + i)
+        }
+        else{
+            for (i in 0..9) dates.add("0" + i)
+        }
+        if(timeLimit>9){
+            for (i in timeLimit..23) dates.add(i.toString())
+        }else {
+            for (i in 10..23) dates.add(i.toString())
+        }
         return dates.toTypedArray()
     }
 
@@ -246,7 +252,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
             }
-
         }
 
         btn_take_time.setOnClickListener {

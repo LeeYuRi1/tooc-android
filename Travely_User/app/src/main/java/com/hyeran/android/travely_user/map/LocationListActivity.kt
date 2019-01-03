@@ -90,65 +90,27 @@ class LocationListActivity : AppCompatActivity() {
 
     // 세부 정보 조회 함수
     private fun getStoreResponse() {
-
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         val getStoreResponse = networkService.getStoreResponse(jwt, 1)
-
         getStoreResponse!!.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
             }
-
             override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
                 response?.let {
                     when (it.code()) {
                         200 -> {
                             toast("세부정보 조회 성공")
                             toast(response.body().toString())
-
                         }
                         500 -> {
                             toast("서버 에러")
                         }
                         else -> {
-                            toast("error"+it.code())
+                            toast("error" + it.code())
                         }
                     }
                 }
             }
-
         })
     }
-
-    // 예약 취소 함수
-//    private fun postReservationCancelResponse() {
-//
-//        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-//        val postReservationCancelResponse = networkService.postReservationCancelResponse(jwt)
-//
-//        postReservationCancelResponse!!.enqueue(object : Callback<Any> {
-//            override fun onFailure(call: Call<Any>, t: Throwable) {
-//                Log.d("예약 취소", "#####"+t.message)
-//            }
-//
-//            override fun onResponse(call: Call<Any>, response: Response<Any>) {
-//                response?.let {
-//                    when (it.code()) {
-//                        200 -> {
-//                            toast("예약 취소 성공 / 예약 내역 없음")
-//                            toast(response.body().toString())
-//                        }
-//                        500 -> {
-//                            toast("서버 에러")
-//                        }
-//                        else -> {
-//                            toast("error"+it.code())
-//                        }
-//                    }
-//                }
-//            }
-//
-//        })
-//    }
-
-    // dd
 }

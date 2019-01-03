@@ -45,9 +45,7 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
 
         var more_dataList_by_area: ArrayList<SimpleStoreResponseData> = dataList[position].simpleStoreResponseDtos
 
-//
         Log.d("LocationRVAdapter", "@@@@@@@@@@@@@"+dataList[position])
-
 
         more_dataList = dataList[position].simpleStoreResponseDtos
         //moreLocationRVAdapterList
