@@ -96,8 +96,18 @@
             </LinearLayout>
 
         </LinearLayout>
-        
 
+        <!--
+        <ImageView
+            android:id="@+id/btn_find_gps2"
+            android:clickable="true"
+            android:src="@drawable/bt_find_gps"
+            android:layout_gravity="right"
+            android:layout_marginTop="240dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+            -->
 
     </LinearLayout>
 
@@ -173,9 +183,9 @@
             <ImageView
                 android:id="@+id/iv_reserve_map_more_preview"
                 android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_height="80dp"
                 android:layout_gravity="right"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/ic_resevation" />
 
         </LinearLayout>

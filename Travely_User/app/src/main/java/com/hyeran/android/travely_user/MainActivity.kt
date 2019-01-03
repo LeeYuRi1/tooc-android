@@ -24,15 +24,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //TODO 타임리밋값넣어야함!!!!!!!!!!!!!!!!!!
+        args!!.putInt("timeLimit",9)
+
         init()
     }
 
     fun init() {
-
         addFragment(MapFragment())
-
         iv_search_bottom_tab.isSelected = true
-
         setOnClickListener()
     }
 
@@ -43,15 +43,12 @@ class MainActivity : AppCompatActivity() {
             iv_search_bottom_tab.isSelected = true
         }
         tab_two_main.setOnClickListener {
-            //TODO: 123 자리에 서버에서 받은 password값을 넣어야함
+            //TODO: 123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!
             replaceFragment(ReserveStateFragment.getInstance("123"))
             clearSelected()
             iv_reserve_bottom_tab.isSelected = true
         }
         tab_three_main.setOnClickListener {
-            //TODO :123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!!
-            //123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!!
-//            replaceFragment(ReserveFragment())
 
             clearSelected()
             iv_ship_bottom_tab.isSelected = true
@@ -78,6 +75,7 @@ class MainActivity : AppCompatActivity() {
     var tvalue: Int = 0
 
     fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int) {
+
         smmddee = tsmmddee
         shh = tshh
         smm = tsmm

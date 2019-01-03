@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
@@ -22,17 +22,11 @@
                 android:layout_height="200dp">
             </android.support.v7.widget.RecyclerView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="23dp"
-                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -85,13 +79,12 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_marginLeft="80dp"
                         android:layout_gravity="right"
-                        android:layout_width="40dp"
+                        android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/ic_resevation" />
 
-                </LinearLayout>
+                </RelativeLayout>
 
                 <ImageView
                     android:layout_width="338dp"
@@ -117,7 +110,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/kopub_medium"
                             android:lineSpacingExtra="10sp"
@@ -136,6 +129,12 @@
                             android:textSize="14sp"/>
 
                     </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_un_favorite" />
 
                 </LinearLayout>
 
@@ -157,7 +156,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
@@ -175,7 +174,7 @@
                                 android:layout_height="18dp"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="18dp"
-                                android:src="@drawable/ic_working" />
+                                android:src="@drawable/ic_not_working" />
 
                         </LinearLayout>
 
@@ -190,6 +189,12 @@
                             android:textSize="14sp" />
 
                     </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:src="@drawable/bt_find_road" />
 
                 </LinearLayout>
 
@@ -239,15 +244,6 @@
                 </LinearLayout>
 
 
-                <!--
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_main_more_act_photo_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </android.support.v7.widget.RecyclerView>
-                -->
-
-
                 <ImageView
                     android:layout_width="360dp"
                     android:layout_height="10dp"
@@ -289,9 +285,17 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_map_more_act_review_list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+                    android:layout_height="match_parent">
+                </android.support.v7.widget.RecyclerView>
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="36dp"
+                    android:src="@drawable/ic_arrow_down_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>
