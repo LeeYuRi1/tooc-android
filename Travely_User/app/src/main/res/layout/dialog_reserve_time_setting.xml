@@ -254,6 +254,10 @@
         <Button
             android:id="@+id/btn_time_confirm"
             android:text="확인"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:background="@color/mainColor"
+            android:lineSpacingExtra="2sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
