@@ -147,7 +147,8 @@ class ReserveFragment : Fragment() {
             override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
                 if (isChecked) {
                     v.linear_carrier_more_reserve.visibility = View.VISIBLE
-                    carrier_price = 3500
+                    carrier_price = calPriceUnit(afterParseStore, afterParseTake)
+                    v.tv_price_carrier_reserve.text = carrier_price.toString()
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     carrier_amount = 1
                     //v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
@@ -158,7 +159,7 @@ class ReserveFragment : Fragment() {
                         // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                         v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                         v.tv_carrier_amount_reserve.text = carrier_amount.toString()
-                        carrier_price = carrier_amount * 3500
+                        carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
                         v.tv_price_carrier_reserve.text = carrier_price.toString()
                         v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     }
@@ -169,7 +170,7 @@ class ReserveFragment : Fragment() {
                             // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                             v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                             v.tv_carrier_amount_reserve.text = carrier_amount.toString()
-                            carrier_price = carrier_amount * 3500
+                            carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
                             v.tv_price_carrier_reserve.text = carrier_price.toString()
                             v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                         }
@@ -188,7 +189,8 @@ class ReserveFragment : Fragment() {
             override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
                 if (isChecked) {
                     v.linear_etc_more_reserve.visibility = View.VISIBLE
-                    etc_price = 3500
+                    etc_price = calPriceUnit(afterParseStore, afterParseTake)
+                    v.tv_price_etc_reserve.text = etc_price.toString()
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     etc_amount = 1
                     // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
@@ -198,7 +200,7 @@ class ReserveFragment : Fragment() {
                         etc_amount++
                         v.tv_etc_changing_amount_reserve.text = etc_amount.toString()
                         v.tv_etc_amount_reserve.text = etc_amount.toString()
-                        etc_price = etc_amount * 3500
+                        etc_price = etc_amount * calPriceUnit(afterParseStore, afterParseTake)
                         v.tv_price_etc_reserve.text = etc_price.toString()
                         v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                         //  v.tv_result_amount_etc_reserve.text = etc_amount.toString()
@@ -209,7 +211,7 @@ class ReserveFragment : Fragment() {
                             etc_amount--
                             v.tv_etc_changing_amount_reserve.text = etc_amount.toString()
                             v.tv_etc_amount_reserve.text = etc_amount.toString()
-                            etc_price = etc_amount * 3500
+                            etc_price = etc_amount * calPriceUnit(afterParseStore, afterParseTake)
                             v.tv_price_etc_reserve.text = etc_price.toString()
                             v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                             // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
@@ -238,6 +240,13 @@ class ReserveFragment : Fragment() {
                             //통신
                             postReserveInfo()
 
+                            if (v.rb_kakaopay_reserve.isChecked) {
+                                val intent = Intent(context, KakaopayWebView::class.java)
+                                startActivityForResult(intent, 9999)
+                            }
+                            if (v.rb_cash_reserve.isChecked) {
+                                ReserveCompleteDialog(context).show()
+                            }
 
                         } else {
                             toast("결제 동의를 체크해주세요.")
@@ -289,7 +298,7 @@ class ReserveFragment : Fragment() {
                             toast("200")
                         }
                         201 -> {
-                            toast("201")
+                            toast("예약 성공")
                             if (rb_kakaopay_reserve.isChecked) {
                                 val intent: Intent = Intent(context, KakaopayWebView::class.java)
                                 startActivityForResult(intent, 9999)
@@ -300,9 +309,7 @@ class ReserveFragment : Fragment() {
                             else{}
                         }
                         400 -> {
-                            toast("400")
-                            //var errorData: ErrorData = gson.toJson(response.body(),ErrorData.class)
-                            toast(response.body().toString())
+                            toast("잘못된 정보 주입")
 
                             if (response.errorBody() != null) {
                                 var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
@@ -313,16 +320,17 @@ class ReserveFragment : Fragment() {
                             Log.v("TAGG@@@@@@@@@@@@@@@@2", response.errorBody()?.string())
                             errorCheck = true
                         }
+
                         //이미 예약했는데 예약취소안하고 했을시 500뜸
                         500 -> {
                             Log.v("TAGG", reserveSave.toString())
                             Log.v("TAGG", response.body().toString())
-                            toast("500")
-                            errorCheck = true
+                            toast("서버 에러")
                         }
                         else -> {
-                            toast("xxxx")
+                            toast("error")
                             errorCheck = true
+<<<<<<< HEAD
                             toast("ErroerCheck=" + errorCheck.toString())
                             Log.d("TAGGGGGGGGGGGGGGGGGG",it.code().toString())
                             if (response.errorBody() != null) {
@@ -332,6 +340,8 @@ class ReserveFragment : Fragment() {
                             }
                             Log.v("TAGG", reserveSave.toString())
                             Log.v("TAGG@@@@@@@@@@@@@@@@2", response.errorBody()?.string())
+=======
+>>>>>>> 73bbfc053c7748c1e74810bffe4823e67b533a99
                         }
                     }
                 }
@@ -395,7 +405,9 @@ class ReserveFragment : Fragment() {
 //                            toast("@@1: "+response.body().toString())
                             priceArray = response.body()!!
 //                            toast("@@2: "+priceArray.toString())
-                            calPrice()
+
+//                            calPrice()
+
                         }
                         500 -> {
                             toast("서버 에러")
@@ -412,12 +424,13 @@ class ReserveFragment : Fragment() {
         })
     }
 
-    fun calPrice(): Long {
+    fun calPriceUnit(afterParseStore : Long, afterParseTake : Long): Int {
         // 시간 계산
-        var hour: Long = (afterParseTake - afterParseStore) / 1000 / 60 / 60
+        var hour : Long = (afterParseTake - afterParseStore) / 1000 / 60 / 60
         if (hour * 1000 * 60 * 60 != afterParseTake - afterParseStore) {
             hour++
         }
+
 
         var price = 0
 
@@ -439,20 +452,26 @@ class ReserveFragment : Fragment() {
             }
         }
 
-        //TODO lugg
-        var luggage_cnt = carrier_amount + etc_amount
+        var price_unit : Int = price + extra_hour * final_price
 
+        return price_unit
 
-        var total_price: Long = ((price + extra_hour * final_price) * luggage_cnt).toLong()
-
-        Log.d("가격 계산", total_price.toString())
-        Log.d("hour", hour.toString())
-        Log.d("price", price.toString())
-        Log.d("extra_hour", extra_hour.toString())
-        Log.d("final_price", final_price.toString())
-        Log.d("luggage_cnt", luggage_cnt.toString())
-
-        return (total_price)
     }
+//
+//    fun calPrice() {
+//
+//
+//        var luggage_cnt = 3
+//
+//
+//        var total_price : Long  = ((price + extra_hour * final_price) * luggage_cnt).toLong()
+//
+//        Log.d("가격 계산", total_price.toString())
+//        Log.d("hour", hour.toString())
+//        Log.d("price", price.toString())
+//        Log.d("extra_hour", extra_hour.toString())
+//        Log.d("final_price", final_price.toString())
+//        Log.d("luggage_cnt", luggage_cnt.toString())
+//    }
 
 }
