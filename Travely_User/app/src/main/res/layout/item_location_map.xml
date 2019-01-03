@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="47dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp">
 
         <ImageView
             android:id="@+id/iv_icon_item_location_map"
@@ -74,7 +74,7 @@
             android:layout_marginRight="35dp"
             android:src="@drawable/ic_arrow_down" />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_more_item_location_map"

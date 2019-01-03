@@ -52,7 +52,8 @@ class ReserveFragment : Fragment() {
     var snummm: Int = 0
     var tnumhh: Int = 0
     var tnummm: Int = 0
-    var timeLimit : Int = 0
+    var openTime : Long = 0
+    var closeTime : Long = 0
 
     var afterParseStore: Long = 0
     var afterParseTake: Long = 0
@@ -75,10 +76,7 @@ class ReserveFragment : Fragment() {
         var args: Bundle? = arguments
 
         //제한시간 받는 코드
-//        TODO("storeIdx를 받아서 통신해야함!!!!!!")
         getStoreResponseInfo()
-//        timeLimit = args!!.getInt("timeLimit",9)
-//        Toast.makeText(context,timeLimit.toString(), Toast.LENGTH_LONG).show()
 
         var rightNow = Calendar.getInstance()
         var dateFormat = SimpleDateFormat("MMM dd일 (EE)")
@@ -130,7 +128,7 @@ class ReserveFragment : Fragment() {
     fun setOnClickListener(v: View) {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
-                    , svalue, tvalue)
+                    , svalue, tvalue,openTime,closeTime)
             val dialog = ReserveTimeSettintDialog(ctx, timeArray)
             dialog.show()
         }
@@ -322,6 +320,8 @@ class ReserveFragment : Fragment() {
                         when(it.code()){
                             200->{
                                 toast("200" + response.body()!!.closeTime.toString())
+                                openTime = response.body()!!.openTime.toLong()
+                                closeTime = response.body()!!.closeTime.toLong()
                             }
                             500->{
                                 toast("500")
@@ -355,14 +355,14 @@ class ReserveFragment : Fragment() {
                     when (it.code()) {
                         200 -> {
                             toast("가격표 조회 성공")
-                            toast("@@1: "+response.body().toString())
+//                            toast("@@1: "+response.body().toString())
 
 
 
                             priceArray = response.body()!!
 
 
-                            toast("@@2: "+priceArray.toString())
+//                            toast("@@2: "+priceArray.toString())
 
                             calPrice()
 

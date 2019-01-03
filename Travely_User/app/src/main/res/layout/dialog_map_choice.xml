@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="153dp"
     android:layout_gravity="bottom"
+    android:layout_marginHorizontal="16dp"
     android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="210dp">
+    android:weightSum="3"
+    android:background="@drawable/rectangle_round_dialog">
 
     <TextView
-        android:id = "@+id/btn_dialog_map_choice_google"
-        android:background="#dddddd"
+        android:id="@+id/btn_dialog_map_choice_google"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"
         android:gravity="center"
         android:text="구글 지도"
-        android:textSize="20dp"
-        android:layout_marginTop="5dp"
-        android:clickable="true"
+        android:textSize="16dp"
+        android:textColor="#1f8ce8"
+        android:fontFamily="@font/kopub_medium"/>
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="64dp" />
+        android:layout_height="1dp"
+        android:background="#707070" />
 
     <TextView
-        android:id = "@+id/btn_dialog_map_choice_kakao"
-        android:background="#dddddd"
+        android:id="@+id/btn_dialog_map_choice_kakao"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"
         android:gravity="center"
         android:text="카카오 지도"
-        android:textSize="20dp"
-        android:layout_marginTop="5dp"
-        android:clickable="true"
+        android:textSize="16dp"
+        android:textColor="#1f8ce8"
+        android:fontFamily="@font/kopub_medium"/>
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="64dp" />
+        android:layout_height="1dp"
+        android:background="#707070" />
 
     <TextView
-        android:id = "@+id/btn_dialog_map_choice_cancel"
-        android:background="#dddddd"
+        android:id="@+id/btn_dialog_map_choice_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"
         android:gravity="center"
         android:text="취소"
-        android:textSize="20dp"
-        android:layout_marginTop="5dp"
-        android:clickable="true"
-        android:layout_width="match_parent"
-        android:layout_height="64dp" />
+        android:textSize="16dp"
+        android:textColor="#8d8d8d"
+        android:fontFamily="@font/kopub_medium"/>
 </LinearLayout>

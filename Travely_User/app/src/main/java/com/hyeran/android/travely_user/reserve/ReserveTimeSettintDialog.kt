@@ -14,11 +14,13 @@ import android.widget.Toast
 import com.hyeran.android.travely_user.MainActivity
 
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.R.color.mainColor
 import com.hyeran.android.travely_user.R.id.*
 import kotlinx.android.synthetic.main.dialog_reserve_time_setting.*
 import kotlinx.android.synthetic.main.dialog_reserve_time_setting.view.*
 import kotlinx.android.synthetic.main.fragment_faq.view.*
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.textColor
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,6 +43,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
 
     val dateformat = SimpleDateFormat("MMM dd일 (EE)")
     val allFormat = SimpleDateFormat("yy MMM dd일 kk:mm")
+    var hourFormat = SimpleDateFormat("kk")
 
     var storeProhibit: String? = null
     var takeProhibit: String? = null
@@ -63,7 +66,8 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
     var snummm: Int = reiceveArray[2] as Int
     var tnumhh: Int = reiceveArray[4] as Int
     var tnummm: Int = reiceveArray[5] as Int
-    var timeLimit : Int = reiceveArray[8] as Int
+    var openTime: Int = hourFormat.format(reiceveArray[8] as Long).toInt()
+    var closeTime: Int = hourFormat.format(reiceveArray[9] as Long).toInt()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,10 +96,10 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         pv_store_hour.minValue = 0
         pv_store_hour.maxValue = hours!!.size - 1
         pv_store_hour.displayedValues = hours
-        pv_store_hour.value = snumhh
-        if (pv_store_hour.value < 10) {
-            shh = "0" + pv_store_hour.value.toString()
-        } else shh = pv_store_hour.value.toString()
+        pv_store_hour.value = snumhh - openTime
+        if (pv_store_hour.value + openTime < 10) {
+            shh = "0" + (pv_store_hour.value + openTime).toString()
+        } else shh = (pv_store_hour.value + openTime).toString()
         tv_store_hour.text = shh
 
         pv_store_minute.minValue = 0
@@ -108,6 +112,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         tv_store_minute.text = smm
 
         pv_store_date.wrapSelectorWheel = false
+        pv_store_hour.wrapSelectorWheel = false
 
         smmddee = sText
 
@@ -120,10 +125,10 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             scalen.add(Calendar.DATE, -pv_store_date.value)
         }
         pv_store_hour.setOnValueChangedListener { numberPicker, i, j ->
-            snumhh = pv_store_hour.value
-            if (pv_store_hour.value < 10) {
-                shh = "0" + pv_store_hour.value.toString()
-            } else shh = pv_store_hour.value.toString()
+            snumhh = pv_store_hour.value + openTime
+            if (pv_store_hour.value + openTime < 10) {
+                shh = "0" + (pv_store_hour.value + openTime).toString()
+            } else shh = (pv_store_hour.value + openTime).toString()
             tv_store_hour.text = shh
         }
         pv_store_minute.setOnValueChangedListener { numberPicker, i, j ->
@@ -134,20 +139,19 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             tv_store_minute.text = smm
         }
 
-        //take피커뷰 사용~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        //take피커뷰 사용~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         pv_take_date.minValue = 0
         pv_take_date.maxValue = dates!!.size - 1
         pv_take_date.displayedValues = dates
         pv_take_date.value = tvalue
 
         pv_take_hour.minValue = 0
-        pv_take_hour.maxValue = 23
-        //pv_take_hour.value = rightNow.get(Calendar.HOUR_OF_DAY) + 4
+        pv_take_hour.maxValue = hours!!.size - 1
         pv_take_hour.displayedValues = hours
-        pv_take_hour.value = tnumhh
-        if (pv_take_hour.value < 10) {
-            thh = "0" + pv_take_hour.value.toString()
-        } else thh = pv_take_hour.value.toString()
+        pv_take_hour.value = tnumhh - openTime
+        if (pv_take_hour.value + openTime < 10) {
+            thh = "0" + (pv_take_hour.value + openTime).toString()
+        } else thh = (pv_take_hour.value + openTime).toString()
         tv_take_hour.text = thh
 
         pv_take_minute.minValue = 0
@@ -163,6 +167,8 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         tmmddee = tText
 
         pv_take_date.wrapSelectorWheel = false
+        pv_take_hour.wrapSelectorWheel = false
+
 
         pv_take_date.setOnValueChangedListener { numberPicker, i, j ->
             tcalen.add(Calendar.DATE, pv_take_date.value)
@@ -173,10 +179,10 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             tcalen.add(Calendar.DATE, -pv_take_date.value)
         }
         pv_take_hour.setOnValueChangedListener { numberPicker, i, j ->
-            tnumhh = pv_take_hour.value
-            if (pv_take_hour.value < 10) {
-                thh = "0" + pv_take_hour.value.toString()
-            } else thh = pv_take_hour.value.toString()
+            tnumhh = pv_take_hour.value + openTime
+            if (pv_take_hour.value + openTime < 10) {
+                thh = "0" + (pv_take_hour.value + openTime).toString()
+            } else thh = (pv_take_hour.value + openTime).toString()
             tv_take_hour.text = thh
         }
         pv_take_minute.setOnValueChangedListener { numberPicker, i, j ->
@@ -192,7 +198,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         //버튼클릭시~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         setOnClickListner()
     }
-
 
     private fun datesFromCalender(): Array<String> {
         val c1 = Calendar.getInstance()
@@ -217,17 +222,12 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
 
     private fun hourFromCalender(): Array<String> {
         val dates = ArrayList<String>()
-        if(timeLimit<10) {
-            for (i in 0..timeLimit) dates.add("0" + i)
-        }
-        else{
+        if (openTime < 10) {
+            for (i in openTime..9) dates.add("0" + i)
+        } else {
             for (i in 0..9) dates.add("0" + i)
         }
-        if(timeLimit>9){
-            for (i in timeLimit..23) dates.add(i.toString())
-        }else {
-            for (i in 10..23) dates.add(i.toString())
-        }
+        for (i in 10..closeTime) dates.add(i.toString())
         return dates.toTypedArray()
     }
 
@@ -240,30 +240,45 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
 
     fun setOnClickListner() {
         var alertFlag = 0;
-
+        var rightNow = Calendar.getInstance()
+        var currentHour = rightNow.get(Calendar.HOUR_OF_DAY)
+        var ttoast: Toast
         btn_store_time.setOnClickListener {
-            if (alertFlag == 1 && takeProhibit != offday) {
-                vs_custom_date_picker.showNext()
-                alertFlag = 0;
-                btn_store_time.setBackgroundColor(Color.parseColor("#4C64FD"))
-                btn_take_time.setBackgroundColor(Color.parseColor("#ffffff"))
-            } else {
-                var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+            if (svalue == 0 && snumhh < currentHour) {
+                ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
+            } else {
+                if (alertFlag == 1 && takeProhibit != offday) {
+                    vs_custom_date_picker.showNext()
+                    alertFlag = 0;
+                    btn_store_time.setBackgroundColor(Color.parseColor(R.color.mainColor.toString()))
+                    btn_take_time.setBackgroundColor(Color.parseColor("#ffffff"))
+//                tv_store_date.setTextColor(Color.parseColor("d"))
+                } else {
+                    var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+                    ttoast.setGravity(Gravity.CENTER, 0, 0)
+                    ttoast.show()
+                }
             }
         }
 
         btn_take_time.setOnClickListener {
-            if (alertFlag == 0 && storeProhibit != offday) {
-                vs_custom_date_picker.showNext()
-                alertFlag = 1;
-                btn_take_time.setBackgroundColor(Color.parseColor("#4C64FD"))
-                btn_store_time.setBackgroundColor(Color.parseColor("#ffffff"))
-            } else {
-                var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+            if (svalue == 0 && snumhh < currentHour) {
+                ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
+            } else {
+                if (alertFlag == 0 && storeProhibit != offday) {
+                    vs_custom_date_picker.showNext()
+                    alertFlag = 1;
+                    btn_take_time.setBackgroundColor(Color.parseColor("#4C64FD"))
+                    btn_store_time.setBackgroundColor(Color.parseColor("#ffffff"))
+                } else {
+                    ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+                    ttoast.setGravity(Gravity.CENTER, 0, 0)
+                    ttoast.show()
+                }
             }
         }
 
@@ -274,14 +289,24 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
             } else {
-                if ((0 > pv_take_date.value - pv_store_date.value)) {
-                    Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
-                } else if ((0 == pv_take_date.value - pv_store_date.value)) {
-                    if (0 > pv_take_hour.value - pv_store_hour.value) {
+                if (svalue == 0 && snumhh < currentHour) {
+                    ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
+                    ttoast.setGravity(Gravity.CENTER, 0, 0)
+                    ttoast.show()
+
+                } else {
+                    if ((0 > pv_take_date.value - pv_store_date.value)) {
                         Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
-                    } else if (0 == pv_take_hour.value - pv_store_hour.value) {
-                        if (0 > pv_take_minute.value - pv_store_minute.value) {
+                    } else if ((0 == pv_take_date.value - pv_store_date.value)) {
+                        if (0 > pv_take_hour.value - pv_store_hour.value) {
                             Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+                        } else if (0 == pv_take_hour.value - pv_store_hour.value) {
+                            if (0 > pv_take_minute.value - pv_store_minute.value) {
+                                Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+                            } else {
+                                (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+                                dismiss()
+                            }
                         } else {
                             (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                             dismiss()
@@ -290,27 +315,8 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                         (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                         dismiss()
                     }
-                } else {
-                    (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
-                    dismiss()
                 }
             }
-//            if (takeProhibit == offday) {
-//                var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
-//                ttoast.setGravity(Gravity.CENTER, 0, 0)
-//                ttoast.show()
-//            } else {
-//                if (pv_store_date.value >= pv_take_date.value) {
-//                    if (pv_store_hour.value >= pv_take_hour.value) {
-//                        if (pv_store_minute.value >= pv_take_minute.value) {
-//                            Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
-//                        }
-//                    }
-//                } else {
-//                    (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
-//                    dismiss()
-//                }
-//            }
         }
 
     }
