@@ -10,7 +10,7 @@ import android.widget.Toast
 import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.dialog_reserve_cancel.*
 
-class ReserveCancelDialog(var ctx:Context?,var password:String?) : Dialog(ctx){
+class ReserveCancelDialog(var ctx:Context?) : Dialog(ctx){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,7 +20,7 @@ class ReserveCancelDialog(var ctx:Context?,var password:String?) : Dialog(ctx){
 
         btn_reserve_cancel_yes.setOnClickListener {
             dismiss()
-            ReserveCancelPasswordDialog(context,password).show()
+            ReserveCancelPasswordDialog(context).show()
         }
         btn_reserve_cancel_no.setOnClickListener{
             dismiss()
