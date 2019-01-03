@@ -1,13 +1,22 @@
 package com.hyeran.android.travely_user.adapter
 
 import android.content.Context
+import android.support.constraint.ConstraintLayout
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.data.MypageRecentStoreData
+import com.hyeran.android.travely_user.join.RecentstoreDetailFragment
+import com.hyeran.android.travely_user.map.LocationListActivity
+import com.hyeran.android.travely_user.mypage.MypageFragment
+import com.hyeran.android.travely_user.mypage.WriteReviewDialog
 import java.util.ArrayList
 
 class MypageRecentStoreAdapter(val ctx: Context, val dataList : ArrayList<MypageRecentStoreData>) : RecyclerView.Adapter<MypageRecentStoreAdapter.Holder>() {
@@ -22,6 +31,13 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList : ArrayList<Mypage
         holder.recent_name.text = dataList[position].storename
         holder.recent_addr.text = dataList[position].storeaddr
         holder.recent_time.text = dataList[position].storetime
+
+        holder.reviewwrite.setOnClickListener {
+            WriteReviewDialog(ctx).show()
+        }
+        holder.detail.setOnClickListener {
+            //detail
+        }
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,6 +45,10 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList : ArrayList<Mypage
         var recent_name : TextView = itemView.findViewById(R.id.tv_name_recentstore) as TextView
         var recent_addr : TextView = itemView.findViewById(R.id.tv_addr_recentstore) as TextView
         var recent_time : TextView = itemView.findViewById(R.id.tv_time_recentstore) as TextView
+
+        var reviewwrite : Button = itemView.findViewById(R.id.btn_reviewwrite_recentstore) as Button
+        var detail : ConstraintLayout = itemView.findViewById(R.id.constraint_recentstore) as ConstraintLayout
     }
+
 }
 
