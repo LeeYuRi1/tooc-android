@@ -84,7 +84,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/guideline44"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guideline45"
-                    app:layout_constraintTop_toBottomOf="@+id/textView65" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_reservation_reservestate" />
 
 
                 <TextView
@@ -108,12 +108,12 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="30dp"
                     android:background="#ffffff"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView26"
-                    app:layout_constraintStart_toStartOf="@+id/imageView2"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_circle_collect_reservestate"
+                    app:layout_constraintStart_toStartOf="@+id/iv_circle_reservation_reservestate"
                     app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
                 <TextView
-                    android:id="@+id/textView65"
+                    android:id="@+id/tv_reservation_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -121,88 +121,88 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="예약완료"
                     android:textColor="#ffffff"
-                    app:layout_constraintEnd_toStartOf="@+id/textView66"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_settlement_reservestate"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="@+id/guideline45"
                     app:layout_constraintTop_toBottomOf="@+id/view14" />
 
                 <TextView
-                    android:id="@+id/textView66"
+                    android:id="@+id/tv_settlement_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
                     android:fontFamily="@font/kopub_bold"
                     android:text="결제완료"
                     android:textColor="#ffffff"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView65"
-                    app:layout_constraintEnd_toStartOf="@+id/textView69"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_reservation_reservestate"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_storage_reservestate"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView65" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_reservation_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView69"
+                    android:id="@+id/tv_storage_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/kopub_medium"
                     android:text="보관중"
                     android:textColor="#ffffff"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView66"
-                    app:layout_constraintEnd_toStartOf="@+id/textView70"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_settlement_reservestate"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_collect_reservestate"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView66" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_settlement_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView70"
+                    android:id="@+id/tv_collect_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/kopub_medium"
                     android:text="짐 수거"
                     android:textColor="#ffffff"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView69"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_storage_reservestate"
                     app:layout_constraintEnd_toStartOf="@+id/guideline44"
-                    app:layout_constraintStart_toEndOf="@+id/textView69" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_storage_reservestate" />
 
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/iv_circle_reservation_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_circle_fill"
                     app:layout_constraintBottom_toBottomOf="@+id/view14"
-                    app:layout_constraintEnd_toEndOf="@+id/textView65"
-                    app:layout_constraintStart_toStartOf="@+id/textView65"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_reservation_reservestate"
+                    app:layout_constraintStart_toStartOf="@+id/tv_reservation_reservestate"
                     app:layout_constraintTop_toTopOf="@+id/view14" />
 
                 <ImageView
-                    android:id="@+id/imageView10"
+                    android:id="@+id/iv_circle_settlement_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_circle_fill"
                     app:layout_constraintBottom_toBottomOf="@+id/view14"
-                    app:layout_constraintEnd_toEndOf="@+id/textView66"
-                    app:layout_constraintStart_toStartOf="@+id/textView66"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_settlement_reservestate"
+                    app:layout_constraintStart_toStartOf="@+id/tv_settlement_reservestate"
                     app:layout_constraintTop_toTopOf="@+id/view14" />
 
                 <ImageView
-                    android:id="@+id/imageView23"
+                    android:id="@+id/iv_circle_storage_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_circle_empty"
                     app:layout_constraintBottom_toBottomOf="@+id/view14"
-                    app:layout_constraintEnd_toEndOf="@+id/textView69"
-                    app:layout_constraintStart_toStartOf="@+id/textView69"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_storage_reservestate"
+                    app:layout_constraintStart_toStartOf="@+id/tv_storage_reservestate"
                     app:layout_constraintTop_toTopOf="@+id/view14" />
 
                 <ImageView
-                    android:id="@+id/imageView26"
+                    android:id="@+id/iv_circle_collect_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_circle_empty"
                     app:layout_constraintBottom_toBottomOf="@+id/view14"
-                    app:layout_constraintEnd_toEndOf="@+id/textView70"
-                    app:layout_constraintStart_toStartOf="@+id/textView70"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_collect_reservestate"
+                    app:layout_constraintStart_toStartOf="@+id/tv_collect_reservestate"
                     app:layout_constraintTop_toTopOf="@+id/view14" />
 
                 <TextView
@@ -219,31 +219,31 @@
                     app:layout_constraintTop_toTopOf="@+id/view27" />
 
                 <ImageView
-                    android:id="@+id/iv_qrimage_reservestate"
-                    android:layout_width="141dp"
-                    android:layout_height="141dp"
+                    android:id="@+id/iv_qrimage_background_reservestate"
+                    android:layout_width="159dp"
+                    android:layout_height="159dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="22dp"
+                    android:layout_marginTop="13dp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline44"
                     app:layout_constraintStart_toStartOf="@+id/guideline45"
                     app:layout_constraintTop_toBottomOf="@+id/textView71"
-                    app:srcCompat="@android:color/holo_green_light" />
+                    android:src="@drawable/qr_shadow" />
 
                 <TextView
-                    android:id="@+id/textView72"
+                    android:id="@+id/tv_qr_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="27dp"
+                    android:layout_marginTop="18dp"
                     android:fontFamily="@font/kopub_bold"
                     android:text="yyyymmdd"
-                    android:textSize="16sp"
                     android:textColor="#8d8d8d"
-                    app:layout_constraintEnd_toEndOf="@+id/iv_qrimage_reservestate"
-                    app:layout_constraintStart_toStartOf="@+id/iv_qrimage_reservestate"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_qrimage_reservestate" />
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_qrimage_background_reservestate"
+                    app:layout_constraintStart_toStartOf="@+id/iv_qrimage_background_reservestate"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_qrimage_background_reservestate" />
 
                 <View
                     android:id="@+id/view28"
@@ -255,7 +255,7 @@
                     android:background="#CCCCCC"
                     app:layout_constraintEnd_toStartOf="@+id/guideline44"
                     app:layout_constraintStart_toStartOf="@+id/guideline45"
-                    app:layout_constraintTop_toBottomOf="@+id/textView72" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_qr_reservestate" />
 
                 <TextView
                     android:id="@+id/textView73"
@@ -293,7 +293,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/textView73" />
 
                 <TextView
-                    android:id="@+id/textView75"
+                    android:id="@+id/tv_put_year_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -311,11 +311,11 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="년 "
                     android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView75"
-                    app:layout_constraintTop_toTopOf="@+id/textView75" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_put_year_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_put_year_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView77"
+                    android:id="@+id/tv_put_month_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -331,11 +331,11 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="월 "
                     android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView77"
-                    app:layout_constraintTop_toTopOf="@+id/textView77" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_put_month_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_put_month_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView79"
+                    android:id="@+id/tv_put_day_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -351,11 +351,11 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="일 "
                     android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView79"
-                    app:layout_constraintTop_toTopOf="@+id/textView79" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_put_day_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_put_day_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView81"
+                    android:id="@+id/tv_put_weekday_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -365,25 +365,25 @@
                     app:layout_constraintTop_toTopOf="@+id/textView80" />
 
                 <TextView
-                    android:id="@+id/textView82"
+                    android:id="@+id/tv_put_ampm_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/kopub_medium"
                     android:text="오후 "
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toStartOf="@+id/textView75"
-                    app:layout_constraintTop_toBottomOf="@+id/textView75" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_put_year_reservestate"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_put_year_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView83"
+                    android:id="@+id/tv_put_hour_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
                     android:text="07"
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView82"
-                    app:layout_constraintTop_toTopOf="@+id/textView82" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_put_ampm_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_put_ampm_reservestate" />
 
                 <TextView
                     android:id="@+id/textView84"
@@ -392,11 +392,11 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="시 "
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView83"
-                    app:layout_constraintTop_toTopOf="@+id/textView83" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_put_hour_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_put_hour_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView85"
+                    android:id="@+id/tv_put_minutes_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -412,11 +412,11 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="분"
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView85"
-                    app:layout_constraintTop_toTopOf="@+id/textView85" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_put_minutes_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_put_minutes_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView88"
+                    android:id="@+id/tv_find_year_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -425,7 +425,7 @@
                     android:text="18"
                     android:textColor="#262626"
                     app:layout_constraintStart_toEndOf="@+id/imageView6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView82" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_put_ampm_reservestate" />
 
                 <TextView
                     android:id="@+id/textView89"
@@ -434,11 +434,11 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="년 "
                     android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView88"
-                    app:layout_constraintTop_toTopOf="@+id/textView88" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_find_year_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_find_year_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView90"
+                    android:id="@+id/tv_find_month_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -454,11 +454,11 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="월 "
                     android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView90"
-                    app:layout_constraintTop_toTopOf="@+id/textView90" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_find_month_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_find_month_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView92"
+                    android:id="@+id/tv_find_day_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -474,11 +474,11 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="일 "
                     android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView92"
-                    app:layout_constraintTop_toTopOf="@+id/textView92" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_find_day_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_find_day_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView94"
+                    android:id="@+id/tv_find_weekday_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -488,25 +488,25 @@
                     app:layout_constraintTop_toTopOf="@+id/textView93" />
 
                 <TextView
-                    android:id="@+id/textView95"
+                    android:id="@+id/tv_find_ampm_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/kopub_medium"
                     android:text="오전 "
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toStartOf="@+id/textView88"
-                    app:layout_constraintTop_toBottomOf="@+id/textView88" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_find_year_reservestate"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_find_year_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView96"
+                    android:id="@+id/tv_find_hour_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
                     android:text="02"
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView95"
-                    app:layout_constraintTop_toTopOf="@+id/textView95" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_find_ampm_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_find_ampm_reservestate" />
 
                 <TextView
                     android:id="@+id/textView97"
@@ -515,11 +515,11 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="시 "
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView96"
-                    app:layout_constraintTop_toTopOf="@+id/textView96" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_find_hour_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_find_hour_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView98"
+                    android:id="@+id/tv_find_minutes_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -535,8 +535,8 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="분"
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView98"
-                    app:layout_constraintTop_toTopOf="@+id/textView98" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_find_minutes_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_find_minutes_reservestate" />
 
                 <TextView
                     android:id="@+id/textView101"
@@ -565,7 +565,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView101" />
 
                 <TextView
-                    android:id="@+id/textView103"
+                    android:id="@+id/tv_carrier_num_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -581,11 +581,11 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="개 : "
                     android:textColor="#494949"
-                    app:layout_constraintEnd_toStartOf="@+id/textView105"
-                    app:layout_constraintTop_toTopOf="@+id/textView105" />
+                    app:layout_constraintEnd_toStartOf="@+id/tv_carrier_money_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_carrier_money_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView105"
+                    android:id="@+id/tv_carrier_money_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -607,7 +607,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textView101" />
 
                 <TextView
-                    android:id="@+id/textView107"
+                    android:id="@+id/tv_bag_num_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -623,11 +623,11 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="개 : "
                     android:textColor="#494949"
-                    app:layout_constraintEnd_toStartOf="@+id/textView109"
-                    app:layout_constraintTop_toTopOf="@+id/textView109" />
+                    app:layout_constraintEnd_toStartOf="@+id/tv_bag_money_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_bag_money_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView109"
+                    android:id="@+id/tv_bag_money_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -673,7 +673,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/view29" />
 
                 <TextView
-                    android:id="@+id/textView113"
+                    android:id="@+id/tv_totaltime_hour_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -689,11 +689,11 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="시간 "
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView113"
-                    app:layout_constraintTop_toTopOf="@+id/textView113" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_totaltime_hour_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_totaltime_hour_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView115"
+                    android:id="@+id/tv_totaltime_minutes_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -709,11 +709,11 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="분"
                     android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView115"
-                    app:layout_constraintTop_toTopOf="@+id/textView115" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_totaltime_minutes_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_totaltime_minutes_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView117"
+                    android:id="@+id/tv_total_hour_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -729,11 +729,11 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="시간 기본 요금 : "
                     android:textColor="#262626"
-                    app:layout_constraintEnd_toStartOf="@+id/textView119"
-                    app:layout_constraintTop_toTopOf="@+id/textView119" />
+                    app:layout_constraintEnd_toStartOf="@+id/tv_total_num_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_total_num_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView119"
+                    android:id="@+id/tv_total_num_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -749,11 +749,11 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="개 X "
                     android:textColor="#262626"
-                    app:layout_constraintEnd_toStartOf="@+id/textView121"
-                    app:layout_constraintTop_toTopOf="@+id/textView121" />
+                    app:layout_constraintEnd_toStartOf="@+id/tv_total_money_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_total_money_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView121"
+                    android:id="@+id/tv_total_money_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
@@ -783,6 +783,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView112" />
+
+                <ImageView
+                    android:id="@+id/iv_qrimage_reservestate"
+                    android:layout_width="141dp"
+                    android:layout_height="141dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_qrimage_background_reservestate"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_qrimage_background_reservestate"
+                    app:layout_constraintStart_toStartOf="@+id/iv_qrimage_background_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/iv_qrimage_background_reservestate"
+                    app:srcCompat="@android:color/holo_blue_bright" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -828,23 +838,24 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView100" />
 
                 <TextView
-                    android:id="@+id/textView111"
+                    android:id="@+id/tv_payment_way_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="13dp"
                     android:layout_marginTop="37dp"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="현장 결제"
+                    android:text="현장"
                     android:textColor="#262626"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/guideline47"
                     app:layout_constraintTop_toBottomOf="@+id/view31" />
 
                 <RelativeLayout
-                    android:layout_width="72dp"
-                    android:layout_height="24dp"
+                    android:id="@+id/iv_payment_complete_reservestate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="2dp"
-                    android:background="@drawable/box_line"
+                    android:background="@drawable/box_pay_no"
                     app:layout_constraintBottom_toBottomOf="@+id/textView100"
                     app:layout_constraintEnd_toStartOf="@+id/guideline46"
                     app:layout_constraintTop_toTopOf="@+id/textView100"></RelativeLayout>
@@ -858,18 +869,18 @@
                     android:text="원"
                     android:textSize="18sp"
                     android:textColor="@color/mainColor"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView111"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_payment_way_reservestate"
                     app:layout_constraintEnd_toStartOf="@+id/guideline46"
-                    app:layout_constraintTop_toTopOf="@+id/textView111" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_payment_way_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView124"
+                    android:id="@+id/tv_payment_amount_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
                     android:text="7000"
-                    android:textSize="18sp"
                     android:textColor="@color/mainColor"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/textView123"
                     app:layout_constraintTop_toTopOf="@+id/textView123" />
 
@@ -887,7 +898,7 @@
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/guideline46"
                     app:layout_constraintStart_toStartOf="@+id/guideline47"
-                    app:layout_constraintTop_toBottomOf="@+id/textView111" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_payment_way_reservestate" />
 
                 <View
                     android:id="@+id/view32"
@@ -898,6 +909,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_reservecancel_to_dialog" />
+
+                <TextView
+                    android:id="@+id/textView66"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopub_medium"
+                    android:text=" 결제"
+                    android:textColor="#262626"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_payment_way_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_payment_way_reservestate" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -962,7 +984,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textView132" />
 
                 <TextView
-                    android:id="@+id/textView134"
+                    android:id="@+id/tv_my_num_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -978,8 +1000,8 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text="총 "
                     android:textColor="#8d8d8d"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView134"
-                    app:layout_constraintEnd_toStartOf="@+id/textView134" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_my_num_reservestate"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_my_num_reservestate" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -987,14 +1009,14 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/iv_store_guide_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginTop="21dp"
                     android:src="@drawable/bt_find_the_road"
                     app:layout_constraintEnd_toStartOf="@+id/guideline49"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_store_map_reservestate" />
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline49"
@@ -1024,7 +1046,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/iv_store_map_reservestate"
                     android:layout_width="0dp"
                     android:layout_height="152dp"
                     android:layout_marginTop="26dp"
@@ -1034,7 +1056,7 @@
                     app:srcCompat="@android:color/holo_green_light" />
 
                 <TextView
-                    android:id="@+id/textView126"
+                    android:id="@+id/tv_store_name_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -1043,7 +1065,7 @@
                     android:textSize="16sp"
                     android:textColor="#262626"
                     app:layout_constraintStart_toStartOf="@+id/guideline48"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_store_map_reservestate" />
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout"
@@ -1052,7 +1074,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/box_open_close"
                     app:layout_constraintStart_toStartOf="@+id/guideline48"
-                    app:layout_constraintTop_toBottomOf="@+id/textView126">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_store_name_reservestate">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1076,7 +1098,7 @@
                     app:layout_constraintStart_toEndOf="@+id/relativeLayout" />
 
                 <TextView
-                    android:id="@+id/textView128"
+                    android:id="@+id/tv_store_start_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -1092,11 +1114,11 @@
                     android:fontFamily="@font/kopub_medium"
                     android:text=" ~ "
                     android:textColor="#8d8d8d"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView128"
-                    app:layout_constraintStart_toEndOf="@+id/textView128" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_store_start_reservestate"
+                    app:layout_constraintStart_toEndOf="@+id/tv_store_start_reservestate" />
 
                 <TextView
-                    android:id="@+id/textView130"
+                    android:id="@+id/tv_store_end_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
@@ -1106,7 +1128,7 @@
                     app:layout_constraintStart_toEndOf="@+id/textView129" />
 
                 <TextView
-                    android:id="@+id/textView131"
+                    android:id="@+id/tv_store_location_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="27dp"

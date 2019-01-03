@@ -17,7 +17,7 @@
         android:fontFamily="@font/kopub_medium"
         android:lineSpacingExtra="5dp"
         android:text="업데이트"
-        android:textColor="#DE000000"
+        android:textColor="#262626"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
@@ -27,9 +27,9 @@
 
     <ImageView
         android:id="@+id/notice_arrow"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:background="@color/mainColor"
+        android:layout_width="21dp"
+        android:layout_height="13dp"
+        android:background="@drawable/faq_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="parent"

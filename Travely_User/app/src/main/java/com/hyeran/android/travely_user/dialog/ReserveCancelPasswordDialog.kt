@@ -30,7 +30,7 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
         super.onCreate(savedInstanceState)
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.GRAY))
+        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_reserve_cancel_password)
 
         init()
