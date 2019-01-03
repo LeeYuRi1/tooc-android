@@ -21,10 +21,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.reserve.ReserveFragment
-import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
-import com.hyeran.android.travely_user.mypage.MypageFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast

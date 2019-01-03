@@ -28,12 +28,12 @@ class MapMoreActivity : AppCompatActivity() {
     private fun setRecyclerView() {
         // 임시 데이터 1
         val dataList1: ArrayList<PhotoData> = ArrayList()
-        dataList1.add(PhotoData("filter1"))
-        dataList1.add(PhotoData("filter2"))
-        dataList1.add(PhotoData("filter3"))
-        dataList1.add(PhotoData("filter4"))
-        dataList1.add(PhotoData("filter5"))
-        dataList1.add(PhotoData("filter6"))
+        dataList1.add(PhotoData("img_default_big"))
+        dataList1.add(PhotoData("img_default_big"))
+        dataList1.add(PhotoData("img_default_big"))
+        dataList1.add(PhotoData("img_default_big"))
+        dataList1.add(PhotoData("img_default_big"))
+        dataList1.add(PhotoData("img_default_big"))
 
         photoRecyclerViewAdapter = PhotoRecylerViewAdapter(this, dataList1)
         rv_map_more_act_photo_list.adapter = photoRecyclerViewAdapter

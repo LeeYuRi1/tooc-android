@@ -145,6 +145,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/iv_working_map_more_preview"
                     android:layout_width="37.4dp"
                     android:layout_height="15.4dp"
                     android:src="@drawable/ic_working" />
@@ -160,7 +161,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_opentime_map_more_preview"
+                    android:id="@+id/tv_opentime_hour_map_more_preview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7.6dp"
@@ -173,18 +174,56 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7.6dp"
                     android:fontFamily="@font/kopub_medium"
                     android:lineSpacingExtra="8sp"
-                    android:text="~"
+                    android:text=":"
+                    android:textColor="#494949"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_opentime_minute_map_more_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopub_medium"
+                    android:lineSpacingExtra="8sp"
+                    android:text=""
                     android:textColor="#494949"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_closetime_map_more_preview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7.6dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:lineSpacingExtra="8sp"
+                    android:text=" ~ "
+                    android:textColor="#494949"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_closetime_hour_map_more_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopub_medium"
+                    android:lineSpacingExtra="8sp"
+                    android:text=""
+                    android:textColor="#494949"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopub_medium"
+                    android:lineSpacingExtra="8sp"
+                    android:text=":"
+                    android:textColor="#494949"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_closetime_minute_map_more_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
                     android:lineSpacingExtra="8sp"
                     android:text=""
