@@ -9,26 +9,46 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.MypageRecentStoreAdapter
 import com.hyeran.android.travely_user.data.MypageRecentStoreData
 import com.hyeran.android.travely_user.join.LoginActivity
 import com.hyeran.android.travely_user.join.RecentstoreDetailFragment
+import com.hyeran.android.travely_user.model.ProfileResponseData
+import com.hyeran.android.travely_user.network.ApplicationController
+import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_mypage.*
+import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MypageFragment : Fragment() {
 
+    lateinit var networkService: NetworkService
+
     lateinit var mypageRecentStoreAdapter: MypageRecentStoreAdapter
 
+    lateinit var v : View
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_mypage, container, false)
+        v = inflater.inflate(R.layout.fragment_mypage, container, false)
         return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        init()
+        getProfileResponse()
         setClickListener()
         setRecyclerView()
+    }
+
+    private fun init() {
+        networkService = ApplicationController.instance.networkService
     }
 
     private fun setRecyclerView() {
@@ -73,5 +93,38 @@ class MypageFragment : Fragment() {
 
 
 
+    private fun getProfileResponse() {
+
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        val getProfileResponse = networkService.getProfileResponse(jwt)
+
+        getProfileResponse!!.enqueue(object : Callback<ProfileResponseData> {
+            override fun onFailure(call: Call<ProfileResponseData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<ProfileResponseData>, response: Response<ProfileResponseData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            tv_name_mypage.text = response.body()!!.name
+                            tv_mybag_cnt_mypage.text = response.body()!!.myBagCount.toString()
+                            tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
+                            tv_review_cnt_mypage.text = response.body()!!.reviewCount.toString()
+
+                            toast("프로필 조회 성공")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+    }
 
 }

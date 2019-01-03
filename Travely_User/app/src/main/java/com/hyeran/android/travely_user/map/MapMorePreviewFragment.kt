@@ -24,11 +24,16 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.R.id.action_bar_root
+import com.hyeran.android.travely_user.R.id.mapView2
 import com.hyeran.android.travely_user.adapter.PhotoRecylerViewAdapter
 import com.hyeran.android.travely_user.adapter.ReviewRecyclerViewAdapter
 import com.hyeran.android.travely_user.data.PhotoData
 import com.hyeran.android.travely_user.data.ReviewData
 import com.hyeran.android.travely_user.map.MapFragment.Companion.mInstance
+import com.hyeran.android.travely_user.model.store.StoreResponseData
+import com.hyeran.android.travely_user.network.ApplicationController
+import com.hyeran.android.travely_user.network.NetworkService
 import com.hyeran.android.travely_user.reserve.ReserveFragment
 import kotlinx.android.synthetic.main.fragment_map.view.*
 import kotlinx.android.synthetic.main.fragment_map_more.*
@@ -40,11 +45,15 @@ import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener{
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -60,8 +69,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             startLocationUpdates2()
         }
         if (mLocation2 != null) {
-            var latitude2 : Double = mLocation2.latitude
-            var longtitude2 : Double = mLocation2.longitude
+            var latitude2: Double = mLocation2.latitude
+            var longtitude2: Double = mLocation2.longitude
         } else {
 
         }
@@ -99,7 +108,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     override fun onStop() {
         super.onStop()
 
-        if(mGoogleApiClient2.isConnected) {
+        if (mGoogleApiClient2.isConnected) {
             mGoogleApiClient2.disconnect()
         }
     }
@@ -116,16 +125,16 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     private val REQUEST_ACCESS_FINE_LOCATION2 = 1000
 
     // Google API Client 생성
-    private lateinit var mGoogleApiClient2 : GoogleApiClient
-    private lateinit var mLocation2 : Location
-    private lateinit var locationManager2 : LocationManager
-    private lateinit var mLocationRequest2 : LocationRequest
+    private lateinit var mGoogleApiClient2: GoogleApiClient
+    private lateinit var mLocation2: Location
+    private lateinit var locationManager2: LocationManager
+    private lateinit var mLocationRequest2: LocationRequest
 
     private val TAG2 = javaClass.simpleName
 
-    public var locationPermissionGranted2 : Boolean = false
+    public var locationPermissionGranted2: Boolean = false
 
-    private lateinit var  lastLocation2 : Location
+    private lateinit var lastLocation2: Location
 
 
     companion object {
@@ -139,6 +148,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         }
     }
 
+    var storeIdx: Int = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view2 = inflater.inflate(R.layout.fragment_map_more_preview, container, false)
 
@@ -146,8 +157,46 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         mapView2.onCreate(savedInstanceState)
         mapView2.getMapAsync(this)
 
+        Log.d("@storeIdx통신@", "MapMorePreviewFragment에 들어왔다. 번들 만나기 전임")
+
+
+        var bundle: Bundle? = arguments
+        storeIdx = bundle!!.getInt("storeIdx")
+
+        Log.d("@storeIdx통신@", "MapMorePreviewFragment의 전달받은 번들 값 " + storeIdx)
+
+
+        toast(storeIdx.toString())
+
+        getStoreResponse()
+
+
+        /*
+        view2.btn_find_gps2.setOnClickListener {
+
+//            startLocationUpdates2()
+
+//            locationInit2()
+
+            if (ActivityCompat.checkSelfPermission(activity!!,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(activity!!,
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+//                var location : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
+                mLocation2 = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
+
+////                var cameraUpdate : CameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 17f)
+                mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(mLocation2.latitude, mLocation2.longitude), 17f))
+//                mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 17f))
+            }
+
+        }
+
+*/
+
         view2.btn_fragment_map_question2.setOnClickListener {
-            startActivity<LocationListActivity>()
+            startActivityForResult<LocationListActivity>(999)
         }
 
         view2.btn_fragment_map_more_preview.setOnClickListener {
@@ -167,8 +216,23 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         locationInit2()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 999) {
+            Log.d("@storeIdx통신@", "MapFragment로 돌아왔다.")
+            storeIdx = data!!.getIntExtra("storeIdx", 0)
+            Log.d("@storeIdx통신@", "storeIdx는? " + storeIdx)
+//            (activity as MainActivity).getStoreIdx(storeIdx)
+
+            getStoreResponse()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        init()
+
 
         mGoogleApiClient2 = GoogleApiClient.Builder(activity!!)
                 .addApi(LocationServices.API)
@@ -332,5 +396,41 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         fusedLocationProviderClient2.removeLocationUpdates(locationCallback2)
     }
 
+    lateinit var networkService: NetworkService
+
+    private fun init() {
+        networkService = ApplicationController.instance.networkService
+//        postReservationCancelResponse()
+    }
+
+    // 세부 정보 조회 함수
+    private fun getStoreResponse() {
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        val getStoreResponse = networkService.getStoreResponse(jwt, storeIdx)
+        getStoreResponse!!.enqueue(object : Callback<StoreResponseData> {
+            override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            tv_store_name_map_more_preview.text = response.body()!!.storeName
+                            tv_address_map_more_preview.text = response.body()!!.address
+                            tv_opentime_map_more_preview.text = response.body()!!.openTime
+                            tv_closetime_map_more_preview.text = response.body()!!.closeTime
+
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error" + it.code())
+                        }
+                    }
+                }
+            }
+        })
+    }
 
 }

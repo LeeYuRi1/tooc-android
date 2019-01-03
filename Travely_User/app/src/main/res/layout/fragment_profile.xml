@@ -184,7 +184,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
-
             <View
                 android:id="@+id/view9"
                 android:layout_width="0dp"
@@ -394,7 +393,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <ImageView
-        android:id="@+id/iv_camera_profile"
+        android:id="@+id/iv_photo_modify_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_camera"

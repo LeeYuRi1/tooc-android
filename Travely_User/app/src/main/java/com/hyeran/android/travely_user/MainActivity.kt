@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.util.Log
 import com.hyeran.android.travely_user.map.MapFragment
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.mypage.MypageFragment
@@ -24,16 +25,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //TODO 타임리밋값넣어야함!!!!!!!!!!!!!!!!!!
+        args!!.putInt("timeLimit",9)
+
         init()
     }
 
     fun init() {
-
         addFragment(MapFragment())
-
         iv_search_bottom_tab.isSelected = true
-
         setOnClickListener()
+    }
+
+    fun getStoreIdx(storeIdx : Int) {
+        Log.d("@storeIdx통신@", "MainActivity의 getSoreIdx 함수에 들어왔다. storeIdx의 값은? "+ storeIdx)
+        var mapMorePreviewFragment = MapMorePreviewFragment()
+        var bundle = Bundle()
+        bundle.putInt("storeIdx", storeIdx)
+        mapMorePreviewFragment.arguments = bundle
+
+        replaceFragment(mapMorePreviewFragment)
     }
 
     fun setOnClickListener() {
@@ -43,15 +54,12 @@ class MainActivity : AppCompatActivity() {
             iv_search_bottom_tab.isSelected = true
         }
         tab_two_main.setOnClickListener {
-            //TODO: 123 자리에 서버에서 받은 password값을 넣어야함
+            //TODO: 123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!
             replaceFragment(ReserveStateFragment.getInstance("123"))
             clearSelected()
             iv_reserve_bottom_tab.isSelected = true
         }
         tab_three_main.setOnClickListener {
-            //TODO :123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!!
-            //123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!!
-//            replaceFragment(ReserveFragment())
 
             clearSelected()
             iv_ship_bottom_tab.isSelected = true
@@ -78,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     var tvalue: Int = 0
 
     fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int) {
+
         smmddee = tsmmddee
         shh = tshh
         smm = tsmm

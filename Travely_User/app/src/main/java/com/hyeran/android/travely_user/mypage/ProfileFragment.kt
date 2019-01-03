@@ -1,6 +1,8 @@
 package com.hyeran.android.travely_user.mypage
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.Editable
@@ -8,13 +10,36 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.SplashActivity
+import com.hyeran.android.travely_user.model.ProfileResponseData
+import com.hyeran.android.travely_user.network.ApplicationController
+import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_profile.*
-import java.util.regex.Matcher
+
 import java.util.regex.Pattern
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.InputStream
+import java.util.regex.Matcher
 
 class ProfileFragment : Fragment() {
+
+    lateinit var networkService: NetworkService
+    private var mImage: MultipartBody.Part? = null
+
+    val REQUEST_CODE_SELECT_IMAGE : Int = 1004
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_profile, container, false)
         return v
@@ -24,6 +49,12 @@ class ProfileFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
         checkValidation()
+        init()
+//        getProfileResponse()
+    }
+
+    private fun init() {
+        networkService = ApplicationController.instance.networkService
     }
 
     private fun setClickListener() {
@@ -60,6 +91,13 @@ class ProfileFragment : Fragment() {
                 et_password_confirm_profile.isEnabled = false
                 et_phone_profile.isEnabled = false
             }
+        }
+
+        iv_photo_modify_profile.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
+            intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
         }
 
     }

@@ -5,165 +5,149 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".map.LocationListActivity"
-    android:background="#ffffff">
+    tools:context=".map.LocationListActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="46dp">
+        <ImageView
+            android:id="@+id/btn_back_location_list"
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/setting_bt_back"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/nanum_bold"
-            android:text="tooc"
-            android:textColor="@color/mainColor"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/setting_bt_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+            android:textColor="#1fbfc8"
+            android:text="tooc"
+            android:fontFamily="@font/nanum_extrabold"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="313dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="27dp"
-        android:background="#fbfbf9"
-        android:orientation="vertical">
+        android:layout_marginTop="27dp">
 
         <LinearLayout
-            android:layout_width="313dp"
-            android:layout_height="40dp"
             android:background="#fbfbf9"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_width="313dp"
+            android:layout_height="40dp">
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
                 android:layout_marginLeft="23dp"
                 android:layout_marginRight="23dp"
-                android:src="@drawable/ic_circle_gray" />
+                android:layout_gravity="center"
+                android:src="@drawable/ic_circle_gray"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/kopub_medium"
-                android:lineSpacingExtra="2sp"
                 android:text="현위치 : 서울시 강남구 역삼동 818-12"
+                android:fontFamily="@font/kopub_medium"
+                android:textSize="14sp"
                 android:textColor="#cecece"
-                android:textSize="14sp" />
+                android:lineSpacingExtra="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/btn_fragment_map_question"
-            android:layout_width="313dp"
-            android:layout_height="40dp"
-            android:background="#ffffff"
             android:clickable="true"
-            android:orientation="horizontal">
+            android:id = "@+id/btn_fragment_map_question"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:layout_width="313dp"
+            android:layout_height="40dp">
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
                 android:layout_marginLeft="23dp"
                 android:layout_marginRight="23dp"
-                android:background="@drawable/ic_rectangle_fill" />
+                android:layout_gravity="center"
+                android:background = "@drawable/ic_rectangle_fill"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/kopub_medium"
-                android:lineSpacingExtra="2sp"
                 android:text="짐을 맡겨드릴까요?"
+                android:fontFamily="@font/kopub_medium"
+                android:textSize="14sp"
                 android:textColor="#262626"
-                android:textSize="14sp" />
+                android:lineSpacingExtra="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
-
     </LinearLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
+        android:id="@+id/btn_map_location_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="70dp">
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="27dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="33dp"
+            android:layout_width="17dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/ic_place"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView70"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/kopub_bold"
-            android:text="지도로 보기"
-            android:textColor="#262626"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
-    </android.support.constraint.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#f7f7f7">
+            android:layout_marginLeft="39dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:textColor="#8d8d8d"
+            android:text="지도로 보기"
+            android:textSize="14sp"
+            android:textColor="#262626"
+            android:fontFamily="@font/kopub_bold"
+            android:layout_marginLeft="15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shadow_location"
+        android:elevation="3dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
             android:fontFamily="@font/kopub_medium"
             android:text="지역별 보관장소("
+            android:textColor="#8d8d8d"
+            android:textSize="14sp"
             android:layout_marginLeft="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="#8d8d8d"
+            android:text="3"
+            android:layout_marginTop="17dp"
             android:fontFamily="@font/kopub_medium"
-            android:text="3" />
+            android:textSize="14sp"
+            android:textColor="#8d8d8d" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="#8d8d8d"
+            android:layout_marginTop="17dp"
+            android:text=")"
             android:fontFamily="@font/kopub_medium"
-            android:text=")" />
+            android:textSize="14sp"
+            android:textColor="#8d8d8d"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
