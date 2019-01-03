@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.util.Log
 import com.hyeran.android.travely_user.map.MapFragment
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.mypage.MypageFragment
@@ -34,6 +35,16 @@ class MainActivity : AppCompatActivity() {
         addFragment(MapFragment())
         iv_search_bottom_tab.isSelected = true
         setOnClickListener()
+    }
+
+    fun getStoreIdx(storeIdx : Int) {
+        Log.d("@storeIdx통신@", "MainActivity의 getSoreIdx 함수에 들어왔다. storeIdx의 값은? "+ storeIdx)
+        var mapMorePreviewFragment = MapMorePreviewFragment()
+        var bundle = Bundle()
+        bundle.putInt("storeIdx", storeIdx)
+        mapMorePreviewFragment.arguments = bundle
+
+        replaceFragment(mapMorePreviewFragment)
     }
 
     fun setOnClickListener() {

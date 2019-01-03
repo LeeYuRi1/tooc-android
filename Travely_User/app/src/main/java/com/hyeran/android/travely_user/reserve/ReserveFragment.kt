@@ -77,8 +77,8 @@ class ReserveFragment : Fragment() {
         //제한시간 받는 코드
 //        TODO("storeIdx를 받아서 통신해야함!!!!!!")
         getStoreResponseInfo()
-        timeLimit = args!!.getInt("timeLimit",9)
-        Toast.makeText(context,timeLimit.toString(), Toast.LENGTH_LONG).show()
+//        timeLimit = args!!.getInt("timeLimit",9)
+//        Toast.makeText(context,timeLimit.toString(), Toast.LENGTH_LONG).show()
 
         var rightNow = Calendar.getInstance()
         var dateFormat = SimpleDateFormat("MMM dd일 (EE)")
@@ -130,7 +130,7 @@ class ReserveFragment : Fragment() {
     fun setOnClickListener(v: View) {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
-                    , svalue, tvalue, timeLimit)
+                    , svalue, tvalue)
             val dialog = ReserveTimeSettintDialog(ctx, timeArray)
             dialog.show()
         }

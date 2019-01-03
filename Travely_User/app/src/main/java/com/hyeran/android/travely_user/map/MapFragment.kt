@@ -158,9 +158,11 @@ class MapFragment : Fragment(), OnMapReadyCallback,
             if(resultCode == 1) {
 
             }
-            else {
-                (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
-                
+            if(resultCode  == 2) {  // 어댑터에서 들어올 때 -> storeIdx 전달해서 서버 데이터 세팅 필요
+                Log.d("@storeIdx통신@", "MapFragment로 돌아왔다.")
+                var storeIdx : Int = data!!.getIntExtra("storeIdx", 0)
+                Log.d("@storeIdx통신@", "storeIdx는? " + storeIdx)
+                (activity as MainActivity).getStoreIdx(storeIdx)
             }
         }
     }

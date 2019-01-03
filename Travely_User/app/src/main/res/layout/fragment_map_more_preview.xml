@@ -129,6 +129,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_store_name_map_more_preview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kopub_bold"
@@ -154,13 +155,46 @@
                     android:layout_marginLeft="7.6dp"
                     android:fontFamily="@font/kopub_medium"
                     android:lineSpacingExtra="8sp"
-                    android:text="매일 12:00 ~ 24:00"
+                    android:text="매일"
+                    android:textColor="#494949"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_opentime_map_more_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.6dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:lineSpacingExtra="8sp"
+                    android:text=""
+                    android:textColor="#494949"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.6dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:lineSpacingExtra="8sp"
+                    android:text="~"
+                    android:textColor="#494949"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_closetime_map_more_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.6dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:lineSpacingExtra="8sp"
+                    android:text=""
                     android:textColor="#494949"
                     android:textSize="14sp" />
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_address_map_more_preview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7.8dp"

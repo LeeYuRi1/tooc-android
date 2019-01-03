@@ -41,12 +41,11 @@ class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<SimpleSto
 
         Log.d("MoreLocationRVAdapter", "@@@@@@@@@@@@@"+dataList[position])
         holder.item_more_location_map.setOnClickListener {
-            val intent : Intent = Intent()
-            intent.putExtra("storeIdx", dataList[position].storeIdx)
-            TODO("통신")
 
-
-            (ctx as LocationListActivity).finish()
+            Log.d("@storeIdx통신@", "item이 클릭되었습니다.")
+            Log.d("@storeIdx통신@", "해당 storeIdx는? "+dataList[position].storeIdx)
+            (ctx as LocationListActivity).getStoreIdx(dataList[position].storeIdx)
+//            ctx.finish()
         }
     }
 

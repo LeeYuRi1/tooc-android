@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.LocationRVAdapter
 import com.hyeran.android.travely_user.model.region.RegionResponseData
@@ -21,6 +22,8 @@ class LocationListActivity : AppCompatActivity() {
     lateinit var networkService: NetworkService
 
     lateinit var locationRVAdapter: LocationRVAdapter
+
+    var storeIdx: Int = 0
 
     val dataList: ArrayList<RegionResponseData> by lazy {
         ArrayList<RegionResponseData>()
@@ -41,6 +44,19 @@ class LocationListActivity : AppCompatActivity() {
         }
 
         init()
+    }
+
+    fun getStoreIdx(storeIdx : Int) {
+
+        Log.d("@storeIdx통신@: ", "어댑터에서 호출한 getStoreIdx() 함수에 들어왔습니다.")
+
+        this.storeIdx = storeIdx
+
+        Log.d("@storeIdx통신@", "전달받은 storeIdx는? "+this.storeIdx)
+        var intent : Intent = Intent()
+        intent.putExtra("storeIdx", storeIdx)
+        setResult(2, intent)
+        finish()
     }
 
     private fun init() {
@@ -99,30 +115,5 @@ class LocationListActivity : AppCompatActivity() {
         })
     }
 
-    // 세부 정보 조회 함수
-    private fun getStoreResponse() {
-        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-        val getStoreResponse = networkService.getStoreResponse(jwt, 1)
-        getStoreResponse!!.enqueue(object : Callback<StoreResponseData> {
-            override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
-            }
-            override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
-                response?.let {
-                    when (it.code()) {
-                        200 -> {
-                            toast("세부정보 조회 성공")
-                            toast(response.body().toString())
-                        }
-                        500 -> {
-                            toast("서버 에러")
-                        }
-                        else -> {
-                            toast("error" + it.code())
-                        }
-                    }
-                }
-            }
-        })
-    }
 
 }
