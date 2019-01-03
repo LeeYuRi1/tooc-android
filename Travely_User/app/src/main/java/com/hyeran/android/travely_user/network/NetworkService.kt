@@ -3,6 +3,7 @@ package com.hyeran.android.travely_user.network
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.model.*
 import com.hyeran.android.travely_user.model.region.RegionResponseData
+import com.hyeran.android.travely_user.model.reservation.ReservationReserveCode
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveResponseData
 import com.hyeran.android.travely_user.model.store.StoreResponseData
@@ -71,6 +72,13 @@ interface NetworkService {
     fun deleteReservationCancelResponse(
             @Header("jwt") jwt : String?
     ) : Call<Any>
+
+    //예약 세부정보 조회
+    @GET("/api/reservation/{reserveCode}")
+    fun postReservationReserveResponse(
+            @Header("jwt") jwt :String?,
+            @Path("reserveCode") reserveCode :String
+    ) : Call<ReservationReserveCode>
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
 

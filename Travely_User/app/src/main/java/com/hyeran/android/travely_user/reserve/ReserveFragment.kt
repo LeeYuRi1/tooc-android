@@ -15,6 +15,7 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.R.id.rb_kakaopay_reserve
 import com.hyeran.android.travely_user.dialog.KeepPriceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
 import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
@@ -52,14 +53,16 @@ class ReserveFragment : Fragment() {
     var snummm: Int = 0
     var tnumhh: Int = 0
     var tnummm: Int = 0
-    var openTime : Long = 0
-    var closeTime : Long = 0
+    var openTime: Long = 0
+    var closeTime: Long = 0
 
     var afterParseStore: Long = 0
     var afterParseTake: Long = 0
 
     //        TODO("storeIdx를 받아서 통신해야함!!!!!!")
-    var storeIdx : Int = 1
+    var storeIdx: Int = 1
+
+    var errorCheck: Boolean = false
 
     lateinit var networkService: NetworkService
 
@@ -128,7 +131,7 @@ class ReserveFragment : Fragment() {
     fun setOnClickListener(v: View) {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
-                    , svalue, tvalue,openTime,closeTime)
+                    , svalue, tvalue, openTime, closeTime)
             val dialog = ReserveTimeSettintDialog(ctx, timeArray)
             dialog.show()
         }
@@ -223,11 +226,15 @@ class ReserveFragment : Fragment() {
         })
 
         v.btn_reserve_reserve.setOnClickListener {
-            if (v.cb_confirm_reserve.isChecked) {
-                if (v.cb_carrier_reserve.isChecked || v.cb_etc_reserve.isChecked) {
-                    if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
-                        if (afterParseStore < afterParseTake) {
 
+
+            if (smmddee != tmmddee || snumhh != tnumhh || snummm != tnummm) {
+
+                if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
+
+                    if (v.cb_carrier_reserve.isChecked || v.cb_etc_reserve.isChecked) {
+
+                        if (v.cb_confirm_reserve.isChecked) {
                             //통신
                             postReserveInfo()
 
@@ -238,19 +245,25 @@ class ReserveFragment : Fragment() {
                             if (v.rb_cash_reserve.isChecked) {
                                 ReserveCompleteDialog(context).show()
                             }
+
                         } else {
-                            toast("날짜 및 시간을 선택해주세요.")
+                            toast("결제 동의를 체크해주세요.")
+
                         }
                     } else {
-                        toast("결제 방법을 선택해주세요.")
+                        toast("짐 종류를 선택해주세요.")
+
                     }
                 } else {
-                    toast("짐 종류를 선택해주세요.")
+                    toast("결제 방법을 선택해주세요.")
+
                 }
             } else {
-                toast("결제 동의를 체크해주세요.")
+                toast("날짜 및 시간을 선택해주세요.")
+
             }
         }
+
     }
 
     fun postReserveInfo() {
@@ -273,12 +286,26 @@ class ReserveFragment : Fragment() {
             override fun onFailure(call: retrofit2.Call<JsonObject>, t: Throwable) {
                 toast(("fail"))
                 Log.d("postReservation: ", "@@@" + t.message)
+                errorCheck = true
             }
 
             override fun onResponse(call: retrofit2.Call<JsonObject>, response: Response<JsonObject>) {
                 response?.let {
                     when (it.code()) {
-                        201 -> toast("예약 성공")
+                        200 -> {
+                            toast("200")
+                        }
+                        201 -> {
+                            toast("예약 성공")
+                            if (rb_kakaopay_reserve.isChecked) {
+                                val intent: Intent = Intent(context, KakaopayWebView::class.java)
+                                startActivityForResult(intent, 9999)
+                            }
+                            if (rb_cash_reserve.isChecked) {
+                                ReserveCompleteDialog(context).show()
+                            }
+                            else{}
+                        }
                         400 -> {
                             toast("잘못된 정보 주입")
 
@@ -289,6 +316,7 @@ class ReserveFragment : Fragment() {
                             }
                             Log.v("TAGG", reserveSave.toString())
                             Log.v("TAGG@@@@@@@@@@@@@@@@2", response.errorBody()?.string())
+                            errorCheck = true
                         }
 
                         //이미 예약했는데 예약취소안하고 했을시 500뜸
@@ -297,7 +325,10 @@ class ReserveFragment : Fragment() {
                             Log.v("TAGG", response.body().toString())
                             toast("서버 에러")
                         }
-                        else -> toast("error")
+                        else -> {
+                            toast("error")
+                            errorCheck = true
+                        }
                     }
                 }
 
@@ -305,39 +336,42 @@ class ReserveFragment : Fragment() {
         })
     }
 
-    fun getStoreResponseInfo(){
-        var jwt :String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-        var getStoreInfo = networkService.getStoreResponse(jwt,storeIdx)
+    fun getStoreResponseInfo() {
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        var getStoreInfo = networkService.getStoreResponse(jwt, storeIdx)
         getStoreInfo.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                errorCheck = true
             }
 
             override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
-                    response?.let {
-                        when(it.code()){
-                            200->{
-                                toast("200" + response.body()!!.closeTime.toString())
-                                openTime = response.body()!!.openTime.toLong()
-                                closeTime = response.body()!!.closeTime.toLong()
-                            }
-                            500->{
-                                toast("500")
-                            }
-                            else ->{
-                                toast("error")
-                            }
-
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            toast("200" + response.body()!!.closeTime.toString())
+                            openTime = response.body()!!.openTime.toLong()
+                            closeTime = response.body()!!.closeTime.toLong()
+                        }
+                        500 -> {
+                            toast("500")
+                            errorCheck = true
+                        }
+                        else -> {
+                            toast("error")
+                            errorCheck = true
                         }
 
                     }
+
+                }
 
             }
         })
 
     }
 
-    lateinit var priceArray : ArrayList<ReservationPriceListResponseData>
+    lateinit var priceArray: ArrayList<ReservationPriceListResponseData>
     private fun getReservationPriceListResponse() {
 
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
@@ -346,6 +380,7 @@ class ReserveFragment : Fragment() {
 
         getReservationPriceListResponse!!.enqueue(object : Callback<ArrayList<ReservationPriceListResponseData>> {
             override fun onFailure(call: Call<ArrayList<ReservationPriceListResponseData>>, t: Throwable) {
+                errorCheck = true
             }
 
             override fun onResponse(call: Call<ArrayList<ReservationPriceListResponseData>>, response: Response<ArrayList<ReservationPriceListResponseData>>) {
@@ -354,12 +389,7 @@ class ReserveFragment : Fragment() {
                         200 -> {
                             toast("가격표 조회 성공")
 //                            toast("@@1: "+response.body().toString())
-
-
-
                             priceArray = response.body()!!
-
-
 //                            toast("@@2: "+priceArray.toString())
 
 //                            calPrice()
@@ -367,9 +397,11 @@ class ReserveFragment : Fragment() {
                         }
                         500 -> {
                             toast("서버 에러")
+                            errorCheck = true
                         }
                         else -> {
                             toast("error")
+                            errorCheck = true
                         }
                     }
                 }
@@ -388,18 +420,15 @@ class ReserveFragment : Fragment() {
 
         var price = 0
 
-        for (i in 0..priceArray.size-1) {
+        for (i in 0..priceArray.size - 1) {
 
             if (priceArray.get(i).priceIdx < hour) {
                 price = priceArray.get(i).price
             }
-
-//                                Log.d("price "+i, priceArray.get(i).toString())
         }
-
         var extra_hour = 0
 
-        var final_price = priceArray.get(priceArray.size-1).priceIdx
+        var final_price = priceArray.get(priceArray.size - 1).priceIdx
 
         if (hour > final_price) {
             var temp_extra_hour = hour - final_price
@@ -412,6 +441,7 @@ class ReserveFragment : Fragment() {
         var price_unit : Int = price + extra_hour * final_price
 
         return price_unit
+
     }
 //
 //    fun calPrice() {

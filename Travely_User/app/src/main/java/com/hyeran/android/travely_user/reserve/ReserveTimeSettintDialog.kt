@@ -101,6 +101,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             shh = "0" + (pv_store_hour.value + openTime).toString()
         } else shh = (pv_store_hour.value + openTime).toString()
         tv_store_hour.text = shh
+        snumhh = pv_store_hour.value + openTime
 
         pv_store_minute.minValue = 0
         pv_store_minute.maxValue = 59
@@ -153,6 +154,8 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             thh = "0" + (pv_take_hour.value + openTime).toString()
         } else thh = (pv_take_hour.value + openTime).toString()
         tv_take_hour.text = thh
+        tnumhh = pv_take_hour.value + openTime
+
 
         pv_take_minute.minValue = 0
         pv_take_minute.maxValue = 59
@@ -254,7 +257,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                     alertFlag = 0;
                     btn_store_time.setBackgroundColor(Color.parseColor(R.color.mainColor.toString()))
                     btn_take_time.setBackgroundColor(Color.parseColor("#ffffff"))
-//                tv_store_date.setTextColor(Color.parseColor("d"))
                 } else {
                     var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
                     ttoast.setGravity(Gravity.CENTER, 0, 0)

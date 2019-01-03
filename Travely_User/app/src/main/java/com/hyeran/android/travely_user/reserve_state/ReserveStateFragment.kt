@@ -71,10 +71,6 @@ class ReserveStateFragment : Fragment() {
         setRecyclerView()
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        setRecyclerView()
-//    }
 
     fun setRecyclerView() {
         var dataList: ArrayList<LuggagePictureData> = ArrayList()
