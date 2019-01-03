@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.support.v4.app.Fragment
-import android.telecom.Call
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,14 +18,18 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
+import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
 import com.hyeran.android.travely_user.model.ReservationResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import org.jetbrains.anko.support.v4.ctx
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
-import javax.security.auth.callback.Callback
 import kotlin.collections.ArrayList
 
 class ReserveFragment : Fragment() {
@@ -47,6 +51,8 @@ class ReserveFragment : Fragment() {
     var afterParseStore :Long = 0
     var afterParseTake :Long = 0
 
+
+
     lateinit var networkService : NetworkService
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -55,6 +61,9 @@ class ReserveFragment : Fragment() {
 
         networkService = ApplicationController.instance.networkService
 
+        getReservationPriceListResponse()
+
+//        calPrice()
 
         //피커뷰와 데이터 통신을 하기 위한 코드
         var args : Bundle? = arguments
@@ -253,6 +262,98 @@ class ReserveFragment : Fragment() {
       //  postReservationSaveResponse.enqueue(object : Callback<ReservationResponseData>{
 
         //})
+    }
+
+    lateinit var priceArray : ArrayList<ReservationPriceListResponseData>
+    private fun getReservationPriceListResponse() {
+
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        val getReservationPriceListResponse = networkService.getReservationPriceListResponse(jwt)
+
+        getReservationPriceListResponse!!.enqueue(object : Callback<ArrayList<ReservationPriceListResponseData>> {
+            override fun onFailure(call: Call<ArrayList<ReservationPriceListResponseData>>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<ArrayList<ReservationPriceListResponseData>>, response: Response<ArrayList<ReservationPriceListResponseData>>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            toast("가격표 조회 성공")
+                            toast("@@1: "+response.body().toString())
+
+
+
+                            priceArray = response.body()!!
+
+
+                            toast("@@2: "+priceArray.toString())
+
+                            calPrice()
+
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+    }
+
+    fun calPrice() {
+
+        var temp_a : Long = 1546227587000
+        var temp_b : Long = 1546309187000
+        // 시간 계산
+//        var hour : Long = (afterParseTake - afterParseStore) / 1000 / 60 / 60
+//        if (hour * 1000 * 60 * 60 != afterParseTake - afterParseStore) {
+//            hour++
+//        }
+
+        var hour : Long = (temp_b - temp_a) / 1000 / 60 / 60
+        if (hour * 1000 * 60 * 60 != temp_b - temp_a) {
+            hour++
+        }
+
+        var price = 0
+
+        for (i in 0..priceArray.size-1) {
+
+            if (priceArray.get(i).priceIdx < hour) {
+                price = priceArray.get(i).price
+            }
+
+//                                Log.d("price "+i, priceArray.get(i).toString())
+        }
+
+        var extra_hour = 0
+
+        var final_price = priceArray.get(priceArray.size-1).priceIdx
+
+        if (hour > final_price) {
+            var temp_extra_hour = hour - final_price
+            extra_hour = (temp_extra_hour / 12).toInt()
+            if ((temp_extra_hour % 12L) == 0L) {
+                extra_hour--
+            }
+        }
+
+        var luggage_cnt = 3
+
+
+        var total_price : Long  = ((price + extra_hour * final_price) * luggage_cnt).toLong()
+
+        Log.d("가격 계산", total_price.toString())
+        Log.d("hour", hour.toString())
+        Log.d("price", price.toString())
+        Log.d("extra_hour", extra_hour.toString())
+        Log.d("final_price", final_price.toString())
+        Log.d("luggage_cnt", luggage_cnt.toString())
     }
 
 }

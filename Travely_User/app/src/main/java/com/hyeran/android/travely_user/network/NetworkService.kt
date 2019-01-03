@@ -1,9 +1,7 @@
 package com.hyeran.android.travely_user.network
 
 import com.google.gson.JsonObject
-import com.hyeran.android.travely_user.model.RegionResponseData
-import com.hyeran.android.travely_user.model.ReservationResponseData
-import com.hyeran.android.travely_user.model.StoreResponseData
+import com.hyeran.android.travely_user.model.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -27,6 +25,13 @@ interface NetworkService {
             @Body() body : JsonObject
     ) : Call<Any>
 
+    // 프로필 조회
+    // - 프로필 조회
+    @GET("/api/users/profile")
+    fun getProfileResponse(
+            @Header("jwt") jwt : String?
+    ) : Call<ProfileResponseData>
+
     //@@@@@@@@@@@@@@@ region-controller @@@@@@@@@@@@@@@
 
     // 제휴상가 지역별 목록 조회
@@ -38,6 +43,7 @@ interface NetworkService {
 
 
     //@@@@@@@@@@@@@@@ reservation-controller @@@@@@@@@@@@@@@
+
     // 예약 상태 저장
     // - 예약 상태 저장 후 예약 정보 반환
     @POST("/api/reservation/save")
@@ -46,6 +52,20 @@ interface NetworkService {
             @Header("jwt") jwt : String?,
             @Body() body: JsonObject
     ) : Call<ReservationResponseData>
+
+    // 가격표 조회
+    // - 가격표 조회
+    @GET("/api/reservation/price/list")
+    fun getReservationPriceListResponse(
+            @Header("jwt") jwt : String?
+    ) : Call<ArrayList<ReservationPriceListResponseData>>
+
+    // 예약 취소
+    // - 예약상태 조회 후 삭제
+    @DELETE("/api/reservation/cancel")
+    fun deleteReservationCancelResponse(
+            @Header("jwt") jwt : String?
+    ) : Call<Any>
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
 
@@ -57,10 +77,4 @@ interface NetworkService {
             @Path("storeIdx") storeIdx : Int
     ) : Call<StoreResponseData>
 
-    //@@@@@@@@@@@@@@@ reservation-controller @@@@@@@@@@@@@@@
-    //TODO: 서버 배포되면 다시 확인하기
-    @POST("/api/reservation/cancel")
-    fun postReservationCancelResponse(
-            @Header("jwt") jwt : String?
-    ) : Call<Any>
 }
