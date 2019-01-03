@@ -330,7 +330,6 @@ class ReserveFragment : Fragment() {
                         else -> {
                             toast("error")
                             errorCheck = true
-<<<<<<< HEAD
                             toast("ErroerCheck=" + errorCheck.toString())
                             Log.d("TAGGGGGGGGGGGGGGGGGG",it.code().toString())
                             if (response.errorBody() != null) {
@@ -340,8 +339,6 @@ class ReserveFragment : Fragment() {
                             }
                             Log.v("TAGG", reserveSave.toString())
                             Log.v("TAGG@@@@@@@@@@@@@@@@2", response.errorBody()?.string())
-=======
->>>>>>> 73bbfc053c7748c1e74810bffe4823e67b533a99
                         }
                     }
                 }
