@@ -67,10 +67,9 @@
         android:id="@+id/iv_heart_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_favorite_seperate"
         app:layout_constraintEnd_toStartOf="@+id/guideline17"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_favorite"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar"
