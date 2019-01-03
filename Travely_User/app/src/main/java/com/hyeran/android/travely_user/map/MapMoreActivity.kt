@@ -46,6 +46,14 @@ class MapMoreActivity : AppCompatActivity() {
                 "사장님이 굉장히 친절하고 덕분에 편안하게 여행했어요 최고~!!"))
         dataList2.add(ReviewData("reviewer", "이진원", 22, 4.5,
                 "여행하는 중간에 짐이 너무 무거웠었는데, 짐을 맡길 수 있어서 너무 좋았어요!!"))
+        dataList2.add(ReviewData("reviewer", "김민수", 22, 4.5,
+                "사장님이 굉장히 친절하고 덕분에 편안하게 여행했어요 최고~!!"))
+        dataList2.add(ReviewData("reviewer", "이진원", 22, 4.5,
+                "여행하는 중간에 짐이 너무 무거웠었는데, 짐을 맡길 수 있어서 너무 좋았어요!!"))
+        dataList2.add(ReviewData("reviewer", "김민수", 22, 4.5,
+                "사장님이 굉장히 친절하고 덕분에 편안하게 여행했어요 최고~!!"))
+        dataList2.add(ReviewData("reviewer", "이진원", 22, 4.5,
+                "여행하는 중간에 짐이 너무 무거웠었는데, 짐을 맡길 수 있어서 너무 좋았어요!!"))
 
         reviewRecyclerViewAdapter = ReviewRecyclerViewAdapter(this, dataList2)
         rv_map_more_act_review_list.adapter = reviewRecyclerViewAdapter
