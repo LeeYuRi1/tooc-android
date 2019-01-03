@@ -155,7 +155,13 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 999) {
-            (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
+            if(resultCode == 1) {
+
+            }
+            else {
+                (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
+                
+            }
         }
     }
 

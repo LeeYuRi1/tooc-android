@@ -1,6 +1,7 @@
 package com.hyeran.android.travely_user.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.hyeran.android.travely_user.R
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
 import com.hyeran.android.travely_user.map.LocationListActivity
@@ -39,10 +41,9 @@ class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<SimpleSto
 
         Log.d("MoreLocationRVAdapter", "@@@@@@@@@@@@@"+dataList[position])
         holder.item_more_location_map.setOnClickListener {
+            val intent : Intent = Intent()
+            intent.putExtra("storeIdx", dataList[position].storeIdx)
             TODO("통신")
-
-
-
 
 
             (ctx as LocationListActivity).finish()
@@ -51,7 +52,7 @@ class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<SimpleSto
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val name : TextView = itemView.findViewById(R.id.tv_name_item_more_location_map) as TextView
-        val item_more_location_map : RelativeLayout = itemView.findViewById(R.id.item_more_location_map) as RelativeLayout
+        val item_more_location_map : LinearLayout = itemView.findViewById(R.id.item_more_location_map) as LinearLayout
     }
 
 

@@ -11,22 +11,20 @@ import android.widget.*
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.model.region.RegionResponseData
 import com.hyeran.android.travely_user.model.region.SimpleStoreResponseData
+import kotlinx.android.synthetic.main.item_location_map.view.*
 
 class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponseData>) : RecyclerView.Adapter<LocationRVAdapter.Holder>() {
 
     lateinit var moreLocationRVAdapter: MoreLocationRVAdapter
-//
-//    val more_dataList: ArrayList<SimpleStoreResponseData> by lazy {
-//        ArrayList<SimpleStoreResponseData>()
-//    }
 
     lateinit var more_dataList : ArrayList<SimpleStoreResponseData>
-    lateinit var moreLocationRVAdapterList : List<MoreLocationRVAdapter>
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_location_map, parent, false)
 
+
 //        view.iv_more_item_location_map.setOnClickListener {
+//            Toast.makeText(ctx, "ssss", Toast.LENGTH_SHORT)
 //            if (view.rv_more_item_location_map.visibility == View.VISIBLE) {
 //                view.rv_more_item_location_map.visibility = View.GONE
 //            } else {
@@ -63,13 +61,16 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
 //        moreLocationRVAdapter.dataList.add(more_dataList)
 //
         holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
-        holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx)
+        holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx) as RecyclerView.LayoutManager?
         moreLocationRVAdapter.notifyItemInserted(position)
-
+//
         holder.iv_more_item_location_map.setOnClickListener {
+//            Toast.makeText(ctx, "ssss", Toast.LENGTH_SHORT)
             if (holder.rv_more_item_location_map.visibility == View.VISIBLE) {
+                holder.iv_arrow_item_location_map.setImageResource(R.drawable.ic_arrow_down)
                 holder.rv_more_item_location_map.visibility = View.GONE
             } else {
+                holder.iv_arrow_item_location_map.setImageResource(R.drawable.ic_arrow_up)
                 holder.rv_more_item_location_map.visibility = View.VISIBLE
             }
         }
@@ -117,7 +118,7 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
         val name: TextView = itemView.findViewById(R.id.tv_name_item_location_map) as TextView
         val num: TextView = itemView.findViewById(R.id.tv_num_item_location_map) as TextView
         val rv_more_item_location_map = itemView.findViewById(R.id.rv_more_item_location_map) as RecyclerView
-        val item_location_map = itemView.findViewById(R.id.item_location_map) as LinearLayout
-        val iv_more_item_location_map = itemView.findViewById(R.id.iv_more_item_location_map) as ImageView
+        val iv_more_item_location_map = itemView.findViewById(R.id.iv_more_item_location_map) as LinearLayout
+        val iv_arrow_item_location_map = itemView.findViewById(R.id.iv_arrow_item_location_map) as ImageView
     }
 }
