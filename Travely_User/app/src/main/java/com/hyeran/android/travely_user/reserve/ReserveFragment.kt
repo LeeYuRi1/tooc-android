@@ -92,8 +92,8 @@ class ReserveFragment : Fragment() {
 
         //Store -> 피커에서 받은 데이터들을 뷰에 띄워줌
         v.tv_store_date_reserve.text = args?.getString("smmddee", dateFormat.format(rightNow.time))
-        Log.d("TAGGG",(args?.getString("smmddee", dateFormat.format(rightNow.time))).toString())
-        Log.d("TAGGGGG",dateFormat.format(rightNow.time))
+        Log.d("TAGGG", (args?.getString("smmddee", dateFormat.format(rightNow.time))).toString())
+        Log.d("TAGGGGG", dateFormat.format(rightNow.time))
         snumhh = args!!.getInt("shh", defaultHourValue)
         if (snumhh < 10) {
             v.tv_store_hour_reserve.text = "0" + snumhh.toString()
@@ -305,8 +305,8 @@ class ReserveFragment : Fragment() {
                             }
                             if (rb_cash_reserve.isChecked) {
                                 ReserveCompleteDialog(context).show()
+                            } else {
                             }
-                            else{}
                         }
                         400 -> {
                             toast("잘못된 정보 주입")
@@ -330,9 +330,8 @@ class ReserveFragment : Fragment() {
                         else -> {
                             toast("error")
                             errorCheck = true
-<<<<<<< HEAD
                             toast("ErroerCheck=" + errorCheck.toString())
-                            Log.d("TAGGGGGGGGGGGGGGGGGG",it.code().toString())
+                            Log.d("TAGGGGGGGGGGGGGGGGGG", it.code().toString())
                             if (response.errorBody() != null) {
                                 var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
                                 //    toast("TAGG" + )
@@ -340,8 +339,6 @@ class ReserveFragment : Fragment() {
                             }
                             Log.v("TAGG", reserveSave.toString())
                             Log.v("TAGG@@@@@@@@@@@@@@@@2", response.errorBody()?.string())
-=======
->>>>>>> 73bbfc053c7748c1e74810bffe4823e67b533a99
                         }
                     }
                 }
@@ -424,9 +421,9 @@ class ReserveFragment : Fragment() {
         })
     }
 
-    fun calPriceUnit(afterParseStore : Long, afterParseTake : Long): Int {
+    fun calPriceUnit(afterParseStore: Long, afterParseTake: Long): Int {
         // 시간 계산
-        var hour : Long = (afterParseTake - afterParseStore) / 1000 / 60 / 60
+        var hour: Long = (afterParseTake - afterParseStore) / 1000 / 60 / 60
         if (hour * 1000 * 60 * 60 != afterParseTake - afterParseStore) {
             hour++
         }
@@ -452,7 +449,7 @@ class ReserveFragment : Fragment() {
             }
         }
 
-        var price_unit : Int = price + extra_hour * final_price
+        var price_unit: Int = price + extra_hour * final_price
 
         return price_unit
 
