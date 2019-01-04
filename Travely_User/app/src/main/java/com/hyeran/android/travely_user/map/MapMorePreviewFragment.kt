@@ -202,47 +202,48 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         view2.iv_reserve_map_more_preview.setOnClickListener {
 
             var fragment: Fragment = ReserveFragment()
-//            fragment.arguments = args
+            fragment.arguments = args
             (activity as MainActivity).replaceFragment(fragment)
         }
 
         return view2
     }
-//    }
-//    var smmddee: String? = null
-//    var tmmddee: String? = null
-//    var shh: Int? = null
-//    var smm: Int? = null
-//    var thh: Int? = null
-//    var tmm: Int? = null
-//    var svalue: Int = 0
-//    var tvalue: Int = 0
-//    var args: Bundle = Bundle()
-//
-//    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int) {
-//        smmddee = tsmmddee
-//        shh = tshh
-//        smm = tsmm
-//        tmmddee = ttmmddee
-//        thh = tthh
-//        tmm = ttmm
-//        svalue = tsValue
-//        tvalue = ttValue
-//
-//        args!!.putString("smmddee", smmddee)
-//        args!!.putInt("shh", shh as Int)
-//        args!!.putInt("smm", smm as Int)
-//        args!!.putString("tmmddee", tmmddee)
-//        args!!.putInt("thh", thh as Int)
-//        args!!.putInt("tmm", tmm as Int)
-//        args!!.putInt("svalue", svalue)
-//        args!!.putInt("tvalue", tvalue)
-//
-//        var fragment: Fragment = ReserveFragment()
-//        fragment.arguments = args
-//        (activity as MainActivity).replaceFragment(fragment)
-//    }
-//
+
+    //    }
+    var smmddee: String? = null
+    var tmmddee: String? = null
+    var shh: Int? = null
+    var smm: Int? = null
+    var thh: Int? = null
+    var tmm: Int? = null
+    var svalue: Int = 0
+    var tvalue: Int = 0
+    var args: Bundle = Bundle()
+
+    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int) {
+        smmddee = tsmmddee
+        shh = tshh
+        smm = tsmm
+        tmmddee = ttmmddee
+        thh = tthh
+        tmm = ttmm
+        svalue = tsValue
+        tvalue = ttValue
+
+        args!!.putString("smmddee", smmddee)
+        args!!.putInt("shh", shh as Int)
+        args!!.putInt("smm", smm as Int)
+        args!!.putString("tmmddee", tmmddee)
+        args!!.putInt("thh", thh as Int)
+        args!!.putInt("tmm", tmm as Int)
+        args!!.putInt("svalue", svalue)
+        args!!.putInt("tvalue", tvalue)
+
+        var fragment: Fragment = ReserveFragment()
+        fragment.arguments = args
+        (activity as MainActivity).replaceFragment(fragment)
+    }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -489,6 +490,12 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                                 }
                             } else if (Timestamp(close_time).hours == Timestamp(close_time).hours) {
                                 if ((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
+                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
+                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    } else {
+                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                    }
                                 } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
                                     if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                         iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
