@@ -2,6 +2,7 @@ package com.hyeran.android.travely_user.network
 
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.model.*
+import com.hyeran.android.travely_user.model.mypage.FavoriteResponseData
 import com.hyeran.android.travely_user.model.region.RegionResponseData
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
@@ -88,4 +89,11 @@ interface NetworkService {
             @Path("storeIdx") storeIdx: Int
     ): Call<StoreResponseData>
 
+    //@@@@@@@@@@@@@@@ favorite-controller @@@@@@@@@@@@@@@
+
+    // 즐겨찾기 리스트 조회
+    @GET("/api/favorite")
+    fun favoriteResponse(
+            @Header("jwt") jwt : String?
+    ) : Call<FavoriteResponseData>
 }

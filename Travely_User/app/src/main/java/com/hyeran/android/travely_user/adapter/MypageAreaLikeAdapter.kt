@@ -30,21 +30,21 @@ class MypageAreaLikeAdapter(val ctx: Context, val dataList: ArrayList<MypageArea
 
         var dataList: ArrayList<MypageLikeData> = ArrayList()
 
-        if(position == 0){
-            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", true))
-            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", false))
-            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", true))
-        }
-        else if(position == 1){
-            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", true))
-            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", false))
-            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", true))
-        }
-        else if(position == 2){
-            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", true))
-            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", false))
-            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", true))
-        }
+//        if(position == 0){
+//            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", true))
+//            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", false))
+//            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", true))
+//        }
+//        else if(position == 1){
+//            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", true))
+//            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", false))
+//            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", true))
+//        }
+//        else if(position == 2){
+//            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", true))
+//            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", false))
+//            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", true))
+//        }
 
         mypageLikeAdapter = MypageLikeAdapter(ctx, dataList)
         holder.rv_arealike.adapter = mypageLikeAdapter
