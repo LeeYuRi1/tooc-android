@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int) {
+    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int,storeIdx:Int) {
 
         args!!.putString("smmddee", tsmmddee)
         args!!.putInt("shh", tshh)
@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         args!!.putInt("tmm", ttmm)
         args!!.putInt("svalue", tsValue)
         args!!.putInt("tvalue", ttValue)
+        args!!.putInt("storeIdx", storeIdx)
 
         var fragment: Fragment = ReserveFragment()
         fragment.arguments = args

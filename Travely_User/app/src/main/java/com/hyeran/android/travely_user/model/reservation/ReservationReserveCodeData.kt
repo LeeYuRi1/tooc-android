@@ -1,6 +1,6 @@
 package com.hyeran.android.travely_user.model.reservation
 
-data class ReservationReserveCode(
+data class ReservationReserveCodeData(
         var bagDtos : ArrayList<bagDtosData>,
         var bagImgDtos : ArrayList<bagImgDtos>,
         var depositTime : Long,

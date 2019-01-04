@@ -34,6 +34,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -73,19 +74,25 @@ class ReserveFragment : Fragment() {
 
         networkService = ApplicationController.instance.networkService
 
+        var args: Bundle? = arguments
+
+
+        storeIdx = args!!.getInt("storeIdx")
+
+        toast("storeIdx = "+storeIdx.toString())
+
         getReservationPriceListResponse()
 
 //        calPrice()
 
         //피커뷰와 데이터 통신을 하기 위한 코드
-        var args: Bundle? = arguments
 
         //제한시간 받는 코드
         getStoreResponseInfo()
 
         var rightNow = Calendar.getInstance()
         var dateFormat = SimpleDateFormat("MMM dd일 (EE)")
-        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) hh:mm")
+        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) kk:mm")
         var yearDateFormat = SimpleDateFormat("yyyy")
 
         var defaultHourValue = rightNow.get(Calendar.HOUR_OF_DAY)
@@ -125,6 +132,7 @@ class ReserveFragment : Fragment() {
         //서버로 time값을 전달해주기 위한 작업
         afterParseStore = dateParseFormat.parse(presentYearValue.toString() + smmddee.toString() + " " + snumhh.toString() + ":" + snummm.toString()).time
         afterParseTake = dateParseFormat.parse(presentYearValue.toString() + tmmddee.toString() + " " + tnumhh.toString() + ":" + tnummm.toString()).time
+
         setOnClickListener(v)
         return v
     }
@@ -132,7 +140,7 @@ class ReserveFragment : Fragment() {
     fun setOnClickListener(v: View) {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
-                    , svalue, tvalue, openTime, closeTime)
+                    , svalue, tvalue, openTime, closeTime,storeIdx)
             val dialog = ReserveTimeSettintDialog(ctx, timeArray,offday)
             dialog.show()
         }
@@ -150,12 +158,10 @@ class ReserveFragment : Fragment() {
                     v.tv_price_carrier_reserve.text = carrier_price.toString()
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     carrier_amount = 1
-                    //v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
 
                     v.iv_carrier_amount_up_reserve.setOnClickListener {
                         carrier_amount = Integer.parseInt(v.tv_carrier_changing_amount_reserve.text as String?)
                         carrier_amount++
-                        // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                         v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                         v.tv_carrier_amount_reserve.text = carrier_amount.toString()
                         carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
@@ -407,7 +413,7 @@ class ReserveFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            toast("가격표 조회 성공")
+//                            toast("가격표 조회 성공")
 //                            toast("@@1: "+response.body().toString())
                             priceArray = response.body()!!
 //                            toast("@@2: "+priceArray.toString())
@@ -433,6 +439,8 @@ class ReserveFragment : Fragment() {
             hour++
         }
 
+        Log.d("@@@@@@@@@", "snumhh: "+snumhh.toString())
+
 
         var price = 0
 
@@ -453,6 +461,7 @@ class ReserveFragment : Fragment() {
                 extra_hour--
             }
         }
+
 
         var price_unit: Int = price + extra_hour * final_price
 

@@ -25,17 +25,17 @@
                     android:id="@+id/tv_store_time_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
                     android:lineSpacingExtra="14sp"
-                    android:text="맡기는 시간" />
+                    android:text="맡기는 시간"
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tv_store_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="11sp"
                     android:lineSpacingExtra="13sp"
-                    android:text="12월 05일 (수)" />
+                    android:text="12월 05일 (수)"
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -136,15 +136,13 @@
         android:id="@+id/vs_custom_date_picker"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        >
+        android:background="@android:color/transparent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
-            >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -160,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
-                    android:descendantFocusability="blocksDescendants"/>
+                    android:descendantFocusability="blocksDescendants" />
             </LinearLayout>
 
             <LinearLayout
@@ -181,7 +179,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:background="#555555"
                 android:orientation="vertical">
 
                 <NumberPicker
@@ -199,8 +196,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -214,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
-                    android:descendantFocusability="blocksDescendants"/>
+                    android:descendantFocusability="blocksDescendants" />
             </LinearLayout>
 
             <LinearLayout
@@ -228,7 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:descendantFocusability="blocksDescendants"/>
+                    android:descendantFocusability="blocksDescendants" />
             </LinearLayout>
 
             <LinearLayout
@@ -242,23 +239,47 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:descendantFocusability="blocksDescendants"/>
+                    android:descendantFocusability="blocksDescendants" />
             </LinearLayout>
 
         </LinearLayout>
 
     </ViewSwitcher>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#ff7c49"
-        android:lineSpacingExtra="2sp"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp"
-        android:text="*매주 화요일은 정기휴무일입니다."
-        />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_week_front"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2sp"
+            android:text="*매주 "
+            android:textColor="#ff7c49"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_week_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2sp"
+            android:text="화요일"
+            android:textColor="#ff7c49"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_week_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2sp"
+            android:text="은 정기휴무일입니다."
+            android:textColor="#ff7c49"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -267,12 +288,12 @@
 
         <Button
             android:id="@+id/btn_time_confirm"
-            android:text="확인"
-            android:textSize="16sp"
-            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/mainColor"
             android:lineSpacingExtra="2sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="확인"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>
