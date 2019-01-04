@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="327dp"
     android:layout_height="153dp"
-    android:layout_gravity="bottom"
-    android:layout_marginHorizontal="16dp"
     android:orientation="vertical"
     android:weightSum="3"
     android:background="@drawable/rectangle_round_dialog">
@@ -21,7 +19,7 @@
         android:fontFamily="@font/kopub_medium"/>
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="327dp"
         android:layout_height="1dp"
         android:background="#707070" />
 
@@ -38,7 +36,7 @@
         android:fontFamily="@font/kopub_medium"/>
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="327dp"
         android:layout_height="1dp"
         android:background="#707070" />
 

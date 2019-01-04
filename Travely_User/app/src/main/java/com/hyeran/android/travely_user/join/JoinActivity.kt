@@ -42,6 +42,11 @@ class JoinActivity : AppCompatActivity() {
         btn_confirm_join.setOnClickListener {
             postJoinResponse()
         }
+
+        iv_back_signin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     // 유효성 검사
@@ -155,7 +160,7 @@ class JoinActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
-                            startActivity(Intent(this@JoinActivity, MainActivity::class.java))
+                            startActivity(Intent(this@JoinActivity, ExplanationActivity::class.java))
                             finish()
                         }
                         400 -> {

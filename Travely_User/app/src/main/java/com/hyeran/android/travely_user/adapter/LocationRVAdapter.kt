@@ -17,9 +17,9 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
 
     lateinit var moreLocationRVAdapter: MoreLocationRVAdapter
 
-    lateinit var more_dataList : ArrayList<SimpleStoreResponseData>
+    lateinit var more_dataList: ArrayList<SimpleStoreResponseData>
 
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_location_map, parent, false)
 
 
@@ -43,21 +43,21 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
 
         var more_dataList_by_area: ArrayList<SimpleStoreResponseData> = dataList[position].simpleStoreResponseDtos
 
-        Log.d("LocationRVAdapter", "@@@@@@@@@@@@@"+dataList[position])
+        Log.d("LocationRVAdapter", "@@@@@@@@@@@@@" + dataList[position])
 
         more_dataList = dataList[position].simpleStoreResponseDtos
         //moreLocationRVAdapterList
         //moreLocationRVAdapterList!!.indexOf(MoreLocationRVAdapter(ctx, more_dataList))
         moreLocationRVAdapter = MoreLocationRVAdapter(ctx, more_dataList)
 
-        Log.d("LocationRVAdapter", "@@@@@@@@@@@@@"+dataList[position])
+        Log.d("LocationRVAdapter", "@@@@@@@@@@@@@" + dataList[position])
 //
         val position = moreLocationRVAdapter.itemCount
 
 //        moreLocationRVAdapter.dataList.clear()
-        Log.v("Woo 929",more_dataList_by_area.toString())
+        Log.v("Woo 929", more_dataList_by_area.toString())
 //        moreLocationRVAdapter.dataList.addAll(more_dataList_by_area)
-        Log.v("Woo 914",moreLocationRVAdapter.dataList.size.toString())
+        Log.v("Woo 914", moreLocationRVAdapter.dataList.size.toString())
 //        moreLocationRVAdapter.dataList.add(more_dataList)
 //
         holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
@@ -65,7 +65,7 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
         moreLocationRVAdapter.notifyItemInserted(position)
 //
         holder.iv_more_item_location_map.setOnClickListener {
-//            Toast.makeText(ctx, "ssss", Toast.LENGTH_SHORT)
+            //            Toast.makeText(ctx, "ssss", Toast.LENGTH_SHORT)
             if (holder.rv_more_item_location_map.visibility == View.VISIBLE) {
                 holder.iv_arrow_item_location_map.setImageResource(R.drawable.ic_arrow_down)
                 holder.rv_more_item_location_map.visibility = View.GONE

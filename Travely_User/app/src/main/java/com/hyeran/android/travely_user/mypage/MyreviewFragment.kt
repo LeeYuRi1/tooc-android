@@ -6,12 +6,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.MypageLikeAdapter
 import com.hyeran.android.travely_user.adapter.MypageMyReviewAdapter
 import com.hyeran.android.travely_user.data.MypageMyReviewData
 import kotlinx.android.synthetic.main.fragment_like.*
 import kotlinx.android.synthetic.main.fragment_myreview.*
+import org.jetbrains.anko.support.v4.ctx
 
 class MyreviewFragment:Fragment() {
 
@@ -25,6 +27,10 @@ class MyreviewFragment:Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setRecyclerView()
+
+        iv_back_mypage.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(MypageFragment())
+        }
     }
 
     private fun setRecyclerView() {

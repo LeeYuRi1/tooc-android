@@ -27,7 +27,6 @@ import org.jetbrains.anko.support.v4.toast
 
 class ReserveStateFragment : Fragment() {
 
-
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
 
     companion object {
@@ -81,7 +80,6 @@ class ReserveStateFragment : Fragment() {
 //        dataList.add(LuggagePictureData(Drawable.))
         dataList.add(LuggagePictureData("tesetest"))
         dataList.add(LuggagePictureData("tesetest"))
-
 
         luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
         rv_luggage_picture.adapter = luggagePictureAdapter

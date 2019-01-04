@@ -6,10 +6,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.QuestionAdapter
 import com.hyeran.android.travely_user.data.QuestionData
 import kotlinx.android.synthetic.main.fragment_question.*
+import org.jetbrains.anko.support.v4.ctx
 
 class QuestionFragment : Fragment() {
 
@@ -22,6 +24,7 @@ class QuestionFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setRecyclerView()
+        setClickListener()
     }
 
     private fun setRecyclerView() {
@@ -34,6 +37,12 @@ class QuestionFragment : Fragment() {
         rv_file_question.adapter = questionAdapter
         rv_file_question.layoutManager = LinearLayoutManager(activity)
 
+    }
+
+    private fun setClickListener() {
+        iv_back_question.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(SetFragment())
+        }
     }
 
 }

@@ -19,23 +19,23 @@ interface NetworkService {
     @Headers("Content-Type: application/json")
     @POST("/api/users")
     fun postJoinResponse(
-            @Body() body : JsonObject
-    ) : Call<Any>
+            @Body() body: JsonObject
+    ): Call<Any>
 
     // 로그인
     // - 성공 시 jwt 토큰을 헤더에 넣어서 반환
     @POST("/api/users/login")
     fun postLoginResponse(
-            @Header("Content-Type") content_type : String,
-            @Body() body : JsonObject
-    ) : Call<Any>
+            @Header("Content-Type") content_type: String,
+            @Body() body: JsonObject
+    ): Call<Any>
 
     // 프로필 조회
     // - 프로필 조회
     @GET("/api/users/profile")
     fun getProfileResponse(
-            @Header("jwt") jwt : String?
-    ) : Call<ProfileResponseData>
+            @Header("jwt") jwt: String?
+    ): Call<ProfileResponseData>
 
     //@@@@@@@@@@@@@@@ region-controller @@@@@@@@@@@@@@@
 
@@ -43,8 +43,8 @@ interface NetworkService {
     // - 지역명과 상가수 반환
     @GET("/api/region")
     fun getRegionResponse(
-            @Header("jwt") jwt : String?
-    ) : Call<ArrayList<RegionResponseData>>
+            @Header("jwt") jwt: String?
+    ): Call<ArrayList<RegionResponseData>>
 
 
     //@@@@@@@@@@@@@@@ reservation-controller @@@@@@@@@@@@@@@
@@ -53,24 +53,24 @@ interface NetworkService {
     // - 예약 상태 저장 후 예약 정보 반환
     @POST("/api/reservation/save")
     fun postReservationSaveResponse(
-            @Header("Content-Type") content_type : String,
-            @Header("jwt") jwt : String?,
-            @Body() reservationSaveRequest : ReservationSaveRequestData
-    ) : Call<JsonObject>
+            @Header("Content-Type") content_type: String,
+            @Header("jwt") jwt: String?,
+            @Body() reservationSaveRequest: ReservationSaveRequestData
+    ): Call<JsonObject>
 
     // 가격표 조회
     // - 가격표 조회
     @GET("/api/reservation/price/list")
     fun getReservationPriceListResponse(
-            @Header("jwt") jwt : String?
-    ) : Call<ArrayList<ReservationPriceListResponseData>>
+            @Header("jwt") jwt: String?
+    ): Call<ArrayList<ReservationPriceListResponseData>>
 
     // 예약 취소
     // - 예약상태 조회 후 삭제
     @DELETE("/api/reservation/cancel")
     fun deleteReservationCancelResponse(
-            @Header("jwt") jwt : String?
-    ) : Call<Any>
+            @Header("jwt") jwt: String?
+    ): Call<Any>
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
 
@@ -78,8 +78,8 @@ interface NetworkService {
     // - 상가 테이블과 지역 테이블을 조인한 모든 칼럼 반환
     @GET("/api/store/{storeIdx}")
     fun getStoreResponse(
-            @Header("jwt") jwt : String?,
-            @Path("storeIdx") storeIdx : Int
-    ) : Call<StoreResponseData>
+            @Header("jwt") jwt: String?,
+            @Path("storeIdx") storeIdx: Int
+    ): Call<StoreResponseData>
 
 }
