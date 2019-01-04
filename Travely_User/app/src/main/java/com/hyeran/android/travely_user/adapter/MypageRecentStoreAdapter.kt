@@ -2,8 +2,6 @@ package com.hyeran.android.travely_user.adapter
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,16 +11,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.constraint_recentstore
-import com.hyeran.android.travely_user.data.MypageRecentStoreData
 import com.hyeran.android.travely_user.join.RecentstoreDetailFragment
-import com.hyeran.android.travely_user.map.LocationListActivity
 import com.hyeran.android.travely_user.model.StoreInfoResponseData
-import com.hyeran.android.travely_user.mypage.MypageFragment
-import com.hyeran.android.travely_user.mypage.WriteReviewDialog
-import java.sql.Time
+import com.hyeran.android.travely_user.dialog.WriteReviewDialog
 import java.sql.Timestamp
 import java.util.ArrayList
 
@@ -40,25 +33,43 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
                 .load(dataList[position].storeImage)
                 .into(holder!!.recent_image)
 
-        var recentStartTime : Long =dataList[position].openTime
-        //var a =Timestamp(recentStartTime).
-        //var b =Timestamp(recentStartTime).minutes
-
-        //Log.d("TAGGGG",a.toString()+"^^^^^"+b)
 
         Log.d("TAG URI",dataList[position].storeImage)
 
         holder.recent_name.text = dataList[position].storeName
         holder.recent_addr.text = dataList[position].address
-        //holder.recent_ampm.text = dataList[position].storetime
-        holder.recent_start.text = dataList[position].openTime.toString()
-        holder.recent_end.text = dataList[position].closeTime.toString()
 
         holder.reviewwrite.setOnClickListener {
             WriteReviewDialog(ctx).show()
         }
         holder.recent_detail.setOnClickListener {
-            //(ctx as MypageFragment).replaceFragment(RecentstoreDetailFragment())
+            (ctx as MainActivity).replaceFragment(RecentstoreDetailFragment())
+        }
+
+
+        var recentStartTime : Long =dataList[position].openTime
+
+        if(Timestamp(recentStartTime).hours.toString().trim().length == 1){
+            holder.recent_start_hour.text = "0" + Timestamp(recentStartTime).hours.toString().trim()
+        } else {
+            holder.recent_start_hour.text = Timestamp(recentStartTime).hours.toString().trim()
+        }
+        if(Timestamp(recentStartTime).minutes.toString().trim().length == 1){
+            holder.recent_start_minute.text = "0" + Timestamp(recentStartTime).minutes.toString().trim()
+        } else {
+            holder.recent_start_minute.text = Timestamp(recentStartTime).minutes.toString().trim()
+        }
+
+        var recentEndTime : Long =dataList[position].closeTime
+        if(Timestamp(recentEndTime).hours.toString().trim().length == 1){
+            holder.recent_end_hour.text = "0" + Timestamp(recentEndTime).hours.toString().trim()
+        } else {
+            holder.recent_end_hour.text = Timestamp(recentEndTime).hours.toString().trim()
+        }
+        if(Timestamp(recentEndTime).minutes.toString().trim().length == 1){
+            holder.recent_end_minute.text = "0" + Timestamp(recentEndTime).minutes.toString().trim()
+        } else {
+            holder.recent_end_minute.text = Timestamp(recentEndTime).minutes.toString().trim()
         }
 
     }
@@ -67,9 +78,10 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
         var recent_image: ImageView = itemView.findViewById(R.id.iv_storeimage_recentstore) as ImageView
         var recent_name: TextView = itemView.findViewById(R.id.tv_name_recentstore) as TextView
         var recent_addr: TextView = itemView.findViewById(R.id.tv_addr_recentstore) as TextView
-        var recent_ampm: TextView = itemView.findViewById(R.id.tv_time_recentstore) as TextView
-        var recent_start: TextView = itemView.findViewById(R.id.tv_starttime_recentstore) as TextView
-        var recent_end: TextView = itemView.findViewById(R.id.tv_endtime_recentstore) as TextView
+        var recent_start_hour: TextView = itemView.findViewById(R.id.tv_starttime_hour_recentstore) as TextView
+        var recent_start_minute: TextView = itemView.findViewById(R.id.tv_starttime_minute_recentstore) as TextView
+        var recent_end_hour: TextView = itemView.findViewById(R.id.tv_endtime_hour_recentstore) as TextView
+        var recent_end_minute: TextView = itemView.findViewById(R.id.tv_endtime_minute_recentstore) as TextView
 
         var reviewwrite: Button = itemView.findViewById(R.id.btn_reviewwrite_recentstore) as Button
         var recent_detail: ConstraintLayout = itemView.findViewById(R.id.constraint_recentstore) as ConstraintLayout

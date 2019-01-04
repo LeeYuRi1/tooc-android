@@ -192,7 +192,14 @@ class JoinActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
-                            startActivity(Intent(this@JoinActivity, ExplanationActivity::class.java))
+
+                            var sawExplanation = SharedPreferencesController.instance!!.getPrefBooleanData("Explanation",false)
+                            if(sawExplanation==false) {
+                                startActivity(Intent(this@JoinActivity, ExplanationActivity::class.java))
+                            } else{
+                                startActivity(Intent(this@JoinActivity, MainActivity::class.java))
+                            }
+
                             finish()
                         }
                         400 -> {

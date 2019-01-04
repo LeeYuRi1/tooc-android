@@ -22,7 +22,6 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<MypageLikeData
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.like_name.text = dataList[position].likename
         holder.like_addr.text = dataList[position].likeaddr
-        holder.like_time.text = dataList[position].liketime
         holder.like_heart.isSelected = true
 
         if(!dataList[position].likeheart) {
@@ -34,7 +33,7 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<MypageLikeData
         //var recent_image : ImageView = itemView.findViewById(R.id.iv_storeimage_recentstore) as ImageView
         var like_name: TextView = itemView.findViewById(R.id.tv_name_like) as TextView
         var like_addr: TextView = itemView.findViewById(R.id.tv_addr_like) as TextView
-        var like_time: TextView = itemView.findViewById(R.id.tv_time_like) as TextView
         var like_heart: ImageView = itemView.findViewById(R.id.iv_heart_like) as ImageView
+
     }
 }

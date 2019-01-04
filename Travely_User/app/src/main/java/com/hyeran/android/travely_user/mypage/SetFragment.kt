@@ -23,16 +23,16 @@ class SetFragment : Fragment() {
     }
 
     private fun setClickListener() {
-        tv_whatistooc_set.setOnClickListener {
+        btn_whatistooc_set.setOnClickListener {
             replaceFragment(ToocFragment())
         }
-        tv_faq_set.setOnClickListener {
+        btn_faq_set.setOnClickListener {
             replaceFragment(FaqFragment())
         }
-        tv_access_terms_set.setOnClickListener {
+        btn_access_terms_set.setOnClickListener {
             replaceFragment(AccessTermsFragment())
         }
-        tv_question_set.setOnClickListener {
+        btn_question_set.setOnClickListener {
             replaceFragment(QuestionFragment())
         }
         iv_back_set.setOnClickListener {

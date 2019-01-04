@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         //TODO 타임리밋값넣어야함!!!!!!!!!!!!!!!!!!
         args!!.putInt("timeLimit",9)
 
