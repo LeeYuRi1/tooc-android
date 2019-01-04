@@ -1,28 +1,62 @@
 package com.hyeran.android.travely_user.map
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import android.widget.LinearLayout
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.PhotoRecylerViewAdapter
 import com.hyeran.android.travely_user.adapter.ReviewRecyclerViewAdapter
 import com.hyeran.android.travely_user.data.PhotoData
 import com.hyeran.android.travely_user.data.ReviewData
+import com.hyeran.android.travely_user.dialog.MapChoiceDialog
+import com.hyeran.android.travely_user.reserve.ReserveFragment
 import kotlinx.android.synthetic.main.activity_map_more.*
 import kotlinx.android.synthetic.main.fragment_map_more.*
+import org.jetbrains.anko.activityManager
+import org.jetbrains.anko.ctx
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.toast
 
 class MapMoreActivity : AppCompatActivity() {
-    lateinit var photoRecyclerViewAdapter : PhotoRecylerViewAdapter
-    lateinit var reviewRecyclerViewAdapter : ReviewRecyclerViewAdapter
+    lateinit var photoRecyclerViewAdapter: PhotoRecylerViewAdapter
+    lateinit var reviewRecyclerViewAdapter: ReviewRecyclerViewAdapter
+
+    var lng: Double = 0.0
+    var lat: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map_more)
 
         setRecyclerView()
+
+        lat = intent.getDoubleExtra("lat", 0.0)
+        lng = intent.getDoubleExtra("lng", 0.0)
+
+//        toast(lat.toString() + "!@#!@#!@#!#" + lng.toString())
+
+        setOnBtnClickListener()
+    }
+
+
+    private fun setOnBtnClickListener() {
+        btn_map_more_act_find_road.setOnClickListener {
+            val mapChoiceDialog: MapChoiceDialog = MapChoiceDialog(this, lat, lng)
+            mapChoiceDialog.window.setGravity(Gravity.BOTTOM)
+            mapChoiceDialog.show()
+        }
+
+        btn_map_more_act_reservation.setOnClickListener {
+//            finish()
+//            (activity as MainActivity).replaceFragment(ReserveFragment())
+        }
     }
 
     private fun setRecyclerView() {

@@ -78,6 +78,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/btn_map_more_act_reservation"
                     android:layout_width="60dp"
                     android:layout_height="75dp"
                     android:layout_alignParentRight="true"
@@ -140,6 +141,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/btn_map_more_act_favorite"
                     android:layout_marginRight="25dp"
                     android:layout_alignParentRight="true"
                     android:layout_width="40dp"
@@ -208,6 +210,8 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/btn_map_more_act_find_road"
+                    android:clickable="true"
                     android:layout_marginTop="13dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="25dp"
@@ -281,10 +285,12 @@
 
                 <ImageView
                     android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_bubble" />
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="9dp"
@@ -295,6 +301,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"

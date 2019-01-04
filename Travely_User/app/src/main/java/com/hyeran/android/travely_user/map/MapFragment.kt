@@ -34,9 +34,9 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             return
         }
 
@@ -47,8 +47,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,
             startLocationUpdates()
         }
         if (mLocation != null) {
-            var latitude : Double = mLocation.latitude
-            var longtitude : Double = mLocation.longitude
+            var latitude: Double = mLocation.latitude
+            var longtitude: Double = mLocation.longitude
         } else {
 
         }
@@ -59,14 +59,16 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 
         if (ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             return
         }
 
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this)
+
     }
+
     override fun onConnectionSuspended(p0: Int) {
         Log.i(TAG, "Connection Suspended")
         mGoogleApiClient.connect()
@@ -87,14 +89,13 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         super.onStop()
 //        mapView.onStop()
 
-        if(mGoogleApiClient.isConnected) {
+        if (mGoogleApiClient.isConnected) {
             mGoogleApiClient.disconnect()
         }
     }
 
 
     override fun onLocationChanged(p0: Location?) {}
-
 
 
     private lateinit var mMap: GoogleMap
@@ -107,14 +108,14 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     private val REQUEST_ACCESS_FINE_LOCATION = 1000
 
     // Google API Client 생성
-    private lateinit var mGoogleApiClient : GoogleApiClient
-    private lateinit var mLocation : Location
-    private lateinit var locationManager : LocationManager
-    private lateinit var mLocationRequest : LocationRequest
+    private lateinit var mGoogleApiClient: GoogleApiClient
+    private lateinit var mLocation: Location
+    private lateinit var locationManager: LocationManager
+    private lateinit var mLocationRequest: LocationRequest
 
     private val TAG = javaClass.simpleName
 
-    public var locationPermissionGranted:Boolean = false
+    public var locationPermissionGranted: Boolean = false
 
     companion object {
         var mInstance: MapFragment? = null
@@ -129,7 +130,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 //        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
-    private lateinit var  lastLocation : Location
+    private lateinit var lastLocation: Location
 
     // 레이아웃 설정
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -154,13 +155,12 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 999) {
-            if(resultCode == 1) {
+        if (requestCode == 999) {
+            if (resultCode == 1) {
 
-            }
-            else {
+            } else {
                 (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
-                
+
             }
         }
     }
@@ -181,12 +181,14 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 .build()
 
         mGoogleApiClient.connect()
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
         mMap = googleMap
+
+//        mMap.setMinZoomPreference(17f)
+//        mMap.setMaxZoomPreference(21f)
 
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -198,13 +200,24 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         }
 
 
+//        if (ActivityCompat.checkSelfPermission(activity!!,
+//                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+//                && ActivityCompat.checkSelfPermission(activity!!,
+//                        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//
+//            var mLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
+//            latitude2 = mLastKnownLocation.latitude
+//            longtitude2 = mLastKnownLocation.longitude
+//        }
+
+
 //        setUpMap()
 
         // Add a marker in Sydney and move the camera
-        val marker = LatLng(37.578346, 127.057015)
-        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17f))
+//        val marker = LatLng(37.578346, 127.057015)
+////        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(17f))
 
     }
 
@@ -273,6 +286,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
         // 정확함. 이것보다 짧은 업데이트는 하지 않음
         locationRequest.fastestInterval = 5000
+
     }
 
 
@@ -291,9 +305,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,
             val location = locationResult?.lastLocation
 
             location?.run {
-                // 14 level로 확대하고 현재 위치로 카메라 이동
                 val latLng = LatLng(latitude, longitude)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
 //                mMap.animateCamera(CameraUpdateFactory.zoomTo())
 
                 Log.d("MapFragment", "위도 : $latitude, 경도 : $longitude")
