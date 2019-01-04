@@ -28,10 +28,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<Any>) : Dialog(ctx) {
+class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<Any>, val offday: ArrayList<String>) : Dialog(ctx) {
 
-    //TODO : 휴무일 넣어야함
-    var offday: String? = "일"
+    var offdaySize = offday.size - 1
 
     var dates: Array<String>? = null
     var hours: Array<String>? = null
@@ -67,6 +66,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
     var snummm: Int = reiceveArray[2] as Int
     var tnumhh: Int = reiceveArray[4] as Int
     var tnummm: Int = reiceveArray[5] as Int
+
     var openTime: Int = hourFormat.format(reiceveArray[8] as Long).toInt()
     var closeTime: Int = hourFormat.format(reiceveArray[9] as Long).toInt()
 
@@ -208,16 +208,31 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         val dates = ArrayList<String>()
         val dateFormat = SimpleDateFormat("MMM dd일 (EE)")
 
-        if (weekFormat.format(c1.time) == offday) {
-            dates.add(dateFormat.format(c1.time) + " (휴무)")
-        } else {
+        var notOffDay: Boolean = false
+        for (i in 0..offdaySize) {
+            if (weekFormat.format(c1.time) == offday[i]) {
+                dates.add(dateFormat.format(c1.time) + " (휴무)")
+                notOffDay = false
+                break
+            } else notOffDay = true
+        }
+        if (notOffDay == true) {
             dates.add(dateFormat.format(c1.time))
         }
+
         for (i in 0..59) {
+            notOffDay = false
             c1.add(Calendar.DATE, 1)
-            if (weekFormat.format(c1.time) == offday) {
-                dates.add(dateFormat.format(c1.time) + " (휴무)")
-            } else {
+            for (i in 0..offdaySize) {
+                if (weekFormat.format(c1.time) == offday[i]) {
+                    dates.add(dateFormat.format(c1.time) + " (휴무)")
+                    notOffDay = false
+                    break
+                } else {
+                    notOffDay = true
+                }
+            }
+            if (notOffDay == true) {
                 dates.add(dateFormat.format(c1.time))
             }
         }
@@ -247,16 +262,29 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         var rightNow = Calendar.getInstance()
         var currentHour = rightNow.get(Calendar.HOUR_OF_DAY)
         var ttoast: Toast
+        var notOffDay : Boolean = false
+
+
         btn_store_time.setOnClickListener {
+            Log.d("TAGGGGG",storeProhibit + "asd"+takeProhibit)
+            notOffDay = false
+
+            for(i in 0..offdaySize){
+                if(takeProhibit == offday[i]) {
+                    notOffDay = true
+                    Log.d("TAGGGGG","^^^^^")
+                    break
+                }
+            }
             if (svalue == 0 && snumhh < currentHour) {
                 ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
             } else {
-                if (alertFlag == 1 && takeProhibit != offday) {
+                if (alertFlag == 1 && notOffDay==false) {
                     vs_custom_date_picker.showNext()
-                    alertFlag = 0;
-                    btn_store_time.setBackgroundColor(Color.parseColor(R.color.mainColor.toString()))
+                    alertFlag = 0
+                    //btn_store_time.setBackgroundColor(Color.parseColor(R.color.mainColor.toString()))
                     btn_take_time.setBackgroundColor(Color.parseColor("#ffffff"))
                 } else {
                     var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
@@ -267,12 +295,22 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         }
 
         btn_take_time.setOnClickListener {
+            Log.d("TAGGGGG",storeProhibit  +"asd"+takeProhibit)
+            notOffDay = false
+            for(i in 0..offdaySize){
+                if(storeProhibit == offday[i]) {
+                    notOffDay = true
+                    Log.d("TAGGGGG","&&&&&&&&&&&&&&")
+                    break
+                }
+            }
             if (svalue == 0 && snumhh < currentHour) {
+                Log.d("TAGGG",svalue.toString()+"asd"+snumhh+"asd"+currentHour)
                 ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
             } else {
-                if (alertFlag == 0 && storeProhibit != offday) {
+                if (alertFlag == 0 && notOffDay == false) {
                     vs_custom_date_picker.showNext()
                     alertFlag = 1;
                     btn_take_time.setBackgroundColor(Color.parseColor("#4C64FD"))
@@ -286,11 +324,19 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         }
 
         btn_time_confirm.setOnClickListener {
+            notOffDay = false
 
-            if (takeProhibit == offday) {
+            for(i in 0..offdaySize){
+                if(takeProhibit == offday[i]) {
+                    notOffDay = true
+                    break
+                }
+            }
+            if (notOffDay == true) {
                 var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
+                notOffDay = false
             } else {
                 if (svalue == 0 && snumhh < currentHour) {
                     ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
@@ -315,14 +361,12 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                             (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
 //                            MapMorePreviewFragment.getInstance(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
 //                            (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
-
                             dismiss()
                         }
                     } else {
 //                        (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                         (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
 //                        (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
-
                         dismiss()
                     }
                 }

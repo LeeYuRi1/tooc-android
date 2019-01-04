@@ -22,6 +22,7 @@ import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
 import com.hyeran.android.travely_user.model.ErrorData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
 import com.hyeran.android.travely_user.model.reservation.bagInfo
+import com.hyeran.android.travely_user.model.store.RestWeekResponseData
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
@@ -55,6 +56,7 @@ class ReserveFragment : Fragment() {
     var tnummm: Int = 0
     var openTime: Long = 0
     var closeTime: Long = 0
+    var offday= ArrayList<String>() //쉬는 요일
 
     var afterParseStore: Long = 0
     var afterParseTake: Long = 0
@@ -123,9 +125,6 @@ class ReserveFragment : Fragment() {
         //서버로 time값을 전달해주기 위한 작업
         afterParseStore = dateParseFormat.parse(presentYearValue.toString() + smmddee.toString() + " " + snumhh.toString() + ":" + snummm.toString()).time
         afterParseTake = dateParseFormat.parse(presentYearValue.toString() + tmmddee.toString() + " " + tnumhh.toString() + ":" + tnummm.toString()).time
-//        if(afterParseStore < afterParseTake) {
-//            toast(afterParseStore.toString() + "~~~" + afterParseTake)
-//       }
         setOnClickListener(v)
         return v
     }
@@ -134,7 +133,7 @@ class ReserveFragment : Fragment() {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
                     , svalue, tvalue, openTime, closeTime)
-            val dialog = ReserveTimeSettintDialog(ctx, timeArray)
+            val dialog = ReserveTimeSettintDialog(ctx, timeArray,offday)
             dialog.show()
         }
 
@@ -229,7 +228,6 @@ class ReserveFragment : Fragment() {
 
         v.btn_reserve_reserve.setOnClickListener {
 
-
             if (smmddee != tmmddee || snumhh != tnumhh || snummm != tnummm) {
 
                 if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
@@ -247,7 +245,6 @@ class ReserveFragment : Fragment() {
                             if (v.rb_cash_reserve.isChecked) {
                                 ReserveCompleteDialog(context).show()
                             }
-
                         } else {
                             toast("결제 동의를 체크해주세요.")
 
@@ -268,7 +265,7 @@ class ReserveFragment : Fragment() {
 
     }
 
-    fun postReserveInfo() {
+    fun postReserveInfo() {//예약 상태 저장
 
         var reserveSave: ReservationSaveRequestData
         var bagData: ArrayList<bagInfo> = ArrayList()
@@ -334,7 +331,6 @@ class ReserveFragment : Fragment() {
                             Log.d("TAGGGGGGGGGGGGGGGGGG", it.code().toString())
                             if (response.errorBody() != null) {
                                 var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
-                                //    toast("TAGG" + )
                                 toast(errorData.message)
                             }
                             Log.v("TAGG", reserveSave.toString())
@@ -342,44 +338,57 @@ class ReserveFragment : Fragment() {
                         }
                     }
                 }
-
             }
         })
     }
 
-    fun getStoreResponseInfo() {
+    fun getStoreResponseInfo() { //상가 세부정보 조회
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var getStoreInfo = networkService.getStoreResponse(jwt, storeIdx)
         getStoreInfo.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                errorCheck = true
             }
 
             override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            toast("200" + response.body()!!.closeTime.toString())
+                            toast("200" + response.body()!!.closeTime)
                             openTime = response.body()!!.openTime.toLong()
                             closeTime = response.body()!!.closeTime.toLong()
+                            for (i in 0..response.body()!!.restWeekResponseDtos.size-1) {
+                                if(response.body()!!.restWeekResponseDtos[i].week==1) {
+                                    offday.add("일")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==2){
+                                    offday.add("화")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==3){
+                                    offday.add("수")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==4){
+                                    offday.add("목")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==5){
+                                    offday.add("금")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==6){
+                                    offday.add("토")
+                                }
+                                toast(offday[i])
+                            }
                         }
                         500 -> {
                             toast("500")
-                            errorCheck = true
                         }
                         else -> {
                             toast("error")
-                            errorCheck = true
                         }
-
                     }
-
                 }
-
             }
         })
-
     }
 
     lateinit var priceArray: ArrayList<ReservationPriceListResponseData>
@@ -402,17 +411,13 @@ class ReserveFragment : Fragment() {
 //                            toast("@@1: "+response.body().toString())
                             priceArray = response.body()!!
 //                            toast("@@2: "+priceArray.toString())
-
 //                            calPrice()
-
                         }
                         500 -> {
                             toast("서버 에러")
-                            errorCheck = true
                         }
                         else -> {
                             toast("error")
-                            errorCheck = true
                         }
                     }
                 }
@@ -454,21 +459,4 @@ class ReserveFragment : Fragment() {
         return price_unit
 
     }
-//
-//    fun calPrice() {
-//
-//
-//        var luggage_cnt = 3
-//
-//
-//        var total_price : Long  = ((price + extra_hour * final_price) * luggage_cnt).toLong()
-//
-//        Log.d("가격 계산", total_price.toString())
-//        Log.d("hour", hour.toString())
-//        Log.d("price", price.toString())
-//        Log.d("extra_hour", extra_hour.toString())
-//        Log.d("final_price", final_price.toString())
-//        Log.d("luggage_cnt", luggage_cnt.toString())
-//    }
-
 }

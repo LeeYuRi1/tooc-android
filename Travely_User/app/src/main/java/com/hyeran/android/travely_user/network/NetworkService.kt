@@ -82,7 +82,7 @@ interface NetworkService {
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
 
-    // 상가 세부정보 저회
+    // 상가 세부정보 조회
     // - 상가 테이블과 지역 테이블을 조인한 모든 칼럼 반환
     @GET("/api/store/{storeIdx}")
     fun getStoreResponse(
