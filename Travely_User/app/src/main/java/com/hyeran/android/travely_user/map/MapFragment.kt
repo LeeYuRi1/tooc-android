@@ -199,7 +199,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
-            mMap.uiSettings.isMyLocationButtonEnabled = true
+            mMap.uiSettings.isMyLocationButtonEnabled = false
             mMap.uiSettings.isCompassEnabled = true
             mMap.uiSettings.isZoomGesturesEnabled = true
 

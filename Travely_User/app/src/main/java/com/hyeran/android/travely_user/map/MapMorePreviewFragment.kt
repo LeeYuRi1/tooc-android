@@ -170,29 +170,20 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         getStoreResponse()
 
 
-        /*
-        view2.btn_find_gps2.setOnClickListener {
 
-//            startLocationUpdates2()
-
-//            locationInit2()
-
-            if (ActivityCompat.checkSelfPermission(activity!!,
-                            android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(activity!!,
-                            android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-//                var location : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
-                mLocation2 = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
-
-////                var cameraUpdate : CameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 17f)
-                mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(mLocation2.latitude, mLocation2.longitude), 17f))
-//                mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 17f))
-            }
-
-        }
-
-*/
+//        view2.btn_find_gps.setOnClickListener {
+//
+//            if (ActivityCompat.checkSelfPermission(activity!!,
+//                            android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                    && ActivityCompat.checkSelfPermission(activity!!,
+//                            android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//                var thisLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
+//                val myLocation = LatLng(thisLastKnownLocation.latitude, thisLastKnownLocation.longitude)
+//
+//                mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 17f))
+//            }
+//        }
 
 
         view2.btn_fragment_map_question2.setOnClickListener {
