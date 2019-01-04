@@ -15,12 +15,14 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.R.id.rb_kakaopay_reserve
 import com.hyeran.android.travely_user.dialog.KeepPriceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
 import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
 import com.hyeran.android.travely_user.model.ErrorData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
 import com.hyeran.android.travely_user.model.reservation.bagInfo
+import com.hyeran.android.travely_user.model.store.RestWeekResponseData
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
@@ -32,6 +34,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -52,13 +55,17 @@ class ReserveFragment : Fragment() {
     var snummm: Int = 0
     var tnumhh: Int = 0
     var tnummm: Int = 0
-    var timeLimit : Int = 0
+    var openTime: Long = 0
+    var closeTime: Long = 0
+    var offday= ArrayList<String>() //쉬는 요일
 
     var afterParseStore: Long = 0
     var afterParseTake: Long = 0
 
     //        TODO("storeIdx를 받아서 통신해야함!!!!!!")
-    var storeIdx : Int = 1
+    var storeIdx: Int = 1
+
+    var errorCheck: Boolean = false
 
     lateinit var networkService: NetworkService
 
@@ -67,22 +74,25 @@ class ReserveFragment : Fragment() {
 
         networkService = ApplicationController.instance.networkService
 
+        var args: Bundle? = arguments
+
+
+        storeIdx = args!!.getInt("storeIdx")
+
+        toast("storeIdx = "+storeIdx.toString())
+
         getReservationPriceListResponse()
 
 //        calPrice()
 
         //피커뷰와 데이터 통신을 하기 위한 코드
-        var args: Bundle? = arguments
 
         //제한시간 받는 코드
-//        TODO("storeIdx를 받아서 통신해야함!!!!!!")
         getStoreResponseInfo()
-        timeLimit = args!!.getInt("timeLimit",9)
-        Toast.makeText(context,timeLimit.toString(), Toast.LENGTH_LONG).show()
 
         var rightNow = Calendar.getInstance()
         var dateFormat = SimpleDateFormat("MMM dd일 (EE)")
-        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) hh:mm")
+        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) kk:mm")
         var yearDateFormat = SimpleDateFormat("yyyy")
 
         var defaultHourValue = rightNow.get(Calendar.HOUR_OF_DAY)
@@ -90,7 +100,9 @@ class ReserveFragment : Fragment() {
         var presentYearValue = yearDateFormat.format(rightNow.time)
 
         //Store -> 피커에서 받은 데이터들을 뷰에 띄워줌
-        v.tv_store_date_reserve.text = args!!.getString("smmddee", dateFormat.format(rightNow.time))
+        v.tv_store_date_reserve.text = args?.getString("smmddee", dateFormat.format(rightNow.time))
+        Log.d("TAGGG", (args?.getString("smmddee", dateFormat.format(rightNow.time))).toString())
+        Log.d("TAGGGGG", dateFormat.format(rightNow.time))
         snumhh = args!!.getInt("shh", defaultHourValue)
         if (snumhh < 10) {
             v.tv_store_hour_reserve.text = "0" + snumhh.toString()
@@ -120,9 +132,7 @@ class ReserveFragment : Fragment() {
         //서버로 time값을 전달해주기 위한 작업
         afterParseStore = dateParseFormat.parse(presentYearValue.toString() + smmddee.toString() + " " + snumhh.toString() + ":" + snummm.toString()).time
         afterParseTake = dateParseFormat.parse(presentYearValue.toString() + tmmddee.toString() + " " + tnumhh.toString() + ":" + tnummm.toString()).time
-//        if(afterParseStore < afterParseTake) {
-//            toast(afterParseStore.toString() + "~~~" + afterParseTake)
-//       }
+
         setOnClickListener(v)
         return v
     }
@@ -130,8 +140,8 @@ class ReserveFragment : Fragment() {
     fun setOnClickListener(v: View) {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
-                    , svalue, tvalue, timeLimit)
-            val dialog = ReserveTimeSettintDialog(ctx, timeArray)
+                    , svalue, tvalue, openTime, closeTime,storeIdx)
+            val dialog = ReserveTimeSettintDialog(ctx, timeArray,offday)
             dialog.show()
         }
 
@@ -144,18 +154,17 @@ class ReserveFragment : Fragment() {
             override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
                 if (isChecked) {
                     v.linear_carrier_more_reserve.visibility = View.VISIBLE
-                    carrier_price = 3500
+                    carrier_price = calPriceUnit(afterParseStore, afterParseTake)
+                    v.tv_price_carrier_reserve.text = carrier_price.toString()
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     carrier_amount = 1
-                    //v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
 
                     v.iv_carrier_amount_up_reserve.setOnClickListener {
                         carrier_amount = Integer.parseInt(v.tv_carrier_changing_amount_reserve.text as String?)
                         carrier_amount++
-                        // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                         v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                         v.tv_carrier_amount_reserve.text = carrier_amount.toString()
-                        carrier_price = carrier_amount * 3500
+                        carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
                         v.tv_price_carrier_reserve.text = carrier_price.toString()
                         v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     }
@@ -166,7 +175,7 @@ class ReserveFragment : Fragment() {
                             // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                             v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                             v.tv_carrier_amount_reserve.text = carrier_amount.toString()
-                            carrier_price = carrier_amount * 3500
+                            carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
                             v.tv_price_carrier_reserve.text = carrier_price.toString()
                             v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                         }
@@ -185,7 +194,8 @@ class ReserveFragment : Fragment() {
             override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
                 if (isChecked) {
                     v.linear_etc_more_reserve.visibility = View.VISIBLE
-                    etc_price = 3500
+                    etc_price = calPriceUnit(afterParseStore, afterParseTake)
+                    v.tv_price_etc_reserve.text = etc_price.toString()
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     etc_amount = 1
                     // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
@@ -195,7 +205,7 @@ class ReserveFragment : Fragment() {
                         etc_amount++
                         v.tv_etc_changing_amount_reserve.text = etc_amount.toString()
                         v.tv_etc_amount_reserve.text = etc_amount.toString()
-                        etc_price = etc_amount * 3500
+                        etc_price = etc_amount * calPriceUnit(afterParseStore, afterParseTake)
                         v.tv_price_etc_reserve.text = etc_price.toString()
                         v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                         //  v.tv_result_amount_etc_reserve.text = etc_amount.toString()
@@ -206,7 +216,7 @@ class ReserveFragment : Fragment() {
                             etc_amount--
                             v.tv_etc_changing_amount_reserve.text = etc_amount.toString()
                             v.tv_etc_amount_reserve.text = etc_amount.toString()
-                            etc_price = etc_amount * 3500
+                            etc_price = etc_amount * calPriceUnit(afterParseStore, afterParseTake)
                             v.tv_price_etc_reserve.text = etc_price.toString()
                             v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                             // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
@@ -223,37 +233,45 @@ class ReserveFragment : Fragment() {
         })
 
         v.btn_reserve_reserve.setOnClickListener {
-            if (v.cb_confirm_reserve.isChecked) {
-                if (v.cb_carrier_reserve.isChecked || v.cb_etc_reserve.isChecked) {
-                    if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
-                        if (afterParseStore < afterParseTake) {
 
+            if (smmddee != tmmddee || snumhh != tnumhh || snummm != tnummm) {
+
+                if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
+
+                    if (v.cb_carrier_reserve.isChecked || v.cb_etc_reserve.isChecked) {
+
+                        if (v.cb_confirm_reserve.isChecked) {
                             //통신
                             postReserveInfo()
 
                             if (v.rb_kakaopay_reserve.isChecked) {
-                                val intent: Intent = Intent(context, KakaopayWebView::class.java)
+                                val intent = Intent(context, KakaopayWebView::class.java)
                                 startActivityForResult(intent, 9999)
                             }
                             if (v.rb_cash_reserve.isChecked) {
                                 ReserveCompleteDialog(context).show()
                             }
                         } else {
-                            toast("날짜 및 시간을 선택해주세요.")
+                            toast("결제 동의를 체크해주세요.")
+
                         }
                     } else {
-                        toast("결제 방법을 선택해주세요.")
+                        toast("짐 종류를 선택해주세요.")
+
                     }
                 } else {
-                    toast("짐 종류를 선택해주세요.")
+                    toast("결제 방법을 선택해주세요.")
+
                 }
             } else {
-                toast("결제 동의를 체크해주세요.")
+                toast("날짜 및 시간을 선택해주세요.")
+
             }
         }
+
     }
 
-    fun postReserveInfo() {
+    fun postReserveInfo() {//예약 상태 저장
 
         var reserveSave: ReservationSaveRequestData
         var bagData: ArrayList<bagInfo> = ArrayList()
@@ -273,6 +291,7 @@ class ReserveFragment : Fragment() {
             override fun onFailure(call: retrofit2.Call<JsonObject>, t: Throwable) {
                 toast(("fail"))
                 Log.d("postReservation: ", "@@@" + t.message)
+                errorCheck = true
             }
 
             override fun onResponse(call: retrofit2.Call<JsonObject>, response: Response<JsonObject>) {
@@ -281,11 +300,19 @@ class ReserveFragment : Fragment() {
                         200 -> {
                             toast("200")
                         }
-                        201 -> toast("201")
+                        201 -> {
+                            toast("예약 성공")
+                            if (rb_kakaopay_reserve.isChecked) {
+                                val intent: Intent = Intent(context, KakaopayWebView::class.java)
+                                startActivityForResult(intent, 9999)
+                            }
+                            if (rb_cash_reserve.isChecked) {
+                                ReserveCompleteDialog(context).show()
+                            } else {
+                            }
+                        }
                         400 -> {
-                            toast("400")
-                            //var errorData: ErrorData = gson.toJson(response.body(),ErrorData.class)
-                            toast(response.body().toString())
+                            toast("잘못된 정보 주입")
 
                             if (response.errorBody() != null) {
                                 var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
@@ -294,52 +321,83 @@ class ReserveFragment : Fragment() {
                             }
                             Log.v("TAGG", reserveSave.toString())
                             Log.v("TAGG@@@@@@@@@@@@@@@@2", response.errorBody()?.string())
+                            errorCheck = true
                         }
+
                         //이미 예약했는데 예약취소안하고 했을시 500뜸
                         500 -> {
                             Log.v("TAGG", reserveSave.toString())
                             Log.v("TAGG", response.body().toString())
-                            toast("500")
+                            toast("서버 에러")
                         }
-                        else -> toast("xxxx")
+                        else -> {
+                            toast("error")
+                            errorCheck = true
+                            toast("ErroerCheck=" + errorCheck.toString())
+                            Log.d("TAGGGGGGGGGGGGGGGGGG", it.code().toString())
+                            if (response.errorBody() != null) {
+                                var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
+                                toast(errorData.message)
+                            }
+                            Log.v("TAGG", reserveSave.toString())
+                            Log.v("TAGG@@@@@@@@@@@@@@@@2", response.errorBody()?.string())
+                        }
                     }
                 }
-
             }
         })
     }
 
-    fun getStoreResponseInfo(){
-        var jwt :String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-        var getStoreInfo = networkService.getStoreResponse(jwt,storeIdx)
+    fun getStoreResponseInfo() { //상가 세부정보 조회
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        var getStoreInfo = networkService.getStoreResponse(jwt, storeIdx)
         getStoreInfo.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
-                    response?.let {
-                        when(it.code()){
-                            200->{
-                                toast("200" + response.body()!!.closeTime.toString())
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            toast("200" + response.body()!!.closeTime)
+                            openTime = response.body()!!.openTime.toLong()
+                            closeTime = response.body()!!.closeTime.toLong()
+                            for (i in 0..response.body()!!.restWeekResponseDtos.size-1) {
+                                if(response.body()!!.restWeekResponseDtos[i].week==1) {
+                                    offday.add("일")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==2){
+                                    offday.add("화")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==3){
+                                    offday.add("수")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==4){
+                                    offday.add("목")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==5){
+                                    offday.add("금")
+                                }
+                                else if(response.body()!!.restWeekResponseDtos[i].week==6){
+                                    offday.add("토")
+                                }
+                                toast(offday[i])
                             }
-                            500->{
-                                toast("500")
-                            }
-                            else ->{
-                                toast("error")
-                            }
-
                         }
-
+                        500 -> {
+                            toast("500")
+                        }
+                        else -> {
+                            toast("error")
+                        }
                     }
-
+                }
             }
         })
-
     }
 
-    lateinit var priceArray : ArrayList<ReservationPriceListResponseData>
+    lateinit var priceArray: ArrayList<ReservationPriceListResponseData>
     private fun getReservationPriceListResponse() {
 
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
@@ -348,24 +406,18 @@ class ReserveFragment : Fragment() {
 
         getReservationPriceListResponse!!.enqueue(object : Callback<ArrayList<ReservationPriceListResponseData>> {
             override fun onFailure(call: Call<ArrayList<ReservationPriceListResponseData>>, t: Throwable) {
+                errorCheck = true
             }
 
             override fun onResponse(call: Call<ArrayList<ReservationPriceListResponseData>>, response: Response<ArrayList<ReservationPriceListResponseData>>) {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            toast("가격표 조회 성공")
-                            toast("@@1: "+response.body().toString())
-
-
-
+//                            toast("가격표 조회 성공")
+//                            toast("@@1: "+response.body().toString())
                             priceArray = response.body()!!
-
-
-                            toast("@@2: "+priceArray.toString())
-
-                            calPrice()
-
+//                            toast("@@2: "+priceArray.toString())
+//                            calPrice()
                         }
                         500 -> {
                             toast("서버 에러")
@@ -380,35 +432,27 @@ class ReserveFragment : Fragment() {
         })
     }
 
-    fun calPrice() {
-
-        var temp_a : Long = 1546227587000
-        var temp_b : Long = 1546309187000
+    fun calPriceUnit(afterParseStore: Long, afterParseTake: Long): Int {
         // 시간 계산
-//        var hour : Long = (afterParseTake - afterParseStore) / 1000 / 60 / 60
-//        if (hour * 1000 * 60 * 60 != afterParseTake - afterParseStore) {
-//            hour++
-//        }
-
-        var hour : Long = (temp_b - temp_a) / 1000 / 60 / 60
-        if (hour * 1000 * 60 * 60 != temp_b - temp_a) {
+        var hour: Long = (afterParseTake - afterParseStore) / 1000 / 60 / 60
+        if (hour * 1000 * 60 * 60 != afterParseTake - afterParseStore) {
             hour++
         }
 
+        Log.d("@@@@@@@@@", "snumhh: "+snumhh.toString())
+
+
         var price = 0
 
-        for (i in 0..priceArray.size-1) {
+        for (i in 0..priceArray.size - 1) {
 
             if (priceArray.get(i).priceIdx < hour) {
                 price = priceArray.get(i).price
             }
-
-//                                Log.d("price "+i, priceArray.get(i).toString())
         }
-
         var extra_hour = 0
 
-        var final_price = priceArray.get(priceArray.size-1).priceIdx
+        var final_price = priceArray.get(priceArray.size - 1).priceIdx
 
         if (hour > final_price) {
             var temp_extra_hour = hour - final_price
@@ -418,17 +462,10 @@ class ReserveFragment : Fragment() {
             }
         }
 
-        var luggage_cnt = 3
 
+        var price_unit: Int = price + extra_hour * final_price
 
-        var total_price : Long  = ((price + extra_hour * final_price) * luggage_cnt).toLong()
+        return price_unit
 
-        Log.d("가격 계산", total_price.toString())
-        Log.d("hour", hour.toString())
-        Log.d("price", price.toString())
-        Log.d("extra_hour", extra_hour.toString())
-        Log.d("final_price", final_price.toString())
-        Log.d("luggage_cnt", luggage_cnt.toString())
     }
-
 }

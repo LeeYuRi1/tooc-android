@@ -158,9 +158,15 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         if (requestCode == 999) {
             if (resultCode == 1) {
 
+            }
+            if(resultCode  == 2) {  // 어댑터에서 들어올 때 -> storeIdx 전달해서 서버 데이터 세팅 필요
+                Log.d("@storeIdx통신@", "MapFragment로 돌아왔다.")
+                var storeIdx : Int = data!!.getIntExtra("storeIdx", 0)
+                Log.d("@storeIdx통신@", "storeIdx는? " + storeIdx)
+                (activity as MainActivity).getStoreIdx(storeIdx)
+
             } else {
                 (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
-
             }
         }
     }
@@ -198,26 +204,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,
             mMap.uiSettings.isZoomGesturesEnabled = true
 
         }
-
-
-//        if (ActivityCompat.checkSelfPermission(activity!!,
-//                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-//                && ActivityCompat.checkSelfPermission(activity!!,
-//                        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//
-//            var mLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
-//            latitude2 = mLastKnownLocation.latitude
-//            longtitude2 = mLastKnownLocation.longitude
-//        }
-
-
-//        setUpMap()
-
-        // Add a marker in Sydney and move the camera
-//        val marker = LatLng(37.578346, 127.057015)
-////        mMap.addMarker(MarkerOptions().position(marker).title("Marker"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
-//        mMap.animateCamera(CameraUpdateFactory.zoomTo(17f))
 
     }
 

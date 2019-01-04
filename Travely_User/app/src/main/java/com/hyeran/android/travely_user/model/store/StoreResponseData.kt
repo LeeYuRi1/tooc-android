@@ -2,6 +2,8 @@ package com.hyeran.android.travely_user.model.store
 
 data class StoreResponseData (
         var address : String,
+        var addressNumber : String,
+
         var closeTime : String,
         var currentBag : Int,
         var grade : Double,

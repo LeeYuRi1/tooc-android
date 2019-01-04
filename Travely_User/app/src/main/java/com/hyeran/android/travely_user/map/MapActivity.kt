@@ -21,10 +21,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.reserve.ReserveFragment
-import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
-import com.hyeran.android.travely_user.mypage.MypageFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
@@ -122,7 +118,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             location?.run {
                 // 14 level로 확대하고 현재 위치로 카메라 이동
                 val latLng = LatLng(latitude, longitude)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
 
                 Log.d("MapActivity", "위도 : $latitude, 경도 : $longitude")
             }

@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.util.Log
 import com.hyeran.android.travely_user.map.MapFragment
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.mypage.MypageFragment
@@ -36,6 +37,16 @@ class MainActivity : AppCompatActivity() {
         setOnClickListener()
     }
 
+    fun getStoreIdx(storeIdx : Int) {
+        Log.d("@storeIdx통신@", "MainActivity의 getSoreIdx 함수에 들어왔다. storeIdx의 값은? "+ storeIdx)
+        var mapMorePreviewFragment = MapMorePreviewFragment()
+        var bundle = Bundle()
+        bundle.putInt("storeIdx", storeIdx)
+        mapMorePreviewFragment.arguments = bundle
+
+        replaceFragment(mapMorePreviewFragment)
+    }
+
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
             replaceFragment(MapFragment())
@@ -65,34 +76,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var smmddee: String? = null
-    var tmmddee: String? = null
-    var shh: Int? = null
-    var smm: Int? = null
-    var thh: Int? = null
-    var tmm: Int? = null
-    var svalue: Int = 0
-    var tvalue: Int = 0
+    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int,storeIdx:Int) {
 
-    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int) {
-
-        smmddee = tsmmddee
-        shh = tshh
-        smm = tsmm
-        tmmddee = ttmmddee
-        thh = tthh
-        tmm = ttmm
-        svalue = tsValue
-        tvalue = ttValue
-
-        args!!.putString("smmddee", smmddee)
-        args!!.putInt("shh", shh as Int)
-        args!!.putInt("smm", smm as Int)
-        args!!.putString("tmmddee", tmmddee)
-        args!!.putInt("thh", thh as Int)
-        args!!.putInt("tmm", tmm as Int)
-        args!!.putInt("svalue", svalue)
-        args!!.putInt("tvalue", tvalue)
+        args!!.putString("smmddee", tsmmddee)
+        args!!.putInt("shh", tshh)
+        args!!.putInt("smm", tsmm)
+        args!!.putString("tmmddee", ttmmddee)
+        args!!.putInt("thh", tthh)
+        args!!.putInt("tmm", ttmm)
+        args!!.putInt("svalue", tsValue)
+        args!!.putInt("tvalue", ttValue)
+        args!!.putInt("storeIdx", storeIdx)
 
         var fragment: Fragment = ReserveFragment()
         fragment.arguments = args
