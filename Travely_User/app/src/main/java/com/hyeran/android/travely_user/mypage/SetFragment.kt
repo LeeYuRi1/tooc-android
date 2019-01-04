@@ -6,9 +6,10 @@ import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
-import kotlinx.android.synthetic.main.fragment_mypage.*
 import kotlinx.android.synthetic.main.fragment_set.*
+import org.jetbrains.anko.support.v4.ctx
 
 class SetFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,17 +23,20 @@ class SetFragment : Fragment() {
     }
 
     private fun setClickListener() {
-        btn_whatistooc_set.setOnClickListener {
+        tv_whatistooc_set.setOnClickListener {
             replaceFragment(ToocFragment())
         }
-        btn_faq_set.setOnClickListener {
+        tv_faq_set.setOnClickListener {
             replaceFragment(FaqFragment())
         }
-        btn_access_terms_set.setOnClickListener {
+        tv_access_terms_set.setOnClickListener {
             replaceFragment(AccessTermsFragment())
         }
-        btn_question_set.setOnClickListener {
+        tv_question_set.setOnClickListener {
             replaceFragment(QuestionFragment())
+        }
+        iv_back_set.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(MypageFragment())
         }
 
     }

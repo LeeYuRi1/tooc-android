@@ -1,5 +1,7 @@
 package com.hyeran.android.travely_user.model
 
+import android.support.constraint.ConstraintLayout
+
 data class StoreInfoResponseData (
         var address : String,
         var closeTime : Long,
@@ -9,6 +11,7 @@ data class StoreInfoResponseData (
         var ownerIdx : Int,
         var storeCall : String,
         var storeIdx : Int,
+        var storeImage : String,
         var storeName : String,
         var storeUrl : String
 )

@@ -26,6 +26,7 @@
         android:fontFamily="@font/kopub_medium"
         android:text="프로마치"
         android:textSize="16sp"
+        android:textColor="#262626"
         app:layout_constraintStart_toEndOf="@+id/iv_storeimage_recentstore"
         app:layout_constraintTop_toTopOf="@+id/iv_storeimage_recentstore" />
 
@@ -33,9 +34,10 @@
         android:id="@+id/tv_addr_recentstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/kopub_light"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/kopub_medium"
         android:text="성북구 안암동 123번지"
+        android:textColor="#707070"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_name_recentstore"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_recentstore" />
@@ -44,9 +46,10 @@
         android:id="@+id/tv_time_recentstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/kopub_light"
-        android:text="매일 11:00 - 22:00"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/kopub_medium"
+        android:text="매일 "
+        android:textColor="#707070"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_addr_recentstore"
         app:layout_constraintTop_toBottomOf="@+id/tv_addr_recentstore" />
@@ -80,5 +83,38 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_storeimage_recentstore"
         app:layout_constraintStart_toEndOf="@+id/iv_storeimage_recentstore"
         app:layout_constraintTop_toBottomOf="@+id/tv_time_recentstore" />
+
+    <TextView
+        android:id="@+id/tv_starttime_recentstore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text="11:00"
+        android:textSize="12sp"
+        android:textColor="#707070"
+        app:layout_constraintStart_toEndOf="@+id/tv_time_recentstore"
+        app:layout_constraintTop_toTopOf="@+id/tv_time_recentstore" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text=" - "
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_starttime_recentstore"
+        app:layout_constraintTop_toTopOf="@+id/tv_starttime_recentstore" />
+
+    <TextView
+        android:id="@+id/tv_endtime_recentstore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text="22:00"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/textView49"
+        app:layout_constraintTop_toTopOf="@+id/textView49" />
 
 </android.support.constraint.ConstraintLayout>

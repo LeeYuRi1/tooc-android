@@ -47,6 +47,11 @@ class JoinActivity : AppCompatActivity() {
                 toast("잘못된 형식의 정보가 있습니다.")
             }
         }
+
+        iv_back_signin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     var name_validation = false
@@ -187,7 +192,7 @@ class JoinActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
-                            startActivity(Intent(this@JoinActivity, MainActivity::class.java))
+                            startActivity(Intent(this@JoinActivity, ExplanationActivity::class.java))
                             finish()
                         }
                         400 -> {

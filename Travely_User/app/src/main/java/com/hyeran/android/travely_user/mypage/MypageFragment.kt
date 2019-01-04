@@ -14,12 +14,17 @@ import com.bumptech.glide.request.RequestOptions
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.MypageRecentStoreAdapter
 import com.hyeran.android.travely_user.data.MypageRecentStoreData
+import com.hyeran.android.travely_user.join.ExplanationActivity
 import com.hyeran.android.travely_user.join.LoginActivity
 import com.hyeran.android.travely_user.join.RecentstoreDetailFragment
 import com.hyeran.android.travely_user.model.ProfileResponseData
+import com.hyeran.android.travely_user.model.StoreInfoResponseData
+import com.hyeran.android.travely_user.model.region.RegionResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_mypage.*
+import kotlinx.android.synthetic.main.fragment_mypage.view.*
+import org.jetbrains.anko.image
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
@@ -32,7 +37,11 @@ class MypageFragment : Fragment() {
 
     lateinit var mypageRecentStoreAdapter: MypageRecentStoreAdapter
 
-    lateinit var v : View
+    lateinit var v: View
+
+    val dataList: ArrayList<StoreInfoResponseData> by lazy {
+        ArrayList<StoreInfoResponseData>()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_mypage, container, false)
@@ -45,6 +54,7 @@ class MypageFragment : Fragment() {
         getProfileResponse()
         setClickListener()
         setRecyclerView()
+        getRecentStoreResponse()
     }
 
     private fun init() {
@@ -52,11 +62,6 @@ class MypageFragment : Fragment() {
     }
 
     private fun setRecyclerView() {
-        var dataList: ArrayList<MypageRecentStoreData> = ArrayList()
-        dataList.add(MypageRecentStoreData("동대문엽기떡볶이 홍대점", "성북구 안암동 123번지", "10:00 - 23:00"))
-        dataList.add(MypageRecentStoreData("롭스 홍대2호점", "성북구 안암동 123번지", "11:00 - 22:00"))
-        dataList.add(MypageRecentStoreData("프로마치", "성북구 안암동 123번지", "12:00 - 23:00"))
-
         mypageRecentStoreAdapter = MypageRecentStoreAdapter(activity!!, dataList)
         rv_recentstore_mypage.adapter = mypageRecentStoreAdapter
         rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
@@ -73,11 +78,9 @@ class MypageFragment : Fragment() {
         }
         layout_myreview_mypage.setOnClickListener {
             replaceFragment(MyreviewFragment())
-//            val intent = Intent(this.activity, LoginActivity::class.java)
+//            val intent = Intent(this.activity, ExplanationActivity::class.java)
 //            startActivity(intent)
 
-
-            //WriteReviewDialog(context).show()
         }
         iv_set_mypage.setOnClickListener {
             replaceFragment(SetFragment())
@@ -85,12 +88,11 @@ class MypageFragment : Fragment() {
 
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
         transaction.commit()
     }
-
 
 
     private fun getProfileResponse() {
@@ -107,6 +109,11 @@ class MypageFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
+
+                            Glide.with(this@MypageFragment)
+                                    .load(response.body()!!.profileImg)
+                                    .into(iv_profile_mypage)
+
                             tv_name_mypage.text = response.body()!!.name
                             tv_mybag_cnt_mypage.text = response.body()!!.myBagCount.toString()
                             tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
@@ -127,4 +134,44 @@ class MypageFragment : Fragment() {
         })
     }
 
+    private fun getRecentStoreResponse() {
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+
+        val getProfileResponse = networkService.getProfileResponse(jwt)
+
+        getProfileResponse!!.enqueue(object : Callback<ProfileResponseData> {
+            override fun onFailure(call: Call<ProfileResponseData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<ProfileResponseData>, response: Response<ProfileResponseData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            var dataList_recent: ArrayList<StoreInfoResponseData> = response.body()!!.storeInfoResponseDtoList
+
+                            if (dataList_recent.size > 0) {
+                                val position = mypageRecentStoreAdapter.itemCount
+                                mypageRecentStoreAdapter.dataList.addAll(dataList_recent)
+                                mypageRecentStoreAdapter.notifyItemInserted(position)
+                            } else {
+
+                            }
+
+                            toast("최근 예약 상가 조회 성공")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+    }
+
 }
+

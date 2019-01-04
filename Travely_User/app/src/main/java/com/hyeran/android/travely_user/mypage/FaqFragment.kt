@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ExpandableListView
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.FaqAdapter
 import kotlinx.android.synthetic.main.fragment_faq.*
+import org.jetbrains.anko.support.v4.ctx
 
 class FaqFragment :Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -18,6 +20,10 @@ class FaqFragment :Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         expandable()
+
+        iv_back_faq.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(SetFragment())
+        }
     }
 
     private fun expandable() {
