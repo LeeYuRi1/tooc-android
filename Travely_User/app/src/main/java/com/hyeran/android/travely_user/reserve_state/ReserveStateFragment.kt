@@ -18,17 +18,30 @@ import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.LuggagePictureAdapter
 import com.hyeran.android.travely_user.data.LuggagePictureData
 import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
+import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Response
+import javax.security.auth.callback.Callback
 
 
 class ReserveStateFragment : Fragment() {
 
+    lateinit var networkService: NetworkService
 
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
+
+
+    var stateType : String? = null
+    var reserveCode : String? = null
+    var startTIme : Long? = null
+    var endTime : Long? = null
+    var bagType = ArrayList<String>()
+    var bagCount = ArrayList<Int>()
 
     companion object {
         private var instance: ReserveStateFragment? = null
@@ -74,7 +87,6 @@ class ReserveStateFragment : Fragment() {
 
     fun setRecyclerView() {
         var dataList: ArrayList<LuggagePictureData> = ArrayList()
-//        dataList.add(LuggagePictureData(Drawable.))
         dataList.add(LuggagePictureData("tesetest"))
         dataList.add(LuggagePictureData("tesetest"))
 
@@ -106,5 +118,37 @@ class ReserveStateFragment : Fragment() {
         return bmp
     }
 
+    private fun init(){
+        networkService = ApplicationController.instance.networkService
+    }
+    fun getReservationReserveResponse(){
+        var jwt : String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        val getReservationReserveResponse = networkService.getReservationReserveResponse(jwt)
+        getReservationReserveResponse.enqueue(object : retrofit2.Callback<ReservationReserveCodeData>{
+            override fun onFailure(call: Call<ReservationReserveCodeData>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
 
+            override fun onResponse(call: Call<ReservationReserveCodeData>, response: Response<ReservationReserveCodeData>) {
+                response?.let {
+                    when(it?.code()){
+                        200->{
+                            stateType = response.body()!!.stateType.toString()
+                            reserveCode = response.body()!!.reserveCode.toString()
+//                            var startTIme : Long? = null
+//                            var endTime : Long? = null
+//                            var bagType = ArrayList<String>()
+//                            var bagCount = ArrayList<Int>()
+
+                        }
+                        500->{
+                            toast("500 error")
+                        }
+                        else -> toast("toast")
+                    }
+                }
+            }
+        })
+
+    }
 }

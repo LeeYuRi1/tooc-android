@@ -9,6 +9,6 @@ data class storeInfo(
         var openTime : Long,
         var ownerName:String,
         var storeCall : String,
-        var storeIdx : Long,
+        var storeIdx : Int,
         var storeName : String
 )
