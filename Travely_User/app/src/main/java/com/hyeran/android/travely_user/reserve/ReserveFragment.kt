@@ -151,12 +151,10 @@ class ReserveFragment : Fragment() {
                     v.tv_price_carrier_reserve.text = carrier_price.toString()
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     carrier_amount = 1
-                    //v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
 
                     v.iv_carrier_amount_up_reserve.setOnClickListener {
                         carrier_amount = Integer.parseInt(v.tv_carrier_changing_amount_reserve.text as String?)
                         carrier_amount++
-                        // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                         v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                         v.tv_carrier_amount_reserve.text = carrier_amount.toString()
                         carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)

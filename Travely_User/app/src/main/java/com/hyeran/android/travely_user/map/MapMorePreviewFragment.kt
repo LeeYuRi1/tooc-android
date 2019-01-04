@@ -516,4 +516,3 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     }
 
 }
-}
