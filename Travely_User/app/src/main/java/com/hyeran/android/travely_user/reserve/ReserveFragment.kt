@@ -16,6 +16,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.R.id.rb_kakaopay_reserve
+import com.hyeran.android.travely_user.dialog.BagSizeDialog
 import com.hyeran.android.travely_user.dialog.KeepPriceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
 import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
@@ -147,6 +148,10 @@ class ReserveFragment : Fragment() {
 
         v.btn_price_reserve.setOnClickListener {
             KeepPriceDialog(context).show()
+        }
+
+        v.btn_bag_size_reserve.setOnClickListener {
+            BagSizeDialog(context).show()
         }
 
         //tv_result_amount_carrier_reserve, tv_result_amount_etc_reserve 뺌

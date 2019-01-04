@@ -25,8 +25,7 @@ class ExplanationActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        SharedPreferencesController.instance!!.load(this)
-        networkService = ApplicationController.instance.networkService
+        SharedPreferencesController.instance!!.setPrefData("Explanation", true)
         startExplanation()
     }
 
