@@ -45,6 +45,7 @@ class MapMoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map_more)
 
+        btn_map_more_act_favorite.isSelected = false
 
         storeIdx = intent.getIntExtra("storeIdx", 0)
 
@@ -75,6 +76,14 @@ class MapMoreActivity : AppCompatActivity() {
             intent.putExtra("storeIdx", storeIdx)
             setResult(777, intent)
             finish()
+        }
+
+        btn_map_more_act_favorite.setOnClickListener {
+            if (btn_map_more_act_favorite.isSelected) {
+                btn_map_more_act_favorite.isSelected = false
+            } else {
+                btn_map_more_act_favorite.isSelected = true
+            }
         }
     }
 
