@@ -5,60 +5,51 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.action_bar_root
-import com.hyeran.android.travely_user.R.id.mapView2
-import com.hyeran.android.travely_user.adapter.PhotoRecylerViewAdapter
-import com.hyeran.android.travely_user.adapter.ReviewRecyclerViewAdapter
-import com.hyeran.android.travely_user.data.PhotoData
-import com.hyeran.android.travely_user.data.ReviewData
-import com.hyeran.android.travely_user.map.MapFragment.Companion.mInstance
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import com.hyeran.android.travely_user.reserve.ReserveFragment
-import kotlinx.android.synthetic.main.fragment_map.view.*
-import kotlinx.android.synthetic.main.fragment_map_more.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.view.*
-import kotlinx.android.synthetic.main.item_myreview.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
-import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import java.sql.Timestamp
 
 class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+
+    var latitude2 : Double? = 0.0
+    var longtitude2: Double? = 0.0
+
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             return
         }
 
@@ -69,8 +60,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             startLocationUpdates2()
         }
         if (mLocation2 != null) {
-            var latitude2: Double = mLocation2.latitude
-            var longtitude2: Double = mLocation2.longitude
+            latitude2 = mLocation2.latitude
+            longtitude2 = mLocation2.longitude
         } else {
 
         }
@@ -81,9 +72,9 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 
         if (ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             return
         }
 
@@ -96,7 +87,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     }
 
     override fun onConnectionFailed(connectResult: ConnectionResult) {
-        Log.i(TAG2, "Connection failed. Error : " + connectResult.getErrorCode())
+        Log.i(TAG2, "Connection failed. Error : " + connectResult.errorCode)
     }
 
     override fun onStart() {
@@ -132,17 +123,30 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
     private val TAG2 = javaClass.simpleName
 
-    public var locationPermissionGranted2: Boolean = false
+    private var locationPermissionGranted2: Boolean = false
+
 
     private lateinit var lastLocation2: Location
-
 
     companion object {
         var mInstance2: MapMorePreviewFragment? = null
         @Synchronized
-        fun getInstance(): MapMorePreviewFragment {
+        fun getInstance(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int): MapMorePreviewFragment {
             if (mInstance2 == null) {
-                mInstance2 = MapMorePreviewFragment()
+                mInstance2 = MapMorePreviewFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("smmddee", tsmmddee)
+                        putInt("shh", tshh)
+                        putInt("smm", tsmm)
+                        putString("tmmddee", ttmmddee)
+                        putInt("thh", tthh)
+                        putInt("tmm", ttmm)
+                        putInt("svalue", tsValue)
+                        putInt("tvalue", ttValue)
+
+                        Log.d("TAG", tsmmddee + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+                    }
+                }
             }
             return mInstance2!!
         }
@@ -157,13 +161,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         mapView2.onCreate(savedInstanceState)
         mapView2.getMapAsync(this)
 
-        Log.d("@storeIdx통신@", "MapMorePreviewFragment에 들어왔다. 번들 만나기 전임")
-
-
         var bundle: Bundle? = arguments
         storeIdx = bundle!!.getInt("storeIdx")
-
-        Log.d("@storeIdx통신@", "MapMorePreviewFragment의 전달받은 번들 값 " + storeIdx)
 
 
         toast(storeIdx.toString())
@@ -195,21 +194,43 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
 */
 
+
         view2.btn_fragment_map_question2.setOnClickListener {
             startActivityForResult<LocationListActivity>(999)
         }
 
         view2.btn_fragment_map_more_preview.setOnClickListener {
-            startActivity<MapMoreActivity>()
+            var intent = Intent(activity, MapMoreActivity::class.java)
+            if (ActivityCompat.checkSelfPermission(activity!!,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(activity!!,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                var mLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
+                latitude2 = mLastKnownLocation.latitude
+                longtitude2 = mLastKnownLocation.longitude
+            }
+
+            intent.putExtra("lat", latitude2)
+            intent.putExtra("lng", longtitude2)
+
+            intent.putExtra("storeIdx", storeIdx)
+            startActivityForResult(intent, 888)
         }
 
         view2.iv_reserve_map_more_preview.setOnClickListener {
-            (activity as MainActivity).replaceFragment(ReserveFragment())
+            var args: Bundle = Bundle()
+            var fragment: Fragment = ReserveFragment()
+            args.putInt("storeIdx", storeIdx)
+            fragment.arguments = args
+
+            (activity as MainActivity).replaceFragment(fragment)
         }
+
+//        Log.d("TAGGGGG", latitude2.toString() + "asdasdasdasd" + longtitude2.toString())
 
         return view2
     }
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -219,12 +240,17 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
-            Log.d("@storeIdx통신@", "MapFragment로 돌아왔다.")
-            storeIdx = data!!.getIntExtra("storeIdx", 0)
-            Log.d("@storeIdx통신@", "storeIdx는? " + storeIdx)
-//            (activity as MainActivity).getStoreIdx(storeIdx)
-
             getStoreResponse()
+        }
+        if (requestCode == 888) {
+            if (resultCode == 777) {
+                var storeIdx = data!!.getIntExtra("storeIdx", 0)
+                var args = Bundle()
+                args.putInt("storeIdx", storeIdx)
+                var fragment : Fragment = ReserveFragment()
+                fragment.arguments = args
+                (ctx as MainActivity).replaceFragment(fragment)
+            }
         }
     }
 
@@ -242,12 +268,18 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         mGoogleApiClient2.connect()
 
+//        Log.d("TAGGGGG", latitude2.toString() + "asdasdasdasd" + longtitude2.toString())
+
+
     }
 
 
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
         mMap2 = googleMap
+
+//        mMap2.setMinZoomPreference(17f)
+//        mMap2.setMaxZoomPreference(21f)
 
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -257,10 +289,10 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             mMap2.uiSettings.isZoomGesturesEnabled = true
         }
 
-        // Add a marker in Sydney and move the camera
-        val marker2 = LatLng(37.578346, 127.057015)
-        mMap2.addMarker(MarkerOptions().position(marker2).title("Marker"))
-        mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker2, 17f))
+
+        val marker = LatLng(37.578346, 127.057015)
+        mMap2.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+        mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
 
@@ -326,6 +358,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
             val location2 = locationResult?.lastLocation
 
+            /*
             location2?.run {
                 // 14 level로 확대하고 현재 위치로 카메라 이동
                 val latLng = LatLng(latitude, longitude)
@@ -334,6 +367,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                 Log.d("MapMorePreviewFragment", "위도 : $latitude, 경도 : $longitude")
             }
+            */
         }
     }
 
@@ -407,19 +441,77 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     private fun getStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         val getStoreResponse = networkService.getStoreResponse(jwt, storeIdx)
-        getStoreResponse!!.enqueue(object : Callback<StoreResponseData> {
+        getStoreResponse.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
             }
 
             override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
-                response?.let {
+                response.let {
                     when (it.code()) {
                         200 -> {
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
-                            tv_opentime_map_more_preview.text = response.body()!!.openTime
-                            tv_closetime_map_more_preview.text = response.body()!!.closeTime
 
+                            var open_time: Long = response.body()!!.openTime.toLong()
+
+                            if (Timestamp(open_time).hours.toString().trim().length == 1) {
+                                tv_opentime_hour_map_more_preview.text = "0" + Timestamp(open_time).hours.toString().trim()
+                            } else {
+                                tv_opentime_hour_map_more_preview.text = Timestamp(open_time).hours.toString().trim()
+                            }
+
+                            if (Timestamp(open_time).minutes.toString().trim().length == 1) {
+                                tv_opentime_minute_map_more_preview.text = "0" + Timestamp(open_time).minutes.toString().trim()
+                            } else {
+                                tv_opentime_minute_map_more_preview.text = Timestamp(open_time).minutes.toString().trim()
+                            }
+
+                            var close_time: Long = response.body()!!.closeTime.toLong()
+                            if (Timestamp(close_time).hours.toString().trim().length == 1) {
+                                tv_closetime_hour_map_more_preview.text = "0" + Timestamp(close_time).hours.toString().trim()
+                            } else {
+                                tv_closetime_hour_map_more_preview.text = Timestamp(close_time).hours.toString().trim()
+                            }
+
+                            if (Timestamp(close_time).minutes.toString().trim().length == 1) {
+                                tv_closetime_minute_map_more_preview.text = "0" + Timestamp(close_time).minutes.toString().trim()
+                            } else {
+                                tv_closetime_minute_map_more_preview.text = Timestamp(close_time).minutes.toString().trim()
+                            }
+
+                            var current_time: Long = System.currentTimeMillis()
+
+                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
+                            Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
+                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {
+                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                } else {
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                }
+                            } else if (Timestamp(close_time).hours == Timestamp(close_time).hours) {
+                                if ((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
+                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
+                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    } else {
+                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                    }
+                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
+                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    } else {
+                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                    }
+                                } else {
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                }
+                            }
+                            else {
+                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                            }
                         }
                         500 -> {
                             toast("서버 에러")

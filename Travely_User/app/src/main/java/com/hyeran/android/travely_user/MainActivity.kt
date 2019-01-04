@@ -76,34 +76,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var smmddee: String? = null
-    var tmmddee: String? = null
-    var shh: Int? = null
-    var smm: Int? = null
-    var thh: Int? = null
-    var tmm: Int? = null
-    var svalue: Int = 0
-    var tvalue: Int = 0
+    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int,storeIdx:Int) {
 
-    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int) {
-
-        smmddee = tsmmddee
-        shh = tshh
-        smm = tsmm
-        tmmddee = ttmmddee
-        thh = tthh
-        tmm = ttmm
-        svalue = tsValue
-        tvalue = ttValue
-
-        args!!.putString("smmddee", smmddee)
-        args!!.putInt("shh", shh as Int)
-        args!!.putInt("smm", smm as Int)
-        args!!.putString("tmmddee", tmmddee)
-        args!!.putInt("thh", thh as Int)
-        args!!.putInt("tmm", tmm as Int)
-        args!!.putInt("svalue", svalue)
-        args!!.putInt("tvalue", tvalue)
+        args!!.putString("smmddee", tsmmddee)
+        args!!.putInt("shh", tshh)
+        args!!.putInt("smm", tsmm)
+        args!!.putString("tmmddee", ttmmddee)
+        args!!.putInt("thh", tthh)
+        args!!.putInt("tmm", ttmm)
+        args!!.putInt("svalue", tsValue)
+        args!!.putInt("tvalue", ttValue)
+        args!!.putInt("storeIdx", storeIdx)
 
         var fragment: Fragment = ReserveFragment()
         fragment.arguments = args

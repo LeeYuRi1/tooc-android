@@ -40,7 +40,12 @@ class JoinActivity : AppCompatActivity() {
 
     private fun setOnClickListener() {
         btn_confirm_join.setOnClickListener {
-            postJoinResponse()
+            if(name_validation && email_validation && pw_validation && pw_confirm_validation && call_validation) {
+                postJoinResponse()
+            }
+            else {
+                toast("잘못된 형식의 정보가 있습니다.")
+            }
         }
 
         iv_back_signin.setOnClickListener {
@@ -49,13 +54,15 @@ class JoinActivity : AppCompatActivity() {
         }
     }
 
+    var name_validation = false
+    var email_validation = false
+    var pw_validation = false
+    var pw_confirm_validation = false
+    var call_validation = false
+
     // 유효성 검사
     private fun checkValidation() {
 
-        var name_validation = false
-        var email_validation = false
-        var pw_validation = false
-        var pw_confirm_validation = false
 
         // 이름: 공백인지 아닌지
         et_name_join.addTextChangedListener(object : TextWatcher {
@@ -76,7 +83,7 @@ class JoinActivity : AppCompatActivity() {
                 }
                 else {
                     iv_email_check_join.visibility = View.INVISIBLE
-                    email_validation = true
+                    email_validation = false
                 }
             }
 
@@ -84,14 +91,24 @@ class JoinActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        // 패스워드: 8-20자, 영어+번호+특수문자
+
+        // 패스워드: 8-20자, 문자+숫자
         et_password_join.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (et_password_join.text.toString().length != 0) {
+                if(Pattern.matches("^(?=.*?[a-zA-Z])(?=.*?[0-9]).{8,20}\$", et_password_join.text.toString()))
+                {
                     iv_password_check_join.visibility = View.VISIBLE
-                } else if (et_password_join.text.toString().length == 0) {
-                    iv_password_check_join.visibility = View.GONE
+                    pw_validation = true
                 }
+                else {
+                    iv_password_check_join.visibility = View.GONE
+                    pw_validation = false
+                }
+//                if (et_password_join.text.toString().length != 0) {
+//                    iv_password_check_join.visibility = View.VISIBLE
+//                } else if (et_password_join.text.toString().length == 0) {
+//                    iv_password_check_join.visibility = View.GONE
+//                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -105,18 +122,33 @@ class JoinActivity : AppCompatActivity() {
                     if (et_password_join.text.toString() == et_password_confilm_join.text.toString()) {
                         iv_passwordconfirm_check_join.visibility = View.VISIBLE
                         iv_passwordconfirm_x_join.visibility = View.GONE
+                        pw_confirm_validation = true
                     } else {
                         iv_passwordconfirm_check_join.visibility = View.GONE
                         iv_passwordconfirm_x_join.visibility = View.VISIBLE
+                        pw_confirm_validation = false
                     }
                 } else if (et_password_confilm_join.text.toString().length == 0) {
                     iv_passwordconfirm_check_join.visibility = View.GONE
                     iv_passwordconfirm_x_join.visibility = View.GONE
+                    pw_confirm_validation = false
                 }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+
+        et_phone_join.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                call_validation = Pattern.matches("01[0|1|6-9][0-9]{3,4}[0-9]{4}\$", et_phone_join.text.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
         })
     }
 
@@ -155,7 +187,7 @@ class JoinActivity : AppCompatActivity() {
                 response?.let {
                     when (it.code()) {
                         201 -> {
-                            toast("유저 생성 성공")
+                            toast("회원가입이 완료되었습니다.")
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
@@ -164,7 +196,7 @@ class JoinActivity : AppCompatActivity() {
                             finish()
                         }
                         400 -> {
-                            toast("유효성 체크 에러 혹은 중복된 이메일")
+                            toast("중복된 이메일입니다.")
                         }
                         500 -> {
                             toast("서버 에러")

@@ -22,13 +22,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<SimpleStoreResponseData>) : RecyclerView.Adapter<MoreLocationRVAdapter.Holder>() {
+class MoreLocationRVAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreResponseData>) : RecyclerView.Adapter<MoreLocationRVAdapter.Holder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(ctx).inflate(R.layout.item_more_location_map, parent, false)
-
-        Toast.makeText(ctx, dataList.toString(), Toast.LENGTH_SHORT).show()
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_more_location_map, parent, false)
 
         return Holder(view)
     }
@@ -39,19 +37,15 @@ class MoreLocationRVAdapter(val ctx : Context, val dataList: ArrayList<SimpleSto
         holder.name.text = dataList[position].storeName
         dataList[position].storeIdx
 
-        Log.d("MoreLocationRVAdapter", "@@@@@@@@@@@@@"+dataList[position])
         holder.item_more_location_map.setOnClickListener {
 
-            Log.d("@storeIdx통신@", "item이 클릭되었습니다.")
-            Log.d("@storeIdx통신@", "해당 storeIdx는? "+dataList[position].storeIdx)
             (ctx as LocationListActivity).getStoreIdx(dataList[position].storeIdx)
-//            ctx.finish()
         }
     }
 
-    inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val name : TextView = itemView.findViewById(R.id.tv_name_item_more_location_map) as TextView
-        val item_more_location_map : LinearLayout = itemView.findViewById(R.id.item_more_location_map) as LinearLayout
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val name: TextView = itemView.findViewById(R.id.tv_name_item_more_location_map) as TextView
+        val item_more_location_map: LinearLayout = itemView.findViewById(R.id.item_more_location_map) as LinearLayout
     }
 
 

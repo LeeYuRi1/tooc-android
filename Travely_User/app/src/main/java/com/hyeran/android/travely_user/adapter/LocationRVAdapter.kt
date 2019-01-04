@@ -22,16 +22,6 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_location_map, parent, false)
 
-
-//        view.iv_more_item_location_map.setOnClickListener {
-//            Toast.makeText(ctx, "ssss", Toast.LENGTH_SHORT)
-//            if (view.rv_more_item_location_map.visibility == View.VISIBLE) {
-//                view.rv_more_item_location_map.visibility = View.GONE
-//            } else {
-//                view.rv_more_item_location_map.visibility = View.VISIBLE
-//            }
-//        }
-
         return Holder(view)
     }
 
@@ -46,12 +36,7 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
         Log.d("LocationRVAdapter", "@@@@@@@@@@@@@" + dataList[position])
 
         more_dataList = dataList[position].simpleStoreResponseDtos
-        //moreLocationRVAdapterList
-        //moreLocationRVAdapterList!!.indexOf(MoreLocationRVAdapter(ctx, more_dataList))
         moreLocationRVAdapter = MoreLocationRVAdapter(ctx, more_dataList)
-
-        Log.d("LocationRVAdapter", "@@@@@@@@@@@@@" + dataList[position])
-//
         val position = moreLocationRVAdapter.itemCount
 
 //        moreLocationRVAdapter.dataList.clear()
@@ -59,9 +44,9 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
 //        moreLocationRVAdapter.dataList.addAll(more_dataList_by_area)
         Log.v("Woo 914", moreLocationRVAdapter.dataList.size.toString())
 //        moreLocationRVAdapter.dataList.add(more_dataList)
-//
+
         holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
-        holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx) as RecyclerView.LayoutManager?
+        holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx)
         moreLocationRVAdapter.notifyItemInserted(position)
 //
         holder.iv_more_item_location_map.setOnClickListener {
@@ -74,43 +59,6 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
                 holder.rv_more_item_location_map.visibility = View.VISIBLE
             }
         }
-
-//        for(i in 0..dataList.size-1) {
-//
-//            var more_dataList_by_area: ArrayList<SimpleStoreResponseData> = dataList[i].simpleStoreResponseDtos
-//
-//            moreLocationRVAdapter = MoreLocationRVAdapter(ctx, more_dataList)
-//            holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
-//            holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx)
-//
-//
-//            val position = moreLocationRVAdapter.itemCount
-//            moreLocationRVAdapter.dataList.
-//            moreLocationRVAdapter.dataList.addAll(more_dataList_by_area)
-//            moreLocationRVAdapter.notifyItemInserted(position)
-//
-//        }
-//
-//        if(position==0) {
-//        dataList.add(MoreLocationTempData("홍대 롭스 2호점"))
-//        dataList.add(MoreLocationTempData("동대문엽기떡볶이 홍대점"))
-//        dataList.add(MoreLocationTempData("김가네 홍대점"))
-//        }
-//        else if(position==1) {
-//            dataList.add(MoreLocationTempData("혜화 롭스 2호점"))
-//            dataList.add(MoreLocationTempData("동대문엽기떡볶이 혜화점"))
-//            dataList.add(MoreLocationTempData("김가네 혜화점"))
-//        }
-//        else if(position==2) {
-//            dataList.add(MoreLocationTempData("동역사 롭스 2호점"))
-//            dataList.add(MoreLocationTempData("동대문엽기떡볶이 동역사점"))
-//            dataList.add(MoreLocationTempData("김가네 동역사점"))
-//        }
-
-
-//        holder.item_btn.setOnClickListener {
-//            ctx.startActivity<MapMoreActivity>()
-//        }
 
     }
 
