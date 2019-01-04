@@ -33,6 +33,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -60,7 +61,7 @@ class ReserveFragment : Fragment() {
     var afterParseTake: Long = 0
 
     //        TODO("storeIdx를 받아서 통신해야함!!!!!!")
-    var storeIdx: Int = 1
+    var storeIdx: Int = 0
 
     var errorCheck: Boolean = false
 
@@ -71,19 +72,25 @@ class ReserveFragment : Fragment() {
 
         networkService = ApplicationController.instance.networkService
 
+        var args: Bundle? = arguments
+
+
+        storeIdx = args!!.getInt("storeIdx")
+
+        toast(storeIdx.toString())
+
         getReservationPriceListResponse()
 
 //        calPrice()
 
         //피커뷰와 데이터 통신을 하기 위한 코드
-        var args: Bundle? = arguments
 
         //제한시간 받는 코드
         getStoreResponseInfo()
 
         var rightNow = Calendar.getInstance()
         var dateFormat = SimpleDateFormat("MMM dd일 (EE)")
-        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) hh:mm")
+        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) kk:mm")
         var yearDateFormat = SimpleDateFormat("yyyy")
 
         var defaultHourValue = rightNow.get(Calendar.HOUR_OF_DAY)
@@ -126,6 +133,7 @@ class ReserveFragment : Fragment() {
 //        if(afterParseStore < afterParseTake) {
 //            toast(afterParseStore.toString() + "~~~" + afterParseTake)
 //       }
+
         setOnClickListener(v)
         return v
     }
@@ -396,7 +404,7 @@ class ReserveFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            toast("가격표 조회 성공")
+//                            toast("가격표 조회 성공")
 //                            toast("@@1: "+response.body().toString())
                             priceArray = response.body()!!
 //                            toast("@@2: "+priceArray.toString())
@@ -426,6 +434,8 @@ class ReserveFragment : Fragment() {
             hour++
         }
 
+        Log.d("@@@@@@@@@", "snumhh: "+snumhh.toString())
+
 
         var price = 0
 
@@ -446,6 +456,7 @@ class ReserveFragment : Fragment() {
                 extra_hour--
             }
         }
+
 
         var price_unit: Int = price + extra_hour * final_price
 

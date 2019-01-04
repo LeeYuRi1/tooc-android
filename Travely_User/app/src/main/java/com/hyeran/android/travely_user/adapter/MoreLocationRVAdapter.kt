@@ -40,7 +40,6 @@ class MoreLocationRVAdapter(val ctx: Context, val dataList: ArrayList<SimpleStor
         holder.item_more_location_map.setOnClickListener {
 
             (ctx as LocationListActivity).getStoreIdx(dataList[position].storeIdx)
-//            ctx.finish()
         }
     }
 

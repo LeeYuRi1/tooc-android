@@ -89,6 +89,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/iv_reserve_map_more"
                     android:layout_width="60dp"
                     android:layout_height="75dp"
                     android:layout_alignParentRight="true"

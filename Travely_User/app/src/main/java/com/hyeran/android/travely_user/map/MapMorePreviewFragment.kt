@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_map_more_preview.*
 import kotlinx.android.synthetic.main.fragment_map_more_preview.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.yesButton
@@ -138,6 +139,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                         putInt("tmm", ttmm)
                         putInt("svalue", tsValue)
                         putInt("tvalue", ttValue)
+
                         Log.d("TAG", tsmmddee + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
                     }
                 }
@@ -196,13 +198,15 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         view2.btn_fragment_map_more_preview.setOnClickListener {
             var intent = Intent(activity, MapMoreActivity::class.java)
             intent.putExtra("storeIdx", storeIdx)
-            startActivity(intent)
+            startActivityForResult(intent, 888)
         }
 
         view2.iv_reserve_map_more_preview.setOnClickListener {
 
             var fragment: Fragment = ReserveFragment()
+            args.putInt("storeIdx", storeIdx)
             fragment.arguments = args
+
             (activity as MainActivity).replaceFragment(fragment)
         }
 
@@ -253,9 +257,17 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
-            storeIdx = data!!.getIntExtra("storeIdx", 0)
-
             getStoreResponse()
+        }
+        if (requestCode == 888) {
+            if (resultCode == 777) {
+                var storeIdx = data!!.getIntExtra("storeIdx", 0)
+                var args = Bundle()
+                args.putInt("storeIdx", storeIdx)
+                var fragment : Fragment = ReserveFragment()
+                fragment.arguments = args
+                (ctx as MainActivity).replaceFragment(fragment)
+            }
         }
     }
 
