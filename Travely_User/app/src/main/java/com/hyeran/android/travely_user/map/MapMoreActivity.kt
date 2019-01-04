@@ -1,31 +1,43 @@
 package com.hyeran.android.travely_user.map
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import android.widget.LinearLayout
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.PhotoRecylerViewAdapter
 import com.hyeran.android.travely_user.adapter.ReviewRecyclerViewAdapter
 import com.hyeran.android.travely_user.data.PhotoData
+import com.hyeran.android.travely_user.dialog.MapChoiceDialog
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.activity_map_more.*
 import org.jetbrains.anko.toast
+import com.hyeran.android.travely_user.data.ReviewData
+import com.hyeran.android.travely_user.reserve.ReserveFragment
+import kotlinx.android.synthetic.main.fragment_map_more.*
+import org.jetbrains.anko.activityManager
+import org.jetbrains.anko.ctx
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.sql.Timestamp
 
 class MapMoreActivity : AppCompatActivity() {
+    lateinit var photoRecyclerViewAdapter: PhotoRecylerViewAdapter
+    lateinit var reviewRecyclerViewAdapter: ReviewRecyclerViewAdapter
 
     lateinit var networkService: NetworkService
 
-    lateinit var photoRecyclerViewAdapter : PhotoRecylerViewAdapter
-    lateinit var reviewRecyclerViewAdapter : ReviewRecyclerViewAdapter
+    var lng: Double = 0.0
+    var lat: Double = 0.0
 
     var storeIdx : Int = 0
 
@@ -41,6 +53,22 @@ class MapMoreActivity : AppCompatActivity() {
         getStoreResponse()
 
         setRecyclerView()
+
+        lat = intent.getDoubleExtra("lat", 0.0)
+        lng = intent.getDoubleExtra("lng", 0.0)
+
+//        toast(lat.toString() + "!@#!@#!@#!#" + lng.toString())
+
+        setOnBtnClickListener()
+    }
+
+
+    private fun setOnBtnClickListener() {
+        btn_map_more_act_find_road.setOnClickListener {
+            val mapChoiceDialog: MapChoiceDialog = MapChoiceDialog(this, lat, lng)
+            mapChoiceDialog.window.setGravity(Gravity.BOTTOM)
+            mapChoiceDialog.show()
+        }
 
         iv_reserve_map_more.setOnClickListener {
             var intent = Intent()

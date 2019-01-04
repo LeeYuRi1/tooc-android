@@ -255,6 +255,7 @@
 
             <ImageView
                 android:id="@+id/iv_reserve_map_more_preview"
+                android:clickable="true"
                 android:layout_width="60dp"
                 android:layout_height="80dp"
                 android:layout_gravity="right"

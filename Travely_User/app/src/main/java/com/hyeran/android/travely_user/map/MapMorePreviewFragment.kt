@@ -17,6 +17,7 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.MainActivity
@@ -38,14 +39,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.sql.Timestamp
 
-
 class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+
+    var latitude2 : Double? = 0.0
+    var longtitude2: Double? = 0.0
+
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             return
         }
 
@@ -56,8 +60,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             startLocationUpdates2()
         }
         if (mLocation2 != null) {
-            var latitude2: Double = mLocation2.latitude
-            var longtitude2: Double = mLocation2.longitude
+            latitude2 = mLocation2.latitude
+            longtitude2 = mLocation2.longitude
         } else {
 
         }
@@ -68,9 +72,9 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 
         if (ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             return
         }
 
@@ -119,10 +123,10 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
     private val TAG2 = javaClass.simpleName
 
-    var locationPermissionGranted2: Boolean = false
+    private var locationPermissionGranted2: Boolean = false
+
 
     private lateinit var lastLocation2: Location
-
 
     companion object {
         var mInstance2: MapMorePreviewFragment? = null
@@ -197,6 +201,19 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         view2.btn_fragment_map_more_preview.setOnClickListener {
             var intent = Intent(activity, MapMoreActivity::class.java)
+            if (ActivityCompat.checkSelfPermission(activity!!,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(activity!!,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                var mLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
+                latitude2 = mLastKnownLocation.latitude
+                longtitude2 = mLastKnownLocation.longitude
+            }
+
+            intent.putExtra("lat", latitude2)
+            intent.putExtra("lng", longtitude2)
+
             intent.putExtra("storeIdx", storeIdx)
             startActivityForResult(intent, 888)
         }
@@ -209,6 +226,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
             (activity as MainActivity).replaceFragment(fragment)
         }
+
+//        Log.d("TAGGGGG", latitude2.toString() + "asdasdasdasd" + longtitude2.toString())
 
         return view2
     }
@@ -249,12 +268,18 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         mGoogleApiClient2.connect()
 
+//        Log.d("TAGGGGG", latitude2.toString() + "asdasdasdasd" + longtitude2.toString())
+
+
     }
 
 
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
         mMap2 = googleMap
+
+//        mMap2.setMinZoomPreference(17f)
+//        mMap2.setMaxZoomPreference(21f)
 
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -264,10 +289,10 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             mMap2.uiSettings.isZoomGesturesEnabled = true
         }
 
-        // Add a marker in Sydney and move the camera
-        val marker2 = LatLng(37.578346, 127.057015)
-        mMap2.addMarker(MarkerOptions().position(marker2).title("Marker"))
-        mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker2, 17f))
+
+        val marker = LatLng(37.578346, 127.057015)
+        mMap2.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+        mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
 
@@ -333,6 +358,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
             val location2 = locationResult?.lastLocation
 
+            /*
             location2?.run {
                 // 14 level로 확대하고 현재 위치로 카메라 이동
                 val latLng = LatLng(latitude, longitude)
@@ -341,6 +367,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                 Log.d("MapMorePreviewFragment", "위도 : $latitude, 경도 : $longitude")
             }
+            */
         }
     }
 
