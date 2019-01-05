@@ -47,6 +47,11 @@ class JoinActivity : AppCompatActivity() {
                 toast("잘못된 형식의 정보가 있습니다.")
             }
         }
+
+        iv_back_signin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     var name_validation = false
@@ -189,8 +194,15 @@ class JoinActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", false)
 //                            toast(SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve").toString())
-                            startActivity(Intent(this@JoinActivity, MainActivity::class.java))
-                            finish()
+//                            startActivity(Intent(this@JoinActivity, MainActivity::class.java))
+
+                            var sawExplanation = SharedPreferencesController.instance!!.getPrefBooleanData("Explanation",false)
+                            if(sawExplanation==false) {
+                                startActivity(Intent(this@JoinActivity, ExplanationActivity::class.java))
+                            } else{
+                                startActivity(Intent(this@JoinActivity, MainActivity::class.java))
+                            }
+//                            finish()
                         }
                         400 -> {
                             toast("중복된 이메일입니다.")

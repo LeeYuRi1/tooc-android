@@ -114,7 +114,7 @@
             android:fontFamily="@font/kopub_medium"
             android:textColor="#262626"
             android:textSize="12sp"
-            android:lineSpacingExtra="19sp"
+            android:lineSpacingExtra="8sp"
             android:text="사장님이 굉장히 친절하고 덕분에 편안하게 여행했어요 최고~!"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
