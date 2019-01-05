@@ -93,7 +93,7 @@ interface NetworkService {
 
     // 즐겨찾기 리스트 조회
     @GET("/api/favorite")
-    fun favoriteResponse(
+    fun getFavoriteResponse(
             @Header("jwt") jwt : String?
-    ) : Call<FavoriteResponseData>
+    ) : Call<ArrayList<FavoriteResponseData>>
 }
