@@ -446,18 +446,20 @@ class ReserveFragment : Fragment() {
         }
         var extra_hour = 0
 
-        var final_price = priceArray.get(priceArray.size - 1).priceIdx
+        var final_price_index = priceArray.get(priceArray.size - 1).priceIdx
 
-        if (hour > final_price) {
-            var temp_extra_hour = hour - final_price
+        if (hour > final_price_index) {
+            var temp_extra_hour = hour - final_price_index
             extra_hour = (temp_extra_hour / 12).toInt()
             if ((temp_extra_hour % 12L) == 0L) {
                 extra_hour--
             }
         }
 
+        var extra_price = priceArray.get(0).price
 
-        var price_unit: Int = price + extra_hour * final_price
+        var price_unit: Int = price + extra_hour * extra_price
+
 
         return price_unit
 

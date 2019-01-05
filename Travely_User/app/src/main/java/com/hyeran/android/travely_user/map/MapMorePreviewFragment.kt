@@ -45,6 +45,10 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     var latitude2 : Double? = 0.0
     var longtitude2: Double? = 0.0
 
+    var shop_latitude : Double = 0.0
+    var shop_longitude : Double = 0.0
+    var shop_name : String = ""
+
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
@@ -169,23 +173,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         getStoreResponse()
 
-
-
-//        view2.btn_find_gps.setOnClickListener {
-//
-//            if (ActivityCompat.checkSelfPermission(activity!!,
-//                            android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-//                    && ActivityCompat.checkSelfPermission(activity!!,
-//                            android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//                var thisLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
-//                val myLocation = LatLng(thisLastKnownLocation.latitude, thisLastKnownLocation.longitude)
-//
-//                mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 17f))
-//            }
-//        }
-
-
         view2.btn_fragment_map_question2.setOnClickListener {
             startActivityForResult<LocationListActivity>(999)
         }
@@ -218,8 +205,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             (activity as MainActivity).replaceFragment(fragment)
         }
 
-//        Log.d("TAGGGGG", latitude2.toString() + "asdasdasdasd" + longtitude2.toString())
-
         return view2
     }
 
@@ -231,7 +216,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
-            getStoreResponse()
+//            getStoreResponse()
         }
         if (requestCode == 888) {
             if (resultCode == 777) {
@@ -250,6 +235,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         init()
 
+        toast("onCreate")
 
         mGoogleApiClient2 = GoogleApiClient.Builder(activity!!)
                 .addApi(LocationServices.API)
@@ -266,6 +252,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
 
     override fun onMapReady(googleMap: GoogleMap) {
+
+
         MapsInitializer.initialize(context)
         mMap2 = googleMap
 
@@ -281,8 +269,27 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         }
 
 
-        val marker = LatLng(37.578346, 127.057015)
-        mMap2.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+        toast("onMapReady")
+//        init()
+//        getStoreResponse()
+
+
+//        val marker = LatLng(37.578346, 127.057015)
+        var marker = LatLng(shop_latitude, shop_longitude)
+//        val marker = LatLng()
+        mMap2.addMarker(MarkerOptions().position(marker).title(shop_name).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+        mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+
+        m = googleMap
+
+    }
+
+    lateinit var m : GoogleMap
+
+    fun setGoogleMap(m : GoogleMap) {
+        var marker = LatLng(shop_latitude, shop_longitude)
+//        val marker = LatLng()
+        mMap2.addMarker(MarkerOptions().position(marker).title(shop_name).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
         mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
@@ -428,6 +435,29 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 //        postReservationCancelResponse()
     }
 
+//    fun addMarker(googleMap : GoogleMap, shop_latitude : Double, shop_longitude : Double, shop_name : String) {
+//
+//        MapsInitializer.initialize(context)
+//        mMap2 = googleMap
+//
+////        mMap2.setMinZoomPreference(17f)
+////        mMap2.setMaxZoomPreference(21f)
+//
+//        if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+//                ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            mMap2.isMyLocationEnabled = true
+//            mMap2.uiSettings.isMyLocationButtonEnabled = true
+//            mMap2.uiSettings.isCompassEnabled = true
+//            mMap2.uiSettings.isZoomGesturesEnabled = true
+//        }
+//
+//
+//        val marker = LatLng(shop_latitude, shop_longitude)
+////        val marker = LatLng()
+//        mMap2.addMarker(MarkerOptions().position(marker).title(shop_name).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+//        mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+//    }
+
     // 세부 정보 조회 함수
     private fun getStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
@@ -440,6 +470,12 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                 response.let {
                     when (it.code()) {
                         200 -> {
+                            shop_name = response.body()!!.storeName
+                            shop_latitude = response.body()!!.latitude
+                            shop_longitude = response.body()!!.longitude
+
+                            setGoogleMap(m)
+
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
 

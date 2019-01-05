@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.Location
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -105,8 +106,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
         networkService = ApplicationController.instance.networkService
         getReservationReserveResponse(v)
-
-        var testt: String = "TEst"
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
             ReserveCancelDialog(context).show()
@@ -235,6 +234,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             tv_put_ampm_reservestate.text = timeTextFormat.format(startTime)
                             tv_find_ampm_reservestate.text = timeTextFormat.format(endTime)
                             //QR
+
                             tv_qr_reserveCode.text = reserveCode.toString()
 
                             toast("bagDtos Size : "+response.body()!!.bagDtos.size)
@@ -254,4 +254,5 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         })
 
     }
+
 }

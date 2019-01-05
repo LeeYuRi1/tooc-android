@@ -34,7 +34,7 @@ class LocationListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_location_list)
 
         btn_back_location_list.setOnClickListener {
-            setResult(1)
+            setResult(111)
             finish()
         }
 
@@ -50,7 +50,7 @@ class LocationListActivity : AppCompatActivity() {
 
         this.storeIdx = storeIdx
 
-        var intent : Intent = Intent()
+        var intent = Intent()
         intent.putExtra("storeIdx", storeIdx)
         setResult(2, intent)
         finish()
