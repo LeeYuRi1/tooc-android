@@ -52,7 +52,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         mMap3 = googleMap!!
 
         val marker = LatLng(37.578346, 127.057015)
-        mMap3.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+        mMap3.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_color_pin)))
         mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 

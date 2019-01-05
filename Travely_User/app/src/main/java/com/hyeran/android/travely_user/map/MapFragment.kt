@@ -80,9 +80,9 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     override fun onStart() {
         super.onStart()
-//        mapView.onStart()
-
         mGoogleApiClient.connect()
+
+        mapView.onStart()
     }
 
     override fun onStop() {
@@ -135,12 +135,12 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     // 레이아웃 설정
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Fragment 내에서는 mapView로 지도 실행
-        val view: View = inflater.inflate(R.layout.fragment_map, container, false)
+        var view : View = inflater.inflate(R.layout.fragment_map, container, false)
 //        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 //        val mapView : SupportMapFragment = (childFragmentManager.findFragmentById(R.id.mapView) as? SupportMapFragment)!!
 //        mapView.getMapAsync(this)
 
-        mapView = view!!.findViewById(R.id.mapView)
+        mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
@@ -179,6 +179,10 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        mapView = view!!.findViewById(R.id.mapView)
+//        mapView.onCreate(savedInstanceState)
+//        mapView.getMapAsync(this)
 
         mGoogleApiClient = GoogleApiClient.Builder(activity!!)
                 .addApi(LocationServices.API)
@@ -230,8 +234,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     }
 
     override fun onPause() {
-        super.onPause()
         mapView.onPause()
+        super.onPause()
 
         removeLocationListener()
     }
@@ -248,8 +252,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
 
     override fun onDestroy() {
-        super.onDestroy()
         mapView.onDestroy()
+        super.onDestroy()
     }
 
     // 위치 정보를 얻기 위한 각종 초기화
@@ -268,10 +272,10 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         // 위치 정보가 없을 때는 업데이트 안 함
         // 상황에 따라 짧아질 수 있음, 정확하지 않음
         // 다른 앱에서 짧은 인터벌로 위치 정보를 요청하면 짧아질 수 있음
-        locationRequest.interval = 10000
+//        locationRequest.interval = 10000
 
         // 정확함. 이것보다 짧은 업데이트는 하지 않음
-        locationRequest.fastestInterval = 5000
+//        locationRequest.fastestInterval = 5000
 
     }
 
