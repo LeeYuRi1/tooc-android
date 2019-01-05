@@ -51,7 +51,6 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
 
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //var recent_image : ImageView = itemView.findViewById(R.id.iv_storeimage_recentstore) as ImageView
         var like_name: TextView = itemView.findViewById(R.id.tv_name_like) as TextView
         var like_addr: TextView = itemView.findViewById(R.id.tv_addr_like) as TextView
         var like_heart: ImageView = itemView.findViewById(R.id.iv_heart_like) as ImageView

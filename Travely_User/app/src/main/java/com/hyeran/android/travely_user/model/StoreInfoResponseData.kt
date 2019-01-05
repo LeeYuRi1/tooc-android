@@ -1,7 +1,5 @@
 package com.hyeran.android.travely_user.model
 
-import android.support.constraint.ConstraintLayout
-
 data class StoreInfoResponseData (
         var address : String,
         var closeTime : Long,

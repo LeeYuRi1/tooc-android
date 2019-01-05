@@ -3,10 +3,12 @@ package com.hyeran.android.travely_user.join
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.model.reservation.UsersLoginResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.activity_login.*
@@ -38,11 +40,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login_login.setOnClickListener {
-            postLoinResponse()
+            //toast("버튼은 눌렸음")
+            postLoginResponse()
+            toast("로그인 성공")
+
+            finish()
         }
     }
 
-    private fun postLoinResponse() {
+    private fun postLoginResponse() {
         val input_email = et_email_login.text.toString().trim()
         val input_pw = et_password_login.text.toString().trim()
 
@@ -54,10 +60,11 @@ class LoginActivity : AppCompatActivity() {
 
         val postLoginResponse = networkService.postLoginResponse("application/json", gsonObject)
 
-        postLoginResponse!!.enqueue(object : Callback<Any> {
-            override fun onFailure(call: Call<Any>, t: Throwable) {
+
+        postLoginResponse!!.enqueue(object : Callback<UsersLoginResponseData> {
+            override fun onFailure(call: Call<UsersLoginResponseData>, t: Throwable) {
             }
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+            override fun onResponse(call: Call<UsersLoginResponseData>, response: Response<UsersLoginResponseData>) {
                 response?.let {
                     when (it.code()) {
                         200 -> {
@@ -66,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
+                            SharedPreferencesController.instance!!.setPrefData("is_reserve", response.body()!!.isReserve)
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         }

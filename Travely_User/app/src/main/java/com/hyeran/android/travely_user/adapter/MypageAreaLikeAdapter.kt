@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.rv_like_like
 import com.hyeran.android.travely_user.data.MypageAreaLikeData
 import com.hyeran.android.travely_user.data.MypageLikeData
 import com.hyeran.android.travely_user.model.mypage.FavoriteResponseData
@@ -35,7 +34,7 @@ class MypageAreaLikeAdapter(val ctx: Context, val dataList: ArrayList<FavoriteRe
         favorite_dataList = dataList[position].simpleStoreResponseDtos
         mypageLikeAdapter = MypageLikeAdapter(ctx, favorite_dataList)
         var position = mypageLikeAdapter.itemCount
-
+        
         holder.rv_arealike.adapter = mypageLikeAdapter
         holder.rv_arealike.layoutManager = LinearLayoutManager(ctx)
         mypageLikeAdapter.notifyItemInserted(position)

@@ -33,7 +33,6 @@ class ExplanationActivity : AppCompatActivity() {
 
     private fun startExplanation(){
         explanationPagerAdapter = ExplanationPagerAdapter(supportFragmentManager)
-
         explanationPagerAdapter.addItem(Explanation1Fragment.newInstance("1"))
         explanationPagerAdapter.addItem(Explanation2Fragment.newInstance("2"))
         explanationPagerAdapter.addItem(Explanation3Fragment.newInstance("3"))
@@ -48,21 +47,16 @@ class ExplanationActivity : AppCompatActivity() {
 
         vp_explanation.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
-
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
             }
 
             override fun onPageSelected(position: Int) {
                 indicator_explanation.selectDot(position)
-                // vp_explanation.reMeasureCurrentPage(vp_explanation.currentItem)
-
-
             }
         })
-        vp_explanation.setCurrentItem(0)
+        vp_explanation.currentItem = 0
         vp_explanation.adapter = explanationPagerAdapter
     }
 }

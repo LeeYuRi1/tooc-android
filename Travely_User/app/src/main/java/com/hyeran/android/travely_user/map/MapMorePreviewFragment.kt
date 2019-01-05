@@ -45,6 +45,10 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     var latitude2 : Double? = 0.0
     var longtitude2: Double? = 0.0
 
+    var shop_latitude : Double = 0.0
+    var shop_longitude : Double = 0.0
+    var shop_name : String = ""
+
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
@@ -169,23 +173,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         getStoreResponse()
 
-
-
-//        view2.btn_find_gps.setOnClickListener {
-//
-//            if (ActivityCompat.checkSelfPermission(activity!!,
-//                            android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-//                    && ActivityCompat.checkSelfPermission(activity!!,
-//                            android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//                var thisLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
-//                val myLocation = LatLng(thisLastKnownLocation.latitude, thisLastKnownLocation.longitude)
-//
-//                mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 17f))
-//            }
-//        }
-
-
         view2.btn_fragment_map_question2.setOnClickListener {
             startActivityForResult<LocationListActivity>(999)
         }
@@ -218,8 +205,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             (activity as MainActivity).replaceFragment(fragment)
         }
 
-//        Log.d("TAGGGGG", latitude2.toString() + "asdasdasdasd" + longtitude2.toString())
-
         return view2
     }
 
@@ -231,6 +216,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
+            storeIdx = data!!.getIntExtra("storeIdx", 0)
             getStoreResponse()
         }
         if (requestCode == 888) {
@@ -250,6 +236,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         init()
 
+        toast("onCreate")
 
         mGoogleApiClient2 = GoogleApiClient.Builder(activity!!)
                 .addApi(LocationServices.API)
@@ -266,6 +253,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
 
     override fun onMapReady(googleMap: GoogleMap) {
+
         MapsInitializer.initialize(context)
         mMap2 = googleMap
 
@@ -279,10 +267,12 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             mMap2.uiSettings.isCompassEnabled = true
             mMap2.uiSettings.isZoomGesturesEnabled = true
         }
+    }
 
-
-        val marker = LatLng(37.578346, 127.057015)
-        mMap2.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+    fun setGoogleMap() {
+        var marker = LatLng(shop_latitude, shop_longitude)
+//        val marker = LatLng()
+        mMap2.addMarker(MarkerOptions().position(marker).title(shop_name).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
         mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
@@ -428,6 +418,29 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 //        postReservationCancelResponse()
     }
 
+//    fun addMarker(googleMap : GoogleMap, shop_latitude : Double, shop_longitude : Double, shop_name : String) {
+//
+//        MapsInitializer.initialize(context)
+//        mMap2 = googleMap
+//
+////        mMap2.setMinZoomPreference(17f)
+////        mMap2.setMaxZoomPreference(21f)
+//
+//        if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+//                ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            mMap2.isMyLocationEnabled = true
+//            mMap2.uiSettings.isMyLocationButtonEnabled = true
+//            mMap2.uiSettings.isCompassEnabled = true
+//            mMap2.uiSettings.isZoomGesturesEnabled = true
+//        }
+//
+//
+//        val marker = LatLng(shop_latitude, shop_longitude)
+////        val marker = LatLng()
+//        mMap2.addMarker(MarkerOptions().position(marker).title(shop_name).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+//        mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+//    }
+
     // 세부 정보 조회 함수
     private fun getStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
@@ -440,6 +453,12 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                 response.let {
                     when (it.code()) {
                         200 -> {
+                            shop_name = response.body()!!.storeName
+                            shop_latitude = response.body()!!.latitude
+                            shop_longitude = response.body()!!.longitude
+
+                            setGoogleMap()
+
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
 
@@ -470,39 +489,64 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                                 tv_closetime_minute_map_more_preview.text = Timestamp(close_time).minutes.toString().trim()
                             }
 
-                            var current_time: Long = System.currentTimeMillis()
+                            var current_time : Long = System.currentTimeMillis()
 
-                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
-                            Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
-                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < Timestamp(close_time).hours)) {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {
-                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                            }
+                            else if(Timestamp(open_time).hours == Timestamp(current_time).hours) {
+                                if((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                } else {
+                                }
+                                else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
-                            } else if (Timestamp(close_time).hours == Timestamp(close_time).hours) {
-                                if ((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
-                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
-                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
-                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    } else {
-                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-                                    }
-                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
-                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
-                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    } else {
-                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-                                    }
-                                } else {
+                            }
+                            else if(Timestamp(close_time).hours == Timestamp(current_time).hours) {
+                                if((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                }
+                                else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             }
                             else {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                             }
+//
+//                            var current_time: Long = System.currentTimeMillis()
+//
+//                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
+//                            Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
+//                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+//                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {
+//                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                                } else {
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                }
+//                            } else if (Timestamp(close_time).hours == Timestamp(close_time).hours) {
+//                                if ((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
+//                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
+//                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+//                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                                    } else {
+//                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                    }
+//                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
+//                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+//                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                                    } else {
+//                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                    }
+//                                } else {
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                }
+//                            }
+//                            else {
+//                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                            }
                         }
                         500 -> {
                             toast("서버 에러")

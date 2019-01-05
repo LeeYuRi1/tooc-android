@@ -35,18 +35,4 @@ class PhotoPagerAdapter : PagerAdapter {
         container!!.removeView("object" as RelativeLayout)
     }
 
-
 }
-
-//class PhotoPagerAdapter (val ctx : Context, val pageList : ArrayList<PagerModel>) : PagerAdapter (){
-//    private val inflater : LayoutInflater = LayoutInflater.from(ctx)
-//
-//    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-//        return view == object
-//    }
-//
-//    override fun getCount(): Int {
-//        return pageList.size
-//    }
-//}
-

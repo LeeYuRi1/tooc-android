@@ -80,9 +80,9 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     override fun onStart() {
         super.onStart()
-//        mapView.onStart()
-
         mGoogleApiClient.connect()
+
+        mapView.onStart()
     }
 
     override fun onStop() {
@@ -115,7 +115,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     private val TAG = javaClass.simpleName
 
-    public var locationPermissionGranted: Boolean = false
+    var locationPermissionGranted: Boolean = false
 
     companion object {
         var mInstance: MapFragment? = null
@@ -135,12 +135,12 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     // 레이아웃 설정
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Fragment 내에서는 mapView로 지도 실행
-        val view: View = inflater.inflate(R.layout.fragment_map, container, false)
+        var view : View = inflater.inflate(R.layout.fragment_map, container, false)
 //        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 //        val mapView : SupportMapFragment = (childFragmentManager.findFragmentById(R.id.mapView) as? SupportMapFragment)!!
 //        mapView.getMapAsync(this)
 
-        mapView = view!!.findViewById(R.id.mapView)
+        mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
@@ -157,9 +157,12 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
             if (resultCode == 1) {
+                (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
+            }
+            else if (resultCode == 111) {
 
             }
-            if(resultCode  == 2) {  // 어댑터에서 들어올 때 -> storeIdx 전달해서 서버 데이터 세팅 필요
+            else if(resultCode  == 2) {  // 어댑터에서 들어올 때 -> storeIdx 전달해서 서버 데이터 세팅 필요
                 Log.d("@storeIdx통신@", "MapFragment로 돌아왔다.")
                 var storeIdx : Int = data!!.getIntExtra("storeIdx", 0)
                 Log.d("@storeIdx통신@", "storeIdx는? " + storeIdx)
@@ -179,6 +182,10 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        mapView = view!!.findViewById(R.id.mapView)
+//        mapView.onCreate(savedInstanceState)
+//        mapView.getMapAsync(this)
 
         mGoogleApiClient = GoogleApiClient.Builder(activity!!)
                 .addApi(LocationServices.API)
@@ -230,8 +237,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     }
 
     override fun onPause() {
-        super.onPause()
         mapView.onPause()
+        super.onPause()
 
         removeLocationListener()
     }
@@ -248,8 +255,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
 
     override fun onDestroy() {
-        super.onDestroy()
         mapView.onDestroy()
+        super.onDestroy()
     }
 
     // 위치 정보를 얻기 위한 각종 초기화
@@ -268,10 +275,10 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         // 위치 정보가 없을 때는 업데이트 안 함
         // 상황에 따라 짧아질 수 있음, 정확하지 않음
         // 다른 앱에서 짧은 인터벌로 위치 정보를 요청하면 짧아질 수 있음
-        locationRequest.interval = 10000
+//        locationRequest.interval = 10000
 
         // 정확함. 이것보다 짧은 업데이트는 하지 않음
-        locationRequest.fastestInterval = 5000
+//        locationRequest.fastestInterval = 5000
 
     }
 

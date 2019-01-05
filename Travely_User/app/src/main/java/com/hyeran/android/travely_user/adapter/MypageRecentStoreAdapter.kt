@@ -33,7 +33,6 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
                 .load(dataList[position].storeImage)
                 .into(holder!!.recent_image)
 
-
         holder.recent_name.text = dataList[position].storeName
         holder.recent_addr.text = dataList[position].address
 
@@ -80,7 +79,6 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
         var recent_start_minute: TextView = itemView.findViewById(R.id.tv_starttime_minute_recentstore) as TextView
         var recent_end_hour: TextView = itemView.findViewById(R.id.tv_endtime_hour_recentstore) as TextView
         var recent_end_minute: TextView = itemView.findViewById(R.id.tv_endtime_minute_recentstore) as TextView
-
         var reviewwrite: Button = itemView.findViewById(R.id.btn_reviewwrite_recentstore) as Button
         var recent_detail: ConstraintLayout = itemView.findViewById(R.id.constraint_recentstore) as ConstraintLayout
     }

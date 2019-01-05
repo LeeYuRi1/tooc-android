@@ -7,5 +7,4 @@ data class MypageMyReviewData (
         var month : String,
         var day : String,
         var content : String
-//이미지, rating bar
 )

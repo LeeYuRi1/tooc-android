@@ -9,6 +9,7 @@ import android.util.Log
 import com.hyeran.android.travely_user.map.MapFragment
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.mypage.MypageFragment
+import com.hyeran.android.travely_user.reserve.NoReserveFragment
 import com.hyeran.android.travely_user.reserve.ReserveFragment
 import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
 import com.hyeran.android.travely_user.ship.ShipFragment
@@ -27,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         //TODO 타임리밋값넣어야함!!!!!!!!!!!!!!!!!!
         args!!.putInt("timeLimit",9)
@@ -58,19 +58,27 @@ class MainActivity : AppCompatActivity() {
             iv_search_bottom_tab.isSelected = true
         }
         tab_two_main.setOnClickListener {
-            //TODO: 123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!
-            replaceFragment(ReserveStateFragment.getInstance("123"))
+            // 예약/보관 진행 중
+            if (SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")) {
+                replaceFragment(ReserveStateFragment())
+            }
+            // 예약/보관 없을 시
+            else {
+                replaceFragment(NoReserveFragment())
+            }
+//            TODO: 123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!
+//            replaceFragment(ReserveStateFragment.getInstance("123"))
             clearSelected()
             iv_reserve_bottom_tab.isSelected = true
         }
         tab_three_main.setOnClickListener {
-
+            replaceFragment(ShipFragment())
             clearSelected()
             iv_ship_bottom_tab.isSelected = true
 
-            var fragment: Fragment = ReserveFragment()
-            fragment.arguments = args
-            replaceFragment(fragment)
+//            var fragment: Fragment = ReserveFragment()
+//            fragment.arguments = args
+//            replaceFragment(fragment)
 
         }
         tab_four_main.setOnClickListener {

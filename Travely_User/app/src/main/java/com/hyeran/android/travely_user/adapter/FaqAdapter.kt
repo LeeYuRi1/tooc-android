@@ -41,11 +41,7 @@ class FaqAdapter(var context: Context, var faqexpandedView: ExpandableListView, 
 
             }
         }
-        if (isExpanded) {
-            convertView.notice_arrow.isPressed = true  // 버튼클릭시 이미지 UP으로 변경
-        } else {
-            convertView.notice_arrow.isPressed = false // 버튼다시클릭시 이미지 Down으로  변경
-        }
+        convertView.notice_arrow.isPressed = isExpanded
 
         return convertView
     }

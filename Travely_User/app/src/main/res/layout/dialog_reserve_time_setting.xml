@@ -2,11 +2,13 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/rectangle_round_dialog">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -14,7 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="11dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/bt_full_box_time">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -25,7 +30,11 @@
                     android:id="@+id/tv_store_time_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textColor="#ffffff"
                     android:lineSpacingExtra="14sp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center_vertical"
                     android:text="맡기는 시간"
                     android:textSize="10sp" />
 
@@ -33,6 +42,9 @@
                     android:id="@+id/tv_store_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="6dp"
                     android:lineSpacingExtra="13sp"
                     android:text="12월 05일 (수)"
                     android:textSize="11sp" />
@@ -41,31 +53,44 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="13dp">
 
                 <ImageView
                     android:id="@+id/iv_store_time_image"
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:background="#888888" />
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_time_empty"
+                    android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:id="@+id/tv_store_hour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="01" />
+                    android:text="01"
+                    android:layout_marginLeft="6.5dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/tv_store_colon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" />
+                    android:text=" : "
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/tv_store_minute"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50" />
+                    android:text="50"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"/>
 
             </LinearLayout>
 
@@ -76,7 +101,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="11dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/bt_white_box_time">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,46 +112,69 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_take_time_texft"
+                    android:id="@+id/tv_take_time_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textColor="#494949"
+                    android:lineSpacingExtra="14sp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center_vertical"
                     android:text="찾는 시간" />
 
                 <TextView
                     android:id="@+id/tv_take_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12월 05일 (수)" />
+                    android:text="12월 05일 (수)"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textColor="#494949"
+                    android:layout_marginLeft="6dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="13dp">
 
                 <ImageView
                     android:id="@+id/iv_take_time_image"
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:background="#888888" />
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_time_empty"
+                    android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:id="@+id/tv_take_hour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="6.5dp"
+                    android:textColor="#262626"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="15sp"
                     android:text="01" />
 
                 <TextView
                     android:id="@+id/tv_take_colon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" />
+                    android:text=" : "
+                    android:textColor="#262626"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tv_take_minute"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50" />
+                    android:text="50"
+                    android:textColor="#262626"
+                    android:fontFamily="@font/kopub_medium"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 

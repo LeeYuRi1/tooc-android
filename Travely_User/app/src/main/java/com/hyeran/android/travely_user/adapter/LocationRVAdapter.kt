@@ -31,26 +31,15 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
         holder.name.text = dataList[position].regionName
         holder.num.text = dataList[position].simpleStoreResponseDtos.size.toString()
 
-        var more_dataList_by_area: ArrayList<SimpleStoreResponseData> = dataList[position].simpleStoreResponseDtos
-
-        Log.d("LocationRVAdapter", "@@@@@@@@@@@@@" + dataList[position])
-
         more_dataList = dataList[position].simpleStoreResponseDtos
         moreLocationRVAdapter = MoreLocationRVAdapter(ctx, more_dataList)
         val position = moreLocationRVAdapter.itemCount
 
-//        moreLocationRVAdapter.dataList.clear()
-        Log.v("Woo 929", more_dataList_by_area.toString())
-//        moreLocationRVAdapter.dataList.addAll(more_dataList_by_area)
-        Log.v("Woo 914", moreLocationRVAdapter.dataList.size.toString())
-//        moreLocationRVAdapter.dataList.add(more_dataList)
-
         holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
         holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx)
         moreLocationRVAdapter.notifyItemInserted(position)
-//
+
         holder.iv_more_item_location_map.setOnClickListener {
-            //            Toast.makeText(ctx, "ssss", Toast.LENGTH_SHORT)
             if (holder.rv_more_item_location_map.visibility == View.VISIBLE) {
                 holder.iv_arrow_item_location_map.setImageResource(R.drawable.ic_arrow_down)
                 holder.rv_more_item_location_map.visibility = View.GONE

@@ -31,8 +31,6 @@ class LuggagePictureAdapter(val ctx: Context, val dataPicture: ArrayList<Luggage
             Glide.with(ctx)
                     .load(R.drawable.ic_google)
                     .into(holder.picture)
-
-//            holder.picture.setImageResource(R.drawable.teset)
         }
     }
 
@@ -42,13 +40,10 @@ class LuggagePictureAdapter(val ctx: Context, val dataPicture: ArrayList<Luggage
         fun bind(pictureImage: LuggagePictureData, context: Context) {
             if (pictureImage.picture != "") {
                 val resouceId = context.resources.getIdentifier(pictureImage.picture, "drawble", context.packageName)
-                picture?.setImageResource(resouceId)
+                picture.setImageResource(resouceId)
             } else {
                 picture.setImageResource(R.drawable.ic_launcher_background)
             }
         }
     }
-//    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        var picture: ImageView = itemView.findViewById(R.id.iv_luggage_picture)
-//    }
 }

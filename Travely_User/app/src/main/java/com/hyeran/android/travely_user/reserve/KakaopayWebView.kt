@@ -26,13 +26,6 @@ class KakaopayWebView : AppCompatActivity() {
             finish()
         }
 
-//        btn_ok_kakaopay_web_view.setOnClickListener {
-//            finish()
-//        }
-    }
-
-    fun getResult() {
-
     }
 
 }
