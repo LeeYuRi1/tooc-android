@@ -74,10 +74,9 @@ interface NetworkService {
     ): Call<Any>
 
     //예약 세부정보 조회
-    @GET("/api/reservation/{reserveCode}")
-    fun postReservationReserveResponse(
-            @Header("jwt") jwt :String?,
-            @Path("reserveCode") reserveCode :String
+    @GET("/api/reservation")
+    fun getReservationReserveResponse(
+            @Header("jwt") jwt :String?
     ) : Call<ReservationReserveCodeData>
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@

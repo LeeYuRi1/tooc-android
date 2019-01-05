@@ -49,7 +49,7 @@ class ReserveFragment : Fragment() {
     var tnummm: Int = 0
     var openTime: Long = 0
     var closeTime: Long = 0
-    var offday= ArrayList<String>() //쉬는 요일
+    var offday = ArrayList<String>() //쉬는 요일
 
     var afterParseStore: Long = 0
     var afterParseTake: Long = 0
@@ -71,7 +71,7 @@ class ReserveFragment : Fragment() {
 
         storeIdx = args!!.getInt("storeIdx")
 
-        toast("storeIdx = "+storeIdx.toString())
+        toast("storeIdx = " + storeIdx.toString())
 
         getReservationPriceListResponse()
 
@@ -132,9 +132,9 @@ class ReserveFragment : Fragment() {
     fun setOnClickListener(v: View) {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
+                    , svalue, tvalue, openTime, closeTime, storeIdx)
 //                    , svalue, tvalue, openTime, closeTime)
 //            val dialog = ReserveTimeSettingDialog(ctx, timeArray)
-                    , svalue, tvalue, openTime, closeTime,storeIdx)
             val dialog = ReserveTimeSettintDialog(ctx, timeArray, offday)
             dialog.show()
         }
@@ -242,13 +242,6 @@ class ReserveFragment : Fragment() {
                             //통신
                             postReserveInfo()
 
-                            if (v.rb_kakaopay_reserve.isChecked) {
-                                val intent = Intent(context, KakaopayWebView::class.java)
-                                startActivityForResult(intent, 9999)
-                            }
-                            if (v.rb_cash_reserve.isChecked) {
-                                ReserveCompleteDialog(context).show()
-                            }
                         } else {
                             toast("결제 동의를 체크해주세요.")
 
@@ -266,7 +259,6 @@ class ReserveFragment : Fragment() {
 
             }
         }
-
     }
 
     fun postReserveInfo() {//예약 상태 저장
@@ -362,23 +354,18 @@ class ReserveFragment : Fragment() {
                             toast("200" + response.body()!!.closeTime)
                             openTime = response.body()!!.openTime.toLong()
                             closeTime = response.body()!!.closeTime.toLong()
-                            for (i in 0..response.body()!!.restWeekResponseDtos.size-1) {
-                                if(response.body()!!.restWeekResponseDtos[i].week==1) {
+                            for (i in 0..response.body()!!.restWeekResponseDtos.size - 1) {
+                                if (response.body()!!.restWeekResponseDtos[i].week == 1) {
                                     offday.add("일")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==2){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 2) {
                                     offday.add("화")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==3){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 3) {
                                     offday.add("수")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==4){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 4) {
                                     offday.add("목")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==5){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 5) {
                                     offday.add("금")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==6){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 6) {
                                     offday.add("토")
                                 }
                                 toast(offday[i])
@@ -438,7 +425,7 @@ class ReserveFragment : Fragment() {
             hour++
         }
 
-        Log.d("@@@@@@@@@", "snumhh: "+snumhh.toString())
+        Log.d("@@@@@@@@@", "snumhh: " + snumhh.toString())
 
 
         var price = 0

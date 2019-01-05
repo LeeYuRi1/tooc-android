@@ -3,12 +3,13 @@ package com.hyeran.android.travely_user.model.reservation
 data class storeInfo(
         var address : String,
         var addressNumber : String,
-        var avgLike:Long,
+        var avgLike:Double,
         var closeTime:Long,
-        var latitude : Long,
         var openTime : Long,
         var ownerName:String,
         var storeCall : String,
-        var storeIdx : Long,
-        var storeName : String
+        var storeIdx : Int,
+        var storeName : String,
+        var latitude : Double,
+        var longitude : Double
 )

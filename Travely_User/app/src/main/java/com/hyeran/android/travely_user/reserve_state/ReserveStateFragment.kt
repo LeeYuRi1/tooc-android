@@ -30,33 +30,53 @@ import com.hyeran.android.travely_user.adapter.LuggagePictureAdapter
 import com.hyeran.android.travely_user.data.LuggagePictureData
 import com.hyeran.android.travely_user.dialog.MapChoiceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
+import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
+import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
+import com.hyeran.android.travely_user.model.reservation.bagDtosData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
+import okhttp3.internal.http2.PushObserver.CANCEL
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.zip.Inflater
+import javax.security.auth.callback.Callback
 
 
 class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
-    private lateinit var mMap3 : GoogleMap
-    private lateinit var mapView3 : MapView
+    lateinit var networkService: NetworkService
+    private lateinit var mMap3: GoogleMap
+    private lateinit var mapView3: MapView
     private lateinit var mGoogleApiClient3: GoogleApiClient
 
-    var latitude3 : Double = 0.0
-    var longitude3 : Double = 0.0
+    var latitude3: Double = 0.0
+    var longitude3: Double = 0.0
+    var latitude : Double = 0.0
+    var longitude : Double =0.0
 
     override fun onMapReady(googleMap: GoogleMap?) {
         MapsInitializer.initialize(context)
         mMap3 = googleMap!!
 
-        val marker = LatLng(37.578346, 127.057015)
+        val marker = LatLng(latitude, longitude)
         mMap3.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
         mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
+
+    var stateType: String? = null
+    var reserveCode: String? = null
+    var startTIme: Long? = null
+    var endTime: Long? = null
+    var bagDtos = ArrayList<bagDtosData>()
+
 
     companion object {
         private var instance: ReserveStateFragment? = null
@@ -71,7 +91,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    var password : String? = null
+    var password: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,12 +105,13 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
         arguments?.let { password = it.getString("password") }
     }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_reserve_state, container, false)
+        var v = inflater.inflate(R.layout.fragment_reserve_state, container, false)
+
+        networkService = ApplicationController.instance.networkService
+        getReservationReserveResponse(v)
 
         var testt: String = "TEst"
-        generateQRCode(v, testt)
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
             ReserveCancelDialog(context).show()
@@ -109,7 +130,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                     && ActivityCompat.checkSelfPermission(activity!!,
                             android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                var mLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient3)
+                var mLastKnownLocation: Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient3)
                 latitude3 = mLastKnownLocation.latitude
                 longitude3 = mLastKnownLocation.longitude
 
@@ -134,7 +155,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     fun setRecyclerView() {
         var dataList: ArrayList<LuggagePictureData> = ArrayList()
-//        dataList.add(LuggagePictureData(Drawable.))
         dataList.add(LuggagePictureData("tesetest"))
         dataList.add(LuggagePictureData("tesetest"))
 
@@ -165,4 +185,66 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         return bmp
     }
 
+    fun getReservationReserveResponse(v:View) {
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        val getReservationReserveResponse = networkService.getReservationReserveResponse(jwt)
+
+        getReservationReserveResponse!!.enqueue(object : retrofit2.Callback<ReservationReserveCodeData> {
+            override fun onFailure(call: Call<ReservationReserveCodeData>, t: Throwable) {
+                toast("fail" + t.message)
+            }
+
+            override fun onResponse(call: Call<ReservationReserveCodeData>, response: Response<ReservationReserveCodeData>) {
+                response?.let {
+                    when (it?.code()) {
+                        200 -> {
+                            stateType = response.body()!!.stateType.toString()
+                            reserveCode = response.body()!!.reserveCode.toString()
+                            startTIme = response.body()!!.startTime
+                            endTime = response.body()!!.endTime
+                            bagDtos = response.body()!!.bagDtos
+                            latitude = response.body()!!.store.latitude
+                            longitude = response.body()!!.store.longitude
+                            generateQRCode(v, response.body()!!.reserveCode)
+                            if(stateType=="RESERVED"){
+                            }else if(stateType == "PAYED"){
+                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
+                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
+                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
+                            }else if(stateType == "ARCHIVE"){
+                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
+                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
+                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
+                            }else if(stateType == "PICKUP"){
+                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
+                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
+                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_fill)
+                            }else if(stateType == "CANCEL"){
+                                ReserveCancelDialog(ctx).show()
+                            }
+                          //  18년 10월 24일 목요일
+                            var dateTextFormat = SimpleDateFormat("yy년 mm월 dd일 ee")
+                            tv_put_year_reservestate.text = dateTextFormat.format(startTIme)
+
+
+
+
+                            tv_qr_reserveCode.text = reserveCode.toString()
+
+
+
+                            Log.d("TAGG", "bagDtos : " + bagDtos.toString())
+
+
+                        }
+                        500 -> {
+                            toast("500 error")
+                        }
+                        else -> toast("error")
+                    }
+                }
+            }
+        })
+
+    }
 }
