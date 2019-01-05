@@ -5,6 +5,7 @@ import com.hyeran.android.travely_user.model.*
 import com.hyeran.android.travely_user.model.region.RegionResponseData
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
+import com.hyeran.android.travely_user.model.reservation.UsersLoginResponseData
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import retrofit2.Call
 import retrofit2.http.*
@@ -27,7 +28,7 @@ interface NetworkService {
     fun postLoginResponse(
             @Header("Content-Type") content_type : String,
             @Body() body : JsonObject
-    ) : Call<Any>
+    ) : Call<UsersLoginResponseData>
 
     // 프로필 조회
     // - 프로필 조회

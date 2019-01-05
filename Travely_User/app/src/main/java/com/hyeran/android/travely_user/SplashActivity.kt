@@ -7,6 +7,7 @@ import android.os.Handler
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.hyeran.android.travely_user.join.LoginActivity
+import com.hyeran.android.travely_user.model.reservation.UsersLoginResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import org.jetbrains.anko.toast
@@ -67,16 +68,18 @@ class SplashActivity : AppCompatActivity() {
 
         val postLoginResponse = networkService.postLoginResponse("application/json", gsonObject)
 
-        postLoginResponse!!.enqueue(object : Callback<Any> {
-            override fun onFailure(call: Call<Any>, t: Throwable) {
+        postLoginResponse!!.enqueue(object : Callback<UsersLoginResponseData> {
+            override fun onFailure(call: Call<UsersLoginResponseData>, t: Throwable) {
             }
 
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+            override fun onResponse(call: Call<UsersLoginResponseData>, response: Response<UsersLoginResponseData>) {
                 response?.let {
                     when (it.code()) {
                         200 -> {
                             toast("로그인 성공")
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
+                            SharedPreferencesController.instance!!.setPrefData("is_reserve", response.body()!!.isReserve)
+//                            toast(SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve").toString())
                         }
                         403 -> {
                             toast("로그인 실패")
