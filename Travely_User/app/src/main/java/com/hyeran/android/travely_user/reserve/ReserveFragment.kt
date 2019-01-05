@@ -135,7 +135,7 @@ class ReserveFragment : Fragment() {
 //                    , svalue, tvalue, openTime, closeTime)
 //            val dialog = ReserveTimeSettingDialog(ctx, timeArray)
                     , svalue, tvalue, openTime, closeTime,storeIdx)
-            val dialog = ReserveTimeSettingDialog.ReserveTimeSettintDialog(ctx, timeArray, offday)
+            val dialog = ReserveTimeSettintDialog(ctx, timeArray, offday)
             dialog.show()
         }
 
