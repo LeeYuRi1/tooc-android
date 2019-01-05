@@ -253,7 +253,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
     override fun onMapReady(googleMap: GoogleMap) {
 
-
         MapsInitializer.initialize(context)
         mMap2 = googleMap
 
@@ -267,26 +266,9 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
             mMap2.uiSettings.isCompassEnabled = true
             mMap2.uiSettings.isZoomGesturesEnabled = true
         }
-
-
-        toast("onMapReady")
-//        init()
-//        getStoreResponse()
-
-
-//        val marker = LatLng(37.578346, 127.057015)
-        var marker = LatLng(shop_latitude, shop_longitude)
-//        val marker = LatLng()
-        mMap2.addMarker(MarkerOptions().position(marker).title(shop_name).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
-        mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
-
-        m = googleMap
-
     }
 
-    lateinit var m : GoogleMap
-
-    fun setGoogleMap(m : GoogleMap) {
+    fun setGoogleMap() {
         var marker = LatLng(shop_latitude, shop_longitude)
 //        val marker = LatLng()
         mMap2.addMarker(MarkerOptions().position(marker).title(shop_name).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
@@ -474,7 +456,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             shop_latitude = response.body()!!.latitude
                             shop_longitude = response.body()!!.longitude
 
-                            setGoogleMap(m)
+                            setGoogleMap()
 
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address

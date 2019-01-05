@@ -52,17 +52,25 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     var latitude3: Double = 0.0
     var longitude3: Double = 0.0
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
+  //  var latitude: Double = 0.0
+  //  var longitude: Double = 0.0
 
     override fun onMapReady(googleMap: GoogleMap?) {
         MapsInitializer.initialize(context)
         mMap3 = googleMap!!
 
-        val marker = LatLng(latitude, longitude)
-        mMap3.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
-        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+//        val marker = LatLng(latitude, longitude)
+//        mMap3.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+//        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
+
+
+    fun setGoogleMap(shopName: String, latitude:Double,longitude:Double){
+        var marker = LatLng(latitude,longitude)
+        mMap3.addMarker(MarkerOptions().position(marker).title(shopName).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin)))
+        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker,17f))
+    }
+
 
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
 
@@ -197,8 +205,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             startTime = response.body()!!.startTime
                             endTime = response.body()!!.endTime
                             bagDtos = response.body()!!.bagDtos
-                            latitude = response.body()!!.store.latitude
-                            longitude = response.body()!!.store.longitude
+                           var latitude = response.body()!!.store.latitude
+                           var longitude = response.body()!!.store.longitude
                             generateQRCode(v, response.body()!!.reserveCode)
                             toast("stateType = " + stateType)
                             if (stateType == "RESERVED") {
@@ -234,8 +242,9 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             tv_put_ampm_reservestate.text = timeTextFormat.format(startTime)
                             tv_find_ampm_reservestate.text = timeTextFormat.format(endTime)
                             //QR
-
                             tv_qr_reserveCode.text = reserveCode.toString()
+                            //위도경도
+                            setGoogleMap(response.body()!!.store.storeName,latitude,longitude)
 
                             toast("bagDtos Size : "+response.body()!!.bagDtos.size)
                             for(i in 0..response.body()!!.bagDtos.size){

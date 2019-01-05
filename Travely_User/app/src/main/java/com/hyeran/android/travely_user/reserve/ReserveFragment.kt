@@ -57,12 +57,7 @@ class ReserveFragment : Fragment() {
     //        TODO("storeIdx를 받아서 통신해야함!!!!!!")
     var storeIdx: Int = 1
 
-
-
-
     var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) HH:mm")
-
-
 
     var errorCheck: Boolean = false
 
@@ -145,7 +140,6 @@ class ReserveFragment : Fragment() {
             val dialog = ReserveTimeSettintDialog(ctx, timeArray, offday)
             dialog.show()
         }
-
         v.btn_price_reserve.setOnClickListener {
             KeepPriceDialog(context).show()
         }
@@ -279,9 +273,9 @@ class ReserveFragment : Fragment() {
             bagData.add(bagInfo("ETC", etc_amount))
         }
         if (rb_kakaopay_reserve.isChecked) {
-            reserveSave = ReservationSaveRequestData(1, afterParseStore, afterParseTake, bagData, "CARD")
+            reserveSave = ReservationSaveRequestData(storeIdx.toLong(), afterParseStore, afterParseTake, bagData, "CARD")
         } else {
-            reserveSave = ReservationSaveRequestData(1, afterParseStore, afterParseTake, bagData, "CASH")
+            reserveSave = ReservationSaveRequestData(storeIdx.toLong(), afterParseStore, afterParseTake, bagData, "CASH")
         }
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var postReservationSaveResponse = networkService.postReservationSaveResponse("application/json", jwt, reserveSave)
@@ -350,6 +344,7 @@ class ReserveFragment : Fragment() {
     fun getStoreResponseInfo() { //상가 세부정보 조회
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var getStoreInfo = networkService.getStoreResponse(jwt, storeIdx)
+        toast("In getStoreResponseInfo" + storeIdx)
         getStoreInfo.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
