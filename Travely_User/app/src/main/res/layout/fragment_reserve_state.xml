@@ -518,26 +518,6 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_totaltime_minutes_reservestate" />
 
                 <TextView
-                    android:id="@+id/tv_total_hour_reservestate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="4"
-                    android:textColor="#262626"
-                    app:layout_constraintEnd_toStartOf="@+id/textView118"
-                    app:layout_constraintTop_toTopOf="@+id/textView118" />
-
-                <TextView
-                    android:id="@+id/textView118"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="시간 기본 요금 : "
-                    android:textColor="#262626"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_total_num_reservestate"
-                    app:layout_constraintTop_toTopOf="@+id/tv_total_num_reservestate" />
-
-                <TextView
                     android:id="@+id/tv_total_num_reservestate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -598,6 +578,50 @@
                     app:layout_constraintStart_toStartOf="@+id/iv_qrimage_background_reservestate"
                     app:layout_constraintTop_toTopOf="@+id/iv_qrimage_background_reservestate"
                     app:srcCompat="@android:color/holo_blue_bright" />
+
+                <ImageView
+                    android:id="@+id/btn_bag_size_reservestate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_ask"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView102"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_price_reservestate"
+                    app:layout_constraintTop_toTopOf="@+id/textView102" />
+
+                <TextView
+                    android:id="@+id/textView113"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:text="요금 정보"
+                    android:textColor="#545454"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView101"
+                    app:layout_constraintStart_toEndOf="@+id/textView101"
+                    app:layout_constraintTop_toTopOf="@+id/textView101" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_info"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView113"
+                    app:layout_constraintStart_toEndOf="@+id/textView113"
+                    app:layout_constraintTop_toTopOf="@+id/textView113" />
+
+                <RelativeLayout
+                    android:id="@+id/btn_price_reservestate"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView4"
+                    app:layout_constraintStart_toStartOf="@+id/textView113"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4">
+
+                </RelativeLayout>
 
             </android.support.constraint.ConstraintLayout>
 

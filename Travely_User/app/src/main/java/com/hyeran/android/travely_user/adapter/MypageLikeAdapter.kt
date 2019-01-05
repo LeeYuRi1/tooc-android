@@ -33,7 +33,7 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
 
         (ctx as LikeFragment).getLikeStoreIdx(dataList[position].storeIdx)
 
-        var args = Bundle()
+//        var args = Bundle()
 //        args.putStringArrayList("dataList",dataList[position].storeIdx)
 
 
