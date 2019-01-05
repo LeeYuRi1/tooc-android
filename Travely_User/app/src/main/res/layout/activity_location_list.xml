@@ -12,10 +12,11 @@
         android:layout_height="46dp">
         <ImageView
             android:id="@+id/btn_back_location_list"
-            android:layout_width="8dp"
-            android:layout_height="16dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
             android:layout_centerVertical="true"
+            android:padding="8dp"
             android:src="@drawable/setting_bt_back"/>
 
         <TextView
@@ -30,6 +31,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id = "@+id/btn_fragment_map_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -63,8 +65,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:clickable="true"
-            android:id = "@+id/btn_fragment_map_question"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:layout_width="313dp"

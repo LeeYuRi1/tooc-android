@@ -18,9 +18,4 @@ class ExplanationPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(f
     }
 
     override fun getCount(): Int = items.size
-
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        return super.instantiateItem(container, position)
-    }
-
 }

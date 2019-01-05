@@ -45,13 +45,13 @@ class MypageFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_mypage, container, false)
+        init()
+        getProfileResponse()
         return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        init()
-        getProfileResponse()
         setClickListener()
         setRecyclerView()
         getRecentStoreResponse()
@@ -109,15 +109,14 @@ class MypageFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-
-                            Glide.with(this@MypageFragment)
-                                    .load(response.body()!!.profileImg)
-                                    .into(iv_profile_mypage)
-
                             tv_name_mypage.text = response.body()!!.name
                             tv_mybag_cnt_mypage.text = response.body()!!.myBagCount.toString()
                             tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
                             tv_review_cnt_mypage.text = response.body()!!.reviewCount.toString()
+
+                            Glide.with(this@MypageFragment)
+                                    .load(response.body()!!.profileImg)
+                                    .into(iv_profile_mypage)
 
                             toast("프로필 조회 성공")
                         }

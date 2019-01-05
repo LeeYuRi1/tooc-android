@@ -15,6 +15,11 @@
 
     </com.google.android.gms.maps.MapView>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/map_gradient"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -25,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
-            android:fontFamily="@font/nanum_bold"
+            android:fontFamily="@font/nanum_extrabold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="3sp"
             android:textColor="@color/mainColor"
@@ -33,6 +38,7 @@
             android:text="tooc" />
 
         <LinearLayout
+            android:id="@+id/btn_fragment_map_question"
             android:layout_marginTop="39dp"
             android:layout_gravity="center_horizontal"
             android:background="#fbfbf9"
@@ -68,8 +74,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:clickable="true"
-                android:id = "@+id/btn_fragment_map_question"
                 android:background="#ffffff"
                 android:orientation="horizontal"
                 android:layout_width="313dp"

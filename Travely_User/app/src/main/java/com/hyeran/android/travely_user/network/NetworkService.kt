@@ -6,6 +6,7 @@ import com.hyeran.android.travely_user.model.mypage.FavoriteResponseData
 import com.hyeran.android.travely_user.model.region.RegionResponseData
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
+import com.hyeran.android.travely_user.model.reservation.UsersLoginResponseData
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import retrofit2.Call
 import retrofit2.http.*
@@ -26,9 +27,9 @@ interface NetworkService {
     // - 성공 시 jwt 토큰을 헤더에 넣어서 반환
     @POST("/api/users/login")
     fun postLoginResponse(
-            @Header("Content-Type") content_type: String,
-            @Body() body: JsonObject
-    ): Call<Any>
+            @Header("Content-Type") content_type : String,
+            @Body() body : JsonObject
+    ) : Call<UsersLoginResponseData>
 
     // 프로필 조회
     // - 프로필 조회
@@ -67,16 +68,15 @@ interface NetworkService {
 
     // 예약 취소
     // - 예약상태 조회 후 삭제
-    @DELETE("/api/reservation/cancel")
+    @DELETE("/api/reservation")
     fun deleteReservationCancelResponse(
             @Header("jwt") jwt: String?
     ): Call<Any>
 
     //예약 세부정보 조회
-    @GET("/api/reservation/{reserveCode}")
-    fun postReservationReserveResponse(
-            @Header("jwt") jwt :String?,
-            @Path("reserveCode") reserveCode :String
+    @GET("/api/reservation")
+    fun getReservationReserveResponse(
+            @Header("jwt") jwt :String?
     ) : Call<ReservationReserveCodeData>
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@

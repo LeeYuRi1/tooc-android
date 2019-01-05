@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ship.ShipFragment">
+    android:background="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:textColor="#ffffff"
             android:fontFamily="@font/kopub_bold"
             android:textSize="18sp"
-            tools:text="내 짐현황" />
+            android:text="내 짐현황" />
 
     </RelativeLayout>
 

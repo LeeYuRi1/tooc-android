@@ -91,7 +91,7 @@ class ProfileFragment : Fragment() {
                 et_phone_profile.isEnabled = true
 
             } else if (tv_modification_profile.text == "완료") {   //edittext 수정 가능
-                tv_modification_profile.setText("수정")
+                tv_modification_profile.text = "수정"
                 et_name_profile.isEnabled = false
 
                 et_name_profile.isEnabled = false
@@ -151,9 +151,9 @@ class ProfileFragment : Fragment() {
         // 패스워드: 8-20자, 영어+번호+특수문자
         et_password_profile.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (et_password_profile.text.toString().length != 0) {
+                if (et_password_profile.text.toString().isNotEmpty()) {
                     iv_password_check_profile.visibility = View.VISIBLE
-                } else if (et_password_profile.text.toString().length == 0) {
+                } else if (et_password_profile.text.toString().isEmpty()) {
                     iv_password_check_profile.visibility = View.GONE
                 }
             }
@@ -165,7 +165,7 @@ class ProfileFragment : Fragment() {
         // 패스워드 확인
         et_password_confirm_profile.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (et_password_confirm_profile.text.toString().length != 0) {
+                if (et_password_confirm_profile.text.toString().isNotEmpty()) {
                     if (et_password_profile.text.toString() == et_password_confirm_profile.text.toString()) {
                         iv_passwordconfirm_check_profile.visibility = View.VISIBLE
                         iv_passwordconfirm_x_profile.visibility = View.GONE
@@ -173,7 +173,7 @@ class ProfileFragment : Fragment() {
                         iv_passwordconfirm_check_profile.visibility = View.GONE
                         iv_passwordconfirm_x_profile.visibility = View.VISIBLE
                     }
-                } else if (et_password_confirm_profile.text.toString().length == 0) {
+                } else if (et_password_confirm_profile.text.toString().isEmpty()) {
                     iv_passwordconfirm_check_profile.visibility = View.GONE
                     iv_passwordconfirm_x_profile.visibility = View.GONE
                 }

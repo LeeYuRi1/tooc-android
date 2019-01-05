@@ -1,7 +1,6 @@
 package com.hyeran.android.travely_user.reserve
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -11,34 +10,27 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve.view.*
 import org.jetbrains.anko.support.v4.toast
 import android.widget.CompoundButton
-import android.widget.Toast
-import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.rb_kakaopay_reserve
+import com.hyeran.android.travely_user.dialog.BagSizeDialog
 import com.hyeran.android.travely_user.dialog.KeepPriceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
 import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
 import com.hyeran.android.travely_user.model.ErrorData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
 import com.hyeran.android.travely_user.model.reservation.bagInfo
-import com.hyeran.android.travely_user.model.store.RestWeekResponseData
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import com.hyeran.android.travely_user.util.SupportUtil
 import kotlinx.android.synthetic.main.fragment_reserve.*
-import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.ctx
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.log
 
 class ReserveFragment : Fragment() {
 
@@ -57,13 +49,15 @@ class ReserveFragment : Fragment() {
     var tnummm: Int = 0
     var openTime: Long = 0
     var closeTime: Long = 0
-    var offday= ArrayList<String>() //쉬는 요일
+    var offday = ArrayList<String>() //쉬는 요일
 
     var afterParseStore: Long = 0
     var afterParseTake: Long = 0
 
     //        TODO("storeIdx를 받아서 통신해야함!!!!!!")
     var storeIdx: Int = 1
+
+    var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) HH:mm")
 
     var errorCheck: Boolean = false
 
@@ -79,7 +73,7 @@ class ReserveFragment : Fragment() {
 
         storeIdx = args!!.getInt("storeIdx")
 
-        toast("storeIdx = "+storeIdx.toString())
+        toast("storeIdx = " + storeIdx.toString())
 
         getReservationPriceListResponse()
 
@@ -92,7 +86,7 @@ class ReserveFragment : Fragment() {
 
         var rightNow = Calendar.getInstance()
         var dateFormat = SimpleDateFormat("MMM dd일 (EE)")
-        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) kk:mm")
+        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) HH:mm")
         var yearDateFormat = SimpleDateFormat("yyyy")
 
         var defaultHourValue = rightNow.get(Calendar.HOUR_OF_DAY)
@@ -140,13 +134,18 @@ class ReserveFragment : Fragment() {
     fun setOnClickListener(v: View) {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
-                    , svalue, tvalue, openTime, closeTime,storeIdx)
-            val dialog = ReserveTimeSettintDialog(ctx, timeArray,offday)
+                    , svalue, tvalue, openTime, closeTime, storeIdx)
+//                    , svalue, tvalue, openTime, closeTime)
+//            val dialog = ReserveTimeSettingDialog(ctx, timeArray)
+            val dialog = ReserveTimeSettintDialog(ctx, timeArray, offday)
             dialog.show()
         }
-
         v.btn_price_reserve.setOnClickListener {
             KeepPriceDialog(context).show()
+        }
+
+        v.btn_bag_size_reserve.setOnClickListener {
+            BagSizeDialog(context).show()
         }
 
         //tv_result_amount_carrier_reserve, tv_result_amount_etc_reserve 뺌
@@ -234,6 +233,7 @@ class ReserveFragment : Fragment() {
 
         v.btn_reserve_reserve.setOnClickListener {
 
+            toast("맡기는시간 : " +dateParseFormat.format(afterParseStore) + "  찾는 시간 : "+dateParseFormat.format(afterParseTake))
             if (smmddee != tmmddee || snumhh != tnumhh || snummm != tnummm) {
 
                 if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
@@ -244,13 +244,6 @@ class ReserveFragment : Fragment() {
                             //통신
                             postReserveInfo()
 
-                            if (v.rb_kakaopay_reserve.isChecked) {
-                                val intent = Intent(context, KakaopayWebView::class.java)
-                                startActivityForResult(intent, 9999)
-                            }
-                            if (v.rb_cash_reserve.isChecked) {
-                                ReserveCompleteDialog(context).show()
-                            }
                         } else {
                             toast("결제 동의를 체크해주세요.")
 
@@ -268,7 +261,6 @@ class ReserveFragment : Fragment() {
 
             }
         }
-
     }
 
     fun postReserveInfo() {//예약 상태 저장
@@ -281,9 +273,9 @@ class ReserveFragment : Fragment() {
             bagData.add(bagInfo("ETC", etc_amount))
         }
         if (rb_kakaopay_reserve.isChecked) {
-            reserveSave = ReservationSaveRequestData(1, afterParseStore, afterParseTake, bagData, "CARD")
+            reserveSave = ReservationSaveRequestData(storeIdx.toLong(), afterParseStore, afterParseTake, bagData, "CARD")
         } else {
-            reserveSave = ReservationSaveRequestData(1, afterParseStore, afterParseTake, bagData, "CASH")
+            reserveSave = ReservationSaveRequestData(storeIdx.toLong(), afterParseStore, afterParseTake, bagData, "CASH")
         }
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var postReservationSaveResponse = networkService.postReservationSaveResponse("application/json", jwt, reserveSave)
@@ -308,6 +300,7 @@ class ReserveFragment : Fragment() {
                             }
                             if (rb_cash_reserve.isChecked) {
                                 ReserveCompleteDialog(context).show()
+                                SharedPreferencesController.instance!!.setPrefData("is_reserve", true)
                             } else {
                             }
                         }
@@ -351,6 +344,7 @@ class ReserveFragment : Fragment() {
     fun getStoreResponseInfo() { //상가 세부정보 조회
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var getStoreInfo = networkService.getStoreResponse(jwt, storeIdx)
+        toast("In getStoreResponseInfo" + storeIdx)
         getStoreInfo.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -363,23 +357,18 @@ class ReserveFragment : Fragment() {
                             toast("200" + response.body()!!.closeTime)
                             openTime = response.body()!!.openTime.toLong()
                             closeTime = response.body()!!.closeTime.toLong()
-                            for (i in 0..response.body()!!.restWeekResponseDtos.size-1) {
-                                if(response.body()!!.restWeekResponseDtos[i].week==1) {
+                            for (i in 0..response.body()!!.restWeekResponseDtos.size - 1) {
+                                if (response.body()!!.restWeekResponseDtos[i].week == 1) {
                                     offday.add("일")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==2){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 2) {
                                     offday.add("화")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==3){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 3) {
                                     offday.add("수")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==4){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 4) {
                                     offday.add("목")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==5){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 5) {
                                     offday.add("금")
-                                }
-                                else if(response.body()!!.restWeekResponseDtos[i].week==6){
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 6) {
                                     offday.add("토")
                                 }
                                 toast(offday[i])
@@ -439,7 +428,7 @@ class ReserveFragment : Fragment() {
             hour++
         }
 
-        Log.d("@@@@@@@@@", "snumhh: "+snumhh.toString())
+        Log.d("@@@@@@@@@", "snumhh: " + snumhh.toString())
 
 
         var price = 0
@@ -452,18 +441,20 @@ class ReserveFragment : Fragment() {
         }
         var extra_hour = 0
 
-        var final_price = priceArray.get(priceArray.size - 1).priceIdx
+        var final_price_index = priceArray.get(priceArray.size - 1).priceIdx
 
-        if (hour > final_price) {
-            var temp_extra_hour = hour - final_price
+        if (hour > final_price_index) {
+            var temp_extra_hour = hour - final_price_index
             extra_hour = (temp_extra_hour / 12).toInt()
             if ((temp_extra_hour % 12L) == 0L) {
                 extra_hour--
             }
         }
 
+        var extra_price = priceArray.get(0).price
 
-        var price_unit: Int = price + extra_hour * final_price
+        var price_unit: Int = price + extra_hour * extra_price
+
 
         return price_unit
 

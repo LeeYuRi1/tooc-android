@@ -115,7 +115,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     private val TAG = javaClass.simpleName
 
-    public var locationPermissionGranted: Boolean = false
+    var locationPermissionGranted: Boolean = false
 
     companion object {
         var mInstance: MapFragment? = null
@@ -157,9 +157,12 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
             if (resultCode == 1) {
+                (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
+            }
+            else if (resultCode == 111) {
 
             }
-            if(resultCode  == 2) {  // 어댑터에서 들어올 때 -> storeIdx 전달해서 서버 데이터 세팅 필요
+            else if(resultCode  == 2) {  // 어댑터에서 들어올 때 -> storeIdx 전달해서 서버 데이터 세팅 필요
                 Log.d("@storeIdx통신@", "MapFragment로 돌아왔다.")
                 var storeIdx : Int = data!!.getIntExtra("storeIdx", 0)
                 Log.d("@storeIdx통신@", "storeIdx는? " + storeIdx)

@@ -57,16 +57,14 @@ class MapMoreActivity : AppCompatActivity() {
 
         lat = intent.getDoubleExtra("lat", 0.0)
         lng = intent.getDoubleExtra("lng", 0.0)
-
 //        toast(lat.toString() + "!@#!@#!@#!#" + lng.toString())
-
         setOnBtnClickListener()
     }
 
 
     private fun setOnBtnClickListener() {
         btn_map_more_act_find_road.setOnClickListener {
-            val mapChoiceDialog: MapChoiceDialog = MapChoiceDialog(this, lat, lng)
+            val mapChoiceDialog = MapChoiceDialog(this, lat, lng)
             mapChoiceDialog.window.setGravity(Gravity.BOTTOM)
             mapChoiceDialog.show()
         }
@@ -79,11 +77,7 @@ class MapMoreActivity : AppCompatActivity() {
         }
 
         btn_map_more_act_favorite.setOnClickListener {
-            if (btn_map_more_act_favorite.isSelected) {
-                btn_map_more_act_favorite.isSelected = false
-            } else {
-                btn_map_more_act_favorite.isSelected = true
-            }
+            btn_map_more_act_favorite.isSelected = !btn_map_more_act_favorite.isSelected
         }
     }
 
@@ -117,6 +111,7 @@ class MapMoreActivity : AppCompatActivity() {
                             tv_store_name_map_more.text = response.body()!!.storeName
                             tv_grade_map_more.text = response.body()!!.grade.toString()
                             tv_address_map_more.text = response.body()!!.address
+                            tv_address_number_map_more.text = response.body()!!.addressNumber
 
                             var open_time : Long = response.body()!!.openTime.toLong()
 
