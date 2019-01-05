@@ -3,13 +3,11 @@ package com.hyeran.android.travely_user.reserve
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import com.hyeran.android.travely_user.MainActivity
 
@@ -28,7 +26,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<Any>) : Dialog(ctx) {
+class ReserveTimeSettingDialog(val ctx: Context?, val reiceveArray: ArrayList<Any>) : Dialog(ctx) {
 
     //TODO : 휴무일 넣어야함
     var offday: String? = "일"
@@ -72,7 +70,11 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_reserve_time_setting)
+
+        iv_store_time_image.setColorFilter(Color.parseColor("#ffffff"))
 
         dates = datesFromCalender()
         hours = hourFromCalender()
@@ -197,7 +199,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             tv_take_minute.text = tmm
         }
 
-        btn_store_time.setBackgroundColor(Color.parseColor("#4C64FD"))
+//        btn_store_time.setBackgroundColor(Color.parseColor("#4C64FD"))
 
         //버튼클릭시~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         setOnClickListner()
@@ -248,6 +250,9 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         var currentHour = rightNow.get(Calendar.HOUR_OF_DAY)
         var ttoast: Toast
         btn_store_time.setOnClickListener {
+
+            setStoreClickViewChange()
+
             if (svalue == 0 && snumhh < currentHour) {
                 ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
@@ -256,8 +261,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                 if (alertFlag == 1 && takeProhibit != offday) {
                     vs_custom_date_picker.showNext()
                     alertFlag = 0;
-                    btn_store_time.setBackgroundColor(Color.parseColor(R.color.mainColor.toString()))
-                    btn_take_time.setBackgroundColor(Color.parseColor("#ffffff"))
                 } else {
                     var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
                     ttoast.setGravity(Gravity.CENTER, 0, 0)
@@ -267,6 +270,9 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         }
 
         btn_take_time.setOnClickListener {
+
+            setTakeClickViewChange()
+
             if (svalue == 0 && snumhh < currentHour) {
                 ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
@@ -275,8 +281,8 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                 if (alertFlag == 0 && storeProhibit != offday) {
                     vs_custom_date_picker.showNext()
                     alertFlag = 1;
-                    btn_take_time.setBackgroundColor(Color.parseColor("#4C64FD"))
-                    btn_store_time.setBackgroundColor(Color.parseColor("#ffffff"))
+//                    btn_take_time.setBackgroundColor(Color.parseColor("#4C64FD"))
+//                    btn_store_time.setBackgroundColor(Color.parseColor("#ffffff"))
                 } else {
                     ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
                     ttoast.setGravity(Gravity.CENTER, 0, 0)
@@ -329,6 +335,48 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             }
         }
 
+    }
+
+    private fun setTakeClickViewChange() {
+
+        // 맡기는 시간
+        btn_store_time.setBackgroundResource(R.drawable.bt_white_box_time)
+        iv_store_time_image.setColorFilter(Color.parseColor("#262626"))
+        tv_store_time_text.setTextColor(Color.parseColor("#494949"))
+        tv_store_date.setTextColor(Color.parseColor("#494949"))
+        tv_store_hour.setTextColor(Color.parseColor("#262626"))
+        tv_store_colon.setTextColor(Color.parseColor("#262626"))
+        tv_store_minute.setTextColor(Color.parseColor("#262626"))
+
+        // 찾는 시간
+        btn_take_time.setBackgroundResource(R.drawable.bt_full_box_time)
+        iv_take_time_image.setColorFilter(Color.parseColor("#ffffff"))
+        tv_take_time_text.setTextColor(Color.parseColor("#ffffff"))
+        tv_take_date.setTextColor(Color.parseColor("#ffffff"))
+        tv_take_hour.setTextColor(Color.parseColor("#ffffff"))
+        tv_take_colon.setTextColor(Color.parseColor("#ffffff"))
+        tv_take_minute.setTextColor(Color.parseColor("#ffffff"))
+    }
+
+    private fun setStoreClickViewChange() {
+
+        // 맡기는 시간
+        btn_store_time.setBackgroundResource(R.drawable.bt_full_box_time)
+        iv_store_time_image.setColorFilter(Color.parseColor("#ffffff"))
+        tv_store_time_text.setTextColor(Color.parseColor("#ffffff"))
+        tv_store_date.setTextColor(Color.parseColor("#ffffff"))
+        tv_store_hour.setTextColor(Color.parseColor("#ffffff"))
+        tv_store_colon.setTextColor(Color.parseColor("#ffffff"))
+        tv_store_minute.setTextColor(Color.parseColor("#ffffff"))
+
+        // 찾는 시간
+        btn_take_time.setBackgroundResource(R.drawable.bt_white_box_time)
+        iv_take_time_image.setColorFilter(Color.parseColor("#262626"))
+        tv_take_time_text.setTextColor(Color.parseColor("#494949"))
+        tv_take_date.setTextColor(Color.parseColor("#494949"))
+        tv_take_hour.setTextColor(Color.parseColor("#262626"))
+        tv_take_colon.setTextColor(Color.parseColor("#262626"))
+        tv_take_minute.setTextColor(Color.parseColor("#262626"))
     }
 
 }
