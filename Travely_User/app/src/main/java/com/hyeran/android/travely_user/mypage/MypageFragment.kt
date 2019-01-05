@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_mypage.*
 import kotlinx.android.synthetic.main.fragment_mypage.view.*
 import org.jetbrains.anko.image
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -77,9 +78,11 @@ class MypageFragment : Fragment() {
             replaceFragment(LikeFragment())
         }
         layout_myreview_mypage.setOnClickListener {
-            replaceFragment(MyreviewFragment())
-//            val intent = Intent(this.activity, ExplanationActivity::class.java)
-//            startActivity(intent)
+            //replaceFragment(MyreviewFragment())
+//            val intent = Intent(ctx, ExplanationActivity::class.java)
+          // var intent = Intent(activity ,)
+            //startActivity(intent)
+            startActivity<ExplanationActivity>()
 
         }
         iv_set_mypage.setOnClickListener {

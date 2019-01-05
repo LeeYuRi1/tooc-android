@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
+import kotlinx.android.synthetic.main.fragment_welcome.*
 
 class WelcomeFragment : Fragment() {
     companion object {
@@ -15,7 +16,7 @@ class WelcomeFragment : Fragment() {
 
         fun newInstance(sectionCategory: String): WelcomeFragment {
             val fragment = WelcomeFragment()
-            val args : Bundle? = Bundle()
+            val args: Bundle? = Bundle()
             args?.putString(CATEGORY, sectionCategory)
             fragment.arguments = args
             return fragment
@@ -29,7 +30,11 @@ class WelcomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val intent = Intent(this.activity, MainActivity::class.java)
-        startActivity(intent)
+
+        btn_start_welcome.setOnClickListener {
+            val intent = Intent(this.activity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
