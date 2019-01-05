@@ -216,7 +216,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
-//            getStoreResponse()
+            storeIdx = data!!.getIntExtra("storeIdx", 0)
+            getStoreResponse()
         }
         if (requestCode == 888) {
             if (resultCode == 777) {
