@@ -187,6 +187,8 @@ class JoinActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
+                            SharedPreferencesController.instance!!.setPrefData("is_reserve", false)
+//                            toast(SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve").toString())
                             startActivity(Intent(this@JoinActivity, MainActivity::class.java))
                             finish()
                         }
