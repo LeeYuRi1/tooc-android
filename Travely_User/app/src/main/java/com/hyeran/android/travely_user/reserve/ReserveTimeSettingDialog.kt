@@ -40,7 +40,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
     var scalen = Calendar.getInstance()
 
     val dateformat = SimpleDateFormat("MMM dd일 (EE)")
-    val allFormat = SimpleDateFormat("yy MMM dd일 kk:mm")
+    val allFormat = SimpleDateFormat("yy MMM dd일 HH:mm")
     var hourFormat = SimpleDateFormat("kk")
 
     var storeProhibit: String? = null
@@ -264,7 +264,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         } else {
             for (i in 0..9) dates.add("0" + i)
         }
-        for (i in 10..closeTime) dates.add(i.toString())
+        for (i in 10..closeTime-1) dates.add(i.toString())
         return dates.toTypedArray()
     }
 

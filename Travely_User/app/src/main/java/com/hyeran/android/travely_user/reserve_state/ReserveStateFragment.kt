@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_reserve_state.*
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Gravity
-import android.widget.Toast
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
@@ -31,22 +30,17 @@ import com.hyeran.android.travely_user.adapter.LuggagePictureAdapter
 import com.hyeran.android.travely_user.data.LuggagePictureData
 import com.hyeran.android.travely_user.dialog.MapChoiceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
-import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.bagDtosData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
-import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
-import okhttp3.internal.http2.PushObserver.CANCEL
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Response
 import java.text.SimpleDateFormat
-import java.util.zip.Inflater
-import javax.security.auth.callback.Callback
 
 
 class ReserveStateFragment : Fragment(), OnMapReadyCallback {
@@ -58,8 +52,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     var latitude3: Double = 0.0
     var longitude3: Double = 0.0
-    var latitude : Double = 0.0
-    var longitude : Double =0.0
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
 
     override fun onMapReady(googleMap: GoogleMap?) {
         MapsInitializer.initialize(context)
@@ -74,7 +68,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     var stateType: String? = null
     var reserveCode: String? = null
-    var startTIme: Long? = null
+    var startTime: Long? = null
     var endTime: Long? = null
     var bagDtos = ArrayList<bagDtosData>()
 
@@ -106,13 +100,12 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
         arguments?.let { password = it.getString("password") }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var v = inflater.inflate(R.layout.fragment_reserve_state, container, false)
 
         networkService = ApplicationController.instance.networkService
         getReservationReserveResponse(v)
-
-        var testt: String = "TEst"
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
             ReserveCancelDialog(context).show()
@@ -186,7 +179,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         return bmp
     }
 
-    fun getReservationReserveResponse(v:View) {
+    fun getReservationReserveResponse(v: View) {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         val getReservationReserveResponse = networkService.getReservationReserveResponse(jwt)
 
@@ -201,42 +194,55 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                         200 -> {
                             stateType = response.body()!!.stateType.toString()
                             reserveCode = response.body()!!.reserveCode.toString()
-                            startTIme = response.body()!!.startTime
+                            startTime = response.body()!!.startTime
                             endTime = response.body()!!.endTime
                             bagDtos = response.body()!!.bagDtos
                             latitude = response.body()!!.store.latitude
                             longitude = response.body()!!.store.longitude
                             generateQRCode(v, response.body()!!.reserveCode)
-                            if(stateType=="RESERVED"){
-                            }else if(stateType == "PAYED"){
+                            toast("stateType = " + stateType)
+                            if (stateType == "RESERVED") {
+                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_empty)
+                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
+                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
+                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_no)
+                            } else if (stateType == "PAYED") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                            }else if(stateType == "ARCHIVE"){
+                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
+
+                            } else if (stateType == "ARCHIVE") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                            }else if(stateType == "PICKUP"){
+                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
+                            } else if (stateType == "PICKUP") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_fill)
-                            }else if(stateType == "CANCEL"){
+                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
+                            } else if (stateType == "CANCEL") {
                                 ReserveCancelDialog(ctx).show()
                             }
-                          //  18년 10월 24일 목요일
-                            var dateTextFormat = SimpleDateFormat("yy년 mm월 dd일 EE")
-                            tv_put_year_reservestate.text = dateTextFormat.format(startTIme)
-
-
-
+                            //DATE
+                            var dateTextFormat = SimpleDateFormat("yy년 mm월 dd일 EE요일")
+                            tv_put_year_reservestate.text = dateTextFormat.format(startTime)
+                            tv_find_year_reservestate.text = dateTextFormat.format(endTime)
+                            //시간
+                            var timeTextFormat = SimpleDateFormat("a HH시 mm분")
+                            tv_put_ampm_reservestate.text = timeTextFormat.format(startTime)
+                            tv_find_ampm_reservestate.text = timeTextFormat.format(endTime)
+                            //QR
 
                             tv_qr_reserveCode.text = reserveCode.toString()
 
-
+                            toast("bagDtos Size : "+response.body()!!.bagDtos.size)
+                            for(i in 0..response.body()!!.bagDtos.size){
+                                response.body()!!.bagDtos[0].bagType
+                            }
 
                             Log.d("TAGG", "bagDtos : " + bagDtos.toString())
-
-
                         }
                         500 -> {
                             toast("500 error")

@@ -72,6 +72,7 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
                     when (it.code()) {
                         200 -> {
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", false)
+                            dismiss()
                             ReserveCancelPasswordConfirmDialog(context).show()
                         }
                         500 -> {

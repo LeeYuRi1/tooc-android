@@ -57,6 +57,13 @@ class ReserveFragment : Fragment() {
     //        TODO("storeIdx를 받아서 통신해야함!!!!!!")
     var storeIdx: Int = 1
 
+
+
+
+    var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) HH:mm")
+
+
+
     var errorCheck: Boolean = false
 
     lateinit var networkService: NetworkService
@@ -84,7 +91,7 @@ class ReserveFragment : Fragment() {
 
         var rightNow = Calendar.getInstance()
         var dateFormat = SimpleDateFormat("MMM dd일 (EE)")
-        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) kk:mm")
+        var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) HH:mm")
         var yearDateFormat = SimpleDateFormat("yyyy")
 
         var defaultHourValue = rightNow.get(Calendar.HOUR_OF_DAY)
@@ -232,6 +239,7 @@ class ReserveFragment : Fragment() {
 
         v.btn_reserve_reserve.setOnClickListener {
 
+            toast("맡기는시간 : " +dateParseFormat.format(afterParseStore) + "  찾는 시간 : "+dateParseFormat.format(afterParseTake))
             if (smmddee != tmmddee || snumhh != tnumhh || snummm != tnummm) {
 
                 if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
