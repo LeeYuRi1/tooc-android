@@ -78,11 +78,7 @@ class MypageFragment : Fragment() {
             replaceFragment(LikeFragment())
         }
         layout_myreview_mypage.setOnClickListener {
-            //replaceFragment(MyreviewFragment())
-//            val intent = Intent(ctx, ExplanationActivity::class.java)
-          // var intent = Intent(activity ,)
-            //startActivity(intent)
-            startActivity<ExplanationActivity>()
+            replaceFragment(MyreviewFragment())
 
         }
         iv_set_mypage.setOnClickListener {
