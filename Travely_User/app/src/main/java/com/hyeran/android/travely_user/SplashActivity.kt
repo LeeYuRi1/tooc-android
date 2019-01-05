@@ -19,7 +19,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class SplashActivity : AppCompatActivity() {
 
     lateinit var networkService : NetworkService
@@ -51,6 +50,7 @@ class SplashActivity : AppCompatActivity() {
                     intent = Intent(applicationContext, LoginActivity::class.java)
                 }
                 startActivity(intent)
+                finish()
             }
 
         })

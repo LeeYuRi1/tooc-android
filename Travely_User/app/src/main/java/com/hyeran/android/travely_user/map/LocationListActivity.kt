@@ -34,7 +34,7 @@ class LocationListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_location_list)
 
         btn_back_location_list.setOnClickListener {
-            setResult(1)
+            setResult(111)
             finish()
         }
 
