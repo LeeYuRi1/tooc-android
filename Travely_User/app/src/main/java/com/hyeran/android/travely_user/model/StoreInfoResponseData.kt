@@ -9,6 +9,7 @@ data class StoreInfoResponseData (
         var ownerIdx : Int,
         var storeCall : String,
         var storeIdx : Int,
+        var storeImage : String,
         var storeName : String,
         var storeUrl : String
 )

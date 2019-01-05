@@ -5,23 +5,29 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.SplashActivity
+import com.hyeran.android.travely_user.join.ExplanationActivity
+import com.hyeran.android.travely_user.join.RecentstoreDetailFragment
 import com.hyeran.android.travely_user.model.ProfileResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_mypage.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 import java.util.regex.Pattern
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
@@ -38,7 +44,7 @@ class ProfileFragment : Fragment() {
     lateinit var networkService: NetworkService
     private var mImage: MultipartBody.Part? = null
 
-    val REQUEST_CODE_SELECT_IMAGE : Int = 1004
+    val REQUEST_CODE_SELECT_IMAGE: Int = 1004
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_profile, container, false)
@@ -50,7 +56,7 @@ class ProfileFragment : Fragment() {
         setClickListener()
         checkValidation()
         init()
-//        getProfileResponse()
+        getProfileResponse()
     }
 
     private fun init() {
@@ -68,6 +74,9 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
+        iv_back_profile.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(MypageFragment())
+        }
 
 
         tv_modification_profile.setOnClickListener {
@@ -76,20 +85,22 @@ class ProfileFragment : Fragment() {
                 tv_modification_profile.setText("완료")
 
                 et_name_profile.isEnabled = true
-                et_email_profile.isEnabled = true
+                //et_email_profile.isEnabled = true
                 et_password_profile.isEnabled = true
                 et_password_confirm_profile.isEnabled = true
                 et_phone_profile.isEnabled = true
 
             } else if (tv_modification_profile.text == "완료") {   //edittext 수정 가능
-                tv_modification_profile.setText("수정")
+                tv_modification_profile.text = "수정"
                 et_name_profile.isEnabled = false
 
                 et_name_profile.isEnabled = false
-                et_email_profile.isEnabled = false
+                //et_email_profile.isEnabled = false
                 et_password_profile.isEnabled = false
                 et_password_confirm_profile.isEnabled = false
                 et_phone_profile.isEnabled = false
+
+                //val p_name = et_name_profile.text
             }
         }
 
@@ -127,8 +138,7 @@ class ProfileFragment : Fragment() {
                 if (checkEmail(et_email_profile.text.toString().trim())) {
                     iv_email_check_profile.visibility = View.VISIBLE
                     email_validation = true
-                }
-                else {
+                } else {
                     iv_email_check_profile.visibility = View.INVISIBLE
                     email_validation = true
                 }
@@ -141,9 +151,9 @@ class ProfileFragment : Fragment() {
         // 패스워드: 8-20자, 영어+번호+특수문자
         et_password_profile.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (et_password_profile.text.toString().length != 0) {
+                if (et_password_profile.text.toString().isNotEmpty()) {
                     iv_password_check_profile.visibility = View.VISIBLE
-                } else if (et_password_profile.text.toString().length == 0) {
+                } else if (et_password_profile.text.toString().isEmpty()) {
                     iv_password_check_profile.visibility = View.GONE
                 }
             }
@@ -155,7 +165,7 @@ class ProfileFragment : Fragment() {
         // 패스워드 확인
         et_password_confirm_profile.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (et_password_confirm_profile.text.toString().length != 0) {
+                if (et_password_confirm_profile.text.toString().isNotEmpty()) {
                     if (et_password_profile.text.toString() == et_password_confirm_profile.text.toString()) {
                         iv_passwordconfirm_check_profile.visibility = View.VISIBLE
                         iv_passwordconfirm_x_profile.visibility = View.GONE
@@ -163,7 +173,7 @@ class ProfileFragment : Fragment() {
                         iv_passwordconfirm_check_profile.visibility = View.GONE
                         iv_passwordconfirm_x_profile.visibility = View.VISIBLE
                     }
-                } else if (et_password_confirm_profile.text.toString().length == 0) {
+                } else if (et_password_confirm_profile.text.toString().isEmpty()) {
                     iv_passwordconfirm_check_profile.visibility = View.GONE
                     iv_passwordconfirm_x_profile.visibility = View.GONE
                 }
@@ -174,15 +184,52 @@ class ProfileFragment : Fragment() {
         })
     }
 
-    private fun checkEmail(email : String) : Boolean{
+    private fun checkEmail(email: String): Boolean {
         val regex = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$"
-        val p : Pattern = Pattern.compile(regex)
-        val m : Matcher = p.matcher(email)
-        val isNormal : Boolean = m.matches()
+        val p: Pattern = Pattern.compile(regex)
+        val m: Matcher = p.matcher(email)
+        val isNormal: Boolean = m.matches()
         return isNormal
     }
 
 
+    private fun getProfileResponse() {
+
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        val getProfileResponse = networkService.getProfileResponse(jwt)
+
+        getProfileResponse!!.enqueue(object : Callback<ProfileResponseData> {
+            override fun onFailure(call: Call<ProfileResponseData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<ProfileResponseData>, response: Response<ProfileResponseData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+
+                            Glide.with(this@ProfileFragment)
+                                    .load(response.body()!!.profileImg)
+                                    .into(iv_profileimage_profile)
+
+                            et_name_profile.setText(response.body()!!.name)
+                            et_email_profile.setText(response.body()!!.email)
+                            et_phone_profile.setText(response.body()!!.phone)
+
+                            toast("프로필 조회 성공")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+    }
 
 
 }

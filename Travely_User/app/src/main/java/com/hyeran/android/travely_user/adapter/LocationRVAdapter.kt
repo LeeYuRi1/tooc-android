@@ -17,9 +17,9 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
 
     lateinit var moreLocationRVAdapter: MoreLocationRVAdapter
 
-    lateinit var more_dataList : ArrayList<SimpleStoreResponseData>
+    lateinit var more_dataList: ArrayList<SimpleStoreResponseData>
 
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_location_map, parent, false)
 
         return Holder(view)
@@ -31,19 +31,15 @@ class LocationRVAdapter(val ctx: Context, val dataList: ArrayList<RegionResponse
         holder.name.text = dataList[position].regionName
         holder.num.text = dataList[position].simpleStoreResponseDtos.size.toString()
 
-
         more_dataList = dataList[position].simpleStoreResponseDtos
         moreLocationRVAdapter = MoreLocationRVAdapter(ctx, more_dataList)
-
-//
         val position = moreLocationRVAdapter.itemCount
 
         holder.rv_more_item_location_map.adapter = moreLocationRVAdapter
         holder.rv_more_item_location_map.layoutManager = LinearLayoutManager(ctx)
         moreLocationRVAdapter.notifyItemInserted(position)
-//
+
         holder.iv_more_item_location_map.setOnClickListener {
-//            Toast.makeText(ctx, "ssss", Toast.LENGTH_SHORT)
             if (holder.rv_more_item_location_map.visibility == View.VISIBLE) {
                 holder.iv_arrow_item_location_map.setImageResource(R.drawable.ic_arrow_down)
                 holder.rv_more_item_location_map.visibility = View.GONE

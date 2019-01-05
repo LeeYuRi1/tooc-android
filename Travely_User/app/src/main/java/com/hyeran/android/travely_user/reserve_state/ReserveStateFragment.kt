@@ -158,7 +158,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         dataList.add(LuggagePictureData("tesetest"))
         dataList.add(LuggagePictureData("tesetest"))
 
-
         luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
         rv_luggage_picture.adapter = luggagePictureAdapter
         var mLayoutManager = LinearLayoutManager(context)

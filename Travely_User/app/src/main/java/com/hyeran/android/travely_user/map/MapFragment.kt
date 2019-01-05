@@ -115,7 +115,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     private val TAG = javaClass.simpleName
 
-    public var locationPermissionGranted: Boolean = false
+    var locationPermissionGranted: Boolean = false
 
     companion object {
         var mInstance: MapFragment? = null
@@ -199,7 +199,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
-            mMap.uiSettings.isMyLocationButtonEnabled = true
+            mMap.uiSettings.isMyLocationButtonEnabled = false
             mMap.uiSettings.isCompassEnabled = true
             mMap.uiSettings.isZoomGesturesEnabled = true
 

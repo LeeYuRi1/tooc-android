@@ -1,7 +1,6 @@
 package com.hyeran.android.travely_user.reserve
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -11,34 +10,27 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve.view.*
 import org.jetbrains.anko.support.v4.toast
 import android.widget.CompoundButton
-import android.widget.Toast
-import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.rb_kakaopay_reserve
+import com.hyeran.android.travely_user.dialog.BagSizeDialog
 import com.hyeran.android.travely_user.dialog.KeepPriceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCompleteDialog
 import com.hyeran.android.travely_user.model.ReservationPriceListResponseData
 import com.hyeran.android.travely_user.model.ErrorData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
 import com.hyeran.android.travely_user.model.reservation.bagInfo
-import com.hyeran.android.travely_user.model.store.RestWeekResponseData
 import com.hyeran.android.travely_user.model.store.StoreResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import com.hyeran.android.travely_user.util.SupportUtil
 import kotlinx.android.synthetic.main.fragment_reserve.*
-import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.ctx
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.log
 
 class ReserveFragment : Fragment() {
 
@@ -141,12 +133,18 @@ class ReserveFragment : Fragment() {
         v.btn_alldate_reserve.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
                     , svalue, tvalue, openTime, closeTime, storeIdx)
+//                    , svalue, tvalue, openTime, closeTime)
+//            val dialog = ReserveTimeSettingDialog(ctx, timeArray)
             val dialog = ReserveTimeSettintDialog(ctx, timeArray, offday)
             dialog.show()
         }
 
         v.btn_price_reserve.setOnClickListener {
             KeepPriceDialog(context).show()
+        }
+
+        v.btn_bag_size_reserve.setOnClickListener {
+            BagSizeDialog(context).show()
         }
 
         //tv_result_amount_carrier_reserve, tv_result_amount_etc_reserve 뺌
@@ -300,6 +298,7 @@ class ReserveFragment : Fragment() {
                             }
                             if (rb_cash_reserve.isChecked) {
                                 ReserveCompleteDialog(context).show()
+                                SharedPreferencesController.instance!!.setPrefData("is_reserve", true)
                             } else {
                             }
                         }

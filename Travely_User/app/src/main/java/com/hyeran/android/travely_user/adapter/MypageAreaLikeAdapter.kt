@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.hyeran.android.travely_user.R
-import com.hyeran.android.travely_user.R.id.rv_like_like
 import com.hyeran.android.travely_user.data.MypageAreaLikeData
 import com.hyeran.android.travely_user.data.MypageLikeData
 import java.util.ArrayList
@@ -29,22 +28,6 @@ class MypageAreaLikeAdapter(val ctx: Context, val dataList: ArrayList<MypageArea
         holder.num_arealike.text = dataList[position].num.toString()
 
         var dataList: ArrayList<MypageLikeData> = ArrayList()
-
-        if(position == 0){
-            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", true))
-            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", false))
-            dataList.add(MypageLikeData("프로마치", "성북구 안암동 123번지", "10:00 - 23:00", true))
-        }
-        else if(position == 1){
-            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", true))
-            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", false))
-            dataList.add(MypageLikeData("프로마치2", "성북구 안암동 123번지", "10:00 - 23:00", true))
-        }
-        else if(position == 2){
-            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", true))
-            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", false))
-            dataList.add(MypageLikeData("프로마치3", "성북구 안암동 123번지", "10:00 - 23:00", true))
-        }
 
         mypageLikeAdapter = MypageLikeAdapter(ctx, dataList)
         holder.rv_arealike.adapter = mypageLikeAdapter
