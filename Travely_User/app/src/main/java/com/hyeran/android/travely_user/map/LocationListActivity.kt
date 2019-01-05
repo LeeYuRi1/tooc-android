@@ -39,7 +39,9 @@ class LocationListActivity : AppCompatActivity() {
         }
 
         btn_map_location_list.setOnClickListener {
-            setResult(1)
+            var intent = Intent()
+            intent.putExtra("storeIdx", storeIdx)
+            setResult(1, intent)
             finish()
         }
 
