@@ -168,7 +168,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         var bundle: Bundle? = arguments
         storeIdx = bundle!!.getInt("storeIdx")
 
-
         toast(storeIdx.toString())
 
         getStoreResponse()
@@ -461,6 +460,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
+
+                            Log.d("TAGG","In MapMorePreviewFragment tv_address_map_more_preview = "+tv_address_map_more_preview.text)
 
                             var open_time: Long = response.body()!!.openTime.toLong()
 

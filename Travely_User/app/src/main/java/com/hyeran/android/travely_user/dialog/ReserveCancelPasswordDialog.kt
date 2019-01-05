@@ -72,11 +72,11 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
                     when (it.code()) {
                         200 -> {
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", false)
-                            dismiss()
                             ReserveCancelPasswordConfirmDialog(context).show()
+                            dismiss()
                         }
                         500 -> {
-                            Toast.makeText(ctx, "서버 에러", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(ctx, "500 서버 에러", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
                             Toast.makeText(ctx, "error"+it.code(), Toast.LENGTH_SHORT).show()

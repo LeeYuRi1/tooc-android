@@ -11,25 +11,25 @@ import com.hyeran.android.travely_user.data.LuggagePictureData
 import com.hyeran.android.travely_user.R
 
 
-class LuggagePictureAdapter(val ctx: Context, val dataPicture: ArrayList<LuggagePictureData>) : RecyclerView.Adapter<LuggagePictureAdapter.Holder>() {
+class LuggagePictureAdapter(val ctx: Context, val dataList: ArrayList<LuggagePictureData>) : RecyclerView.Adapter<LuggagePictureAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_luggage_picture, parent, false)
         return Holder(view)
     }
 
-    override fun getItemCount(): Int = dataPicture.size
+    override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(dataPicture[position],ctx)
+        holder.bind(dataList[position],ctx)
 
-        if (dataPicture != null) {
+        if (dataList != null) {
             Glide.with(ctx)
-                    .load(R.drawable.ic_google)   //teset 다른걸로 바꿔놨음!!!
+                    .load(dataList[position].picture)   //teset 다른걸로 바꿔놨음!!!
                     .into(holder.picture)
         } else {
             Glide.with(ctx)
-                    .load(R.drawable.ic_google)
+                    .load("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg")
                     .into(holder.picture)
         }
     }

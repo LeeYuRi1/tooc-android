@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.Location
+import android.location.LocationManager
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -20,6 +21,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Gravity
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -30,6 +33,7 @@ import com.hyeran.android.travely_user.adapter.LuggagePictureAdapter
 import com.hyeran.android.travely_user.data.LuggagePictureData
 import com.hyeran.android.travely_user.dialog.MapChoiceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
+import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.bagDtosData
 import com.hyeran.android.travely_user.network.ApplicationController
@@ -52,25 +56,41 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     var latitude3: Double = 0.0
     var longitude3: Double = 0.0
+    lateinit var qrCode : String
   //  var latitude: Double = 0.0
   //  var longitude: Double = 0.0
+
+    // Google API Client 생성
+    private lateinit var mGoogleApiClient2: GoogleApiClient
+    private lateinit var mLocation2: Location
+    private lateinit var locationManager2: LocationManager
+    private lateinit var mLocationRequest2: LocationRequest
+
+    private lateinit var fusedLocationProviderClient2: FusedLocationProviderClient
+    private lateinit var locationRequest2: LocationRequest
+    private lateinit var locationCallback2: MapMorePreviewFragment.MyLocationCallBack2
+
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
         mMap3 = googleMap!!
 
-//        val marker = LatLng(latitude, longitude)
-//        mMap3.addMarker(MarkerOptions().position(marker).title("동대문엽기떡볶이 홍대점").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_color_pin)))
-//        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+        if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mMap3.isMyLocationEnabled = true
+            mMap3.uiSettings.isMyLocationButtonEnabled = true
+            mMap3.uiSettings.isCompassEnabled = true
+            mMap3.uiSettings.isZoomGesturesEnabled = true
+        }
     }
-
 
     fun setGoogleMap(shopName: String, latitude:Double,longitude:Double){
         var marker = LatLng(latitude,longitude)
+        Log.d("TAGGG","lat = "+latitude+"  long = "+longitude)
         mMap3.addMarker(MarkerOptions().position(marker).title(shopName).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_color_pin)))
         mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker,17f))
     }
-
 
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
 
@@ -119,7 +139,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
             ReserveCancelDialog(context).show()
         }
         v.iv_qrimage_reservestate.setOnClickListener {
-            startActivity<ReserveQRCodeActivity>()
+            startActivity<ReserveQRCodeActivity>("qrCode" to qrCode)
         }
 
         mapView3 = v.findViewById(R.id.mv_store_map_reservestate)
@@ -153,12 +173,20 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
         setRecyclerView()
     }
+    override fun onStop() {
+        super.onStop()
 
+        if (mGoogleApiClient2.isConnected) {
+            mGoogleApiClient2.disconnect()
+        }
+    }
 
     fun setRecyclerView() {
-        var dataList: ArrayList<LuggagePictureData> = ArrayList()
+        var dataList= ArrayList<LuggagePictureData>()
+        dataList.add(LuggagePictureData("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg"))
         dataList.add(LuggagePictureData("tesetest"))
-        dataList.add(LuggagePictureData("tesetest"))
+        dataList.add(LuggagePictureData("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg"))
+
 
         luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
         rv_luggage_picture.adapter = luggagePictureAdapter
@@ -234,21 +262,22 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 ReserveCancelDialog(ctx).show()
                             }
                             //DATE
-                            var dateTextFormat = SimpleDateFormat("yy년 mm월 dd일 EE요일")
+                            var dateTextFormat = SimpleDateFormat("yy년 MM월 dd일 EE요일")
                             tv_put_year_reservestate.text = dateTextFormat.format(startTime)
                             tv_find_year_reservestate.text = dateTextFormat.format(endTime)
                             //시간
-                            var timeTextFormat = SimpleDateFormat("a HH시 mm분")
+                            var timeTextFormat = SimpleDateFormat("a hh시 mm분")
                             tv_put_ampm_reservestate.text = timeTextFormat.format(startTime)
                             tv_find_ampm_reservestate.text = timeTextFormat.format(endTime)
                             //QR
                             tv_qr_reserveCode.text = reserveCode.toString()
+                            qrCode = reserveCode.toString()
                             //위도경도
                             setGoogleMap(response.body()!!.store.storeName,latitude,longitude)
-
+                            //bagDtos
                             toast("bagDtos Size : "+response.body()!!.bagDtos.size)
                             for(i in 0..response.body()!!.bagDtos.size){
-                                response.body()!!.bagDtos[0].bagType
+//                                Log.d("TAGGG","bagDtos = "+response.body()!!.bagDtos[i].bagType)
                             }
 
                             Log.d("TAGG", "bagDtos : " + bagDtos.toString())
