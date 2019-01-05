@@ -1,5 +1,6 @@
 package com.hyeran.android.travely_user
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -20,6 +21,8 @@ import org.jetbrains.anko.toast
 class MainActivity : AppCompatActivity() {
 
     var args: Bundle = Bundle()
+
+    var storeIdx: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,4 +115,5 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.frame_main, fragment)
         transaction.commit()
     }
+
 }

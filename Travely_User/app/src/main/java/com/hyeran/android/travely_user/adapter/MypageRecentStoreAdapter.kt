@@ -34,8 +34,6 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
                 .into(holder!!.recent_image)
 
 
-        Log.d("TAG URI",dataList[position].storeImage)
-
         holder.recent_name.text = dataList[position].storeName
         holder.recent_addr.text = dataList[position].address
 
