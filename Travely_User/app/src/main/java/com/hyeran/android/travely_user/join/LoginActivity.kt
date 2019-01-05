@@ -3,6 +3,7 @@ package com.hyeran.android.travely_user.join
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.hyeran.android.travely_user.MainActivity
@@ -38,11 +39,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login_login.setOnClickListener {
-            postLoinResponse()
+            //toast("버튼은 눌렸음")
+            postLoginResponse()
+            toast("로그인 성공")
+
+            finish()
         }
     }
 
-    private fun postLoinResponse() {
+    private fun postLoginResponse() {
         val input_email = et_email_login.text.toString().trim()
         val input_pw = et_password_login.text.toString().trim()
 
@@ -56,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
 
         postLoginResponse!!.enqueue(object : Callback<Any> {
             override fun onFailure(call: Call<Any>, t: Throwable) {
+                Log.d("TAGG","In LoginActivity: "+t.message)
             }
             override fun onResponse(call: Call<Any>, response: Response<Any>) {
                 response?.let {
