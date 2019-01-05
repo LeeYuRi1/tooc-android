@@ -10,11 +10,15 @@ import android.widget.TextView
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.data.MypageAreaLikeData
 import com.hyeran.android.travely_user.data.MypageLikeData
+import com.hyeran.android.travely_user.model.mypage.FavoriteResponseData
+import com.hyeran.android.travely_user.model.mypage.SimpleStoreResponseDtosData
 import java.util.ArrayList
 
-class MypageAreaLikeAdapter(val ctx: Context, val dataList: ArrayList<MypageAreaLikeData>) : RecyclerView.Adapter<MypageAreaLikeAdapter.Holder>() {
+class MypageAreaLikeAdapter(val ctx: Context, val dataList: ArrayList<FavoriteResponseData>) : RecyclerView.Adapter<MypageAreaLikeAdapter.Holder>() {
 
     lateinit var mypageLikeAdapter: MypageLikeAdapter
+
+    lateinit var favorite_dataList: ArrayList<SimpleStoreResponseDtosData>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_area_like, parent, false)
@@ -24,14 +28,17 @@ class MypageAreaLikeAdapter(val ctx: Context, val dataList: ArrayList<MypageArea
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.name_arealike.text = dataList[position].name
-        holder.num_arealike.text = dataList[position].num.toString()
+        holder.name_arealike.text = dataList[position].regionName
+        holder.num_arealike.text = dataList[position].simpleStoreResponseDtos.size.toString()
 
-        var dataList: ArrayList<MypageLikeData> = ArrayList()
-
-        mypageLikeAdapter = MypageLikeAdapter(ctx, dataList)
+        favorite_dataList = dataList[position].simpleStoreResponseDtos
+        mypageLikeAdapter = MypageLikeAdapter(ctx, favorite_dataList)
+        var position = mypageLikeAdapter.itemCount
+        
         holder.rv_arealike.adapter = mypageLikeAdapter
         holder.rv_arealike.layoutManager = LinearLayoutManager(ctx)
+        mypageLikeAdapter.notifyItemInserted(position)
+
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
