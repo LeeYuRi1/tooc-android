@@ -68,7 +68,7 @@ interface NetworkService {
 
     // 예약 취소
     // - 예약상태 조회 후 삭제
-    @DELETE("/api/reservation/cancel")
+    @DELETE("/api/reservation")
     fun deleteReservationCancelResponse(
             @Header("jwt") jwt: String?
     ): Call<Any>

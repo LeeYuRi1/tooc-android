@@ -65,7 +65,6 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
 
         deleteReservationCancelResponse!!.enqueue(object : Callback<Any> {
             override fun onFailure(call: Call<Any>, t: Throwable) {
-                Log.d("예약 취소", "#####"+t.message)
             }
 
             override fun onResponse(call: Call<Any>, response: Response<Any>) {
@@ -79,7 +78,7 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
                             Toast.makeText(ctx, "서버 에러", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            Toast.makeText(ctx, "error", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(ctx, "error"+it.code(), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

@@ -139,15 +139,16 @@
                             android:textColor="#262626"
                             android:textSize="14sp" />
 
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_marginTop="4dp"-->
-                        <!--android:fontFamily="@font/kopub_medium"-->
-                        <!--android:lineSpacingExtra="10sp"-->
-                        <!--android:text="지번: 전농동 296-93"-->
-                        <!--android:textColor="#8D8D8D"-->
-                        <!--android:textSize="14sp" />-->
+                        <TextView
+                            android:id="@+id/tv_address_number_map_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/kopub_medium"
+                        android:lineSpacingExtra="10sp"
+                        android:text="지번: 전농동 296-93"
+                        android:textColor="#8D8D8D"
+                        android:textSize="14sp" />
 
                     </LinearLayout>
                 </LinearLayout>

@@ -34,7 +34,6 @@ class MapChoiceDialog(ctx: Context?,val lat : Double,val lng : Double) : Dialog(
 
             var package1 : String = "com.google.android.apps.maps"
             var url1 : String = "http://maps.google.com/maps?saddr=" + lat.toString() + "," + lng.toString() + "&daddr=37.4979502,127.0276368"
-//            val url1 : String = "http://maps.google.com/maps?saddr=37.537229,127.005515&daddr=37.4979502,127.0276368"
             var intent1 = Intent(Intent.ACTION_VIEW, Uri.parse(url1))
             intent1.setPackage(package1)
 

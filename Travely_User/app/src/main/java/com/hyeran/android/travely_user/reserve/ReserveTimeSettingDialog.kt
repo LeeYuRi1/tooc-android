@@ -26,7 +26,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-//class ReserveTimeSettingDialog(val ctx: Context?, val reiceveArray: ArrayList<Any>) : Dialog(ctx) {
 class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<Any>, val offday: ArrayList<String>) : Dialog(ctx) {
 
     var offdaySize = offday.size - 1

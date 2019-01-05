@@ -68,7 +68,6 @@ class LoginActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", response.body()!!.isReserve)
-//                            toast(SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve").toString())
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         }

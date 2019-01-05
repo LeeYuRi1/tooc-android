@@ -63,7 +63,6 @@ class JoinActivity : AppCompatActivity() {
     // 유효성 검사
     private fun checkValidation() {
 
-
         // 이름: 공백인지 아닌지
         et_name_join.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -104,11 +103,6 @@ class JoinActivity : AppCompatActivity() {
                     iv_password_check_join.visibility = View.GONE
                     pw_validation = false
                 }
-//                if (et_password_join.text.toString().length != 0) {
-//                    iv_password_check_join.visibility = View.VISIBLE
-//                } else if (et_password_join.text.toString().length == 0) {
-//                    iv_password_check_join.visibility = View.GONE
-//                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -193,8 +187,6 @@ class JoinActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", false)
-//                            toast(SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve").toString())
-//                            startActivity(Intent(this@JoinActivity, MainActivity::class.java))
 
                             var sawExplanation = SharedPreferencesController.instance!!.getPrefBooleanData("Explanation",false)
                             if(sawExplanation==false) {
@@ -202,7 +194,6 @@ class JoinActivity : AppCompatActivity() {
                             } else{
                                 startActivity(Intent(this@JoinActivity, MainActivity::class.java))
                             }
-//                            finish()
                         }
                         400 -> {
                             toast("중복된 이메일입니다.")

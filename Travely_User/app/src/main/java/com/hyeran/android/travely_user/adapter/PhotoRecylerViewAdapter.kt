@@ -38,7 +38,5 @@ class PhotoRecylerViewAdapter (val ctx : Context, val dataList : ArrayList<Photo
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val photo : ImageView = itemView!!.findViewById(R.id.iv_rv_item_photo) as ImageView
-
-        val photo_btn : RelativeLayout = itemView.findViewById(R.id.btn_rv_item_photo) as RelativeLayout
     }
 }

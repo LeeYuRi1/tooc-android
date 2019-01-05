@@ -115,7 +115,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     private val TAG = javaClass.simpleName
 
-    public var locationPermissionGranted: Boolean = false
+    var locationPermissionGranted: Boolean = false
 
     companion object {
         var mInstance: MapFragment? = null
