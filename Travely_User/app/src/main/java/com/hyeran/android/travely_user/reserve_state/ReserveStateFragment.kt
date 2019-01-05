@@ -31,6 +31,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.LuggagePictureAdapter
 import com.hyeran.android.travely_user.data.LuggagePictureData
+import com.hyeran.android.travely_user.dialog.BagSizeDialog
+import com.hyeran.android.travely_user.dialog.KeepPriceDialog
 import com.hyeran.android.travely_user.dialog.MapChoiceDialog
 import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
@@ -38,6 +40,7 @@ import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeD
 import com.hyeran.android.travely_user.model.reservation.bagDtosData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_reserve.view.*
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
@@ -140,6 +143,14 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         }
         v.iv_qrimage_reservestate.setOnClickListener {
             startActivity<ReserveQRCodeActivity>("qrCode" to qrCode)
+        }
+
+        v.btn_price_reservestate.setOnClickListener {
+            KeepPriceDialog(context).show()
+        }
+
+        v.btn_bag_size_reservestate.setOnClickListener {
+            BagSizeDialog(context).show()
         }
 
         mapView3 = v.findViewById(R.id.mv_store_map_reservestate)
