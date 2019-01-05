@@ -1,15 +1,18 @@
 package com.hyeran.android.travely_user
 
+import android.animation.Animator
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Handler
+import com.airbnb.lottie.LottieAnimationView
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.hyeran.android.travely_user.join.LoginActivity
 import com.hyeran.android.travely_user.model.reservation.UsersLoginResponseData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
+import kotlinx.android.synthetic.main.activity_splash.*
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
@@ -25,6 +28,33 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        val lottie_splash : LottieAnimationView = findViewById(R.id.lottie_splash)
+        lottie_splash.addAnimatorListener(object : Animator.AnimatorListener{
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                val auto_login_flag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
+                // true: 자동 로그인 O, false: 자동 로그인 X
+                val intent : Intent
+                if (auto_login_flag) {
+                    postLoinResponse()  // 자동 로그인 시 토큰 값 받아오기 위한 통신
+                    intent = Intent(applicationContext, MainActivity::class.java)
+                }
+                else {
+                    intent = Intent(applicationContext, LoginActivity::class.java)
+                }
+                startActivity(intent)
+            }
+
+        })
+
         init()
     }
 
@@ -35,7 +65,7 @@ class SplashActivity : AppCompatActivity() {
         networkService = ApplicationController.instance.networkService
 
         // 3초 뒤 MainActivity로 이동
-        moveActivity()
+//        moveActivity()
     }
 
     private fun moveActivity() {
