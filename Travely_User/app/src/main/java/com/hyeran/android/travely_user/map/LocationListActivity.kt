@@ -50,7 +50,7 @@ class LocationListActivity : AppCompatActivity() {
 
         this.storeIdx = storeIdx
 
-        var intent : Intent = Intent()
+        var intent = Intent()
         intent.putExtra("storeIdx", storeIdx)
         setResult(2, intent)
         finish()

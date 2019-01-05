@@ -452,7 +452,6 @@ class ReserveFragment : Fragment() {
 
         var price_unit: Int = price + extra_hour * extra_price
 
-        Log.d("@@@시간 계산: ", "단위 시간: "+hour+"단위 가격: "+price+"초과 시간: "+extra_hour+"추가 가격: "+extra_price)
 
         return price_unit
 

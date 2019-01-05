@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.Location
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -223,7 +224,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 ReserveCancelDialog(ctx).show()
                             }
                           //  18년 10월 24일 목요일
-                            var dateTextFormat = SimpleDateFormat("yy년 mm월 dd일 ee")
+                            var dateTextFormat = SimpleDateFormat("yy년 mm월 dd일 EE")
                             tv_put_year_reservestate.text = dateTextFormat.format(startTIme)
 
 
@@ -247,4 +248,5 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         })
 
     }
+
 }
