@@ -130,12 +130,18 @@ class ReserveFragment : Fragment() {
         setOnClickListener(v)
         return v
     }
-
     fun setOnClickListener(v: View) {
-        v.btn_alldate_reserve.setOnClickListener {
+        v.constraintLayout5.setOnClickListener {
             var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
-                    , svalue, tvalue, openTime, closeTime, storeIdx)
-//                    , svalue, tvalue, openTime, closeTime)
+                    , svalue, tvalue, openTime, closeTime, storeIdx, 0)
+//            val dialog = ReserveTimeSettingDialog(ctx, timeArray)
+            val dialog = ReserveTimeSettintDialog(ctx, timeArray, offday)
+            dialog.show()
+        }
+
+        v.constraintLayout6.setOnClickListener{
+            var timeArray: ArrayList<Any> = arrayListOf(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm
+                    , svalue, tvalue, openTime, closeTime, storeIdx, 1)
 //            val dialog = ReserveTimeSettingDialog(ctx, timeArray)
             val dialog = ReserveTimeSettintDialog(ctx, timeArray, offday)
             dialog.show()
