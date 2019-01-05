@@ -488,39 +488,64 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                                 tv_closetime_minute_map_more_preview.text = Timestamp(close_time).minutes.toString().trim()
                             }
 
-                            var current_time: Long = System.currentTimeMillis()
+                            var current_time : Long = System.currentTimeMillis()
 
-                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
-                            Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
-                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < Timestamp(close_time).hours)) {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {
-                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                            }
+                            else if(Timestamp(open_time).hours == Timestamp(current_time).hours) {
+                                if((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                } else {
+                                }
+                                else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
-                            } else if (Timestamp(close_time).hours == Timestamp(close_time).hours) {
-                                if ((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
-                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
-                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
-                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    } else {
-                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-                                    }
-                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
-                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
-                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    } else {
-                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-                                    }
-                                } else {
+                            }
+                            else if(Timestamp(close_time).hours == Timestamp(current_time).hours) {
+                                if((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                }
+                                else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             }
                             else {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                             }
+//
+//                            var current_time: Long = System.currentTimeMillis()
+//
+//                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
+//                            Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
+//                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+//                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {
+//                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                                } else {
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                }
+//                            } else if (Timestamp(close_time).hours == Timestamp(close_time).hours) {
+//                                if ((Timestamp(close_time).minutes >= Timestamp(close_time).minutes)) {  // 영업중
+//                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
+//                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+//                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                                    } else {
+//                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                    }
+//                                } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {
+//                                    if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+//                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                                    } else {
+//                                        iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                    }
+//                                } else {
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                }
+//                            }
+//                            else {
+//                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                            }
                         }
                         500 -> {
                             toast("서버 에러")
