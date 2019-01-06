@@ -132,7 +132,12 @@ class MapMoreActivity : AppCompatActivity() {
                             var close_time : Long = response.body()!!.closeTime.toLong()
                             if(Timestamp(close_time).hours.toString().trim().length == 1) {
                                 var close_hour = "0" + Timestamp(close_time).hours.toString().trim()
-                                if(close_hour == "00") tv_closetime_hour_map_more.text = "24"
+                                if(close_hour == "00") {
+                                    close_hour = "24"
+                                    tv_closetime_hour_map_more.text = "24"
+                                }
+//                                var close_hour = "0" + Timestamp(close_time).hours.toString().trim()
+//                                if(close_hour == "00") tv_closetime_hour_map_more.text = "24"
                             } else {
                                 tv_closetime_hour_map_more.text = Timestamp(close_time).hours.toString().trim()
                             }
@@ -145,7 +150,7 @@ class MapMoreActivity : AppCompatActivity() {
 
                             var current_time : Long = System.currentTimeMillis()
 
-                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < close_time.toInt())) {
                                 iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                             }
                             else if(Timestamp(open_time).hours == Timestamp(current_time).hours) {
@@ -156,7 +161,7 @@ class MapMoreActivity : AppCompatActivity() {
                                     iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             }
-                            else if(Timestamp(close_time).hours == Timestamp(current_time).hours) {
+                            else if(close_time.toInt() == Timestamp(current_time).hours) {
                                 if((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                                 }
