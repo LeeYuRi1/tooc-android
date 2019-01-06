@@ -111,5 +111,10 @@ class LocationListActivity : AppCompatActivity() {
         })
     }
 
+    override fun onBackPressed() {
+        Log.d("@@@@@@@@@@@@@백 버튼 터지는거", "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ")
+        setResult(111)
+        finish()
+    }
 
 }

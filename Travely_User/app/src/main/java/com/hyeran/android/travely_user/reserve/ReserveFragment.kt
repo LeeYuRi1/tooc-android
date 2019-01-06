@@ -275,7 +275,8 @@ class ReserveFragment : Fragment() {
         var bagData: ArrayList<bagInfo> = ArrayList()
         if (carrier_amount >= 1) {
             bagData.add(bagInfo("CARRIER", carrier_amount))
-        } else if (etc_amount >= 1) {
+        }
+        if (etc_amount >= 1) {
             bagData.add(bagInfo("ETC", etc_amount))
         }
         if (rb_kakaopay_reserve.isChecked) {
@@ -309,9 +310,9 @@ class ReserveFragment : Fragment() {
                                 SharedPreferencesController.instance!!.setPrefData("is_reserve", true)
                             } else {
                             }
+                            Log.d("TAGG: 예약할 때", bagData.toString())
                         }
                         400 -> {
-                            toast("잘못된 정보 주입")
 
                             if (response.errorBody() != null) {
                                 var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())

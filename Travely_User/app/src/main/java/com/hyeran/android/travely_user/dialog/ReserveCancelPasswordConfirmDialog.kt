@@ -11,6 +11,9 @@ import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.map.MapFragment
 import com.hyeran.android.travely_user.reserve_state.ReserveStateFragment
 import kotlinx.android.synthetic.main.dialog_reserve_cancel_password_confirm.*
+import android.app.Activity
+import android.view.ContextThemeWrapper
+
 
 class ReserveCancelPasswordConfirmDialog(val ctx:Context?) : Dialog(ctx){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +25,9 @@ class ReserveCancelPasswordConfirmDialog(val ctx:Context?) : Dialog(ctx){
 
         btn_reserve_cancel_complete.setOnClickListener {
             dismiss()
-            //(ctx as MainActivity).replaceFragment(ReserveStateFragment())
+//            var activity = MainActivity()
+            val act = MainActivity()
+            (act as MainActivity).replaceFragment(ReserveStateFragment())
             //지도 초기화면으로 보내야함!!
         }
     }
