@@ -479,7 +479,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                             var close_time: Long = response.body()!!.closeTime.toLong()
                             if (Timestamp(close_time).hours.toString().trim().length == 1) {
-                                tv_closetime_hour_map_more_preview.text = "0" + Timestamp(close_time).hours.toString().trim()
+                                var close_hour = "0" + Timestamp(close_time).hours.toString().trim()
+                                if(close_hour == "00") tv_closetime_hour_map_more_preview.text = "24"
                             } else {
                                 tv_closetime_hour_map_more_preview.text = Timestamp(close_time).hours.toString().trim()
                             }
