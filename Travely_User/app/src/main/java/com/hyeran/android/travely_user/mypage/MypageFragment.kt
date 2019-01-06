@@ -135,7 +135,6 @@ class MypageFragment : Fragment() {
     private fun getRecentStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
 
-
         val getProfileResponse = networkService.getProfileResponse(jwt)
 
         getProfileResponse!!.enqueue(object : Callback<ProfileResponseData> {

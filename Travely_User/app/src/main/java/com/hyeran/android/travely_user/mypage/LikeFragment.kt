@@ -69,8 +69,8 @@ class LikeFragment : Fragment() {
 
         var intent : Intent = Intent()
         intent.putExtra("storeIdx", storeIdx)
-        activity!!.setResult(3, intent)
-        activity!!.finish()
+//        activity!!.setResult(2, intent)
+//        activity!!.finish()
     }
 
     private fun getFavoriteResponse(){

@@ -18,7 +18,7 @@ import java.util.ArrayList
 
 class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreResponseDtosData>) : RecyclerView.Adapter<MypageLikeAdapter.Holder>() {
 
-    lateinit var likeFragment: LikeFragment
+    var likeFragment = LikeFragment()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_like, parent, false)
@@ -31,14 +31,9 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
         holder.like_name.text = dataList[position].storeName
         dataList[position].storeIdx
 
-        (ctx as LikeFragment).getLikeStoreIdx(dataList[position].storeIdx)
+        //(ctx as LikeFragment).getLikeStoreIdx(dataList[position].storeIdx)
 
-//        var args = Bundle()
-//        args.putStringArrayList("dataList",dataList[position].storeIdx)
-
-
-
-//        likeFragment.getLikeStoreIdx(dataList[position].storeIdx)
+        likeFragment.getLikeStoreIdx(dataList[position].storeIdx)
 
         //holder.like_addr.text = dataList[position].likeaddr
 //        holder.like_heart.isSelected = true
