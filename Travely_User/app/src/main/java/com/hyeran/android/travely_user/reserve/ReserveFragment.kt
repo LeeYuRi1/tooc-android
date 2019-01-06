@@ -275,7 +275,8 @@ class ReserveFragment : Fragment() {
         var bagData: ArrayList<bagInfo> = ArrayList()
         if (carrier_amount >= 1) {
             bagData.add(bagInfo("CARRIER", carrier_amount))
-        } else if (etc_amount >= 1) {
+        }
+        if (etc_amount >= 1) {
             bagData.add(bagInfo("ETC", etc_amount))
         }
         if (rb_kakaopay_reserve.isChecked) {

@@ -16,5 +16,7 @@ data class ReservationReserveCodeData(
         var stateType : String,
         var store : storeInfo,
         var takeTime : Long,
-        var reserveCode : String
+        var reserveCode : String,
+        var openTime : Long,
+        var closeTime: Long
 )

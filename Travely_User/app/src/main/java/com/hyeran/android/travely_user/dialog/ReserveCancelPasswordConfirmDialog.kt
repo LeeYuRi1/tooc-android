@@ -22,7 +22,7 @@ class ReserveCancelPasswordConfirmDialog(val ctx:Context?) : Dialog(ctx){
 
         btn_reserve_cancel_complete.setOnClickListener {
             dismiss()
-            //(ctx as MainActivity).replaceFragment(ReserveStateFragment())
+            (ctx as MainActivity).replaceFragment(MapFragment())
             //지도 초기화면으로 보내야함!!
         }
     }

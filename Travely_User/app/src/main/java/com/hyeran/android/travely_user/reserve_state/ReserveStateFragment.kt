@@ -31,15 +31,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.travely_user.R
 import com.hyeran.android.travely_user.adapter.LuggagePictureAdapter
 import com.hyeran.android.travely_user.data.LuggagePictureData
-import com.hyeran.android.travely_user.dialog.BagSizeDialog
-import com.hyeran.android.travely_user.dialog.KeepPriceDialog
-import com.hyeran.android.travely_user.dialog.MapChoiceDialog
-import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
+import com.hyeran.android.travely_user.dialog.*
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.bagDtosData
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_map_more_preview.*
 import kotlinx.android.synthetic.main.fragment_reserve.view.*
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.ctx
@@ -47,6 +45,7 @@ import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Response
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
 
@@ -123,7 +122,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 //        getReservationReserveResponse(v)
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
-            ReserveCancelDialog(context).show()
+          //  ReserveCancelDialog(context).show()
+            ReserveCancelPasswordConfirmDialog(context).show()
         }
         v.iv_qrimage_reservestate.setOnClickListener {
             startActivity<ReserveQRCodeActivity>("qrCode" to qrCode)
@@ -257,6 +257,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
                             } else if (stateType == "CANCEL") {
                                 ReserveCancelDialog(ctx).show()
+                                //ReserveCancelPasswordConfirmDialog(ctx).show()
                             }
                             //DATE
                             var dateTextFormat = SimpleDateFormat("yy년 MM월 dd일 EE요일")
@@ -278,6 +279,18 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             for (i in 0..response.body()!!.bagDtos.size) {
 //                                Log.d("TAGGG","bagDtos = "+response.body()!!.bagDtos[i].bagType)
                             }
+
+                            //상가정보 입력
+                            tv_store_name_reservestate.text = response.body()!!.store.storeName
+                            tv_store_location_reservestate.text = response.body()!!.store.address
+
+                            var timeDateFormat = SimpleDateFormat("HH:mm")
+                            var openTime: String = timeDateFormat.format(response.body()!!.openTime)
+                            var closeTime : String = timeDateFormat.format(response.body()!!.closeTime)
+                            tv_store_start_reservestate.text = openTime
+                            tv_store_end_reservestate.text = closeTime
+
+//수, 목 휴무 9:00 ~ 12:00
 
 
                             Log.d("TAGG", "bagDtos : " + bagDtos.toString())
