@@ -9,9 +9,10 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.hyeran.android.travely_user.data.LuggagePictureData
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.model.reservation.bagImgDtos
 
 
-class LuggagePictureAdapter(val ctx: Context, val dataList: ArrayList<LuggagePictureData>) : RecyclerView.Adapter<LuggagePictureAdapter.Holder>() {
+class LuggagePictureAdapter(val ctx: Context, val dataList: ArrayList<bagImgDtos>) : RecyclerView.Adapter<LuggagePictureAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_luggage_picture, parent, false)
@@ -21,11 +22,11 @@ class LuggagePictureAdapter(val ctx: Context, val dataList: ArrayList<LuggagePic
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(dataList[position],ctx)
+//        holder.bind(dataList[position],ctx)
 
         if (dataList != null) {
             Glide.with(ctx)
-                    .load(dataList[position].picture)   //teset 다른걸로 바꿔놨음!!!
+                    .load(dataList[position].bagImgUrl)   //teset 다른걸로 바꿔놨음!!!
                     .into(holder.picture)
         } else {
             Glide.with(ctx)
@@ -37,13 +38,13 @@ class LuggagePictureAdapter(val ctx: Context, val dataList: ArrayList<LuggagePic
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val picture: ImageView = itemView.findViewById(R.id.iv_luggage_picture) as ImageView
 
-        fun bind(pictureImage: LuggagePictureData, context: Context) {
-            if (pictureImage.picture != "") {
-                val resouceId = context.resources.getIdentifier(pictureImage.picture, "drawble", context.packageName)
-                picture.setImageResource(resouceId)
-            } else {
-                picture.setImageResource(R.drawable.ic_launcher_background)
-            }
-        }
+//        fun bind(pictureImage: LuggagePictureData, context: Context) {
+//            if (pictureImage.picture != "") {
+//                val resouceId = context.resources.getIdentifier(pictureImage.picture, "drawble", context.packageName)
+//                picture.setImageResource(resouceId)
+//            } else {
+//                picture.setImageResource(R.drawable.ic_launcher_background)
+//            }
+//        }
     }
 }
