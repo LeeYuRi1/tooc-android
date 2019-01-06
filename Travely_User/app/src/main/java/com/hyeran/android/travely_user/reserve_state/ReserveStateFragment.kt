@@ -87,11 +87,12 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    var marker = LatLng(0.0, 0.0)
     fun setGoogleMap(shopName: String, latitude: Double, longitude: Double) {
-        var marker = LatLng(latitude, longitude)
-//        Log.d("TAGGG","lat = "+latitude+"  long = "+longitude)
+        marker = LatLng(latitude, longitude)
+        Log.d("TAGGG", "lat = " + latitude + "  long = " + longitude)
         mMap3.addMarker(MarkerOptions().position(marker).title(shopName).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_color_pin)))
-        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+//        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
@@ -218,6 +219,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         getReservationReserveResponse!!.enqueue(object : retrofit2.Callback<ReservationReserveCodeData> {
             override fun onFailure(call: Call<ReservationReserveCodeData>, t: Throwable) {
                 toast("fail" + t.message)
+                Log.d("TAGG", "fail : " + t.message)
             }
 
             override fun onResponse(call: Call<ReservationReserveCodeData>, response: Response<ReservationReserveCodeData>) {
@@ -286,27 +288,33 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                     tv_bag_num_reservestate.text = response.body()!!.bagDtos[i].bagCount.toString()
                                     tv_bag_money_reservestate.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
                                 }
+                                mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+
+
+                                tv_total_num_reservestate.text = total_amount.toString()
+                                tv_total_money_reservestate.text = (final_priceUnit * total_amount).toString()
+
+                                tv_payment_amount_reservestate.text = (total_amount * response.body()!!.price).toString()
+
+                                var dataList: ArrayList<bagImgDtos> = response.body()!!.bagImgDtos
+
+                                luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
+                                rv_luggage_picture.adapter = luggagePictureAdapter
+                                var mLayoutManager = LinearLayoutManager(context)
+                                mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                                rv_luggage_picture.layoutManager = mLayoutManager
+
+                                tv_store_name_reservestate.text = response.body()!!.store.storeName
+                                tv_store_location_reservestate.text = response.body()!!.store.address
                             }
-                            tv_total_num_reservestate.text = total_amount.toString()
-                            tv_total_money_reservestate.text = (final_priceUnit * total_amount).toString()
-
-                            tv_payment_amount_reservestate.text = (total_amount * response.body()!!.price).toString()
-
-                            var dataList : ArrayList<bagImgDtos> = response.body()!!.bagImgDtos
-
-                            luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
-                            rv_luggage_picture.adapter = luggagePictureAdapter
-                            var mLayoutManager = LinearLayoutManager(context)
-                            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-                            rv_luggage_picture.layoutManager = mLayoutManager
-
-                            tv_store_name_reservestate.text = response.body()!!.store.storeName
-                            tv_store_location_reservestate.text = response.body()!!.store.address
                         }
                         500 -> {
                             toast("500 error")
                         }
-                        else -> toast("error")
+                        else -> {
+                            toast("error")
+                            Log.d("TAGG", "reserveStateFragment code = " + response.code().toString())
+                        }
                     }
                 }
             }
