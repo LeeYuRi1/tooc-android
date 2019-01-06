@@ -96,6 +96,8 @@ class MapMoreActivity : AppCompatActivity() {
         dataList1.add(PhotoData("img_default_big"))
     }
 
+
+
     // 세부 정보 조회 함수
     private fun getStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
@@ -129,7 +131,8 @@ class MapMoreActivity : AppCompatActivity() {
 
                             var close_time : Long = response.body()!!.closeTime.toLong()
                             if(Timestamp(close_time).hours.toString().trim().length == 1) {
-                                tv_closetime_hour_map_more.text = "0"+Timestamp(close_time).hours.toString().trim()
+                                var close_hour = "0" + Timestamp(close_time).hours.toString().trim()
+                                if(close_hour == "00") tv_closetime_hour_map_more.text = "24"
                             } else {
                                 tv_closetime_hour_map_more.text = Timestamp(close_time).hours.toString().trim()
                             }
