@@ -55,7 +55,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
     lateinit var networkService: NetworkService
     private lateinit var mMap3: GoogleMap
     private lateinit var mapView3: MapView
-    private lateinit var mGoogleApiClient3: GoogleApiClient
+    private lateinit var mGoogleApiClient: GoogleApiClient
 
     var latitude3: Double = 0.0
     var longitude3: Double = 0.0
@@ -64,7 +64,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
   //  var longitude: Double = 0.0
 
     // Google API Client 생성
-    private lateinit var mGoogleApiClient2: GoogleApiClient
     private lateinit var mLocation2: Location
     private lateinit var locationManager2: LocationManager
     private lateinit var mLocationRequest2: LocationRequest
@@ -77,8 +76,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
-        mMap3 = googleMap!!
-
+        mMap3 = googleMap
+        getReservationReserveResponse(v)
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap3.isMyLocationEnabled = true
@@ -103,40 +102,24 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
     var endTime: Long? = null
     var bagDtos = ArrayList<bagDtosData>()
 
-
-    companion object {
-        private var instance: ReserveStateFragment? = null
-
-        fun getInstance(password: String): ReserveStateFragment {
-            if (instance == null) {
-                instance = ReserveStateFragment().apply {
-                    arguments = Bundle().apply { putString("password", password) }
-                }
-            }
-            return instance!!
-        }
-    }
-
     var password: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mGoogleApiClient3 = GoogleApiClient.Builder(activity!!)
+        mGoogleApiClient = GoogleApiClient.Builder(activity!!)
                 .addApi(LocationServices.API)
-//                .addConnectionCallbacks(activity!!)
-//                .addOnConnectFailedListener(activity!!)
                 .build()
-        mGoogleApiClient3.connect()
+        mGoogleApiClient.connect()
 
         arguments?.let { password = it.getString("password") }
     }
-
+lateinit var v:View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var v = inflater.inflate(R.layout.fragment_reserve_state, container, false)
+        v = inflater.inflate(R.layout.fragment_reserve_state, container, false)
 
         networkService = ApplicationController.instance.networkService
-        getReservationReserveResponse(v)
+//        getReservationReserveResponse(v)
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
             ReserveCancelDialog(context).show()
@@ -163,7 +146,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                     && ActivityCompat.checkSelfPermission(activity!!,
                             android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                var mLastKnownLocation: Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient3)
+                var mLastKnownLocation: Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient)
                 latitude3 = mLastKnownLocation.latitude
                 longitude3 = mLastKnownLocation.longitude
 
@@ -187,8 +170,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
     override fun onStop() {
         super.onStop()
 
-        if (mGoogleApiClient2.isConnected) {
-            mGoogleApiClient2.disconnect()
+        if (mGoogleApiClient.isConnected) {
+            mGoogleApiClient.disconnect()
         }
     }
 
@@ -285,11 +268,12 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             qrCode = reserveCode.toString()
                             //위도경도
                             setGoogleMap(response.body()!!.store.storeName,latitude,longitude)
-                            //bagDtos
+                            //bagDtos//TODO bagDtos해야함
                             toast("bagDtos Size : "+response.body()!!.bagDtos.size)
                             for(i in 0..response.body()!!.bagDtos.size){
 //                                Log.d("TAGGG","bagDtos = "+response.body()!!.bagDtos[i].bagType)
                             }
+
 
                             Log.d("TAGG", "bagDtos : " + bagDtos.toString())
                         }
