@@ -38,6 +38,7 @@ import com.hyeran.android.travely_user.dialog.ReserveCancelDialog
 import com.hyeran.android.travely_user.map.MapMorePreviewFragment
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.bagDtosData
+import com.hyeran.android.travely_user.model.reservation.bagImgDtos
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve.view.*
@@ -59,9 +60,9 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     var latitude3: Double = 0.0
     var longitude3: Double = 0.0
-    lateinit var qrCode : String
-  //  var latitude: Double = 0.0
-  //  var longitude: Double = 0.0
+    lateinit var qrCode: String
+    //  var latitude: Double = 0.0
+    //  var longitude: Double = 0.0
 
     // Google API Client 생성
     private lateinit var mLocation2: Location
@@ -71,7 +72,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationProviderClient2: FusedLocationProviderClient
     private lateinit var locationRequest2: LocationRequest
     private lateinit var locationCallback2: MapMorePreviewFragment.MyLocationCallBack2
-
 
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -87,11 +87,11 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    fun setGoogleMap(shopName: String, latitude:Double,longitude:Double){
-        var marker = LatLng(latitude,longitude)
-        Log.d("TAGGG","lat = "+latitude+"  long = "+longitude)
+    fun setGoogleMap(shopName: String, latitude: Double, longitude: Double) {
+        var marker = LatLng(latitude, longitude)
+//        Log.d("TAGGG","lat = "+latitude+"  long = "+longitude)
         mMap3.addMarker(MarkerOptions().position(marker).title(shopName).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_color_pin)))
-        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker,17f))
+        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
@@ -114,7 +114,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
         arguments?.let { password = it.getString("password") }
     }
-lateinit var v:View
+
+    lateinit var v: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_reserve_state, container, false)
 
@@ -165,8 +166,9 @@ lateinit var v:View
         super.onStart()
         mapView3.onStart()
 
-        setRecyclerView()
+//        setRecyclerView()
     }
+
     override fun onStop() {
         super.onStop()
 
@@ -175,19 +177,19 @@ lateinit var v:View
         }
     }
 
-    fun setRecyclerView() {
-        var dataList= ArrayList<LuggagePictureData>()
-        dataList.add(LuggagePictureData("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg"))
-        dataList.add(LuggagePictureData("tesetest"))
-        dataList.add(LuggagePictureData("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg"))
-
-
-        luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
-        rv_luggage_picture.adapter = luggagePictureAdapter
-        var mLayoutManager = LinearLayoutManager(context)
-        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        rv_luggage_picture.layoutManager = mLayoutManager
-    }
+//    fun setRecyclerView() {
+//        var dataList= ArrayList<LuggagePictureData>()
+//        dataList.add(LuggagePictureData("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg"))
+//        dataList.add(LuggagePictureData("tesetest"))
+//        dataList.add(LuggagePictureData("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg"))
+//
+//
+//        luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
+//        rv_luggage_picture.adapter = luggagePictureAdapter
+//        var mLayoutManager = LinearLayoutManager(context)
+//        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+//        rv_luggage_picture.layoutManager = mLayoutManager
+//    }
 
     fun generateQRCode(view: View, contents: String) {
         var qrCodeWriter = QRCodeWriter()
@@ -227,8 +229,8 @@ lateinit var v:View
                             startTime = response.body()!!.startTime
                             endTime = response.body()!!.endTime
                             bagDtos = response.body()!!.bagDtos
-                           var latitude = response.body()!!.store.latitude
-                           var longitude = response.body()!!.store.longitude
+                            var latitude = response.body()!!.store.latitude
+                            var longitude = response.body()!!.store.longitude
                             generateQRCode(v, response.body()!!.reserveCode)
                             toast("stateType = " + stateType)
                             if (stateType == "RESERVED") {
@@ -267,15 +269,39 @@ lateinit var v:View
                             tv_qr_reserveCode.text = reserveCode.toString()
                             qrCode = reserveCode.toString()
                             //위도경도
-                            setGoogleMap(response.body()!!.store.storeName,latitude,longitude)
+                            setGoogleMap(response.body()!!.store.storeName, latitude, longitude)
                             //bagDtos//TODO bagDtos해야함
-                            toast("bagDtos Size : "+response.body()!!.bagDtos.size)
-                            for(i in 0..response.body()!!.bagDtos.size){
-//                                Log.d("TAGGG","bagDtos = "+response.body()!!.bagDtos[i].bagType)
-                            }
-
-
                             Log.d("TAGG", "bagDtos : " + bagDtos.toString())
+                            toast("bagDtos Size : " + response.body()!!.bagDtos.size)
+                            var final_priceUnit = response.body()!!.priceUnit + response.body()!!.extraChargeCount * response.body()!!.extraCharge
+                            var total_amount: Int = 0
+                            for (i in 0..response.body()!!.bagDtos.size - 1) {
+                                Log.d("TAGGG", "bagDtos = " + response.body()!!.bagDtos[i].bagType)
+                                if (response.body()!!.bagDtos[i].bagType == "CARRIER") {
+                                    total_amount += response.body()!!.bagDtos[i].bagCount
+                                    tv_carrier_num_reservestate.text = response.body()!!.bagDtos[i].bagCount.toString()
+                                    tv_carrier_money_reservestate.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
+                                } else {
+                                    total_amount += response.body()!!.bagDtos[i].bagCount
+                                    tv_bag_num_reservestate.text = response.body()!!.bagDtos[i].bagCount.toString()
+                                    tv_bag_money_reservestate.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
+                                }
+                            }
+                            tv_total_num_reservestate.text = total_amount.toString()
+                            tv_total_money_reservestate.text = (final_priceUnit * total_amount).toString()
+
+                            tv_payment_amount_reservestate.text = (total_amount * response.body()!!.price).toString()
+
+                            var dataList : ArrayList<bagImgDtos> = response.body()!!.bagImgDtos
+
+                            luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
+                            rv_luggage_picture.adapter = luggagePictureAdapter
+                            var mLayoutManager = LinearLayoutManager(context)
+                            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                            rv_luggage_picture.layoutManager = mLayoutManager
+
+                            tv_store_name_reservestate.text = response.body()!!.store.storeName
+                            tv_store_location_reservestate.text = response.body()!!.store.address
                         }
                         500 -> {
                             toast("500 error")
