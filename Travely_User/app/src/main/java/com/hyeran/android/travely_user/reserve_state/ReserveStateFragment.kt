@@ -59,9 +59,9 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     var latitude3: Double = 0.0
     var longitude3: Double = 0.0
-    lateinit var qrCode : String
-  //  var latitude: Double = 0.0
-  //  var longitude: Double = 0.0
+    lateinit var qrCode: String
+    //  var latitude: Double = 0.0
+    //  var longitude: Double = 0.0
 
     // Google API Client 생성
     private lateinit var mLocation2: Location
@@ -71,7 +71,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationProviderClient2: FusedLocationProviderClient
     private lateinit var locationRequest2: LocationRequest
     private lateinit var locationCallback2: MapMorePreviewFragment.MyLocationCallBack2
-
 
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -87,11 +86,12 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    fun setGoogleMap(shopName: String, latitude:Double,longitude:Double){
-        var marker = LatLng(latitude,longitude)
-        Log.d("TAGGG","lat = "+latitude+"  long = "+longitude)
+    var marker = LatLng(0.0,0.0)
+    fun setGoogleMap(shopName: String, latitude: Double, longitude: Double) {
+        marker = LatLng(latitude, longitude)
+        Log.d("TAGGG", "lat = " + latitude + "  long = " + longitude)
         mMap3.addMarker(MarkerOptions().position(marker).title(shopName).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_color_pin)))
-        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker,17f))
+//        mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
     }
 
     lateinit var luggagePictureAdapter: LuggagePictureAdapter
@@ -114,7 +114,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
         arguments?.let { password = it.getString("password") }
     }
-lateinit var v:View
+
+    lateinit var v: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_reserve_state, container, false)
 
@@ -167,6 +168,7 @@ lateinit var v:View
 
         setRecyclerView()
     }
+
     override fun onStop() {
         super.onStop()
 
@@ -176,7 +178,7 @@ lateinit var v:View
     }
 
     fun setRecyclerView() {
-        var dataList= ArrayList<LuggagePictureData>()
+        var dataList = ArrayList<LuggagePictureData>()
         dataList.add(LuggagePictureData("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg"))
         dataList.add(LuggagePictureData("tesetest"))
         dataList.add(LuggagePictureData("https://s3.ap-northeast-2.amazonaws.com/travely-project/KakaoTalk_20181231_201927117.jpg"))
@@ -216,6 +218,7 @@ lateinit var v:View
         getReservationReserveResponse!!.enqueue(object : retrofit2.Callback<ReservationReserveCodeData> {
             override fun onFailure(call: Call<ReservationReserveCodeData>, t: Throwable) {
                 toast("fail" + t.message)
+                Log.d("TAGG","fail : "+t.message)
             }
 
             override fun onResponse(call: Call<ReservationReserveCodeData>, response: Response<ReservationReserveCodeData>) {
@@ -227,8 +230,8 @@ lateinit var v:View
                             startTime = response.body()!!.startTime
                             endTime = response.body()!!.endTime
                             bagDtos = response.body()!!.bagDtos
-                           var latitude = response.body()!!.store.latitude
-                           var longitude = response.body()!!.store.longitude
+                            var latitude = response.body()!!.store.latitude
+                            var longitude = response.body()!!.store.longitude
                             generateQRCode(v, response.body()!!.reserveCode)
                             toast("stateType = " + stateType)
                             if (stateType == "RESERVED") {
@@ -267,10 +270,12 @@ lateinit var v:View
                             tv_qr_reserveCode.text = reserveCode.toString()
                             qrCode = reserveCode.toString()
                             //위도경도
-                            setGoogleMap(response.body()!!.store.storeName,latitude,longitude)
+                            setGoogleMap(response.body()!!.store.storeName, latitude, longitude)
+                            mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
+
                             //bagDtos//TODO bagDtos해야함
-                            toast("bagDtos Size : "+response.body()!!.bagDtos.size)
-                            for(i in 0..response.body()!!.bagDtos.size){
+                            toast("bagDtos Size : " + response.body()!!.bagDtos.size)
+                            for (i in 0..response.body()!!.bagDtos.size) {
 //                                Log.d("TAGGG","bagDtos = "+response.body()!!.bagDtos[i].bagType)
                             }
 
@@ -280,7 +285,10 @@ lateinit var v:View
                         500 -> {
                             toast("500 error")
                         }
-                        else -> toast("error")
+                        else -> {
+                            toast("error")
+                            Log.d("TAGG", "reserveStateFragment code = " + response.code().toString())
+                        }
                     }
                 }
             }
