@@ -123,7 +123,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 //        getReservationReserveResponse(v)
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
-          //  ReserveCancelDialog(context).show()
+            //  ReserveCancelDialog(context).show()
             ReserveCancelDialog(context).show()
         }
         v.iv_qrimage_reservestate.setOnClickListener {
@@ -240,21 +240,21 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_no)
-                                btn_reservecancel_to_dialog.visibility=View.VISIBLE
+                                btn_reservecancel_to_dialog.visibility = View.VISIBLE
                                 const_luggage_reservestate.visibility = View.GONE
                             } else if (stateType == "PAYED") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
-                                btn_reservecancel_to_dialog.visibility=View.VISIBLE
+                                btn_reservecancel_to_dialog.visibility = View.VISIBLE
                                 const_luggage_reservestate.visibility = View.GONE
                             } else if (stateType == "ARCHIVE") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
-                                btn_reservecancel_to_dialog.visibility=View.GONE
+                                btn_reservecancel_to_dialog.visibility = View.GONE
                                 const_luggage_reservestate.visibility = View.VISIBLE
 
                             } else if (stateType == "PICKUP") {
@@ -262,7 +262,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
-                                btn_reservecancel_to_dialog.visibility=View.GONE
+                                btn_reservecancel_to_dialog.visibility = View.GONE
                                 const_luggage_reservestate.visibility = View.VISIBLE
                             } else if (stateType == "CANCEL") {
                                 ReserveCancelDialog(ctx).show()
@@ -322,7 +322,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
                             var timeDateFormat = SimpleDateFormat("HH:mm")
                             var openTime: String = timeDateFormat.format(response.body()!!.store.openTime)
-                            var closeTime : String = timeDateFormat.format(response.body()!!.store.closeTime)
+                            var closeTime: String = timeDateFormat.format(response.body()!!.store.closeTime)
                             tv_store_start_reservestate.text = openTime
                             tv_store_end_reservestate.text = closeTime
 
@@ -330,49 +330,69 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             var zero = 0
                             var allDateStamp = SimpleDateFormat("총 yy d일 HH시간 mm분")
                             var minTime = (endTime as Long - startTime as Long)
-                            var allDay = minTime /86400000
-                            var allHour : Long
-                            var allMinute : Long
+                            var allDay = minTime / 86400000
+                            var allHour: Long
+                            var allMinute: Long
 
 
-                            if(allDay==zero.toLong()) {
+                            if (allDay == zero.toLong()) {
                                 allHour = (endTime as Long - startTime as Long) / 3600000
-                                if(allHour==zero.toLong()){
-                                    allMinute = minTime/60000
-                                    textView112.text = "총 "+allMinute+"분"
-                                }
-                                else {
+                                if (allHour == zero.toLong()) {
+                                    allMinute = minTime / 60000
+                                    textView112.text = "총 " + allMinute + "분"
+                                } else {
                                     var allMinute = (minTime - (allHour * 3600000)) / 60000
-                                    if(allMinute == zero.toLong()){
+                                    if (allMinute == zero.toLong()) {
                                         textView112.text = "총 " + allHour + "시간 "
-                                    }
-                                    else {
+                                    } else {
                                         textView112.text = "총 " + allHour + "시간 " + allMinute + "분"
                                     }
                                 }
-                            }
-                            else{
-                                allHour = (minTime - (allDay*86400000)) / 3600000
-                                if(allHour==zero.toLong()){
-                                    allMinute = (minTime - (allDay*86400000))/60000
-                                    if(allMinute == zero.toLong()){
-                                        textView112.text = "총 "+allDay+"일"
+                            } else {
+                                allHour = (minTime - (allDay * 86400000)) / 3600000
+                                if (allHour == zero.toLong()) {
+                                    allMinute = (minTime - (allDay * 86400000)) / 60000
+                                    if (allMinute == zero.toLong()) {
+                                        textView112.text = "총 " + allDay + "일"
+                                    } else {
+                                        textView112.text = "총 " + allDay + "일 " + allMinute + "분"
                                     }
-                                    else{
-                                        textView112.text = "총 "+allDay+"일 "+allMinute+"분"
-                                    }
-                                }
-                                else{
-                                    allMinute = (minTime - (allDay*86400000)-(allHour*3600000))/60000
-                                    if(allMinute==zero.toLong()) {
+                                } else {
+                                    allMinute = (minTime - (allDay * 86400000) - (allHour * 3600000)) / 60000
+                                    if (allMinute == zero.toLong()) {
                                         textView112.text = "총 " + allDay + "일 " + allHour + "시간 "
-                                    }
-                                    else{
+                                    } else {
                                         textView112.text = "총 " + allDay + "일 " + allHour + "시간 " + allMinute + "분"
                                     }
                                 }
                             }
-                            Log.d("TAGGGG","startTime = "+allDateStamp.format(startTime)+"  closeTime = "+allDateStamp.format(endTime))
+                            var current_time: Long = System.currentTimeMillis()
+
+                            var open_time: Long = response.body()!!.store.openTime.toLong()
+                            var close_time: Long = response.body()!!.store.closeTime.toLong()
+
+                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
+                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    toast("##")
+
+                                } else {
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                }
+                            } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
+                                if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    toast("$$")
+
+                                } else {
+                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                }
+                            } else {
+                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                            }
+                            Log.d("TAGGGG", "startTime = " + allDateStamp.format(startTime) + "  closeTime = " + allDateStamp.format(endTime))
                         }
                         500 -> {
                             toast("500 error")
