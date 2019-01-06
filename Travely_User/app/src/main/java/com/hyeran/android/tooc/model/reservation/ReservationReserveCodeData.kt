@@ -17,4 +17,5 @@ data class ReservationReserveCodeData(
         var store : storeInfo,
         var takeTime : Long,
         var reserveCode : String
+
 )

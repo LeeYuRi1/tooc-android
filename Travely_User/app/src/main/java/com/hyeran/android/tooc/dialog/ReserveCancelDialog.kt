@@ -20,7 +20,7 @@ class ReserveCancelDialog(val ctx:Context?) : Dialog(ctx){
 
         btn_reserve_cancel_yes.setOnClickListener {
             dismiss()
-            ReserveCancelPasswordDialog(context).show()
+            ReserveCancelPasswordDialog(ctx).show()
         }
         btn_reserve_cancel_no.setOnClickListener{
             dismiss()

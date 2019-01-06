@@ -7,16 +7,12 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Window
 import android.text.InputType
-import android.util.Log
-import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import com.hyeran.android.tooc.MainActivity
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.dialog_reserve_cancel_password.*
-import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,6 +41,7 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
             if(password == mEtPassword.text.toString()) {
                 dismiss()
                 deleteReservationCancelResponse()
+//                (ctx as MainActivity).replaceFragment(MapFragment())
             }
             else {
                 Toast.makeText(ctx,"비밀번호가 틀렸습니다.",Toast.LENGTH_LONG).show()
@@ -72,7 +69,7 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
                     when (it.code()) {
                         200 -> {
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", false)
-                            ReserveCancelPasswordConfirmDialog(context).show()
+                            ReserveCancelPasswordConfirmDialog(ctx).show()
                             dismiss()
                         }
                         500 -> {

@@ -42,12 +42,12 @@ import java.sql.Timestamp
 class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-    var latitude2 : Double? = 0.0
+    var latitude2: Double? = 0.0
     var longtitude2: Double? = 0.0
 
-    var shop_latitude : Double = 0.0
-    var shop_longitude : Double = 0.0
-    var shop_name : String = ""
+    var shop_latitude: Double = 0.0
+    var shop_longitude: Double = 0.0
+    var shop_name: String = ""
 
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
@@ -179,11 +179,11 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         view2.btn_fragment_map_more_preview.setOnClickListener {
             var intent = Intent(activity, MapMoreActivity::class.java)
             if (ActivityCompat.checkSelfPermission(activity!!,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                            android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(activity!!,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                var mLastKnownLocation : Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
+                var mLastKnownLocation: Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient2)
                 latitude2 = mLastKnownLocation.latitude
                 longtitude2 = mLastKnownLocation.longitude
             }
@@ -215,10 +215,9 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
-            if(resultCode == 111) {
+            if (resultCode == 111) {
                 (context as MainActivity).replaceFragment(MapFragment())
-            }
-            else {
+            } else {
                 storeIdx = data!!.getIntExtra("storeIdx", 0)
                 getStoreResponse()
             }
@@ -228,7 +227,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                 var storeIdx = data!!.getIntExtra("storeIdx", 0)
                 var args = Bundle()
                 args.putInt("storeIdx", storeIdx)
-                var fragment : Fragment = ReserveFragment()
+                var fragment: Fragment = ReserveFragment()
                 fragment.arguments = args
                 (ctx as MainActivity).replaceFragment(fragment)
             }
@@ -466,7 +465,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
 
-                            Log.d("TAGG","In MapMorePreviewFragment tv_address_map_more_preview = "+tv_address_map_more_preview.text)
+                            Log.d("TAGG", "In MapMorePreviewFragment tv_address_map_more_preview = " + tv_address_map_more_preview.text)
 
                             var open_time: Long = response.body()!!.openTime.toLong()
 
@@ -485,7 +484,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             var close_time: Long = response.body()!!.closeTime.toLong()
                             if (Timestamp(close_time).hours.toString().trim().length == 1) {
                                 var close_hour = "0" + Timestamp(close_time).hours.toString().trim()
-                                if(close_hour == "00") {
+                                if (close_hour == "00") {
                                     close_hour = "24"
                                     tv_closetime_hour_map_more_preview.text = "24"
                                 }
@@ -499,24 +498,26 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                                 tv_closetime_minute_map_more_preview.text = Timestamp(close_time).minutes.toString().trim()
                             }
 
-                            var current_time : Long = System.currentTimeMillis()
+                            var current_time: Long = System.currentTimeMillis()
 
-                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < close_time.toInt())) {
+                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                             }
-                            else if(Timestamp(open_time).hours == Timestamp(current_time).hours) {
-                                if((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                            else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
+                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                }
-                                else {
+                                    toast("##")
+
+                                } else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             }
-                            else if(close_time.toInt() == Timestamp(current_time).hours) {
-                                if((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                            else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
+                                if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                }
-                                else {
+                                    toast("$$")
+
+                                } else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             }
