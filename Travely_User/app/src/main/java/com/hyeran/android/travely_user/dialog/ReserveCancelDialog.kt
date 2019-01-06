@@ -10,7 +10,7 @@ import android.widget.Toast
 import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.dialog_reserve_cancel.*
 
-class ReserveCancelDialog(var ctx:Context?) : Dialog(ctx){
+class ReserveCancelDialog(val ctx:Context?) : Dialog(ctx){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

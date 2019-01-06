@@ -374,7 +374,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="1"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView104"
                     app:layout_constraintTop_toTopOf="@+id/textView104" />
@@ -394,7 +394,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="3500"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView106"
                     app:layout_constraintTop_toTopOf="@+id/textView106" />
@@ -416,7 +416,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="1"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView108"
                     app:layout_constraintTop_toTopOf="@+id/textView108" />
@@ -436,7 +436,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="3500"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView110"
                     app:layout_constraintTop_toTopOf="@+id/textView110" />

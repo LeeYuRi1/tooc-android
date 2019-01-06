@@ -157,9 +157,11 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 999) {
             if (resultCode == 1) {
+                Log.d("@@@@@", "resultCode 1에 들어옴")
                 (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
             }
             else if (resultCode == 111) {
+                Log.d("@@@@@", "resultCode 111에 들어옴")
 
             }
             else if(resultCode  == 2) {  // 어댑터에서 들어올 때 -> storeIdx 전달해서 서버 데이터 세팅 필요
@@ -169,6 +171,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 (activity as MainActivity).getStoreIdx(storeIdx)
 
             } else {
+                Log.d("@@@@@", "else에 들어옴")
                 (activity as MainActivity).replaceFragment(MapMorePreviewFragment())
             }
         }

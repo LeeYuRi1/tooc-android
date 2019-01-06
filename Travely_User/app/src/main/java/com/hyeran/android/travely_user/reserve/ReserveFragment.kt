@@ -310,9 +310,9 @@ class ReserveFragment : Fragment() {
                                 SharedPreferencesController.instance!!.setPrefData("is_reserve", true)
                             } else {
                             }
+                            Log.d("TAGG: 예약할 때", bagData.toString())
                         }
                         400 -> {
-                            toast("잘못된 정보 주입")
 
                             if (response.errorBody() != null) {
                                 var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
