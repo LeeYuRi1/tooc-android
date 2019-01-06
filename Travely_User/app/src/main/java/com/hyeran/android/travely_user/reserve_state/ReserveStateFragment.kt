@@ -124,7 +124,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
           //  ReserveCancelDialog(context).show()
-            ReserveCancelPasswordConfirmDialog(context).show()
+            ReserveCancelPasswordDialog(context).show()
         }
         v.iv_qrimage_reservestate.setOnClickListener {
             startActivity<ReserveQRCodeActivity>("qrCode" to qrCode)
@@ -240,22 +240,30 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_no)
+                                btn_reservecancel_to_dialog.visibility=View.VISIBLE
+                                const_luggage_reservestate.visibility = View.GONE
                             } else if (stateType == "PAYED") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
-
+                                btn_reservecancel_to_dialog.visibility=View.VISIBLE
+                                const_luggage_reservestate.visibility = View.GONE
                             } else if (stateType == "ARCHIVE") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
+                                btn_reservecancel_to_dialog.visibility=View.GONE
+                                const_luggage_reservestate.visibility = View.VISIBLE
+
                             } else if (stateType == "PICKUP") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
+                                btn_reservecancel_to_dialog.visibility=View.GONE
+                                const_luggage_reservestate.visibility = View.VISIBLE
                             } else if (stateType == "CANCEL") {
                                 ReserveCancelDialog(ctx).show()
                                 //ReserveCancelPasswordConfirmDialog(ctx).show()
@@ -308,18 +316,57 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 tv_store_name_reservestate.text = response.body()!!.store.storeName
                                 tv_store_location_reservestate.text = response.body()!!.store.address
                             }
-
                             //상가정보 입력
                             tv_store_name_reservestate.text = response.body()!!.store.storeName
                             tv_store_location_reservestate.text = response.body()!!.store.address
 
                             var timeDateFormat = SimpleDateFormat("HH:mm")
-                            var openTime: String = timeDateFormat.format(response.body()!!.openTime)
-                            var closeTime : String = timeDateFormat.format(response.body()!!.closeTime)
+                            var openTime: String = timeDateFormat.format(response.body()!!.store.openTime)
+                            var closeTime : String = timeDateFormat.format(response.body()!!.store.closeTime)
                             tv_store_start_reservestate.text = openTime
                             tv_store_end_reservestate.text = closeTime
-//수, 목 휴무 9:00 ~ 12:00
-                            Log.d("TAGG", "bagDtos : " + bagDtos.toString())
+
+                            //총 시간                             textView112
+                            var zero = 0
+                            var allDateStamp = SimpleDateFormat("총 yy d일 HH시간 mm분")
+                            var minTime = (endTime as Long - startTime as Long)
+                            var allDay = minTime /86400000
+                            var allHour : Long
+                            var allMinute : Long
+
+                            if(allDay==zero.toLong()) {
+                                allHour = (endTime as Long - startTime as Long) / 3600000
+                                if(allHour==zero.toLong()){
+                                    allMinute = minTime/60000
+                                    textView112.text = "총 "+allMinute+"분"
+                                }
+                                else {
+                                    var allMinute = (minTime - (allHour * 3600000)) / 60000
+                                    if(allMinute == zero.toLong()){
+                                        textView112.text = "총 " + allHour + "시간 "
+                                    }
+                                    else {
+                                        textView112.text = "총 " + allHour + "시간 " + allMinute + "분"
+                                    }
+                                }
+                            }
+                            else{
+                                allHour = (minTime - (allDay*86400000)) / 3600000
+                                if(allHour==zero.toLong()){
+                                    allMinute = (minTime - (allDay*86400000))/60000
+                                    textView112.text = "총 "+allDay+"일 "+allMinute+"분"
+                                }
+                                else{
+                                    allMinute = (minTime - (allDay*86400000)-(allHour*3600000))/60000
+                                    if(allMinute==zero.toLong()) {
+                                        textView112.text = "총 " + allDay + "일 " + allHour + "시간 "
+                                    }
+                                    else{
+                                        textView112.text = "총 " + allDay + "일 " + allHour + "시간 " + allMinute + "분"
+                                    }
+                                }
+                            }
+                            Log.d("TAGGGG","startTime = "+allDateStamp.format(startTime)+"  closeTime = "+allDateStamp.format(endTime))
                         }
                         500 -> {
                             toast("500 error")
