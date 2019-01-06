@@ -9,6 +9,7 @@ import com.hyeran.android.travely_user.adapter.ExplanationPagerAdapter
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.activity_explanation.*
+import org.jetbrains.anko.toast
 
 class ExplanationActivity : AppCompatActivity() {
 
@@ -21,6 +22,7 @@ class ExplanationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_explanation)
 
         init()
+        toast("ExplanationActivity 호출됨")
 
     }
 

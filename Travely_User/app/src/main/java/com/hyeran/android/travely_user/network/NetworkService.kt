@@ -3,6 +3,8 @@ package com.hyeran.android.travely_user.network
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.model.*
 import com.hyeran.android.travely_user.model.mypage.FavoriteResponseData
+import com.hyeran.android.travely_user.model.mypage.InquiryResponseData
+import com.hyeran.android.travely_user.model.mypage.ReviewSaveResponseData
 import com.hyeran.android.travely_user.model.region.RegionResponseData
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
@@ -27,9 +29,9 @@ interface NetworkService {
     // - 성공 시 jwt 토큰을 헤더에 넣어서 반환
     @POST("/api/users/login")
     fun postLoginResponse(
-            @Header("Content-Type") content_type : String,
-            @Body() body : JsonObject
-    ) : Call<UsersLoginResponseData>
+            @Header("Content-Type") content_type: String,
+            @Body() body: JsonObject
+    ): Call<UsersLoginResponseData>
 
     // 프로필 조회
     // - 프로필 조회
@@ -76,8 +78,8 @@ interface NetworkService {
     //예약 세부정보 조회
     @GET("/api/reservation")
     fun getReservationReserveResponse(
-            @Header("jwt") jwt :String?
-    ) : Call<ReservationReserveCodeData>
+            @Header("jwt") jwt: String?
+    ): Call<ReservationReserveCodeData>
 
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
 
@@ -93,7 +95,26 @@ interface NetworkService {
 
     // 즐겨찾기 리스트 조회
     @GET("/api/favorite")
-    fun favoriteResponse(
-            @Header("jwt") jwt : String?
-    ) : Call<FavoriteResponseData>
+    fun getFavoriteResponse(
+            @Header("jwt") jwt: String?
+    ): Call<ArrayList<FavoriteResponseData>>
+
+    //@@@@@@@@@@@@@@@ inquiry-controller @@@@@@@@@@@@@@@
+
+    @POST("/api/inquiry")
+    fun postInquiryResponse(
+            @Header("Content-Type") content_type: String,
+            @Header("jwt") jwt: String?,
+            @Body() inquiryResponseData: InquiryResponseData
+    ): Call<InquiryResponseData>
+
+    //@@@@@@@@@@@@@@@ review-controller @@@@@@@@@@@@@@@
+    //리뷰 저장
+    @POST("/api/review/save")
+    fun postReviewSaveResponse(
+            @Header("Content-Type") content_type: String,
+            @Header("jwt") jwt: String?,
+            @Body() reviewSaveResponseData: ReviewSaveResponseData
+    ) : Call<ReviewSaveResponseData>
+
 }

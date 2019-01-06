@@ -65,6 +65,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
     var tnumhh: Int = reiceveArray[4] as Int
     var tnummm: Int = reiceveArray[5] as Int
     var storeIdx:Int = reiceveArray[10] as Int
+    var startDialogScreen:Int = reiceveArray[11] as Int
 
     var openTime: Int = hourFormat.format(reiceveArray[8] as Long).toInt()
     var closeTime: Int = hourFormat.format(reiceveArray[9] as Long).toInt()
@@ -218,6 +219,11 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
 
         //버튼클릭시~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         setOnClickListner()
+        if(startDialogScreen==1){
+            alertFlag=0
+            notOffDay = true
+            btn_take_time.performClick()
+        }
     }
 
     private fun datesFromCalender(): Array<String> {
@@ -274,13 +280,15 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         for (i in 10..59) dates.add(i.toString())
         return dates.toTypedArray()
     }
+    var alertFlag = 0
+    var notOffDay : Boolean = false
 
     fun setOnClickListner() {
-        var alertFlag = 0;
+        alertFlag = 0
         var rightNow = Calendar.getInstance()
         var currentHour = rightNow.get(Calendar.HOUR_OF_DAY)
         var ttoast: Toast
-        var notOffDay : Boolean = false
+        notOffDay = false
 
 
         btn_store_time.setOnClickListener {
@@ -366,7 +374,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                     ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
                     ttoast.setGravity(Gravity.CENTER, 0, 0)
                     ttoast.show()
-
                 } else {
                     if ((0 > pv_take_date.value - pv_store_date.value)) {
                         Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()

@@ -13,10 +13,8 @@ import com.hyeran.android.travely_user.model.region.SimpleStoreResponseData
 
 class MoreLocationRVAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreResponseData>) : RecyclerView.Adapter<MoreLocationRVAdapter.Holder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_more_location_map, parent, false)
-
         return Holder(view)
     }
 
@@ -35,6 +33,5 @@ class MoreLocationRVAdapter(val ctx: Context, val dataList: ArrayList<SimpleStor
         val name: TextView = itemView.findViewById(R.id.tv_name_item_more_location_map) as TextView
         val item_more_location_map: LinearLayout = itemView.findViewById(R.id.item_more_location_map) as LinearLayout
     }
-
 
 }

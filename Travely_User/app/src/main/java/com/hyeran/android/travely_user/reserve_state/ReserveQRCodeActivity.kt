@@ -10,6 +10,7 @@ import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import com.hyeran.android.travely_user.R
 import kotlinx.android.synthetic.main.activity_qrcode_enlarge.*
+import org.jetbrains.anko.toast
 
 class ReserveQRCodeActivity :AppCompatActivity(){
 
@@ -17,8 +18,9 @@ class ReserveQRCodeActivity :AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qrcode_enlarge)
 
-        var testt: String = "TEst"
-        generateQRCode( testt)
+        var qrCode = intent.getStringExtra("qrCode")
+        generateQRCode(qrCode)
+        toast("qrCode = "+qrCode)
 
         btn_qrcode_enlarge_close.setOnClickListener{
             finish()

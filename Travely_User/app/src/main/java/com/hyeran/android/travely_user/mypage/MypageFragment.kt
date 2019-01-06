@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_mypage.*
 import kotlinx.android.synthetic.main.fragment_mypage.view.*
 import org.jetbrains.anko.image
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -78,8 +79,6 @@ class MypageFragment : Fragment() {
         }
         layout_myreview_mypage.setOnClickListener {
             replaceFragment(MyreviewFragment())
-//            val intent = Intent(this.activity, ExplanationActivity::class.java)
-//            startActivity(intent)
 
         }
         iv_set_mypage.setOnClickListener {
@@ -135,7 +134,6 @@ class MypageFragment : Fragment() {
 
     private fun getRecentStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-
 
         val getProfileResponse = networkService.getProfileResponse(jwt)
 
