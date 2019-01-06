@@ -185,12 +185,10 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
 //        mapView = view!!.findViewById(R.id.mapView)
 //        mapView.onCreate(savedInstanceState)
-//        mapView.getMapAsync(this)
+//      mapView.getMapAsync(this)
 
         mGoogleApiClient = GoogleApiClient.Builder(activity!!)
                 .addApi(LocationServices.API)
-//                .addConnectionCallbacks(activity!!)
-//                .addOnConnectFailedListener(activity!!)
                 .build()
 
         mGoogleApiClient.connect()
@@ -199,9 +197,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
         mMap = googleMap
-
-//        mMap.setMinZoomPreference(17f)
-//        mMap.setMaxZoomPreference(21f)
 
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -213,12 +208,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         }
 
     }
-
-//
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        mapView.onSaveInstanceState(outState)
-//    }
 
     override fun onResume() {
         super.onResume()
