@@ -124,7 +124,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
         v.btn_reservecancel_to_dialog.setOnClickListener {
           //  ReserveCancelDialog(context).show()
-            ReserveCancelPasswordDialog(context).show()
+            ReserveCancelDialog(context).show()
         }
         v.iv_qrimage_reservestate.setOnClickListener {
             startActivity<ReserveQRCodeActivity>("qrCode" to qrCode)
@@ -334,6 +334,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             var allHour : Long
                             var allMinute : Long
 
+
                             if(allDay==zero.toLong()) {
                                 allHour = (endTime as Long - startTime as Long) / 3600000
                                 if(allHour==zero.toLong()){
@@ -354,7 +355,12 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 allHour = (minTime - (allDay*86400000)) / 3600000
                                 if(allHour==zero.toLong()){
                                     allMinute = (minTime - (allDay*86400000))/60000
-                                    textView112.text = "총 "+allDay+"일 "+allMinute+"분"
+                                    if(allMinute == zero.toLong()){
+                                        textView112.text = "총 "+allDay+"일"
+                                    }
+                                    else{
+                                        textView112.text = "총 "+allDay+"일 "+allMinute+"분"
+                                    }
                                 }
                                 else{
                                     allMinute = (minTime - (allDay*86400000)-(allHour*3600000))/60000

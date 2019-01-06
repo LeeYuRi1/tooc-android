@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.hyeran.android.travely_user.MainActivity
 import com.hyeran.android.travely_user.R
+import com.hyeran.android.travely_user.map.MapFragment
 import com.hyeran.android.travely_user.network.ApplicationController
 import com.hyeran.android.travely_user.network.NetworkService
 import kotlinx.android.synthetic.main.dialog_reserve_cancel_password.*
@@ -45,6 +46,7 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
             if(password == mEtPassword.text.toString()) {
                 dismiss()
                 deleteReservationCancelResponse()
+//                (ctx as MainActivity).replaceFragment(MapFragment())
             }
             else {
                 Toast.makeText(ctx,"비밀번호가 틀렸습니다.",Toast.LENGTH_LONG).show()
@@ -72,7 +74,7 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
                     when (it.code()) {
                         200 -> {
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", false)
-                            ReserveCancelPasswordConfirmDialog(context).show()
+                            ReserveCancelPasswordConfirmDialog(ctx).show()
                             dismiss()
                         }
                         500 -> {
