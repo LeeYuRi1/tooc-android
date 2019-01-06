@@ -480,7 +480,10 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             var close_time: Long = response.body()!!.closeTime.toLong()
                             if (Timestamp(close_time).hours.toString().trim().length == 1) {
                                 var close_hour = "0" + Timestamp(close_time).hours.toString().trim()
-                                if(close_hour == "00") tv_closetime_hour_map_more_preview.text = "24"
+                                if(close_hour == "00") {
+                                    close_hour = "24"
+                                    tv_closetime_hour_map_more_preview.text = "24"
+                                }
                             } else {
                                 tv_closetime_hour_map_more_preview.text = Timestamp(close_time).hours.toString().trim()
                             }
@@ -493,7 +496,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                             var current_time : Long = System.currentTimeMillis()
 
-                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < close_time.toInt())) {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                             }
                             else if(Timestamp(open_time).hours == Timestamp(current_time).hours) {
@@ -504,7 +507,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             }
-                            else if(Timestamp(close_time).hours == Timestamp(current_time).hours) {
+                            else if(close_time.toInt() == Timestamp(current_time).hours) {
                                 if((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                                 }
@@ -515,6 +518,10 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             else {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                             }
+
+                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
+                            Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
+
 //
 //                            var current_time: Long = System.currentTimeMillis()
 //
