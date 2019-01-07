@@ -1,305 +1,404 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#ffffff">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08055556" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.91944444" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="#ffffff">
+        android:id="@+id/constraintLayout3"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/textView60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="프로필관리"
-            android:textSize="18sp"
+            android:fontFamily="@font/nanum_extrabold"
+            android:text="프로필 수정"
             android:textColor="#000000"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_modification_profile"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:id="@+id/iv_back_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:src="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="visible"/>
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:src="@drawable/setting_bt_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/background_dark" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_confilm_profile"
+            android:id="@+id/tv_modification_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:text="확인"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"/>
-    </android.support.constraint.ConstraintLayout>
-
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/iv_profileimage_profile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            app:layout_constraintBottom_toTopOf="@+id/guideline28"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/background_dark" />
-
-        <EditText
-            android:id="@+id/et_name_profile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:background="#ffffff"
-            android:ems="10"
-            android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:hint="이름"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toTopOf="@+id/guideline28" />
-
-        <EditText
-            android:id="@+id/et_email_profile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:background="#ffffff"
-            android:ems="10"
-            android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:hint="이메일"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/view7" />
-
-        <EditText
-            android:id="@+id/et_password_profile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:background="#ffffff"
-            android:ems="10"
-            android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:hint="비밀번호"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/view21" />
-
-        <EditText
-            android:id="@+id/et_password_confirm_profile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:background="#ffffff"
-            android:ems="10"
-            android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:hint="비밀번호 확인"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/view22" />
-
-        <Button
-            android:id="@+id/btn_logout_profile"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/btn_background_full"
-            android:text="로그아웃"
-            android:textColor="#ffffff"
-            android:textSize="16sp"
+            android:layout_marginEnd="26dp"
+            android:fontFamily="@font/kopub_medium"
+            android:text="수정"
+            android:textColor="#8d8d8d"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_withdrawal_profile"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view24" />
-
-        <Button
-            android:id="@+id/btn_withdrawal_profile"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/btn_background_empty"
-            android:text="탈퇴하기"
-            android:textColor="@color/mainColor"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_logout_profile"
-            app:layout_constraintTop_toTopOf="@+id/btn_logout_profile" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.09375" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.90625" />
-
-        <View
-            android:id="@+id/view7"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#CCCCCC"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/et_name_profile" />
-
-        <View
-            android:id="@+id/view21"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#CCCCCC"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/et_email_profile" />
-
-        <View
-            android:id="@+id/view22"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#CCCCCC"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/et_password_profile" />
-
-        <View
-            android:id="@+id/view23"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#CCCCCC"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/et_password_confirm_profile" />
-
-        <EditText
-            android:id="@+id/et_phone_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:background="#ffffff"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="전화번호"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/spinner4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toEndOf="@+id/spinner4" />
-
-        <Spinner
-            android:id="@+id/spinner4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:entries="@array/phone_arrays"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/view23" />
-
-        <View
-            android:id="@+id/view24"
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            android:background="#CCCCCC"
-            app:layout_constraintEnd_toEndOf="@+id/spinner4"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline29"
-            app:layout_constraintTop_toBottomOf="@+id/spinner4" />
-
-        <View
-            android:id="@+id/view25"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#CCCCCC"
-            app:layout_constraintEnd_toStartOf="@+id/guideline30"
-            app:layout_constraintStart_toStartOf="@+id/et_phone_profile"
-            app:layout_constraintTop_toBottomOf="@+id/et_phone_profile" />
-
-        <ImageView
-            android:id="@+id/imageView19"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_profileimage_profile"
-            app:layout_constraintEnd_toEndOf="@+id/iv_profileimage_profile"
-            app:srcCompat="@android:color/holo_green_light" />
-
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-</LinearLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="97dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline43"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline9">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/et_name_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="29dp"
+                android:background="#ffffff"
+                android:ems="10"
+                android:fontFamily="@font/kopub_medium"
+                android:hint="이름"
+                android:inputType="textPersonName"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
+                android:textSize="16sp"
+                android:enabled="false"
+                app:layout_constraintBottom_toTopOf="@+id/view2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/et_email_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="29dp"
+                android:background="#ffffff"
+                android:ems="10"
+                android:fontFamily="@font/kopub_medium"
+                android:hint="이메일"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
+                android:textSize="16sp"
+                android:enabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_email_check_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_email_check_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/signin_ic_check"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_email_profile" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <View
+                android:id="@+id/view9"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/et_password_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="29dp"
+                android:background="#ffffff"
+                android:ems="10"
+                android:fontFamily="@font/kopub_medium"
+                android:hint="비밀번호"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
+                android:textSize="16sp"
+                android:enabled="false"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toTopOf="@+id/view9"
+                app:layout_constraintEnd_toStartOf="@+id/iv_password_check_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_password_check_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/signin_ic_check"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_password_profile" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:id="@+id/view10"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/et_password_confirm_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="29dp"
+                android:background="#ffffff"
+                android:ems="10"
+                android:fontFamily="@font/kopub_medium"
+                android:hint="비밀번호 확인"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
+                android:textSize="16sp"
+                android:enabled="false"
+                app:layout_constraintBottom_toTopOf="@+id/view10"
+                app:layout_constraintEnd_toStartOf="@+id/iv_passwordconfirm_check_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_passwordconfirm_check_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/signin_ic_check"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_password_confirm_profile" />
+
+            <ImageView
+                android:id="@+id/iv_passwordconfirm_x_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/signin_ic_x"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:id="@+id/view11"
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:layout_marginEnd="16dp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/spinner3"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="29dp"
+                android:entries="@array/phone_arrays"
+                app:layout_constraintBottom_toTopOf="@+id/view11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_phone_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="29dp"
+                android:background="#ffffff"
+                android:ems="10"
+                android:fontFamily="@font/kopub_medium"
+                android:hint="전화번호"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
+                android:textSize="16sp"
+                android:enabled="false"
+                app:layout_constraintBottom_toTopOf="@+id/view11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/spinner3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view12"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/et_phone_profile"
+                app:layout_constraintStart_toStartOf="@+id/et_phone_profile" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_logout_profile"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:text="로그아웃"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:background="@drawable/btn_background_full"
+        android:fontFamily="@font/kopub_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_withdrawal_profile"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/btn_withdrawal_profile"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/btn_background_empty"
+        android:text="탈퇴하기"
+        android:textColor="@color/mainColor"
+        android:textSize="16sp"
+        android:fontFamily="@font/kopub_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_logout_profile"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_logout_profile"
+        app:layout_constraintTop_toTopOf="@+id/btn_logout_profile" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_profileimage_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/mypage_bt_default"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7" />
+
+    <ImageView
+        android:id="@+id/iv_photo_modify_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profileimage_profile"
+        app:layout_constraintEnd_toEndOf="@+id/iv_profileimage_profile" />
+
+</android.support.constraint.ConstraintLayout>

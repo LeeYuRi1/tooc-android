@@ -4,12 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+    tools:context=".SplashActivity"
+    android:background="@color/mainColor">
 
-    <TextView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_splash"
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="스플래쉬 화면"
-        android:layout_centerInParent="true"/>
+        app:lottie_rawRes="@raw/tooc_splash"
+        app:lottie_loop="false"
+        app:lottie_autoPlay="true"
+        />
 
 </RelativeLayout>

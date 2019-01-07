@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/iv_rv_item_photo"
-        android:src="@drawable/filter1"
+        android:src="@drawable/img_default_big"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 

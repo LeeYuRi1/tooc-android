@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".map.LocationListActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp">
+        <ImageView
+            android:id="@+id/btn_back_location_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/setting_bt_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#1fbfc8"
+            android:text="tooc"
+            android:fontFamily="@font/nanum_extrabold"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id = "@+id/btn_fragment_map_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="27dp">
+
+        <LinearLayout
+            android:background="#fbfbf9"
+            android:orientation="horizontal"
+            android:layout_width="313dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_circle_gray"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:text="현위치 : 서울시 강남구 역삼동 818-12"
+                android:fontFamily="@font/kopub_medium"
+                android:textSize="14sp"
+                android:textColor="#cecece"
+                android:lineSpacingExtra="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:layout_width="313dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:layout_gravity="center"
+                android:background = "@drawable/ic_rectangle_fill"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:text="짐을 맡겨드릴까요?"
+                android:fontFamily="@font/kopub_medium"
+                android:textSize="14sp"
+                android:textColor="#262626"
+                android:lineSpacingExtra="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/btn_map_location_list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="70dp">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="17dp"-->
+            <!--android:layout_height="12dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:src="@drawable/ic_place"-->
+            <!--android:layout_marginLeft="39dp"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:text="지도로 보기"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textColor="#262626"-->
+            <!--android:fontFamily="@font/kopub_bold"-->
+            <!--android:layout_marginLeft="15dp"/>-->
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shadow_location"
+        android:elevation="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/kopub_medium"
+            android:text="지역별 보관장소("
+            android:textColor="#8d8d8d"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/kopub_medium"
+            android:text="3"
+            android:textColor="#8d8d8d"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/kopub_medium"
+            android:text=")"
+            android:textColor="#8d8d8d"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_by_area_temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="@android:color/darker_gray">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text="가까운 보관장소(" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text="1" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text=")" />-->
+    <!--</LinearLayout>-->
+
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/rv_nearby_temp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="@android:color/darker_gray">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text="즐겨찾는 장소(" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text="2" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:text=")" />-->
+    <!--</LinearLayout>-->
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/rv_favorite_temp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
+
+</LinearLayout>

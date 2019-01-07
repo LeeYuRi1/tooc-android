@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_recentstore"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -21,10 +21,11 @@
         android:id="@+id/tv_name_recentstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="12dp"
         android:fontFamily="@font/kopub_medium"
         android:text="프로마치"
-        android:textSize="15sp"
+        android:textColor="#262626"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/iv_storeimage_recentstore"
         app:layout_constraintTop_toTopOf="@+id/iv_storeimage_recentstore" />
 
@@ -32,42 +33,34 @@
         android:id="@+id/tv_addr_recentstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/kopub_light"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/kopub_medium"
         android:text="성북구 안암동 123번지"
+        android:textColor="#707070"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_name_recentstore"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_recentstore" />
 
-    <TextView
-        android:id="@+id/tv_time_recentstore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/kopub_light"
-        android:text="매일 11:00 - 22:00"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_addr_recentstore"
-        app:layout_constraintTop_toBottomOf="@+id/tv_addr_recentstore" />
-
     <Button
         android:id="@+id/button6"
-        android:layout_width="62dp"
-        android:layout_height="24dp"
+        android:layout_width="68dp"
+        android:layout_height="23dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/btn_background_full"
         android:fontFamily="@font/kopub_medium"
         android:text="예약하기"
         android:textColor="#ffffff"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button7"
-        app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toTopOf="@+id/button7" />
+        android:textSize="12sp"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_reviewwrite_recentstore"
+        app:layout_constraintStart_toEndOf="@+id/btn_reviewwrite_recentstore"
+        app:layout_constraintTop_toTopOf="@+id/btn_reviewwrite_recentstore" />
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="62dp"
-        android:layout_height="24dp"
+        android:id="@+id/btn_reviewwrite_recentstore"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="68dp"
+        android:layout_height="23dp"
         android:layout_marginBottom="4dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
@@ -75,9 +68,87 @@
         android:fontFamily="@font/kopub_medium"
         android:text="리뷰쓰기"
         android:textColor="@color/mainColor"
-        android:textSize="10sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_storeimage_recentstore"
         app:layout_constraintStart_toEndOf="@+id/iv_storeimage_recentstore"
-        app:layout_constraintTop_toBottomOf="@+id/tv_time_recentstore" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_starttime_hour_recentstore" />
+
+    <TextView
+        android:id="@+id/tv_starttime_hour_recentstore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/kopub_medium"
+        android:text="11"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_addr_recentstore"
+        app:layout_constraintTop_toBottomOf="@+id/tv_addr_recentstore" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text=":"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_starttime_hour_recentstore"
+        app:layout_constraintTop_toTopOf="@+id/tv_starttime_hour_recentstore" />
+
+    <TextView
+        android:id="@+id/tv_starttime_minute_recentstore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text="30"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/textView49"
+        app:layout_constraintTop_toTopOf="@+id/textView49" />
+
+    <TextView
+        android:id="@+id/textView70"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text=" - "
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_starttime_minute_recentstore"
+        app:layout_constraintTop_toTopOf="@+id/tv_starttime_minute_recentstore" />
+
+    <TextView
+        android:id="@+id/tv_endtime_hour_recentstore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text="05"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/textView70"
+        app:layout_constraintTop_toTopOf="@+id/textView70" />
+
+    <TextView
+        android:id="@+id/textView111"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text=":"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_endtime_hour_recentstore"
+        app:layout_constraintTop_toTopOf="@+id/tv_endtime_hour_recentstore" />
+
+    <TextView
+        android:id="@+id/tv_endtime_minute_recentstore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text="30"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/textView111"
+        app:layout_constraintTop_toTopOf="@+id/textView111" />
 
 </android.support.constraint.ConstraintLayout>
