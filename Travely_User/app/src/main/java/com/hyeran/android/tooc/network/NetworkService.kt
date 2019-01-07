@@ -1,19 +1,33 @@
 package com.hyeran.android.tooc.network
 
 import com.google.gson.JsonObject
-import com.hyeran.android.tooc.model.*
+import com.hyeran.android.tooc.model.ProfileResponseData
+import com.hyeran.android.tooc.model.ReservationPriceListResponseData
 import com.hyeran.android.tooc.model.mypage.FavoriteResponseData
 import com.hyeran.android.tooc.model.mypage.InquiryResponseData
+import com.hyeran.android.tooc.model.mypage.ReviewLookupData
 import com.hyeran.android.tooc.model.mypage.ReviewSaveResponseData
 import com.hyeran.android.tooc.model.region.RegionResponseData
 import com.hyeran.android.tooc.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.tooc.model.reservation.ReservationSaveRequestData
 import com.hyeran.android.tooc.model.reservation.UsersLoginResponseData
 import com.hyeran.android.tooc.model.store.StoreResponseData
-import retrofit2.Call
 import retrofit2.http.*
+import retrofit2.Call
+
 
 interface NetworkService {
+    // Reverse Geocoding
+
+    @Headers("Content-Type: application/json",
+        "X-NCP-APIGW-API-KEY-ID: icdkg66i3x",
+        "X-NCP-APIGW-API-KEY: 0R1DKbvvFk9C2vt5DfF7vA7WeHAgWmxTLXirf51e")
+    @GET("https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=129.1133567,35.2982640" +
+            "&sourcecrs=epsg:4326&output=json&orders=legalcode")
+    fun getGeocoding (
+            @Body() coords : String
+    )
+
 
     //@@@@@@@@@@@@@@@ user-controller @@@@@@@@@@@@@@@
 
@@ -98,6 +112,15 @@ interface NetworkService {
     fun getFavoriteResponse(
             @Header("jwt") jwt: String?
     ): Call<ArrayList<FavoriteResponseData>>
+
+
+    //@@@@@@@@@@@@@@@ review-controller @@@@@@@@@@@@@@@
+
+    // 나의 리뷰 조회
+    @GET("/api/review")
+    fun getReviewLookupResponse(
+            @Header("jwt") jwt : String?
+    ) : Call<ArrayList<ReviewLookupData>>
 
     //@@@@@@@@@@@@@@@ inquiry-controller @@@@@@@@@@@@@@@
 

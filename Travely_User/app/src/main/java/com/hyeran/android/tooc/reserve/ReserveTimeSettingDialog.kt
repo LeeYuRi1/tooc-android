@@ -297,12 +297,14 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                     break
                 }
             }
-//            if (closeHour == snumhh && snummm > closeMinute) {
-//                ttoast = Toast.makeText(context, "마감시간 이전으로 설정해주세요.", Toast.LENGTH_LONG)
-//                ttoast.setGravity(Gravity.CENTER, 0, 0)
-//                ttoast.show()
-//            }else {
-                if (svalue == 0 && snumhh < currentHour) {
+            Toast.makeText(context,"closeHour = "+closeHour+"    closeMinute = "+closeMinute,Toast.LENGTH_LONG).show()
+            if (closeHour == tnumhh && tnummm > closeMinute) {
+                ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
+                        "예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+                ttoast.setGravity(Gravity.CENTER, 0, 0)
+                ttoast.show()
+            }else {
+                if (tvalue == 0 && tnumhh < currentHour) {
                     ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
                     ttoast.setGravity(Gravity.CENTER, 0, 0)
                     ttoast.show()
@@ -317,7 +319,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                         ttoast.show()
                     }
                 }
-//            }
+            }
         }
         btn_take_time.setOnClickListener {
             notOffDay = true
@@ -327,12 +329,14 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                     break
                 }
             }
-//            if (closeHour == tnumhh && tnummm > closeMinute) {
-//                ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
-//                        "예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
-//                ttoast.setGravity(Gravity.CENTER, 0, 0)
-//                ttoast.show()
-//            }else {
+            Toast.makeText(context,"closeHour = "+closeHour+"    closeMinute = "+closeMinute,Toast.LENGTH_LONG).show()
+
+            if (closeHour == snumhh && snummm > closeMinute) {
+                ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
+                        "예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+                ttoast.setGravity(Gravity.CENTER, 0, 0)
+                ttoast.show()
+            }else {
                 if (svalue == 0 && snumhh < currentHour) {
                     Log.d("TAGGG", svalue.toString() + "asd" + snumhh + "asd" + currentHour)
                     ttoast = Toast.makeText(context, "현재 시간 이후로 설정해주세요.", Toast.LENGTH_LONG)
@@ -349,7 +353,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                         ttoast.show()
                     }
                 }
-//            }
+            }
         }
 
         btn_time_confirm.setOnClickListener {
@@ -367,36 +371,43 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                 ttoast.show()
                 notOffDay = true
             } else {
-                if (svalue == 0 && snumhh < currentHour) {
+                if ((closeHour == snumhh && snummm > closeMinute)||(closeHour == tnumhh && tnummm > closeMinute)) {
                     ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
                             "예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
                     ttoast.setGravity(Gravity.CENTER, 0, 0)
                     ttoast.show()
                 } else {
-                    if ((0 > pv_take_date.value - pv_store_date.value)) {
-                        Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
-                    } else if ((0 == pv_take_date.value - pv_store_date.value)) {
-                        if (0 > pv_take_hour.value - pv_store_hour.value) {
+                    if (svalue == 0 && snumhh < currentHour) {
+                        ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
+                                "예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
+                        ttoast.setGravity(Gravity.CENTER, 0, 0)
+                        ttoast.show()
+                    } else {
+                        if ((0 > pv_take_date.value - pv_store_date.value)) {
                             Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
-                        } else if (0 == pv_take_hour.value - pv_store_hour.value) {
-                            if (0 > pv_take_minute.value - pv_store_minute.value) {
+                        } else if ((0 == pv_take_date.value - pv_store_date.value)) {
+                            if (0 > pv_take_hour.value - pv_store_hour.value) {
                                 Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+                            } else if (0 == pv_take_hour.value - pv_store_hour.value) {
+                                if (0 > pv_take_minute.value - pv_store_minute.value) {
+                                    Toast.makeText(context, "시간 설정이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+                                } else {
+                                    (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue, storeIdx)
+//                                MapMorePreviewFragment.getInstance(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+                                    dismiss()
+                                }
                             } else {
                                 (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue, storeIdx)
-//                                MapMorePreviewFragment.getInstance(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+//                            MapMorePreviewFragment.getInstance(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+//                            (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                                 dismiss()
                             }
                         } else {
+//                        (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                             (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue, storeIdx)
-//                            MapMorePreviewFragment.getInstance(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
-//                            (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
+//                        (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
                             dismiss()
                         }
-                    } else {
-//                        (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
-                        (ctx as MainActivity).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue, storeIdx)
-//                        (ctx as MapMorePreviewFragment).getTimeSettingDialog(smmddee.toString(), snumhh, snummm, tmmddee.toString(), tnumhh, tnummm, svalue, tvalue)
-                        dismiss()
                     }
                 }
             }
