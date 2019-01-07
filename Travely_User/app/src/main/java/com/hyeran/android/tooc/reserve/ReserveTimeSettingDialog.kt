@@ -371,7 +371,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                 ttoast.show()
                 notOffDay = true
             } else {
-                if ((closeHour == snumhh && snummm > closeMinute)||(closeHour == snumhh && snummm > closeMinute)) {
+                if ((closeHour == snumhh && snummm > closeMinute)||(closeHour == tnumhh && tnummm > closeMinute)) {
                     ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
                             "예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
                     ttoast.setGravity(Gravity.CENTER, 0, 0)
