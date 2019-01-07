@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ship.ShipFragment">
+    android:background="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,51 +20,36 @@
             android:textColor="#ffffff"
             android:fontFamily="@font/kopub_bold"
             android:textSize="18sp"
-            android:text="배송하기" />
+            android:text="내 짐현황" />
 
     </RelativeLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff">
-
-        <ImageView
-            android:id="@+id/imageView27"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_plane"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline52" />
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_preparing_delivery"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#494949"
+                android:lineSpacingExtra="6sp"
+                android:gravity="center_horizontal"
+                android:text="현재 배송서비스 준비중입니다.\n감사합니다."
+                android:fontFamily="@font/kopub_medium"
+                android:layout_gravity="center_horizontal"
+                />
+        </LinearLayout>
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView146"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/kopub_medium"
-            android:gravity="center"
-            android:lineSpacingExtra="6sp"
-            android:text="현재 배송 서비스 준비중입니다.\n감사합니다."
-            android:textColor="#494949"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline53" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline52"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.243762" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline53"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4606526" />
-    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>
