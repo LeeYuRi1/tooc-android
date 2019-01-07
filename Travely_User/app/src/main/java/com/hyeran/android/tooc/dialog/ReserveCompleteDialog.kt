@@ -24,7 +24,7 @@ class ReserveCompleteDialog(val ctx : Context?) : Dialog(ctx) {
         btn_ok_dialog_reserve_complete.setOnClickListener {
             dismiss()
             (ctx as MainActivity).replaceFragment(ReserveStateFragment())
-            ctx.selectedTabChangeColor(iv_reserve_bottom_tab)
+            ctx.selectedTabChangeColor(1)
         }
     }
 }

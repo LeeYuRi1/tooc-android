@@ -27,7 +27,7 @@ class ReserveCancelPasswordConfirmDialog(val ctx:Context?) : Dialog(ctx){
         btn_reserve_cancel_complete.setOnClickListener {
             dismiss()
             (ctx as MainActivity).replaceFragment(MapFragment())
-            ctx.selectedTabChangeColor(iv_search_bottom_tab)
+            ctx.selectedTabChangeColor(0)
         }
     }
 }

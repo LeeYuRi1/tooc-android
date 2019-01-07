@@ -1,6 +1,7 @@
 package com.hyeran.android.tooc
 
 import android.content.Intent
+import android.media.Image
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -52,15 +53,32 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(mapMorePreviewFragment)
     }
 
-    fun selectedTabChangeColor(tab_img : ImageView) {
+    fun selectedTabChangeColor(flag : Int) {
         clearSelected()
-        tab_img.isSelected = true
+        var img : ImageView? = null
+        when(flag) {
+            0 -> {
+                img = iv_search_bottom_tab
+            }
+            1 -> {
+                img = iv_reserve_bottom_tab
+            }
+            2 -> {
+                img = iv_ship_bottom_tab
+            }
+            3 -> {
+                img = iv_mypage_bottom_tab
+            }
+        }
+        img?.let {
+            img.isSelected = true
+        }
     }
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
             replaceFragment(MapFragment.getInstance())
-            selectedTabChangeColor(iv_search_bottom_tab)
+            selectedTabChangeColor(0)
 //            iv_search_bottom_tab.isSelected = true
         }
         tab_two_main.setOnClickListener {
@@ -74,11 +92,11 @@ class MainActivity : AppCompatActivity() {
             }
 //            TODO: 123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!
 //            replaceFragment(ReserveStateFragment.getInstance("123"))
-            selectedTabChangeColor(iv_reserve_bottom_tab)
+            selectedTabChangeColor(1)
         }
         tab_three_main.setOnClickListener {
             replaceFragment(ShipFragment.getInstance())
-            selectedTabChangeColor(iv_ship_bottom_tab)
+            selectedTabChangeColor(2)
 //            var fragment: Fragment = ReserveFragment()
 //            fragment.arguments = args
 //            replaceFragment(fragment)
@@ -86,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         }
         tab_four_main.setOnClickListener {
             replaceFragment(MypageFragment.getInstance())
-            selectedTabChangeColor(iv_mypage_bottom_tab)
+            selectedTabChangeColor(3)
         }
     }
 
@@ -123,6 +141,7 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 
