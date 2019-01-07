@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.hyeran.android.tooc.MainActivity
 import com.hyeran.android.tooc.adapter.MypageMyReviewAdapter
 import com.hyeran.android.tooc.network.ApplicationController
@@ -17,8 +18,10 @@ import org.jetbrains.anko.support.v4.toast
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.adapter.MypageLikeAdapter
 import com.hyeran.android.tooc.data.MypageMyReviewData
+import com.hyeran.android.tooc.model.StoreInfoResponseData
 import kotlinx.android.synthetic.main.fragment_like.*
 import kotlinx.android.synthetic.main.fragment_myreview.*
+import kotlinx.android.synthetic.main.item_myreview.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -59,29 +62,32 @@ class MyreviewFragment:Fragment() {
         var getReviewLookupResponse = networkService.getReviewLookupResponse(jwt)
         getReviewLookupResponse!!.enqueue(object : Callback<ArrayList<ReviewLookupData>>{
             override fun onFailure(call: Call<ArrayList<ReviewLookupData>>, t: Throwable) {
-                toast(t.message.toString())
-                Log.d("TAGG","In MtreviewFragment Communication onFail : "+t.message)
-                Log.d("TAGGGGG","In MtreviewFragment Communication onFail : "+t.message)
-                Log.e("TAGGGGG","In MtreviewFragment Communication onFail : "+t.message)
             }
             override fun onResponse(call: Call<ArrayList<ReviewLookupData>>, response: Response<ArrayList<ReviewLookupData>>) {
                 response?.let {
-                    toast("4")
                     when (it.code()) {
                         200 -> {
-                            toast("아싸성공")
+                            var dataList_myreview : ArrayList<ReviewLookupData> = response.body()!!
+
+                            if (dataList_myreview.size > 0) {
+                                val position = mypageMyReviewAdapter.itemCount
+                                mypageMyReviewAdapter.dataList.addAll(dataList_myreview)
+                                mypageMyReviewAdapter.notifyItemInserted(position)
+                            } else {
+
+                            }
+
+//                            Glide.with(this@MyreviewFragment)
+//                                    .load(response.body()!![1].storeImgUrl)
+//                                    .into(iv_storeimage_myreview)
+
+                          //  tv_name_myreview.text = response.body()!![1].storeName
+
+                           // tv_area_myreview.text = response.body()!![1].address
+
+                           // tv_content_myreview.text = response.body()!![1].content
 
 
-
-                            response.body()!![0].content
-//                            var dataList_review : ArrayList<ReviewLookupData> = response.body()!!.reviewLookup
-
-//                            if (dataList_review.size > 0) {
-//                                val position = mypageMyReviewAdapter.itemCount
-//                                mypageMyReviewAdapter.dataList.addAll(dataList_review)
-//                                mypageMyReviewAdapter.notifyItemInserted(position)
-//                            } else {
-//                            }
                             toast("리뷰 조회 성공")
                         }
                         204 -> {

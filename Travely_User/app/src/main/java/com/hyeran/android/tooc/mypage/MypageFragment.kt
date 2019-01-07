@@ -89,7 +89,6 @@ class MypageFragment : Fragment() {
         }
         layout_myreview_mypage.setOnClickListener {
             replaceFragment(MyreviewFragment())
-
         }
         iv_set_mypage.setOnClickListener {
             replaceFragment(SetFragment())
