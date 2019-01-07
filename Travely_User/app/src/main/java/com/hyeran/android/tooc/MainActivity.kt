@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
+import android.widget.ImageView
 import com.hyeran.android.tooc.map.MapFragment
 import com.hyeran.android.tooc.map.MapMorePreviewFragment
 import com.hyeran.android.tooc.mypage.MypageFragment
@@ -51,11 +52,16 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(mapMorePreviewFragment)
     }
 
+    fun selectedTabChangeColor(tab_img : ImageView) {
+        clearSelected()
+        tab_img.isSelected = true
+    }
+
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
             replaceFragment(MapFragment.getInstance())
-            clearSelected()
-            iv_search_bottom_tab.isSelected = true
+            selectedTabChangeColor(iv_search_bottom_tab)
+//            iv_search_bottom_tab.isSelected = true
         }
         tab_two_main.setOnClickListener {
             // 예약/보관 진행 중
@@ -68,23 +74,19 @@ class MainActivity : AppCompatActivity() {
             }
 //            TODO: 123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!
 //            replaceFragment(ReserveStateFragment.getInstance("123"))
-            clearSelected()
-            iv_reserve_bottom_tab.isSelected = true
+            selectedTabChangeColor(iv_reserve_bottom_tab)
         }
         tab_three_main.setOnClickListener {
             replaceFragment(ShipFragment.getInstance())
-            clearSelected()
-            iv_ship_bottom_tab.isSelected = true
-
+            selectedTabChangeColor(iv_ship_bottom_tab)
 //            var fragment: Fragment = ReserveFragment()
 //            fragment.arguments = args
 //            replaceFragment(fragment)
 
         }
         tab_four_main.setOnClickListener {
-            clearSelected()
-            iv_mypage_bottom_tab.isSelected = true
             replaceFragment(MypageFragment.getInstance())
+            selectedTabChangeColor(iv_mypage_bottom_tab)
         }
     }
 
