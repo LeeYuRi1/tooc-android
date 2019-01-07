@@ -864,16 +864,15 @@
                     android:layout_width="44dp"
                     android:layout_height="18dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/box_open_close"
                     app:layout_constraintStart_toStartOf="@+id/guideline48"
                     app:layout_constraintTop_toBottomOf="@+id/tv_store_name_reservestate">
 
-                    <TextView
+                    <ImageView
+                        android:id="@+id/tv_store_working_reserve_state"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/kopub_medium"
-                        android:text="영업중"
                         android:textColor="#8d8d8d"
                         android:textSize="12sp" />
                 </RelativeLayout>
