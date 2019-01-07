@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/tv_name_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="21dp"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/kopub_medium"
         android:text="롭스 홍대2호점"
@@ -38,23 +38,23 @@
     <TextView
         android:id="@+id/tv_area_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="서울시 마포구 샬라샬라"
-        android:textSize="12sp"
-        android:textColor="#707070"
+        android:layout_height="11dp"
         android:fontFamily="@font/kopub_medium"
+        android:text="서울시 마포구 샬라샬라"
+        android:textColor="#707070"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_name_myreview"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_myreview" />
 
     <TextView
         android:id="@+id/tv_ymd_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2018.12.23"
-        android:textSize="12sp"
+        android:layout_height="12dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/kopub_medium"
+        android:text="2018.12.23"
         android:textColor="#707070"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_area_myreview"
         app:layout_constraintTop_toBottomOf="@+id/tv_area_myreview" />
 
@@ -130,6 +130,7 @@
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:theme="@style/WriteReviewRatingBar"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintTop_toTopOf="@+id/tv_name_myreview" />
 
