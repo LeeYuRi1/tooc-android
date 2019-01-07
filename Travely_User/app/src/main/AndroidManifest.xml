@@ -46,7 +46,6 @@
         <!--<activity android:name=".join.WelcomeActivity" />-->
         <activity android:name=".join.ExplanationActivity" />
         <activity android:name=".map.LocationListActivity" />
-        <activity android:name=".reserve_state.ReserveQRCodeDialog" />
         <activity android:name=".reserve.KakaopayWebView" />
         <activity android:name=".map.MapMoreActivity" />
         <activity android:name=".SplashActivity">
