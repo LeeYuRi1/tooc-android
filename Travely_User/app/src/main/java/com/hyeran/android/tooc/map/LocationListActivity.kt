@@ -38,12 +38,12 @@ class LocationListActivity : AppCompatActivity() {
             finish()
         }
 
-        btn_map_location_list.setOnClickListener {
-            var intent = Intent()
-            intent.putExtra("storeIdx", storeIdx)
-            setResult(1, intent)
-            finish()
-        }
+//        btn_map_location_list.setOnClickListener {
+//            var intent = Intent()
+//            intent.putExtra("storeIdx", storeIdx)
+//            setResult(1, intent)
+//            finish()
+//        }
 
         init()
     }

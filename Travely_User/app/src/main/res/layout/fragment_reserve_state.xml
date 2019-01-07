@@ -868,7 +868,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_store_name_reservestate">
 
                     <ImageView
-                        android:id="@+id/tv_store_working_reserve_state"
+                        android:id="@+id/iv_store_working_reserve_state"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"

@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -12,15 +13,15 @@ import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.R.id.btn_qrcode_enlarge_close
-import com.hyeran.android.tooc.R.id.iv_qrimage_enlarge
 import kotlinx.android.synthetic.main.dialog_qrcode_enlarge.*
 import org.jetbrains.anko.toast
 
-class ReserveQRCodeActivity(var ctx :Context?,var qrCode:String) :Dialog(ctx){
+class ReserveQRCodeDialog(var ctx :Context?, var qrCode:String) :Dialog(ctx){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_qrcode_enlarge)
+        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         generateQRCode(qrCode)
 

@@ -40,6 +40,17 @@ class MypageFragment : Fragment() {
 
     lateinit var v: View
 
+    companion object {
+        var mInstance: MypageFragment? = null
+        @Synchronized
+        fun getInstance(): MypageFragment {
+            if (mInstance == null) {
+                mInstance = MypageFragment()
+            }
+            return mInstance!!
+        }
+    }
+
     val dataList: ArrayList<StoreInfoResponseData> by lazy {
         ArrayList<StoreInfoResponseData>()
     }

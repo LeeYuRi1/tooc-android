@@ -1,11 +1,13 @@
 package com.hyeran.android.tooc
 
 import android.content.Intent
+import android.media.Image
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
+import android.widget.ImageView
 import com.hyeran.android.tooc.map.MapFragment
 import com.hyeran.android.tooc.map.MapMorePreviewFragment
 import com.hyeran.android.tooc.mypage.MypageFragment
@@ -51,40 +53,58 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(mapMorePreviewFragment)
     }
 
+    fun selectedTabChangeColor(flag : Int) {
+        clearSelected()
+        var img : ImageView? = null
+        when(flag) {
+            0 -> {
+                img = iv_search_bottom_tab
+            }
+            1 -> {
+                img = iv_reserve_bottom_tab
+            }
+            2 -> {
+                img = iv_ship_bottom_tab
+            }
+            3 -> {
+                img = iv_mypage_bottom_tab
+            }
+        }
+        img?.let {
+            img.isSelected = true
+        }
+    }
+
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
-            replaceFragment(MapFragment())
-            clearSelected()
-            iv_search_bottom_tab.isSelected = true
+            replaceFragment(MapFragment.getInstance())
+            selectedTabChangeColor(0)
+//            iv_search_bottom_tab.isSelected = true
         }
         tab_two_main.setOnClickListener {
             // 예약/보관 진행 중
             if (SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")) {
-                replaceFragment(ReserveStateFragment())
+                replaceFragment(ReserveStateFragment.getInstance())
             }
             // 예약/보관 없을 시
             else {
-                replaceFragment(NoReserveFragment())
+                replaceFragment(NoReserveFragment.getInstance())
             }
 //            TODO: 123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!
 //            replaceFragment(ReserveStateFragment.getInstance("123"))
-            clearSelected()
-            iv_reserve_bottom_tab.isSelected = true
+            selectedTabChangeColor(1)
         }
         tab_three_main.setOnClickListener {
-            replaceFragment(ShipFragment())
-            clearSelected()
-            iv_ship_bottom_tab.isSelected = true
-
+            replaceFragment(ShipFragment.getInstance())
+            selectedTabChangeColor(2)
 //            var fragment: Fragment = ReserveFragment()
 //            fragment.arguments = args
 //            replaceFragment(fragment)
 
         }
         tab_four_main.setOnClickListener {
-            clearSelected()
-            iv_mypage_bottom_tab.isSelected = true
-            replaceFragment(MypageFragment())
+            replaceFragment(MypageFragment.getInstance())
+            selectedTabChangeColor(3)
         }
     }
 
@@ -121,6 +141,7 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 
