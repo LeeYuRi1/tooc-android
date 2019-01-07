@@ -42,7 +42,7 @@
             android:label="@string/activity_map"></activity>
         <activity android:name=".join.LoginActivity" />
         <activity android:name=".join.JoinActivity" />
-        <activity android:name=".join.WelcomeActivity" />
+        <!--<activity android:name=".join.WelcomeActivity" />-->
         <activity android:name=".join.ExplanationActivity" />
         <activity android:name=".map.LocationListActivity" />
         <activity android:name=".reserve_state.ReserveQRCodeActivity" />

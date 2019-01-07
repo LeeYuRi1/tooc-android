@@ -3,6 +3,7 @@ package com.hyeran.android.travely_user.network
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_user.model.*
 import com.hyeran.android.travely_user.model.mypage.FavoriteResponseData
+import com.hyeran.android.travely_user.model.mypage.ReviewLookupData
 import com.hyeran.android.travely_user.model.region.RegionResponseData
 import com.hyeran.android.travely_user.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.travely_user.model.reservation.ReservationSaveRequestData
@@ -12,6 +13,17 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface NetworkService {
+    // Reverse Geocoding
+
+    @Headers("Content-Type: application/json",
+        "X-NCP-APIGW-API-KEY-ID: icdkg66i3x",
+        "X-NCP-APIGW-API-KEY: 0R1DKbvvFk9C2vt5DfF7vA7WeHAgWmxTLXirf51e")
+    @GET("https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=129.1133567,35.2982640" +
+            "&sourcecrs=epsg:4326&output=json&orders=legalcode")
+    fun getGeocoding (
+            @Body() coords : String
+    )
+
 
     //@@@@@@@@@@@@@@@ user-controller @@@@@@@@@@@@@@@
 
@@ -96,4 +108,12 @@ interface NetworkService {
     fun favoriteResponse(
             @Header("jwt") jwt : String?
     ) : Call<FavoriteResponseData>
+
+    //@@@@@@@@@@@@@@@ review-controller @@@@@@@@@@@@@@@
+
+    // 나의 리뷰 조회
+    @GET("/api/review")
+    fun getReviewLookupResponse(
+            @Header("jwt") jwt : String?
+    ) : Call<ArrayList<ReviewLookupData>>
 }

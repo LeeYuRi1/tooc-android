@@ -65,7 +65,6 @@ class MypageFragment : Fragment() {
         mypageRecentStoreAdapter = MypageRecentStoreAdapter(activity!!, dataList)
         rv_recentstore_mypage.adapter = mypageRecentStoreAdapter
         rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
-
     }
 
     private fun setClickListener() {
@@ -135,7 +134,6 @@ class MypageFragment : Fragment() {
 
     private fun getRecentStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-
 
         val getProfileResponse = networkService.getProfileResponse(jwt)
 

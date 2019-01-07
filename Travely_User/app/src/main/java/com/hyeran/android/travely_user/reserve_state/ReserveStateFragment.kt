@@ -67,6 +67,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
 
     fun setGoogleMap(shopName: String, latitude:Double,longitude:Double){
         var marker = LatLng(latitude,longitude)
+        Log.d("TAGGGG","lat = "+latitude+"  lon = "+longitude)
         mMap3.addMarker(MarkerOptions().position(marker).title(shopName).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_color_pin)))
         mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker,17f))
     }
@@ -244,7 +245,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             //QR
                             tv_qr_reserveCode.text = reserveCode.toString()
                             //위도경도
-                            setGoogleMap(response.body()!!.store.storeName,latitude,longitude)
+//                            setGoogleMap(response.body()!!.store.storeName,latitude,longitude)
 
                             toast("bagDtos Size : "+response.body()!!.bagDtos.size)
                             for(i in 0..response.body()!!.bagDtos.size){
