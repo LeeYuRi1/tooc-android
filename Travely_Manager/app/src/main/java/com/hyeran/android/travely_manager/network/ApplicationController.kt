@@ -6,12 +6,12 @@ import com.hyeran.android.travely_manager.util.NullOnEmptyConverterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ApplicationController : Application(){
+class ApplicationController : Application() {
     private val baseURL = "http://52.78.222.197:8080"
     lateinit var networkService: NetworkService
 
     companion object {
-        lateinit var instance:ApplicationController
+        lateinit var instance: ApplicationController
     }
 
     override fun onCreate() {
@@ -19,6 +19,7 @@ class ApplicationController : Application(){
         instance = this
         buildNetwork()
     }
+
     private fun buildNetwork() {
         val retrofit: Retrofit = Retrofit.Builder()
                 .baseUrl(baseURL)
