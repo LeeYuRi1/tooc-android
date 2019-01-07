@@ -9,6 +9,7 @@ import android.view.Window
 import com.hyeran.android.tooc.MainActivity
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.reserve_state.ReserveStateFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_reserve_complete.*
 
 class ReserveCompleteDialog(val ctx : Context?) : Dialog(ctx) {
@@ -23,6 +24,7 @@ class ReserveCompleteDialog(val ctx : Context?) : Dialog(ctx) {
         btn_ok_dialog_reserve_complete.setOnClickListener {
             dismiss()
             (ctx as MainActivity).replaceFragment(ReserveStateFragment())
+            ctx.selectedTabChangeColor(iv_reserve_bottom_tab)
         }
     }
 }

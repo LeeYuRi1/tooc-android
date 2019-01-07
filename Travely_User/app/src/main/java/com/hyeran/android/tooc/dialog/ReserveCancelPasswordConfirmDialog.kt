@@ -13,6 +13,7 @@ import com.hyeran.android.tooc.reserve_state.ReserveStateFragment
 import kotlinx.android.synthetic.main.dialog_reserve_cancel_password_confirm.*
 import android.app.Activity
 import android.view.ContextThemeWrapper
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class ReserveCancelPasswordConfirmDialog(val ctx:Context?) : Dialog(ctx){
@@ -26,10 +27,7 @@ class ReserveCancelPasswordConfirmDialog(val ctx:Context?) : Dialog(ctx){
         btn_reserve_cancel_complete.setOnClickListener {
             dismiss()
             (ctx as MainActivity).replaceFragment(MapFragment())
-
-//            val act = MainActivity()
-//            (act as MainActivity).replaceFragment(ReserveStateFragment())
-            //지도 초기화면으로 보내야함!!
+            ctx.selectedTabChangeColor(iv_search_bottom_tab)
         }
     }
 }
