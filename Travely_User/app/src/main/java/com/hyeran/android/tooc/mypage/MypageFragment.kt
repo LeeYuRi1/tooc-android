@@ -77,7 +77,6 @@ class MypageFragment : Fragment() {
         mypageRecentStoreAdapter = MypageRecentStoreAdapter(activity!!, dataList)
         rv_recentstore_mypage.adapter = mypageRecentStoreAdapter
         rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
-
     }
 
     private fun setClickListener() {
