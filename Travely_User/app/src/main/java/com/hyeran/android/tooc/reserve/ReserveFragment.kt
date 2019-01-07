@@ -54,7 +54,7 @@ class ReserveFragment : Fragment() {
     var afterParseStore: Long = 0
     var afterParseTake: Long = 0
 
-    //        TODO("storeIdx를 받아서 통신해야함!!!!!!")
+    // TODO("storeIdx를 받아서 통신해야함!!!!!!")
     var storeIdx: Int = 1
 
     var dateParseFormat = SimpleDateFormat("yyyyMMM dd일 (EE) HH:mm")

@@ -6,7 +6,6 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.Location
 import android.location.LocationManager
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -30,7 +29,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.adapter.LuggagePictureAdapter
-import com.hyeran.android.tooc.data.LuggagePictureData
 import com.hyeran.android.tooc.dialog.BagSizeDialog
 import com.hyeran.android.tooc.dialog.KeepPriceDialog
 import com.hyeran.android.tooc.dialog.MapChoiceDialog
@@ -41,11 +39,8 @@ import com.hyeran.android.tooc.model.reservation.bagDtosData
 import com.hyeran.android.tooc.model.reservation.bagImgDtos
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
-import kotlinx.android.synthetic.main.fragment_map_more_preview.*
-import kotlinx.android.synthetic.main.fragment_reserve.view.*
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Response
@@ -140,7 +135,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
             ReserveCancelDialog(context).show()
         }
         v.iv_qrimage_reservestate.setOnClickListener {
-            startActivity<ReserveQRCodeActivity>("qrCode" to qrCode)
+//            startActivity<ReserveQRCodeDialog>("qrCode" to qrCode)
+            ReserveQRCodeDialog(context,qrCode).show()
         }
 
         v.btn_price_reservestate.setOnClickListener {
@@ -384,28 +380,28 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             var open_time: Long = response.body()!!.store.openTime.toLong()
                             var close_time: Long = response.body()!!.store.closeTime.toLong()
 
-//                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
-//                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-//                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
-//                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
-//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-//                                    toast("##")
-//
-//                                } else {
-//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-//                                }
-//                            } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
-//                                if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
-//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-//                                    toast("$$")
-//
-//                                } else {
-//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-//                                }
-//                            } else {
-//                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-//                            }
-//                            Log.d("TAGGGG", "startTime = " + allDateStamp.format(startTime) + "  closeTime = " + allDateStamp.format(endTime))
+                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+                                iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
+                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                                    iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    toast("##")
+
+                                } else {
+                                    iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                }
+                            } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
+                                if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                                    iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    toast("$$")
+
+                                } else {
+                                    iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                }
+                            } else {
+                                iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                            }
+                            Log.d("TAGGGG", "startTime = " + allDateStamp.format(startTime) + "  closeHour = " + allDateStamp.format(endTime))
                         }
                         500 -> {
                             toast("500 error")
