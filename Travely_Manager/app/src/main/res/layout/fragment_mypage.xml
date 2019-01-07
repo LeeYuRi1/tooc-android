@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MypageFragment">
+    android:background="#ffffff">
 
     <RelativeLayout
         android:id="@+id/title_bar_mypage"
@@ -19,6 +19,7 @@
             android:layout_centerInParent="true"
             android:text="마이페이지"
             android:textColor="#000000"
+            android:fontFamily="@font/kopub_bold"
             android:textSize="18dp" />
 
         <ImageView
@@ -27,7 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="21dp"
+            android:layout_marginRight="12dp"
+            android:padding="8dp"
             android:src="@drawable/bt_settings" />
     </RelativeLayout>
 
@@ -60,6 +62,7 @@
                 android:layout_marginTop="55dp"
                 android:text="김민경"
                 android:textSize="24sp"
+                android:fontFamily="@font/nanum_bold"
                 android:textColor="@color/mainColor"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -70,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="님,"
                 android:textSize="24sp"
+                android:fontFamily="@font/nanum_bold"
                 android:textColor="@color/mainColor"
                 app:layout_constraintBottom_toBottomOf="@+id/textView23"
                 app:layout_constraintStart_toEndOf="@+id/textView23" />
@@ -78,18 +82,21 @@
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
                 android:text="안녕하세요"
-                android:textSize="24sp"
+                android:fontFamily="@font/nanum_bold"
                 android:textColor="@color/mainColor"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/mypage_bt_default"
+                app:layout_constraintBottom_toBottomOf="@+id/textView26"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/textView23" />
 
@@ -100,6 +107,8 @@
                 android:layout_marginTop="76dp"
                 android:text="03"
                 android:textSize="24sp"
+                android:fontFamily="@font/kopub_bold"
+                android:textColor="#262626"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
@@ -107,7 +116,10 @@
                 android:id="@+id/textView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/kopub_bold"
                 android:text="12"
+                android:textColor="#262626"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView44"
                 app:layout_constraintStart_toStartOf="@+id/textView44" />
@@ -116,7 +128,10 @@
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/kopub_bold"
+                android:text="On"
+                android:textColor="#262626"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView45"
                 app:layout_constraintStart_toStartOf="@+id/textView45" />
@@ -125,7 +140,10 @@
                 android:id="@+id/textView43"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="내 짐 현황"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/kopub_medium"
+                android:text="히스토리"
+                android:textColor="#494949"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -134,9 +152,11 @@
                 android:id="@+id/textView44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:text="즐겨찾기"
+                android:layout_marginStart="50dp"
+                android:text="가게 리뷰"
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#494949"
                 app:layout_constraintBottom_toBottomOf="@+id/textView43"
                 app:layout_constraintStart_toEndOf="@+id/textView43" />
 
@@ -144,9 +164,11 @@
                 android:id="@+id/textView45"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:text="나의 리뷰"
+                android:layout_marginStart="47dp"
+                android:text="예약 설정"
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#494949"
                 app:layout_constraintBottom_toBottomOf="@+id/textView44"
                 app:layout_constraintStart_toEndOf="@+id/textView44" />
 
@@ -158,6 +180,8 @@
                 android:layout_marginTop="57dp"
                 android:text="예약 설정"
                 android:textSize="14sp"
+                android:textColor="#262626"
+                android:fontFamily="@font/kopub_medium"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
@@ -167,6 +191,8 @@
                 android:layout_height="wrap_content"
                 android:text="On"
                 android:textSize="16sp"
+                android:textColor="#262626"
+                android:fontFamily="@font/kopub_bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView46"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
@@ -186,6 +212,8 @@
                 android:layout_marginEnd="10dp"
                 android:text="Off"
                 android:textSize="16sp"
+                android:textColor="#262626"
+                android:fontFamily="@font/kopub_bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView46"
                 app:layout_constraintEnd_toStartOf="@+id/switch2" />
 
@@ -193,11 +221,12 @@
                 android:id="@+id/textView50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="22dp"
                 android:layout_marginTop="67dp"
                 android:text="내 가게 정보"
-                android:textSize="20sp"
                 android:textColor="@color/mainColor"
+                android:textSize="20sp"
+                android:fontFamily="@font/kopub_medium"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
@@ -205,9 +234,10 @@
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="4dp"
                 android:text="고객들에게 보이는 내 가게 정보입니다."
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
                 app:layout_constraintStart_toStartOf="@+id/textView50"
                 app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
@@ -215,18 +245,20 @@
                 android:id="@+id/textView52"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="39dp"
                 android:text="동대문엽기떡볶이 홍대점"
                 android:textSize="18sp"
+                android:textColor="#262626"
+                android:fontFamily="@font/kopub_medium"
                 app:layout_constraintStart_toStartOf="@+id/textView51"
                 app:layout_constraintTop_toBottomOf="@+id/textView51" />
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="13dp"
-                android:layout_height="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:src="@android:color/holo_blue_bright"
+                android:src="@drawable/ic_address"
                 app:layout_constraintStart_toStartOf="@+id/textView52"
                 app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
@@ -235,9 +267,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="1dp"
                 android:text="서울 동대문구 전농로 151 2층 (우) 02546"
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#262626"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
@@ -246,17 +279,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="지번: 전농동 296-93"
+                android:fontFamily="@font/kopub_medium"
+                android:text="지번: "
+                android:textColor="#8d8d8d"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/textView53"
                 app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:src="@android:color/holo_blue_bright"
+                android:src="@drawable/ic_time_fill"
                 app:layout_constraintStart_toStartOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
@@ -267,6 +302,8 @@
                 android:layout_marginStart="10dp"
                 android:text="영업시간"
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#262626"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
@@ -277,6 +314,8 @@
                 android:layout_marginTop="4dp"
                 android:text="매일"
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#262626"
                 app:layout_constraintStart_toStartOf="@+id/textView55"
                 app:layout_constraintTop_toBottomOf="@+id/textView55" />
 
@@ -286,6 +325,8 @@
                 android:layout_height="wrap_content"
                 android:text="12:00 ~ 24:00"
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#262626"
                 app:layout_constraintStart_toEndOf="@+id/textView56"
                 app:layout_constraintTop_toTopOf="@+id/textView56" />
 
@@ -301,10 +342,10 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="19dp"
-                android:src="@android:color/holo_blue_bright"
+                android:src="@drawable/ic_email_address"
                 app:layout_constraintStart_toStartOf="@+id/imageView6"
                 app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
@@ -315,6 +356,8 @@
                 android:layout_marginStart="10dp"
                 android:text="http://www.yupdduk.com"
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#262626"
                 app:layout_constraintStart_toEndOf="@+id/imageView8"
                 app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
@@ -325,19 +368,32 @@
                 android:layout_marginStart="10dp"
                 android:text="02-2212-5689"
                 android:textSize="12sp"
+                android:fontFamily="@font/kopub_medium"
+                android:textColor="#262626"
                 app:layout_constraintStart_toEndOf="@+id/imageView9"
                 app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="43dp"
                 android:layout_marginTop="20dp"
-                android:src="@android:color/holo_blue_bright"
+                android:src="@drawable/ic_phone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/imageView8"
                 app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+            <TextView
+                android:id="@+id/textView69"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전농동 296-93"
+                android:textColor="#8d8d8d"
+                android:fontFamily="@font/kopub_medium"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView54"
+                app:layout_constraintStart_toEndOf="@+id/textView54" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
