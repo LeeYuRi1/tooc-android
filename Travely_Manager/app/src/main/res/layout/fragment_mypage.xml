@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MypageFragment">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/title_bar_mypage"
@@ -54,7 +53,7 @@
                 app:layout_constraintGuide_percent="0.9244792" />
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/tv_name_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="55dp"
@@ -71,8 +70,8 @@
                 android:text="님,"
                 android:textSize="24sp"
                 android:textColor="@color/mainColor"
-                app:layout_constraintBottom_toBottomOf="@+id/textView23"
-                app:layout_constraintStart_toEndOf="@+id/textView23" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name_mypage"
+                app:layout_constraintStart_toEndOf="@+id/tv_name_mypage" />
 
             <TextView
                 android:id="@+id/textView26"
@@ -82,7 +81,7 @@
                 android:textSize="24sp"
                 android:textColor="@color/mainColor"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_mypage" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -91,7 +90,7 @@
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/mypage_bt_default"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toTopOf="@+id/textView23" />
+                app:layout_constraintTop_toTopOf="@+id/tv_name_mypage" />
 
             <TextView
                 android:id="@+id/textView27"
