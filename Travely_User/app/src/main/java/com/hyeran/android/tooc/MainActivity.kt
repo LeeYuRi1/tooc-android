@@ -53,18 +53,18 @@ class MainActivity : AppCompatActivity() {
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
-            replaceFragment(MapFragment())
+            replaceFragment(MapFragment.getInstance())
             clearSelected()
             iv_search_bottom_tab.isSelected = true
         }
         tab_two_main.setOnClickListener {
             // 예약/보관 진행 중
             if (SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")) {
-                replaceFragment(ReserveStateFragment())
+                replaceFragment(ReserveStateFragment.getInstance())
             }
             // 예약/보관 없을 시
             else {
-                replaceFragment(NoReserveFragment())
+                replaceFragment(NoReserveFragment.getInstance())
             }
 //            TODO: 123 자리에 서버에서 받은 password값을 넣어야함!!!!!!!!!!!!!!!!
 //            replaceFragment(ReserveStateFragment.getInstance("123"))
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             iv_reserve_bottom_tab.isSelected = true
         }
         tab_three_main.setOnClickListener {
-            replaceFragment(ShipFragment())
+            replaceFragment(ShipFragment.getInstance())
             clearSelected()
             iv_ship_bottom_tab.isSelected = true
 
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         tab_four_main.setOnClickListener {
             clearSelected()
             iv_mypage_bottom_tab.isSelected = true
-            replaceFragment(MypageFragment())
+            replaceFragment(MypageFragment.getInstance())
         }
     }
 

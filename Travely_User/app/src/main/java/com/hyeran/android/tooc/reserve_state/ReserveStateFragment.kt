@@ -75,6 +75,16 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
     private lateinit var locationRequest2: LocationRequest
     private lateinit var locationCallback2: MapMorePreviewFragment.MyLocationCallBack2
 
+    companion object {
+        var mInstance: ReserveStateFragment? = null
+        @Synchronized
+        fun getInstance(): ReserveStateFragment {
+            if (mInstance == null) {
+                mInstance = ReserveStateFragment()
+            }
+            return mInstance!!
+        }
+    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
@@ -374,28 +384,28 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             var open_time: Long = response.body()!!.store.openTime.toLong()
                             var close_time: Long = response.body()!!.store.closeTime.toLong()
 
-                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
-                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
-                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
-                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    toast("##")
-
-                                } else {
-                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-                                }
-                            } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
-                                if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
-                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    toast("$$")
-
-                                } else {
-                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-                                }
-                            } else {
-                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
-                            }
-                            Log.d("TAGGGG", "startTime = " + allDateStamp.format(startTime) + "  closeTime = " + allDateStamp.format(endTime))
+//                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
+//                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
+//                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                                    toast("##")
+//
+//                                } else {
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                }
+//                            } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
+//                                if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+//                                    toast("$$")
+//
+//                                } else {
+//                                    iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                                }
+//                            } else {
+//                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+//                            }
+//                            Log.d("TAGGGG", "startTime = " + allDateStamp.format(startTime) + "  closeTime = " + allDateStamp.format(endTime))
                         }
                         500 -> {
                             toast("500 error")

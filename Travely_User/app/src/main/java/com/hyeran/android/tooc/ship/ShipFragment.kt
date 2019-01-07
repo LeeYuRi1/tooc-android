@@ -10,6 +10,17 @@ import com.hyeran.android.tooc.R
 
 class ShipFragment : Fragment() {
 
+    companion object {
+        var mInstance: ShipFragment? = null
+        @Synchronized
+        fun getInstance(): ShipFragment {
+            if (mInstance == null) {
+                mInstance = ShipFragment()
+            }
+            return mInstance!!
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_ship, container, false)
         return v
