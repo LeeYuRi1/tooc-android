@@ -297,6 +297,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                     break
                 }
             }
+            Toast.makeText(context,"closeHour = "+closeHour+"    closeMinute = "+closeMinute,Toast.LENGTH_LONG).show()
             if (closeHour == tnumhh && tnummm > closeMinute) {
                 ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
                         "예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
@@ -328,6 +329,8 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                     break
                 }
             }
+            Toast.makeText(context,"closeHour = "+closeHour+"    closeMinute = "+closeMinute,Toast.LENGTH_LONG).show()
+
             if (closeHour == snumhh && snummm > closeMinute) {
                 ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
                         "예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
