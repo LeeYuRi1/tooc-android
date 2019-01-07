@@ -19,6 +19,7 @@ import com.hyeran.android.tooc.dialog.WriteReviewDialog
 import java.sql.Timestamp
 import java.util.ArrayList
 
+
 class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreInfoResponseData>) : RecyclerView.Adapter<MypageRecentStoreAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_recentstore, parent, false)

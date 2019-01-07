@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,14 +60,17 @@ class MypageFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_mypage, container, false)
         init()
         getProfileResponse()
+        getRecentStoreResponse()
+
         return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
+
         setRecyclerView()
-        getRecentStoreResponse()
+
     }
 
     private fun init() {
@@ -77,7 +81,6 @@ class MypageFragment : Fragment() {
         mypageRecentStoreAdapter = MypageRecentStoreAdapter(activity!!, dataList)
         rv_recentstore_mypage.adapter = mypageRecentStoreAdapter
         rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
-
     }
 
     private fun setClickListener() {
@@ -158,9 +161,11 @@ class MypageFragment : Fragment() {
                         200 -> {
                             var dataList_recent: ArrayList<StoreInfoResponseData> = response.body()!!.storeInfoResponseDtoList
 
+                            Log.d("@@@@@@@@@@@@", dataList_recent.toString())
+
                             if (dataList_recent.size > 0) {
                                 val position = mypageRecentStoreAdapter.itemCount
-                                mypageRecentStoreAdapter.dataList.addAll(dataList_recent)
+                                mypageRecentStoreAdapter.dataList = dataList_recent
                                 mypageRecentStoreAdapter.notifyItemInserted(position)
                             } else {
 
