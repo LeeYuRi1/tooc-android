@@ -3,6 +3,7 @@ package com.hyeran.android.travely_manager.mypage
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,11 +30,13 @@ class MypageFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setClickListener()
 
         networkService = ApplicationController.instance.networkService
 
         getProfileResponse()
+
+
+
     }
 
     private fun setClickListener() {
@@ -42,12 +45,12 @@ class MypageFragment : Fragment() {
         }
 
         switch_available_mypage.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (switch_available_mypage.isChecked) tv_resevable_mypage.text = "ON"
+            if (isChecked) tv_resevable_mypage.text = "ON"
             else tv_resevable_mypage.text = "OFF"
             putMypageOnOffResponse()
+            Log.d("TAG@@@@@@@@@@@", "들어옴"+isChecked.toString())
 //            toast(switch_available_mypage.isChecked.toString())
         }
-
 
 //        btn_whole_statistics_mypage.setOnClickListener {
 //            replaceFragment(WholeStatisticsFragment())
@@ -86,6 +89,8 @@ class MypageFragment : Fragment() {
                             tv_store_name_mypage.text = response.body()!!.storeName
                             tv_address_mypage.text = response.body()!!.address
                             tv_address_number_mypage.text = response.body()!!.addressNumber
+
+                            Log.d("@@@@@@@@TAG", "서버에서 받은 onoff"+response.body()!!.onOff.toString())
                             if (response.body()!!.onOff == 1) {
                                 tv_resevable_mypage.text = "ON"
                                 switch_available_mypage.isChecked = true
@@ -101,6 +106,9 @@ class MypageFragment : Fragment() {
                             Glide.with(this@MypageFragment)
                                     .load(response.body()!!.ownerImgUrl)
                                     .into(iv_profile_mypage)
+
+                            setClickListener()
+
 //
                             toast("프로필 조회 성공")
                         }
