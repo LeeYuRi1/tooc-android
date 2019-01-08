@@ -82,6 +82,10 @@ class MainActivity : AppCompatActivity() {
 //            Log.d("TAGGGG","RTYRTYTYT")
 //            replaceFragment(ReserveDetailFragment())
 //        }
+//        if(reserveNumberConfirm == "123") {
+//            Log.d("TAGGGG","RTYRTYTYT")
+//            replaceFragment(ReserveDetailFragment())
+//        }
     }
 
     //photo
@@ -96,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             selectedTabChangeColor(0)
         }
         tab_two_main.setOnClickListener {
-            replaceFragment(ReserveListFragment())
+            replaceFragment(ReserveStorageListFragment())
             selectedTabChangeColor(1)
         }
         tab_three_main.setOnClickListener {

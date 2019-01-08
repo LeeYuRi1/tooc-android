@@ -1,11 +1,11 @@
 package com.hyeran.android.travely_manager
 
 data class StorageListTempData (
-        var profile : Int,
-        var name : String,
-        var price : Int,
-        var amount : Int,
-        var am_pm : String,
-        var hour : Int,
-        var minute : Int
+        var s_profile : Int,
+        var s_name : String,
+        var s_payment_status : String,
+        var s_date : String,
+        var s_price : Int,
+        var s_amount : Int,
+        var s_time : String
 )
