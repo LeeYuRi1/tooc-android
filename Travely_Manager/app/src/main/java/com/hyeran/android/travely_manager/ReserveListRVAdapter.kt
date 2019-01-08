@@ -35,7 +35,7 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
 
         //TODO 의심리스트!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         var amount : Int =0
-        for(i in 0..dataList[position].bagDtos.size){
+        for(i in 0..dataList[position].bagDtos.size-1){
             amount+=dataList[position].bagDtos[i].bagCount.toInt()
         }
         if(dataList[position].progressType=="ING") {
