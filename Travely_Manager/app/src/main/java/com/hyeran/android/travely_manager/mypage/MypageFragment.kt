@@ -48,6 +48,7 @@ class MypageFragment : Fragment() {
         switch_available_mypage.setOnCheckedChangeListener { buttonView, isChecked ->
             if (switch_available_mypage.isChecked) tv_resevable_mypage.text = "ON"
             else tv_resevable_mypage.text = "OFF"
+            putMypageOnOffResponse()
 //            toast(switch_available_mypage.isChecked.toString())
         }
 //
@@ -105,6 +106,41 @@ class MypageFragment : Fragment() {
                                     .into(iv_profile_mypage)
 //
                             toast("프로필 조회 성공")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+    }
+
+    private fun putMypageOnOffResponse() {
+
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        val putMypageOnOffResponse = networkService.putMypageOnOffResponse(jwt)
+
+        putMypageOnOffResponse!!.enqueue(object : Callback<Any> {
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            toast("관리자 마이페이지")
+                        }
+                        400 -> {
+                            toast("잘못된 접근")
+                        }
+                        403 -> {
+                            toast("인증 에러")
                         }
                         500 -> {
                             toast("서버 에러")

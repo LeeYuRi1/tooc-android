@@ -3,10 +3,7 @@ package com.hyeran.android.travely_manager.network
 import com.google.gson.JsonObject
 import com.hyeran.android.travely_manager.model.MypageResponseData
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface NetworkService{
 
@@ -23,4 +20,10 @@ interface NetworkService{
     fun getMypageResponse(
             @Header("jwt") jwt: String?
     ): Call<MypageResponseData>
+
+    // 상가의 예약 On/Off 기능 반전
+    @PUT("/api/owner/mypage/onoff")
+    fun putMypageOnOffResponse(
+            @Header("jwt") jwt: String?
+    ) : Call<Any>
 }
