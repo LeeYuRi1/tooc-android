@@ -44,15 +44,15 @@ class ReserveDetailFragment : Fragment() {
 
         (ctx as MainActivity).selectedTabChangeColor(1)
 
-        v.btn_store_reserve_detail.setOnClickListener {
-
-            if(!cb_pay_agree.isChecked) {
-                CashInfoDialog(context).show()
-            }
-            else{
-                StorePhotoDialog(context).show()
-            }
-        }
+//        v.btn_store_reserve_detail.setOnClickListener {
+//
+//            if(!cb_pay_agree.isChecked) {
+//                CashInfoDialog(context).show()
+//            }
+//            else{
+//                StorePhotoDialog(context).show()
+//            }
+//        }
 
         var bundle : Bundle? = arguments
         reserveCode = bundle!!.getString("reserveCode")

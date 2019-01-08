@@ -390,7 +390,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView112" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_profile_reservedetail"
                     android:layout_width="73dp"
                     android:layout_height="73dp"
@@ -398,7 +398,7 @@
                     android:layout_marginTop="15dp"
                     app:layout_constraintStart_toStartOf="@+id/textView71"
                     app:layout_constraintTop_toBottomOf="@+id/textView71"
-                    app:srcCompat="@android:color/holo_blue_bright" />
+                    android:src="@android:color/holo_orange_light"/>
 
                 <TextView
                     android:id="@+id/textView8"
