@@ -32,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
             override fun onAnimationRepeat(p0: Animator?) {
             }
 
-            override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
+            override fun onAnimationEnd(p0: Animator?) {
                 var autoLoginFlag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
                 val intent: Intent
                 if (autoLoginFlag) {
@@ -43,9 +43,6 @@ class SplashActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
                 finish()
-            }
-            override fun onAnimationEnd(p0: Animator?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
             override fun onAnimationCancel(p0: Animator?) {
             }

@@ -55,10 +55,8 @@ class LoginActivity : AppCompatActivity() {
 
         val postLoginResponse = networkService.postLoginResponse("application/json", gsonObject)
 
-
         postLoginResponse!!.enqueue(object : Callback<Any> {
-            override fun onFailure(call: Call<Any>, t: Throwable) {
-            }
+            override fun onFailure(call: Call<Any>, t: Throwable) {}
             override fun onResponse(call: Call<Any>, response: Response<Any>) {
                 response?.let {
                     when (it.code()) {
