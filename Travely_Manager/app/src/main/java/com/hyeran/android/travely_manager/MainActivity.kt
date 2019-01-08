@@ -19,12 +19,21 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.util.Log
 import android.widget.ImageView
+import com.hyeran.android.travely_manager.db.SharedPreferencesController
+import com.hyeran.android.travely_manager.model.ReserveDetailResponseData
+import com.hyeran.android.travely_manager.network.NetworkService
 
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.jar.Manifest
 
 
 class MainActivity : AppCompatActivity() {
+    lateinit var reserveCode : String
+    lateinit var networkService : NetworkService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 // 스캔된 QRCode --> result.getContents()
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
                 //TODO qr코드 스캔값 넣어야함!!
+                reserveCode = result.contents
                 Log.d("TAGGGG","QWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQQWEQWEQWQWEQWEQWEQWEQWE")
            //     replaceFragment(ReserveDetailFragment())
                 qrCode("123")
@@ -66,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         if(reserveNumberConfirm == "123") {
             Log.d("TAGGGG","RTYRTYTYT")
             replaceFragment(ReserveDetailFragment())
-//            replaceFragment(ReserveListFragment())
         }
     }
 
@@ -160,5 +169,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 }
