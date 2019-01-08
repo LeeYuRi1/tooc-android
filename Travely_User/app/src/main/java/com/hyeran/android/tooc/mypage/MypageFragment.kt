@@ -68,7 +68,15 @@ class MypageFragment : Fragment() {
     private fun setRecyclerView() {
         mypageRecentStoreAdapter = MypageRecentStoreAdapter(activity!!, dataList)
         rv_recentstore_mypage.adapter = mypageRecentStoreAdapter
-        rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
+        //rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
+        //val mLayoutManager = LinearLayoutManager(this.activity)
+
+        val mLayoutManager = LinearLayoutManager(this.activity)
+        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
+        mLayoutManager.stackFromEnd = true
+
+        rv_recentstore_mypage.setLayoutManager(mLayoutManager)
+
     }
 
     private fun setClickListener() {
@@ -148,13 +156,19 @@ class MypageFragment : Fragment() {
                         200 -> {
                             var dataList_recent: ArrayList<StoreInfoResponseData> = response.body()!!.storeInfoResponseDtoList
 
-                            Log.d("@@@@@@@@@@@@", dataList_recent.toString())
+                            //Log.d("@@@@@@@@@@@@", dataList_recent.toString())
 
                             if (dataList_recent.size > 0) {
-                                var mypageRecent = mypageRecentStoreAdapter.dataList
+//                                var mypageRecent = mypageRecentStoreAdapter.dataList
+//                                var position = mypageRecentStoreAdapter.itemCount
+//                                mypageRecent = dataList_recent
+//                                mypageRecentStoreAdapter.notifyItemInserted(position)
+
                                 var position = mypageRecentStoreAdapter.itemCount
-                                mypageRecent = dataList_recent
+                                //mypageRecentStoreAdapter.dataList.clear()
+                                mypageRecentStoreAdapter.dataList.addAll(dataList_recent)
                                 mypageRecentStoreAdapter.notifyItemInserted(position)
+
                             } else {
 
                             }
@@ -175,4 +189,3 @@ class MypageFragment : Fragment() {
     }
 
 }
-
