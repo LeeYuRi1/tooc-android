@@ -32,7 +32,7 @@ class StorageListRVAdapter(val ctx : Context?, val dataList : ArrayList<StoreRes
 
         //TODO 의심리스트!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         var amount = 0
-        for(i in 0..dataList[position].bagDtos.size){
+        for(i in 0..dataList[position].bagDtos.size-1){
             amount+=dataList[position].bagDtos[i].bagCount.toInt()
         }
         if(dataList[position].progressType=="ING") {
