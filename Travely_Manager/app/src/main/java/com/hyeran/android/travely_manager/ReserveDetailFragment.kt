@@ -34,11 +34,8 @@ class ReserveDetailFragment : Fragment() {
             }
             else{
                 StorePhotoDialog(context).show()
-
-
             }
         }
-
         return v
     }
 

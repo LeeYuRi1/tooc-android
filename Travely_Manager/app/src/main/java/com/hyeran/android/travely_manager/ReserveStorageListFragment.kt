@@ -12,8 +12,6 @@ class ReserveStorageListFragment : Fragment() {
     lateinit var v : View
     lateinit var reserveListRVAdapter : ReserveListRVAdapter
     lateinit var storageListRVAdapter: StorageListRVAdapter
-//    lateinit var r_dataList : ArrayList<ReserveListTempData>
-//    lateinit var s_dataList : ArrayList<StorageListTempData>
 
     public var r_dataList : ArrayList<ReserveListTempData> = ArrayList()
     public var s_dataList : ArrayList<StorageListTempData> = ArrayList()
@@ -59,4 +57,6 @@ class ReserveStorageListFragment : Fragment() {
         s_dataList.add(StorageListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
         s_dataList.add(StorageListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
     }
+
+    private fun 
 }
