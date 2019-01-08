@@ -49,13 +49,13 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
 
-        <ImageView
-            android:id="@+id/iv_qrimage_enlarge"
-            android:layout_width="230dp"
-            android:layout_height="230dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/qr_shadow"
-            android:layout_gravity="center"/>
+    <ImageView
+        android:id="@+id/iv_qrimage_enlarge"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@drawable/qr_shadow" />
 
     <!--</RelativeLayout>-->
 

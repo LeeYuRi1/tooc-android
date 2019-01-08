@@ -93,7 +93,6 @@ class MypageFragment : Fragment() {
         }
         layout_myreview_mypage.setOnClickListener {
             replaceFragment(MyreviewFragment())
-
         }
         iv_set_mypage.setOnClickListener {
             replaceFragment(SetFragment())
@@ -164,8 +163,9 @@ class MypageFragment : Fragment() {
                             Log.d("@@@@@@@@@@@@", dataList_recent.toString())
 
                             if (dataList_recent.size > 0) {
-                                val position = mypageRecentStoreAdapter.itemCount
-                                mypageRecentStoreAdapter.dataList = dataList_recent
+                                var mypageRecent = mypageRecentStoreAdapter.dataList
+                                var position = mypageRecentStoreAdapter.itemCount
+                                mypageRecent = dataList_recent
                                 mypageRecentStoreAdapter.notifyItemInserted(position)
                             } else {
 

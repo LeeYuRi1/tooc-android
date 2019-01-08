@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.hyeran.android.tooc.model.mypage.ReviewLookupData
@@ -42,6 +43,8 @@ class MypageMyReviewAdapter(val ctx: Context, val dataList : ArrayList<ReviewLoo
 
         holder.review_content.text = dataList[position].content
 
+        holder.review_rating.rating = dataList[position].liked.toFloat()
+
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -57,5 +60,6 @@ class MypageMyReviewAdapter(val ctx: Context, val dataList : ArrayList<ReviewLoo
 
         var review_ymd : TextView = itemView.findViewById(R.id.tv_ymd_myreview) as TextView
         val review_content : TextView = itemView.findViewById(R.id.tv_content_myreview) as TextView
+        var review_rating : RatingBar = itemView.findViewById(R.id.ratingBar_myreview) as RatingBar
     }
 }
