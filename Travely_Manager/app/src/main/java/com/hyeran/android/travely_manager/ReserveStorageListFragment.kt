@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.hyeran.android.travely_manager.db.SharedPreferencesController
 import com.hyeran.android.travely_manager.model.ReserveListResponseData
+import com.hyeran.android.travely_manager.model.ReserveResponseDto
+import com.hyeran.android.travely_manager.model.StoreResponseDto
 import com.hyeran.android.travely_manager.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve_storage_list.view.*
 import org.jetbrains.anko.support.v4.toast
@@ -18,15 +20,14 @@ import retrofit2.Response
 class ReserveStorageListFragment : Fragment() {
     lateinit var v : View
     lateinit var reserveListRVAdapter : ReserveListRVAdapter
-    lateinit var storageListRVAdapter: StorageListRVAdapter
+    lateinit var storageListRVAdapter : StorageListRVAdapter
     lateinit var networkService :NetworkService
 
-    public var r_dataList : ArrayList<ReserveListTempData> = ArrayList()
-    public var s_dataList : ArrayList<StorageListTempData> = ArrayList()
+    var r_dataList : ArrayList<ReserveResponseDto> = ArrayList()
+    var s_dataList : ArrayList<StoreResponseDto> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v =  inflater.inflate(R.layout.fragment_reserve_storage_list, container, false)
-
         return v
     }
 
@@ -41,36 +42,27 @@ class ReserveStorageListFragment : Fragment() {
         v.rv_storage_list.adapter = storageListRVAdapter
         v.rv_storage_list.layoutManager = LinearLayoutManager(context)
 
-        r_setRecyclerView()
-        s_setRecyclerView()
+//        r_setRecyclerView()
+//        s_setRecyclerView()
+    }
 
-//        var dataList : ArrayList<StorageListTempData> = ArrayList()
-//        dataList.add(StorageListTempData(0, "박상영", 8900, 2, "오후", 7, 40))
-//        dataList.add(StorageListTempData(0, "최유성", 8900, 2, "오후", 7, 40))
-//        dataList.add(StorageListTempData(0, "최정연", 8900, 2, "오후", 7, 40))
+
+//    private fun r_setRecyclerView() {
+//        // 임시 데이터 1
+//        r_dataList.add(ReserveListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
+//    }
 //
-//        storageListRVAdapter = StorageListRVAdapter(context, dataList)
-//        v.rv_storage_list_storage_list.adapter = storageListRVAdapter
-//        v.rv_storage_list_storage_list.layoutManager = LinearLayoutManager(context)
-    }
-
-
-    private fun r_setRecyclerView() {
-        // 임시 데이터 1
-        r_dataList.add(ReserveListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
-    }
-
-    private fun s_setRecyclerView() {
-        // 임시 데이터 2
-        s_dataList.add(StorageListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
-        s_dataList.add(StorageListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
-    }
+//    private fun s_setRecyclerView() {
+//        // 임시 데이터 2
+//        s_dataList.add(StorageListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
+//        s_dataList.add(StorageListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
+//    }
 
     private fun getReserveResponse(){
         var jwt  = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var getReserveResponse = networkService.getReserveResponse(jwt)
         getReserveResponse.enqueue(object : Callback<ReserveListResponseData>{
-            override fun onFailure(call: Call<ReserveListResponseData>, t: Throwable) {4
+            override fun onFailure(call: Call<ReserveListResponseData>, t: Throwable) {
                 toast("onFailure")
             }
 
@@ -78,7 +70,9 @@ class ReserveStorageListFragment : Fragment() {
                 response?.let {
                     when(it.code()){
                         200->{
-
+                        toast("서버성공!!")
+                            r_dataList = response.body()!!.reserveResponseDtoList
+                            s_dataList = response.body()!!.storeResponseDtoList
                         }
                         403->{
                             toast("인증에러")
@@ -86,6 +80,7 @@ class ReserveStorageListFragment : Fragment() {
                         500->{
                             toast("서버에러")
                         }
+                        else ->toast("else 에러")
                     }
                 }
 

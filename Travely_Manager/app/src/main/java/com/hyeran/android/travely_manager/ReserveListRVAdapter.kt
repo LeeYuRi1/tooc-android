@@ -12,8 +12,11 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import org.w3c.dom.Text
 import android.support.v7.app.AppCompatActivity
+import com.hyeran.android.travely_manager.model.ReserveResponseDto
+import com.hyeran.android.travely_manager.model.StoreResponseDto
+import java.text.SimpleDateFormat
 
-class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveListTempData>) : RecyclerView.Adapter<ReserveListRVAdapter.r_Holder>() {
+class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveResponseDto>) : RecyclerView.Adapter<ReserveListRVAdapter.r_Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): r_Holder {
         // 뷰 인플레이트!!
         val r_view : View = LayoutInflater.from(ctx).inflate(R.layout.item_reserve_list, parent, false)
@@ -24,13 +27,30 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveL
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: r_Holder, position: Int) {
-//        holder.r_profile.setImageResource(dataList[position].r_profile)
-        holder.r_name.text = dataList[position].r_name
-        holder.r_payment_status.text = dataList[position].r_payment_status
-        holder.r_date.text = dataList[position].r_date
-        holder.r_price.text = dataList[position].r_price.toString()
-        holder.r_amount.text = dataList[position].r_amount.toString()
-        holder.r_time.text = dataList[position].r_time
+        var dateFormat = SimpleDateFormat("yyyy.MM.dd")
+        var timeFormat = SimpleDateFormat("HH:mm")
+        var paymentStatus: String
+        var date : String = dateFormat.format(dataList[position].startTime)
+        var time : String = timeFormat.format(dataList[position].startTime)
+
+        //TODO 의심리스트!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        var amount : Int =0
+        for(i in 0..dataList[position].bagDtos.size){
+            amount+=dataList[position].bagDtos[i].bagCount.toInt()
+        }
+        if(dataList[position].progressType=="ING") {
+            paymentStatus= "결제진행중"
+        }
+        else{
+            paymentStatus = "결제완료"
+        }
+
+        holder.r_name.text = dataList[position].userName
+        holder.r_payment_status.text = paymentStatus
+        holder.r_date.text = date
+        holder.r_price.text = dataList[position].price.toString()
+        holder.r_amount.text = amount.toString()
+        holder.r_time.text = time
 
         holder.r_view.setOnClickListener {
             val manager = (ctx as AppCompatActivity).supportFragmentManager
