@@ -46,7 +46,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 // 스캔된 QRCode --> result.getContents()
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
-
+                //TODO qr코드 스캔값 넣어야함!!
+                qrCode("123")
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

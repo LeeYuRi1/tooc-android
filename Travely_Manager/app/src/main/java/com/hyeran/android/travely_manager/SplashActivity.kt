@@ -33,8 +33,8 @@ class SplashActivity : AppCompatActivity() {
             override fun onAnimationRepeat(p0: Animator?) {
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
-                var autoLoginFlag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login",false)
+            override fun onAnimationEnd(p0: Animator?) {
+                var autoLoginFlag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
                 val intent: Intent
                 if (autoLoginFlag) {
                     postLoginResponse()
@@ -44,7 +44,6 @@ class SplashActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
                 finish()
-
             }
             override fun onAnimationCancel(p0: Animator?) {
             }
