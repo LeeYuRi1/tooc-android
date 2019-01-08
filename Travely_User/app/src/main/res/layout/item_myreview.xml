@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_storeimage_myreview"
         android:layout_width="62dp"
         android:layout_height="62dp"
         android:layout_marginTop="22dp"
@@ -26,38 +26,39 @@
     <TextView
         android:id="@+id/tv_name_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="21dp"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/kopub_medium"
         android:text="롭스 홍대2호점"
         android:textColor="#262626"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintStart_toEndOf="@+id/iv_storeimage_myreview"
+        app:layout_constraintTop_toTopOf="@+id/iv_storeimage_myreview" />
 
     <TextView
         android:id="@+id/tv_area_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="서울시 마포구 샬라샬라"
-        android:textSize="12sp"
-        android:textColor="#707070"
+        android:layout_height="11dp"
         android:fontFamily="@font/kopub_medium"
+        android:text="서울시 마포구 샬라샬라"
+        android:textColor="#707070"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_name_myreview"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_myreview" />
 
     <TextView
-        android:id="@+id/tv_year_myreview"
+        android:id="@+id/tv_ymd_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2018"
-        android:textSize="12sp"
+        android:layout_height="12dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/kopub_medium"
+        android:text="2018.12.23"
         android:textColor="#707070"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_area_myreview"
         app:layout_constraintTop_toBottomOf="@+id/tv_area_myreview" />
 
+    <!--
     <TextView
         android:id="@+id/textView62"
         android:layout_width="wrap_content"
@@ -102,6 +103,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView64"
         app:layout_constraintStart_toEndOf="@+id/textView64" />
 
+        -->
+
     <TextView
         android:id="@+id/tv_content_myreview"
         android:layout_width="0dp"
@@ -113,7 +116,7 @@
         android:textColor="#262626"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintStart_toStartOf="@+id/guideline37"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_storeimage_myreview" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline38"
@@ -127,6 +130,7 @@
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:theme="@style/WriteReviewRatingBar"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintTop_toTopOf="@+id/tv_name_myreview" />
 

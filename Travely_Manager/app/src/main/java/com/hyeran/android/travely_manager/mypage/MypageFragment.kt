@@ -12,6 +12,7 @@ import com.hyeran.android.travely_manager.R
 import com.hyeran.android.travely_manager.db.SharedPreferencesController
 import com.hyeran.android.travely_manager.login.LoginActivity
 import com.hyeran.android.travely_manager.model.MypageResponseData
+import com.hyeran.android.travely_manager.network.ApplicationController
 import com.hyeran.android.travely_manager.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.jetbrains.anko.support.v4.toast
@@ -32,7 +33,9 @@ class MypageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
 
+        networkService = ApplicationController.instance.networkService
 
+        getProfileResponse()
     }
 
     private fun setClickListener() {
@@ -40,6 +43,12 @@ class MypageFragment : Fragment() {
             //replaceFragment(SetFragment())
             val intent = Intent(this.activity, LoginActivity::class.java)
             startActivity(intent)
+        }
+
+        switch_available_mypage.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (switch_available_mypage.isChecked) tv_resevable_mypage.text = "ON"
+            else tv_resevable_mypage.text = "OFF"
+//            toast(switch_available_mypage.isChecked.toString())
         }
 //
 //        btn_review_mypage.setOnClickListener {
@@ -79,6 +88,14 @@ class MypageFragment : Fragment() {
                             tv_store_name_mypage.text = response.body()!!.storeName
                             tv_address_mypage.text = response.body()!!.address
                             tv_address_number_mypage.text = response.body()!!.addressNumber
+                            if (response.body()!!.onOff == 1) {
+                                tv_resevable_mypage.text = "ON"
+                                switch_available_mypage.isChecked = true
+                            }
+                            else {
+                                tv_resevable_mypage.text = "OFF"
+                                switch_available_mypage.isChecked = false
+                            }
 //                            tv_mybag_cnt_mypage.text = response.body()!!.myBagCount.toString()
 //                            tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
 //                            tv_review_cnt_mypage.text = response.body()!!.reviewCount.toString()

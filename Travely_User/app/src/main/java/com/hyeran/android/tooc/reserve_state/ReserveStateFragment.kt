@@ -1,6 +1,5 @@
 package com.hyeran.android.tooc.reserve_state
 
-
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color

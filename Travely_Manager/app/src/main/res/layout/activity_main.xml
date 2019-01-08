@@ -27,8 +27,8 @@
             android:layout_weight="1">
             <ImageView
                 android:id="@+id/iv_qr_bottom_tab"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="35dp"
+                android:layout_height="21dp"
                 android:src="@drawable/selector_qr_bottom_tab"
                 android:layout_centerInParent="true" />
         </RelativeLayout>

@@ -1,5 +1,4 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item>
         <layer-list>
             <!-- shadow (밑으로) : 그림자 -->

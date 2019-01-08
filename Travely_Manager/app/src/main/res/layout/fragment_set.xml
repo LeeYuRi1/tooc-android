@@ -2,56 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/set_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/set_fragment">
+    android:background="#ffffff">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="44dp">
 
         <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:id="@+id/iv_back_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:src="@drawable/setting_bt_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/background_dark" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/kopub_bold"
+            android:text="설정"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="55dp"
+                android:fontFamily="@font/nanum_bold"
                 android:text="도움이\n필요하신가요?"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/mainColor"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline21"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="96dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="알림설정"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#262626"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
             <Switch
@@ -59,198 +81,251 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
+                android:track="@drawable/switch_track_selector"
+                android:thumb="@drawable/switch_thumb_selector"
                 app:layout_constraintBottom_toBottomOf="@+id/textView17"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView17" />
+                app:layout_constraintTop_toTopOf="@+id/textView17"
+                />
 
             <View
                 android:id="@+id/view4"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:background="#999999"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="26dp"
+                android:background="#CCCCCC"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="38dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="언어 선택"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#262626"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
 
             <View
                 android:id="@+id/view5"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="32dp"
-                android:background="#999999"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="37dp"
+                android:background="#CCCCCC"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="163dp"
+                android:layout_height="34dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginTop="8dp"
+                android:paddingLeft="24dp"
+                android:entries="@array/language_arrays"
                 app:layout_constraintBottom_toTopOf="@+id/view5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view4"
-                android:entries="@array/language_arrays"/>
-        </android.support.constraint.ConstraintLayout>
+                android:background="@drawable/box_language"/>
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/btn_howtouse_set"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/textView32"
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.10555556" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.044444446" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95555556" />
+
+            <TextView
+                android:id="@+id/tv_whatistooc_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/kopub_medium"
+                android:text="WHAT IS TOOC?"
+                android:textColor="#262626"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+            <View
+                android:id="@+id/view16"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="17dp"
+                android:background="#CCCCCC"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/tv_whatistooc_set" />
+
+            <TextView
+                android:id="@+id/tv_howtouse_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="HOW TO USE"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="#262626"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
 
-            <ImageView
-                android:id="@+id/imageView16"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:color/holo_blue_bright" />
-        </android.support.constraint.ConstraintLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#999999" />
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/btn_faq_set"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/view17"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="17dp"
+                android:background="#CCCCCC"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/tv_howtouse_set" />
 
             <TextView
-                android:id="@+id/textView33"
+                android:id="@+id/tv_faq_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="FAQ"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="#262626"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
 
-            <ImageView
-                android:id="@+id/imageView17"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:color/holo_blue_bright" />
-        </android.support.constraint.ConstraintLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#999999"/>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/btn_question_set"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/view18"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="17dp"
+                android:background="#CCCCCC"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/tv_faq_set" />
 
             <TextView
-                android:id="@+id/textView34"
+                android:id="@+id/tv_question_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="문의하기"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="#262626"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/view18" />
 
-            <ImageView
-                android:id="@+id/imageView18"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:color/holo_blue_bright" />
-        </android.support.constraint.ConstraintLayout>
+            <View
+                android:id="@+id/view19"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="17dp"
+                android:background="#CCCCCC"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/tv_access_terms_set" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#999999"/>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/btn_access_terms_set"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/view20"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="17dp"
+                android:background="#CCCCCC"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/tv_question_set" />
 
             <TextView
-                android:id="@+id/textView35"
+                android:id="@+id/tv_access_terms_set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/kopub_medium"
                 android:text="이용약관"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="#262626"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/view20" />
 
-            <ImageView
-                android:id="@+id/imageView19"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:color/holo_blue_bright" />
+            <RelativeLayout
+                android:id="@+id/btn_whatistooc_set"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/view16"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/view5">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_howtouse_set"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/view17"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/btn_whatistooc_set">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_faq_set"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/view18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/btn_howtouse_set">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_question_set"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/view20"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/btn_faq_set">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_access_terms_set"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/view19"
+                app:layout_constraintEnd_toStartOf="@+id/guideline23"
+                app:layout_constraintStart_toStartOf="@+id/guideline22"
+                app:layout_constraintTop_toBottomOf="@+id/view20">
+
+            </RelativeLayout>
         </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#999999"/>
-
-
-
-
-
-    </LinearLayout>
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.widget.LinearLayout
@@ -25,6 +26,7 @@ import org.jetbrains.anko.activityManager
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -70,10 +72,16 @@ class MapMoreActivity : AppCompatActivity() {
         }
 
         iv_reserve_map_more.setOnClickListener {
-            var intent = Intent()
-            intent.putExtra("storeIdx", storeIdx)
-            setResult(777, intent)
-            finish()
+            var reserve = SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")
+
+            if(reserve == false) {
+                var intent = Intent()
+                intent.putExtra("storeIdx", storeIdx)
+                setResult(777, intent)
+                finish()
+            } else {
+                toast("이미 예약 내역이 존재합니다.")
+            }
         }
 
         btn_map_more_act_favorite.setOnClickListener {

@@ -367,15 +367,17 @@ class ReserveFragment : Fragment() {
                             for (i in 0..response.body()!!.restWeekResponseDtos.size - 1) {
                                 if (response.body()!!.restWeekResponseDtos[i].week == 1) {
                                     offday.add("일")
-                                } else if (response.body()!!.restWeekResponseDtos[i].week == 2) {
-                                    offday.add("화")
+                                }else if (response.body()!!.restWeekResponseDtos[i].week == 2) {
+                                    offday.add("월")
                                 } else if (response.body()!!.restWeekResponseDtos[i].week == 3) {
-                                    offday.add("수")
+                                    offday.add("화")
                                 } else if (response.body()!!.restWeekResponseDtos[i].week == 4) {
-                                    offday.add("목")
+                                    offday.add("수")
                                 } else if (response.body()!!.restWeekResponseDtos[i].week == 5) {
-                                    offday.add("금")
+                                    offday.add("목")
                                 } else if (response.body()!!.restWeekResponseDtos[i].week == 6) {
+                                    offday.add("금")
+                                } else if (response.body()!!.restWeekResponseDtos[i].week == 7) {
                                     offday.add("토")
                                 }
                                 toast(offday[i])

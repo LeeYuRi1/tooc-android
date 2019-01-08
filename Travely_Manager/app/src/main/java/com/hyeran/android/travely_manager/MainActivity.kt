@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         checkDangerousPermission()
 
+        iv_qr_bottom_tab.isSelected = true
+
         setOnClickListener()
     }
 

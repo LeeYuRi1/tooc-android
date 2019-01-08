@@ -2,6 +2,7 @@ package com.hyeran.android.tooc.map
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -48,6 +49,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     var shop_latitude: Double = 0.0
     var shop_longitude: Double = 0.0
     var shop_name: String = ""
+
 
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
@@ -196,12 +198,18 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         }
 
         view2.iv_reserve_map_more_preview.setOnClickListener {
-            var args: Bundle = Bundle()
-            var fragment: Fragment = ReserveFragment()
-            args.putInt("storeIdx", storeIdx)
-            fragment.arguments = args
+            var reserve = SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")
 
-            (activity as MainActivity).replaceFragment(fragment)
+            if(reserve == false) {
+                var args: Bundle = Bundle()
+                var fragment: Fragment = ReserveFragment()
+                args.putInt("storeIdx", storeIdx)
+                fragment.arguments = args
+
+                (activity as MainActivity).replaceFragment(fragment)
+            } else {
+                toast("이미 예약 내역이 존재합니다.")
+            }
         }
 
         return view2
@@ -461,6 +469,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             shop_longitude = response.body()!!.longitude
 
                             setGoogleMap()
+
 
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
