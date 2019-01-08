@@ -50,6 +50,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     var shop_longitude: Double = 0.0
     var shop_name: String = ""
 
+
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
@@ -207,7 +208,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                 (activity as MainActivity).replaceFragment(fragment)
             } else {
-                toast("이미 예약되어있습니다.")
+                toast("이미 예약 내역이 존재합니다.")
             }
         }
 

@@ -45,14 +45,14 @@ class ReserveDetailFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 999) {
-            if (resultCode == Activity.RESULT_OK) { // 이 두 부분은 형식적
-                data?.let {
-                    val image = data.extras.get("data") as Bitmap
-                    val imageview = v.findViewById(R.id.iv_test_reserve_detail) as ImageView //sets imageview as the bitmap
-                    imageview.setImageBitmap(image)
-                }
-            }
-        }
+//        if (requestCode == 999) {
+//            if (resultCode == Activity.RESULT_OK) { // 이 두 부분은 형식적
+//                data?.let {
+//                    val image = data.extras.get("data") as Bitmap
+//                    val imageview = v.findViewById(R.id.iv_test_reserve_detail) as ImageView //sets imageview as the bitmap
+//                    imageview.setImageBitmap(image)
+//                }
+//            }
+//        }
     }
 }
