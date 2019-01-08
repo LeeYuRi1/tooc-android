@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_manager
+package com.hyeran.android.travely_manager.mypage
 
 data class ReviewListTempData (
         var profile: Int,

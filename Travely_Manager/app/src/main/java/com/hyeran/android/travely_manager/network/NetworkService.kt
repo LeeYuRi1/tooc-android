@@ -15,6 +15,12 @@ interface NetworkService{
             @Body() body: JsonObject
     ) : Call<Any>
 
+    // ownerIdx를 기반으로 storeIdx를 반환
+    @GET("/api/owner/store")
+    fun getStoreIdxResponse(
+            @Header("jwt") jwt: String?
+    ) : Call<StoreIdxData>
+
     // 관리자 마이페이지
     @GET("/api/owner/mypage")
     fun getMypageResponse(
@@ -26,6 +32,7 @@ interface NetworkService{
     fun putMypageOnOffResponse(
             @Header("jwt") jwt: String?
     ) : Call<Any>
+
     // 가게 예약 보관 목록 조회
     @GET("/api/owner/reserve")
     fun getReserveResponse(

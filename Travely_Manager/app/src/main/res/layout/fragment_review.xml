@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView40"
+                android:id="@+id/tv_num_review"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:fontFamily="@font/nanum_bold"
@@ -81,8 +81,8 @@
                 android:text="개"
                 android:textColor="@color/mainColor"
                 android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView40"
-                app:layout_constraintStart_toEndOf="@+id/textView40" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_num_review"
+                app:layout_constraintStart_toEndOf="@+id/tv_num_review" />
 
             <TextView
                 android:id="@+id/textView52"
@@ -98,7 +98,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
             <TextView
-                android:id="@+id/textView53"
+                android:id="@+id/tv_grade_review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kopub_medium"
@@ -116,11 +116,11 @@
                 android:text="총 "
                 android:textColor="#494949"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView53"
-                app:layout_constraintEnd_toStartOf="@+id/textView53" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_grade_review"
+                app:layout_constraintEnd_toStartOf="@+id/tv_grade_review" />
 
             <RatingBar
-                android:id="@+id/ratingBar"
+                android:id="@+id/ratingBar_review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -139,7 +139,7 @@
                 android:layout_marginTop="16dp"
                 android:src="@drawable/ic_bubble"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar_review" />
 
             <TextView
                 android:id="@+id/textView70"

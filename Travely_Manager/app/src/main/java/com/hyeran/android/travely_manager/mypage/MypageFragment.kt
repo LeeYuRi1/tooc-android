@@ -1,6 +1,5 @@
 package com.hyeran.android.travely_manager.mypage
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -9,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.hyeran.android.travely_manager.R
-import com.hyeran.android.travely_manager.ReviewFragment
 import com.hyeran.android.travely_manager.db.SharedPreferencesController
-import com.hyeran.android.travely_manager.login.LoginActivity
 import com.hyeran.android.travely_manager.model.MypageResponseData
 import com.hyeran.android.travely_manager.network.ApplicationController
 import com.hyeran.android.travely_manager.network.NetworkService
