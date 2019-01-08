@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity() {
                 //TODO qr코드 스캔값 넣어야함!!
                 reserveCode = result.contents
                 Log.d("TAGGGG","QWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQQWEQWEQWQWEQWEQWEQWEQWE")
-           //     replaceFragment(ReserveDetailFragment())
+                //     replaceFragment(ReserveDetailFragment())
                 qrCode("123")
-               // (ctx as MainActivity).qrCode("123")
+                // (ctx as MainActivity).qrCode("123")
 
             }
         } else {
@@ -73,10 +73,19 @@ class MainActivity : AppCompatActivity() {
     }
     //qrCode
     fun qrCode(reserveNumberConfirm :String){
-        if(reserveNumberConfirm == "123") {
-            Log.d("TAGGGG","RTYRTYTYT")
-            replaceFragment(ReserveDetailFragment())
-        }
+        var args = Bundle()
+        var fragment = ReserveDetailFragment()
+        args.putString("reserveCode", reserveNumberConfirm)
+        fragment.arguments = args
+        replaceFragment(fragment)
+//        if(reserveNumberConfirm == "123") {
+//            Log.d("TAGGGG","RTYRTYTYT")
+//            replaceFragment(ReserveDetailFragment())
+//        }
+//        if(reserveNumberConfirm == "123") {
+//            Log.d("TAGGGG","RTYRTYTYT")
+//            replaceFragment(ReserveDetailFragment())
+//        }
     }
 
     //photo
