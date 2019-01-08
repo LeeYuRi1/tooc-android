@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.hyeran.android.travely_manager.R
+import com.hyeran.android.travely_manager.ReviewFragment
 import com.hyeran.android.travely_manager.db.SharedPreferencesController
 import com.hyeran.android.travely_manager.login.LoginActivity
 import com.hyeran.android.travely_manager.model.MypageResponseData
@@ -40,9 +41,7 @@ class MypageFragment : Fragment() {
 
     private fun setClickListener() {
         iv_set_mypage.setOnClickListener {
-            //replaceFragment(SetFragment())
-            val intent = Intent(this.activity, LoginActivity::class.java)
-            startActivity(intent)
+            replaceFragment(SetFragment())
         }
 
         switch_available_mypage.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -51,14 +50,15 @@ class MypageFragment : Fragment() {
             putMypageOnOffResponse()
 //            toast(switch_available_mypage.isChecked.toString())
         }
-//
-//        btn_review_mypage.setOnClickListener {
-//            replaceFragment(ReviewFragment())
-//        }
-//
+
+
 //        btn_whole_statistics_mypage.setOnClickListener {
 //            replaceFragment(WholeStatisticsFragment())
 //        }
+
+        btn_review_mypage.setOnClickListener {
+            replaceFragment(ReviewFragment())
+        }
 
     }
 
