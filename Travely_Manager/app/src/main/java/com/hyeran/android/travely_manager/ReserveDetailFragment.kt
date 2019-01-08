@@ -15,6 +15,8 @@ import android.support.v4.app.NotificationCompat.getExtras
 import android.graphics.Bitmap
 import android.widget.ImageView
 import com.hyeran.android.travely_manager.mypage.CashInfoDialog
+import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.toast
 
 
 class ReserveDetailFragment : Fragment() {
@@ -25,19 +27,22 @@ class ReserveDetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_reserve_detail, container, false)
 
+        (ctx as MainActivity).selectedTabChangeColor(1)
 
         v.btn_store_reserve_detail.setOnClickListener {
 
-            if(cb_pay_agree.isChecked == false) {
+            if(!cb_pay_agree.isChecked) {
                 CashInfoDialog(context).show()
-
             }
             else{
                 StorePhotoDialog(context).show()
-
-
             }
         }
+
+        var bundle : Bundle? = arguments
+        var reserveCode : String = bundle!!.getString("reserveCode")
+
+        toast(reserveCode)
 
         return v
     }

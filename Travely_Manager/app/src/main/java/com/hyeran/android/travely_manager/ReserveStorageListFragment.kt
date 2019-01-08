@@ -9,27 +9,31 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve_storage_list.view.*
 
 class ReserveStorageListFragment : Fragment() {
+    lateinit var v : View
     lateinit var reserveListRVAdapter : ReserveListRVAdapter
     lateinit var storageListRVAdapter: StorageListRVAdapter
-    lateinit var r_dataList : ArrayList<ReserveListTempData>
-    lateinit var s_dataList : ArrayList<StorageListTempData>
+//    lateinit var r_dataList : ArrayList<ReserveListTempData>
+//    lateinit var s_dataList : ArrayList<StorageListTempData>
+
+    public var r_dataList : ArrayList<ReserveListTempData> = ArrayList()
+    public var s_dataList : ArrayList<StorageListTempData> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var v =  inflater.inflate(R.layout.fragment_reserve_storage_list, container, false)
-
-        reserveListRVAdapter = ReserveListRVAdapter(context, r_dataList)
-        v.rv_reserve_list.adapter = reserveListRVAdapter
-        v.rv_reserve_list.layoutManager = LinearLayoutManager(context)
-
-        storageListRVAdapter = StorageListRVAdapter(context, s_dataList)
-        v.rv_storage_list.adapter = storageListRVAdapter
-        v.rv_storage_list.layoutManager = LinearLayoutManager(context)
+        v =  inflater.inflate(R.layout.fragment_reserve_storage_list, container, false)
 
         return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        var reserveListRVAdapter = ReserveListRVAdapter(context, r_dataList)
+        v.rv_reserve_list.adapter = reserveListRVAdapter
+        v.rv_reserve_list.layoutManager = LinearLayoutManager(context)
+
+        var storageListRVAdapter = StorageListRVAdapter(context, s_dataList)
+        v.rv_storage_list.adapter = storageListRVAdapter
+        v.rv_storage_list.layoutManager = LinearLayoutManager(context)
 
         r_setRecyclerView()
         s_setRecyclerView()
@@ -43,6 +47,7 @@ class ReserveStorageListFragment : Fragment() {
 //        v.rv_storage_list_storage_list.adapter = storageListRVAdapter
 //        v.rv_storage_list_storage_list.layoutManager = LinearLayoutManager(context)
     }
+
 
     private fun r_setRecyclerView() {
         // 임시 데이터 1

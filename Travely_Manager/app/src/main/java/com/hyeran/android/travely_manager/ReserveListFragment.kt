@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve_list.*
 import kotlinx.android.synthetic.main.fragment_reserve_list.view.*
 
-
 //class ReserveListFragment : Fragment() {
 //
 //    lateinit var reserveListRVAdapter : ReserveListRVAdapter
@@ -18,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_reserve_list.view.*
 //    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 //        val v = inflater.inflate(R.layout.fragment_reserve_list, container, false)
 //
+
 //        var dataList : ArrayList<ReserveListTempData> = ArrayList()
 //        dataList.add(ReserveListTempData(0, "박상영", "미결제", 8900, 2, "오후", 7, 40))
 //        dataList.add(ReserveListTempData(0, "최유성", "결제완료", 8900, 2, "오후", 7, 40))
@@ -32,3 +32,4 @@ import kotlinx.android.synthetic.main.fragment_reserve_list.view.*
 //
 //
 //}
+
