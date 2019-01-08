@@ -25,7 +25,6 @@ class MypageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
 
-
     }
 
     private fun setClickListener() {
