@@ -1,19 +1,18 @@
-package com.hyeran.android.travely_manager
+package com.hyeran.android.travely_manager.mypage
 
 import android.content.Context
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
-import android.support.v7.app.AppCompatActivity
-import org.w3c.dom.Text
+import com.bumptech.glide.Glide
+import com.hyeran.android.travely_manager.R
+import com.hyeran.android.travely_manager.model.ReviewUserImgData
 
 
-class ReviewListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReviewListTempData>) : RecyclerView.Adapter<ReviewListRVAdapter.Holder>() {
+class ReviewListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReviewUserImgData>) : RecyclerView.Adapter<ReviewListRVAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.item_review_list, parent, false)
 
@@ -23,10 +22,14 @@ class ReviewListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReviewLis
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.profile.setImageResource(dataList[position].profile)
-        holder.name.text = dataList[position].name
-        holder.hour.text = dataList[position].hour.toString()
-        holder.start_num.text = dataList[position].start_num.toString()
+
+        Glide.with(holder!!.itemView.context)
+                .load(dataList[position].userImgUrl)
+                .into(holder!!.profile)
+
+        holder.name.text = dataList[position].userName
+        //holder.hour.text = dataList[position].hour.toString()
+        holder.start_num.text = dataList[position].like.toString()
         holder.content.text = dataList[position].content
     }
 
