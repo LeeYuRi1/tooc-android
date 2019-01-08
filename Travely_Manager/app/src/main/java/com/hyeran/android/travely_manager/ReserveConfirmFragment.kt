@@ -30,7 +30,7 @@ class ReserveConfirmFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_reserve_confirm, container, false)
 
 
-        v.btn_qrcode_scan_reserve_confirm.setOnClickListener {
+        v.iv_qrcode_scan_reserve_confirm.setOnClickListener {
             IntentIntegrator(activity).initiateScan()
         }
         v.btn_reserve_number_input.setOnClickListener{

@@ -1,7 +1,5 @@
 package com.hyeran.android.tooc.mypage
 
-
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -11,23 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.adapter.MypageRecentStoreAdapter
-import com.hyeran.android.tooc.data.MypageRecentStoreData
-import com.hyeran.android.tooc.join.ExplanationActivity
-import com.hyeran.android.tooc.join.LoginActivity
-import com.hyeran.android.tooc.join.RecentstoreDetailFragment
 import com.hyeran.android.tooc.model.ProfileResponseData
 import com.hyeran.android.tooc.model.StoreInfoResponseData
-import com.hyeran.android.tooc.model.region.RegionResponseData
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_mypage.*
-import kotlinx.android.synthetic.main.fragment_mypage.view.*
-import org.jetbrains.anko.image
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback

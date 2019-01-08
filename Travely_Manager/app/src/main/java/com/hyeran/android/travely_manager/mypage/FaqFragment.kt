@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ExpandableListView
-import com.hyeran.android.tooc.adapter.FaqAdapter
 import com.hyeran.android.travely_manager.R
+import com.hyeran.android.travely_user.mypage.FaqAdapter
 import kotlinx.android.synthetic.main.fragment_faq.*
 
 

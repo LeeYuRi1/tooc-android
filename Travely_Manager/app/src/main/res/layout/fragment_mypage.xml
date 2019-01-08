@@ -56,7 +56,7 @@
                 app:layout_constraintGuide_percent="0.9244792" />
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/tv_name_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="55dp"
@@ -75,8 +75,8 @@
                 android:text="님,"
                 android:textColor="@color/mainColor"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView23"
-                app:layout_constraintStart_toEndOf="@+id/textView23" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name_mypage"
+                app:layout_constraintStart_toEndOf="@+id/tv_name_mypage" />
 
             <TextView
                 android:id="@+id/textView26"
@@ -88,20 +88,20 @@
                 android:textColor="@color/mainColor"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_mypage" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/iv_profile_mypage"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/mypage_bt_default"
                 app:layout_constraintBottom_toBottomOf="@+id/textView26"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toTopOf="@+id/textView23" />
+                app:layout_constraintTop_toTopOf="@+id/tv_name_mypage" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/tv_current_bag_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
@@ -113,7 +113,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
             <TextView
-                android:id="@+id/textView40"
+                android:id="@+id/tv_review_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -125,7 +125,7 @@
                 app:layout_constraintStart_toStartOf="@+id/textView44" />
 
             <TextView
-                android:id="@+id/textView42"
+                android:id="@+id/tv_resevable_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -146,7 +146,7 @@
                 android:textColor="#494949"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_current_bag_mypage" />
 
             <TextView
                 android:id="@+id/textView44"
@@ -197,7 +197,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
             <Switch
-                android:id="@+id/switch2"
+                android:id="@+id/switch_available_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -215,7 +215,7 @@
                 android:textColor="#262626"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView46"
-                app:layout_constraintEnd_toStartOf="@+id/switch2" />
+                app:layout_constraintEnd_toStartOf="@+id/switch_available_mypage" />
 
             <TextView
                 android:id="@+id/textView50"
@@ -242,7 +242,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
             <TextView
-                android:id="@+id/textView52"
+                android:id="@+id/tv_store_name_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="39dp"
@@ -258,12 +258,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:src="@drawable/ic_address"
-                app:layout_constraintStart_toStartOf="@+id/textView52"
-                app:layout_constraintTop_toBottomOf="@+id/textView52" />
+                android:src="@android:color/holo_blue_bright"
+                app:layout_constraintStart_toStartOf="@+id/tv_store_name_mypage"
+                app:layout_constraintTop_toBottomOf="@+id/tv_store_name_mypage" />
+            android:src="@drawable/ic_address"
+            app:layout_constraintStart_toStartOf="@+id/textView52"
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
             <TextView
-                android:id="@+id/textView53"
+                android:id="@+id/tv_address_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -275,7 +278,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
             <TextView
-                android:id="@+id/textView54"
+                android:id="@+id/tv_address_number_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -283,8 +286,8 @@
                 android:text="지번: "
                 android:textColor="#8d8d8d"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/textView53"
-                app:layout_constraintTop_toBottomOf="@+id/textView53" />
+                app:layout_constraintStart_toStartOf="@+id/tv_address_mypage"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address_mypage" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -293,7 +296,7 @@
                 android:layout_marginTop="18dp"
                 android:src="@drawable/ic_time_fill"
                 app:layout_constraintStart_toStartOf="@+id/imageView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView54" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_address_number_mypage" />
 
             <TextView
                 android:id="@+id/textView55"
@@ -392,8 +395,8 @@
                 android:text="전농동 296-93"
                 android:textColor="#8d8d8d"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView54"
-                app:layout_constraintStart_toEndOf="@+id/textView54" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_address_number_mypage"
+                app:layout_constraintStart_toEndOf="@+id/tv_address_number_mypage" />
 
             <ImageView
                 android:id="@+id/imageView11"
