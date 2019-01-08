@@ -75,13 +75,12 @@
             android:id="@+id/textView34"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="41dp"
             android:fontFamily="@font/kopub_bold"
             android:text="서비스 이용약관"
             android:textColor="#707070"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/guideline35"
-            app:layout_constraintTop_toBottomOf="@+id/textView31" />
+            app:layout_constraintTop_toTopOf="@+id/guideline52" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline36"
@@ -90,23 +89,119 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.9375" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="14dp"
-            android:text="서비스 이용약관 보기"
-            android:textColor="#262626"
-            app:layout_constraintEnd_toStartOf="@+id/guideline36"
-            app:layout_constraintStart_toStartOf="@+id/guideline35"
-            app:layout_constraintTop_toBottomOf="@+id/textView34" />
-
         <android.support.constraint.Guideline
             android:id="@+id/guideline52"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp" />
+            app:layout_constraintGuide_percent="0.25621414" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kopub_bold"
+            android:text="고객 이용약관"
+            android:textColor="#707070"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@id/guideline53"
+            tools:layout_editor_absoluteY="262dp" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kopub_bold"
+            android:text="호스트 이용약관"
+            android:textColor="#707070"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/guideline56"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            tools:layout_editor_absoluteY="389dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/btn_service_access"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/ic_rec"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/textView34">
+
+            <TextView
+                android:id="@+id/textView55"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/kopub_medium"
+                android:text="서비스 이용약관 보기"
+                android:textColor="#262626"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/btn_customer_access"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/ic_rec"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/textView35">
+
+            <TextView
+                android:id="@+id/textView57"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/kopub_medium"
+                android:text="고객 이용약관 보기"
+                android:textColor="#262626"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/btn_host_access"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/ic_rec"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/textView39">
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/kopub_medium"
+                android:text="호스트 이용약관 보기"
+                android:textColor="#262626"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.49904397" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline56"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.74378586" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -21,5 +21,18 @@ class AccessTermsFragment : Fragment() {
         iv_back_access_terms.setOnClickListener {
             (ctx as MainActivity).replaceFragment(SetFragment())
         }
+
+        btn_service_access.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(AccessTermsServiceFragment())
+        }
+
+        btn_customer_access.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(AccessTermsCustomerFragment())
+        }
+
+        btn_host_access.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(AccessTermsHostFragment())
+        }
+
     }
 }
