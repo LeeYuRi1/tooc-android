@@ -1,12 +1,11 @@
 package com.hyeran.android.travely_manager
 
 data class ReserveListTempData (
-        var profile : Int,
-        var name : String,
-        var payment_status : String,
-        var price : Int,
-        var amount : Int,
-        var am_pm : String,
-        var hour : Int,
-        var minute : Int
+        var r_profile : Int,
+        var r_name : String,
+        var r_payment_status : String,
+        var r_date : String,
+        var r_price : Int,
+        var r_amount : Int,
+        var r_time : String
 )
