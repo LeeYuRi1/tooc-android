@@ -6,12 +6,20 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hyeran.android.travely_manager.db.SharedPreferencesController
+import com.hyeran.android.travely_manager.model.ReserveListResponseData
+import com.hyeran.android.travely_manager.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve_storage_list.view.*
+import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ReserveStorageListFragment : Fragment() {
     lateinit var v : View
     lateinit var reserveListRVAdapter : ReserveListRVAdapter
     lateinit var storageListRVAdapter: StorageListRVAdapter
+    lateinit var networkService :NetworkService
 
     public var r_dataList : ArrayList<ReserveListTempData> = ArrayList()
     public var s_dataList : ArrayList<StorageListTempData> = ArrayList()
@@ -58,4 +66,30 @@ class ReserveStorageListFragment : Fragment() {
         s_dataList.add(StorageListTempData(0, "박상영","결제완료", "2018.10.23", 8900, 2, "19:45"))
     }
 
+    private fun getReserveResponse(){
+        var jwt  = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        var getReserveResponse = networkService.getReserveResponse(jwt)
+        getReserveResponse.enqueue(object : Callback<ReserveListResponseData>{
+            override fun onFailure(call: Call<ReserveListResponseData>, t: Throwable) {4
+                toast("onFailure")
+            }
+
+            override fun onResponse(call: Call<ReserveListResponseData>, response: Response<ReserveListResponseData>) {
+                response?.let {
+                    when(it.code()){
+                        200->{
+
+                        }
+                        403->{
+                            toast("인증에러")
+                        }
+                        500->{
+                            toast("서버에러")
+                        }
+                    }
+                }
+
+            }
+        })
+    }
 }
