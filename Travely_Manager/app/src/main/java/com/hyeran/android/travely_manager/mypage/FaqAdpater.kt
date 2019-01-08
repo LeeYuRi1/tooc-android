@@ -1,4 +1,4 @@
-package com.hyeran.android.tooc.adapter
+package com.hyeran.android.travely_user.mypage
 
 import android.content.Context
 import android.view.LayoutInflater

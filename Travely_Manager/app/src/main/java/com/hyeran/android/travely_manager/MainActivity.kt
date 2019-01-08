@@ -18,6 +18,8 @@ import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.util.Log
+import android.widget.ImageView
+
 import org.jetbrains.anko.ctx
 import java.util.jar.Manifest
 
@@ -30,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         addFragment(ReserveConfirmFragment.getInstance())
 
         checkDangerousPermission()
+
+        iv_qr_bottom_tab.isSelected = true
+
         setOnClickListener()
     }
 
@@ -74,17 +79,50 @@ class MainActivity : AppCompatActivity() {
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
             replaceFragment(ReserveConfirmFragment())
+            selectedTabChangeColor(0)
         }
         tab_two_main.setOnClickListener {
             replaceFragment(ReserveListFragment())
+            selectedTabChangeColor(1)
         }
         tab_three_main.setOnClickListener {
             //            replaceFragment(ShipFragment())
-            replaceFragment(StorageListFragment())
+            replaceFragment(ShipFragment.getInstance())
+            selectedTabChangeColor(2)
         }
         tab_four_main.setOnClickListener {
             replaceFragment(MypageFragment())
+            selectedTabChangeColor(3)
         }
+    }
+
+    fun selectedTabChangeColor(flag : Int) {
+        clearSelected()
+        var img : ImageView? = null
+        when(flag) {
+            0 -> {
+                img = iv_qr_bottom_tab
+            }
+            1 -> {
+                img = iv_reserve_bottom_tab
+            }
+            2 -> {
+                img = iv_ship_bottom_tab
+            }
+            3 -> {
+                img = iv_mypage_bottom_tab
+            }
+        }
+        img?.let {
+            img.isSelected = true
+        }
+    }
+
+    private fun clearSelected() {
+        iv_qr_bottom_tab.isSelected = false
+        iv_reserve_bottom_tab.isSelected = false
+        iv_ship_bottom_tab.isSelected = false
+        iv_mypage_bottom_tab.isSelected = false
     }
 
     fun addFragment(fragment : Fragment) {

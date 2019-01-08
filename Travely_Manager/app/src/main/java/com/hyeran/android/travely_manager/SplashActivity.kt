@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Handler
+import android.util.Log
 import com.airbnb.lottie.LottieAnimationView
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -49,7 +50,6 @@ class SplashActivity : AppCompatActivity() {
             override fun onAnimationStart(animation: Animator?, isReverse: Boolean) {
             }
             override fun onAnimationStart(p0: Animator?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
 

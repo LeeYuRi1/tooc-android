@@ -569,26 +569,6 @@
                     app:layout_constraintTop_toTopOf="@+id/textView115" />
 
                 <TextView
-                    android:id="@+id/textView117"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="4"
-                    android:textColor="#262626"
-                    app:layout_constraintEnd_toStartOf="@+id/textView118"
-                    app:layout_constraintTop_toTopOf="@+id/textView118" />
-
-                <TextView
-                    android:id="@+id/textView118"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="시간 기본 요금 : "
-                    android:textColor="#262626"
-                    app:layout_constraintEnd_toStartOf="@+id/textView119"
-                    app:layout_constraintTop_toTopOf="@+id/textView119" />
-
-                <TextView
                     android:id="@+id/textView119"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -766,8 +746,8 @@
                     android:layout_marginTop="19dp"
                     android:fontFamily="@font/kopub_bold"
                     android:text="최종 결제 금액"
-                    android:textSize="16sp"
                     android:textColor="#262626"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/guideline47"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -810,8 +790,8 @@
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/kopub_bold"
                     android:text="원"
-                    android:textSize="18sp"
                     android:textColor="@color/mainColor"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView111"
                     app:layout_constraintEnd_toStartOf="@+id/guideline46"
                     app:layout_constraintTop_toTopOf="@+id/textView111" />
@@ -822,8 +802,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
                     android:text="7000"
-                    android:textSize="18sp"
                     android:textColor="@color/mainColor"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/textView123"
                     app:layout_constraintTop_toTopOf="@+id/textView123" />
 
@@ -837,8 +817,8 @@
                     android:background="@drawable/bt_reservation_cancel"
                     android:fontFamily="@font/kopub_medium"
                     android:text="예약 취소 "
-                    android:textSize="16sp"
                     android:textColor="#494949"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline46"
                     app:layout_constraintStart_toStartOf="@+id/guideline47"
                     app:layout_constraintTop_toBottomOf="@+id/textView111" />
@@ -857,10 +837,10 @@
                     android:id="@+id/textView68"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopub_medium"
                     android:text=" 결제"
                     android:textColor="#262626"
                     android:textSize="16sp"
-                    android:fontFamily="@font/kopub_medium"
                     app:layout_constraintStart_toEndOf="@+id/textView111"
                     app:layout_constraintTop_toTopOf="@+id/textView111" />
             </android.support.constraint.ConstraintLayout>
@@ -900,51 +880,101 @@
                     android:id="@+id/rv_luggage_picture"
                     android:layout_width="0dp"
                     android:layout_height="108dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline50"
                     app:layout_constraintStart_toStartOf="@+id/guideline51"
-                    app:layout_constraintTop_toBottomOf="@+id/textView132" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
-                <View
-                    android:id="@+id/view33"
-                    android:layout_width="0dp"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="37dp"
-                    android:background="#e7e7e7"
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/reservation_bt_photo"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline50"
+                    app:layout_constraintTop_toBottomOf="@+id/textView132" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="117dp"
+                android:background="#e7e7e7"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:background="@drawable/bt_kip"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/cb_confirm_reserve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="13dp"
+                    android:layout_marginVertical="16dp"
+                    android:button="@drawable/checkbox_circle_selector"
+                    android:fontFamily="@font/kopub_light"
+                    android:text="위 내용을 확인하였으며 결제에 동의합니다."
+                    android:textColor="#464646"
+                    android:textSize="12sp"
+                    android:paddingStart="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+            
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="93dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/bt_pickup_gray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView72"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:text="*QR코드 촬영할 시, 픽업 버튼이 활성화됩니다."
+                    android:textSize="12sp"
+                    android:textColor="#494949"
+                    android:fontFamily="@font/kopub_medium"
+                    app:layout_constraintStart_toStartOf="@+id/imageView19"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:src="@drawable/bt_pickup_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_luggage_picture" />
-
-                <TextView
-                    android:id="@+id/textView133"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="9dp"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="개"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline50"
-                    app:layout_constraintTop_toTopOf="@+id/textView132" />
-
-                <TextView
-                    android:id="@+id/textView134"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="2"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView133"
-                    app:layout_constraintEnd_toStartOf="@+id/textView133" />
-
-                <TextView
-                    android:id="@+id/textView135"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="총 "
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView134"
-                    app:layout_constraintEnd_toStartOf="@+id/textView134" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
 
