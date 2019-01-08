@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@color/mainColor"
+        android:layout_width="match_parent"
+        android:layout_height="46dp">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kopub_bold"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:lineSpacingExtra="2sp"
+            android:gravity="center_horizontal"
+            android:text="예약 및 보관목록" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="23dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/line_gradation_first"
+            android:layout_marginLeft="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kopub_medium"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="2sp"
+            android:gravity="center_horizontal"
+            android:text="예약목록" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id = "@+id/rv_reserve_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:layout_marginLeft="28dp"
+        android:src="@drawable/line_gradation_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/line_gradation_first"
+            android:layout_marginLeft="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kopub_medium"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="2sp"
+            android:gravity="center_horizontal"
+            android:text="보관목록" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_storage_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:layout_marginLeft="28dp"
+        android:src="@drawable/line_gradation_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

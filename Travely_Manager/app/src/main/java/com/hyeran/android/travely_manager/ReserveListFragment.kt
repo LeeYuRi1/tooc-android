@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve_list.*
 import kotlinx.android.synthetic.main.fragment_reserve_list.view.*
 
+/*
 class ReserveListFragment : Fragment() {
 
     lateinit var reserveListRVAdapter : ReserveListRVAdapter
@@ -31,3 +32,4 @@ class ReserveListFragment : Fragment() {
 
 
 }
+*/
