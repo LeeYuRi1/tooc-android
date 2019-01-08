@@ -15,15 +15,15 @@ import org.w3c.dom.Text
 class StorageListRVAdapter(val ctx : Context?, val dataList : ArrayList<StorageListTempData>) : RecyclerView.Adapter<StorageListRVAdapter.s_Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): s_Holder {
         // 뷰 인플레이트!!
-        val view : View = LayoutInflater.from(ctx).inflate(R.layout.item_storage_list, parent, false)
+        val s_view : View = LayoutInflater.from(ctx).inflate(R.layout.item_storage_list, parent, false)
 
-        return s_Holder(view)
+        return s_Holder(s_view)
     }
 
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: s_Holder, position: Int) {
-        holder.s_profile.setImageResource(dataList[position].s_profile)
+//        holder.s_profile.setImageResource(dataList[position].s_profile)
         holder.s_name.text = dataList[position].s_name
         holder.s_payment_status.text = dataList[position].s_payment_status
         holder.s_date.text = dataList[position].s_date
@@ -40,14 +40,14 @@ class StorageListRVAdapter(val ctx : Context?, val dataList : ArrayList<StorageL
     }
 
     inner class s_Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val s_profile : ImageView = itemView.findViewById(R.id.iv_profile_item_reserve_list) as ImageView
-        val s_name : TextView = itemView.findViewById(R.id.tv_name_item_reserve_list) as TextView
-        val s_payment_status : TextView = itemView.findViewById(R.id.tv_payment_status_item_reserve_list) as TextView
-        val s_date : TextView = itemView.findViewById(R.id.tv_date_item_reserve_list) as TextView
-        val s_price : TextView = itemView.findViewById(R.id.tv_price_item_reserve_list) as TextView
-        val s_amount : TextView = itemView.findViewById(R.id.tv_amount_item_reserve_list) as TextView
-        val s_time : TextView = itemView.findViewById(R.id.tv_time_item_reserve_list) as TextView
+//        val s_profile : ImageView = itemView.findViewById(R.id.iv_profile_item_storage_list) as ImageView
+        val s_name : TextView = itemView.findViewById(R.id.tv_name_item_storage_list) as TextView
+        val s_payment_status : TextView = itemView.findViewById(R.id.tv_payment_status_item_storage_list) as TextView
+        val s_date : TextView = itemView.findViewById(R.id.tv_date_item_storage_list) as TextView
+        val s_price : TextView = itemView.findViewById(R.id.tv_price_item_storage_list) as TextView
+        val s_amount : TextView = itemView.findViewById(R.id.tv_amount_item_storage_list) as TextView
+        val s_time : TextView = itemView.findViewById(R.id.tv_time_item_storage_list) as TextView
 
-        val s_view : RelativeLayout = itemView.findViewById(R.id.item_reserve_list) as RelativeLayout
+        val s_view : RelativeLayout = itemView.findViewById(R.id.item_storage_list) as RelativeLayout
     }
 }

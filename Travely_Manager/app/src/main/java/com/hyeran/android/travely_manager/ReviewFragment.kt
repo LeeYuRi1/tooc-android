@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_review.view.*
 
+/*
 class ReviewFragment : Fragment() {
 
     lateinit var reviewListRVAdapter: ReviewListRVAdapter
@@ -27,3 +28,4 @@ class ReviewFragment : Fragment() {
         return v
     }
 }
+*/
