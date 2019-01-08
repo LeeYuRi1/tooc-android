@@ -23,8 +23,6 @@ class ReserveNumberDialog(val ctx : Context?) : Dialog(ctx){
             //만약 password가 일치하면 인텐트 틀리면 토스트
             dismiss()
             (ctx as MainActivity).qrCode(etReserveNumber.text.toString())
-
         }
-
     }
 }

@@ -36,7 +36,6 @@ class ReserveConfirmFragment : Fragment() {
         v.btn_reserve_number_input.setOnClickListener{
             ReserveNumberDialog(context).show()
             //(activity as MainActivity).qrCode("123")
-
         }
 
         return v

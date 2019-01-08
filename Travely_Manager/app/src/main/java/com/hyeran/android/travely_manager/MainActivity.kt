@@ -17,7 +17,10 @@ import android.Manifest.permission
 import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.util.Log
 import android.widget.ImageView
+
+import org.jetbrains.anko.ctx
 import java.util.jar.Manifest
 
 
@@ -42,34 +45,36 @@ class MainActivity : AppCompatActivity() {
             val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
             if (result.contents == null) {
                 // 취소됨
+
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 // 스캔된 QRCode --> result.getContents()
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
                 //TODO qr코드 스캔값 넣어야함!!
+                Log.d("TAGGGG","QWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQQWEQWEQWQWEQWEQWEQWEQWE")
+           //     replaceFragment(ReserveDetailFragment())
                 qrCode("123")
+               // (ctx as MainActivity).qrCode("123")
+
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
-
     }
-
     //qrCode
     fun qrCode(reserveNumberConfirm :String){
         if(reserveNumberConfirm == "123") {
+            Log.d("TAGGGG","RTYRTYTYT")
             replaceFragment(ReserveDetailFragment())
+//            replaceFragment(ReserveListFragment())
         }
     }
 
     //photo
     fun gotophotoConfirm(){
-
         val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(cameraIntent, 999)
-
     }
-
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
@@ -129,7 +134,8 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
-        transaction.commit()
+//        transaction.commit()
+        transaction.commitAllowingStateLoss()
     }
 
     private fun checkDangerousPermission() {
@@ -142,7 +148,6 @@ class MainActivity : AppCompatActivity() {
                 break
             }
         }
-
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show()
         } else {
