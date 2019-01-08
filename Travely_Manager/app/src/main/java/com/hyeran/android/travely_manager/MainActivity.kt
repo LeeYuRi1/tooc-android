@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             selectedTabChangeColor(0)
         }
         tab_two_main.setOnClickListener {
-            replaceFragment(ReserveListFragment())
+            replaceFragment(ReserveStorageListFragment())
             selectedTabChangeColor(1)
         }
         tab_three_main.setOnClickListener {

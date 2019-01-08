@@ -28,7 +28,7 @@
 
         <ImageView
             android:src="@drawable/line_gradation_first"
-            android:layout_marginLeft="11dp"
+            android:layout_marginLeft="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -65,7 +65,7 @@
 
         <ImageView
             android:src="@drawable/line_gradation_first"
-            android:layout_marginLeft="11dp"
+            android:layout_marginLeft="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
