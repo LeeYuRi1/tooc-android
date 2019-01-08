@@ -13,9 +13,7 @@ class ReserveNumberDialog(val ctx : Context?) : Dialog(ctx){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
-        requestWindowFeature(Window.FEATURE_LEFT_ICON)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_reserve_number)
 
