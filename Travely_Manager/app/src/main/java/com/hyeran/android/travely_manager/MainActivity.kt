@@ -7,38 +7,37 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
-
 import com.hyeran.android.travely_manager.mypage.MypageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
 import android.Manifest.permission
-import android.Manifest.permission.RECORD_AUDIO
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.util.Log
 import android.widget.ImageView
 import com.hyeran.android.travely_manager.db.SharedPreferencesController
-import com.hyeran.android.travely_manager.model.ReserveDetailResponseData
+import com.hyeran.android.travely_manager.model.StoreIdxData
+import com.hyeran.android.travely_manager.network.ApplicationController
 import com.hyeran.android.travely_manager.network.NetworkService
-
-import org.jetbrains.anko.ctx
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.jar.Manifest
-
 
 class MainActivity : AppCompatActivity() {
     lateinit var reserveCode : String
     lateinit var networkService : NetworkService
 
+    var storeIdx : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         addFragment(ReserveConfirmFragment.getInstance())
+
+        networkService = ApplicationController.instance.networkService
+
+        getStoreIdxResponse()
 
         checkDangerousPermission()
 
@@ -63,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 reserveCode = result.contents
                 Log.d("TAGGGG","QWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQQWEQWEQWQWEQWEQWEQWEQWE")
                 //     replaceFragment(ReserveDetailFragment())
-                qrCode("123")
+                qrCode(reserveCode)
                 // (ctx as MainActivity).qrCode("123")
 
             }
@@ -179,6 +178,39 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun getStoreIdxResponse() {
 
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
 
+        val getStoreIdxResponse = networkService.getStoreIdxResponse(jwt)
+
+        getStoreIdxResponse!!.enqueue(object : Callback<StoreIdxData> {
+            override fun onFailure(call: Call<StoreIdxData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<StoreIdxData>, response: Response<StoreIdxData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            toast("관리자 마이페이지")
+                            SharedPreferencesController.instance!!.setPrefData("storeIdx", response.body()!!.storeIdx)
+                        }
+                        400 -> {
+                            toast("잘못된 접근")
+                        }
+                        403 -> {
+                            toast("인증 에러")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+    }
 }

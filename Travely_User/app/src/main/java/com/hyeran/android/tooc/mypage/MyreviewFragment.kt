@@ -77,17 +77,6 @@ class MyreviewFragment:Fragment() {
 
                             }
 
-//                            Glide.with(this@MyreviewFragment)
-//                                    .load(response.body()!![1].storeImgUrl)
-//                                    .into(iv_storeimage_myreview)
-
-                          //  tv_name_myreview.text = response.body()!![1].storeName
-
-                           // tv_area_myreview.text = response.body()!![1].address
-
-                           // tv_content_myreview.text = response.body()!![1].content
-
-
                             toast("리뷰 조회 성공")
                         }
                         204 -> {
