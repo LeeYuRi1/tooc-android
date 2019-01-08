@@ -280,7 +280,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
             <TextView
-                android:id="@+id/tv_address_number_mypage"
+                android:id="@+id/tv_address_number2_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -298,7 +298,7 @@
                 android:layout_marginTop="18dp"
                 android:src="@drawable/ic_time_fill"
                 app:layout_constraintStart_toStartOf="@+id/imageView5"
-                app:layout_constraintTop_toBottomOf="@+id/tv_address_number_mypage" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_address_number2_mypage" />
 
             <TextView
                 android:id="@+id/textView55"
@@ -390,15 +390,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
             <TextView
-                android:id="@+id/textView69"
+                android:id="@+id/tv_address_number_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kopub_medium"
                 android:text="전농동 296-93"
                 android:textColor="#8d8d8d"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_address_number_mypage"
-                app:layout_constraintStart_toEndOf="@+id/tv_address_number_mypage" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_address_number2_mypage"
+                app:layout_constraintStart_toEndOf="@+id/tv_address_number2_mypage" />
 
             <ImageView
                 android:id="@+id/imageView11"
