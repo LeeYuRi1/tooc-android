@@ -20,7 +20,7 @@
             android:textColor="#ffffff"
             android:fontFamily="@font/kopub_bold"
             android:textSize="18sp"
-            android:text="배송하기"/>
+            android:text="배송하기" />
 
     </RelativeLayout>
 
