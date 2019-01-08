@@ -1,6 +1,6 @@
 package com.hyeran.android.travely_manager.model
 
 data class ReviewResponseData (
-        var reviewUserImgResponseDtos : ReviewUserImgData,
+        var reviewUserImgResponseDtos : ArrayList<ReviewUserImgData>,
         var storeGradeReview : StoreGradeReviewData
 )
