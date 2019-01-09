@@ -2,29 +2,23 @@ package com.hyeran.android.tooc.mypage
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.hyeran.android.tooc.MainActivity
+import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.adapter.MypageMyReviewAdapter
+import com.hyeran.android.tooc.model.mypage.ReviewLookupData
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
-import com.hyeran.android.tooc.model.mypage.ReviewLookupData
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
-import com.hyeran.android.tooc.R
-import com.hyeran.android.tooc.R.id.iv_back_mypage
-import com.hyeran.android.tooc.R.id.rv_review_myreview
-import com.hyeran.android.tooc.adapter.MypageLikeAdapter
-import com.hyeran.android.tooc.data.MypageMyReviewData
-import com.hyeran.android.tooc.model.StoreInfoResponseData
-import kotlinx.android.synthetic.main.fragment_like.*
+
+import android.support.v4.app.FragmentTransaction
+import android.support.v4.app.FragmentManager
+
 import kotlinx.android.synthetic.main.fragment_myreview.*
-import kotlinx.android.synthetic.main.item_myreview.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,6 +50,7 @@ class MyreviewFragment:Fragment() {
 
         iv_back_mypage.setOnClickListener {
             var fm = fragmentManager
+            fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             (ctx as MainActivity).replaceFragment(MypageFragment())
             fm!!.popBackStack()
         }

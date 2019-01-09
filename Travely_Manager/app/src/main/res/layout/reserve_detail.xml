@@ -396,9 +396,9 @@
                     android:layout_height="73dp"
                     android:layout_marginStart="7dp"
                     android:layout_marginTop="15dp"
+                    android:src="@android:color/holo_orange_light"
                     app:layout_constraintStart_toStartOf="@+id/textView71"
-                    app:layout_constraintTop_toBottomOf="@+id/textView71"
-                    android:src="@android:color/holo_orange_light"/>
+                    app:layout_constraintTop_toBottomOf="@+id/textView71" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -487,6 +487,41 @@
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_num_reservedetail"
                     app:layout_constraintEnd_toStartOf="@+id/tv_num_reservedetail" />
+
+                <TextView
+                    android:id="@+id/tv_number_reservedetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="31dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:text="2334189"
+                    android:textColor="#8d8d8d"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView71"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline44"
+                    app:layout_constraintTop_toTopOf="@+id/textView71" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="1dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#8d8d8d"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_number_reservedetail"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_number_reservedetail"
+                    app:layout_constraintTop_toTopOf="@+id/tv_number_reservedetail"
+                    app:srcCompat="@android:color/background_dark" />
+
+                <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:text="예약번호"
+                    android:textColor="#8d8d8d"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_number_reservedetail"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView10"
+                    app:layout_constraintTop_toTopOf="@+id/tv_number_reservedetail" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -578,31 +613,15 @@
                     app:layout_constraintEnd_toStartOf="@+id/textView123"
                     app:layout_constraintTop_toTopOf="@+id/textView123" />
 
-                <Button
-                    android:id="@+id/btn_reservecancel_to_dialog"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="33dp"
-                    android:background="@drawable/bt_reservation_cancel"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="예약 취소 "
-                    android:textColor="#494949"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline46"
-                    app:layout_constraintStart_toStartOf="@+id/guideline47"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_payment_method_reservedetail" />
-
                 <View
                     android:id="@+id/view32"
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
-                    android:layout_marginTop="21dp"
+                    android:layout_marginTop="30dp"
                     android:background="#e7e7e7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_reservecancel_to_dialog" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_payment_method_reservedetail" />
 
                 <TextView
                     android:id="@+id/textView68"
@@ -616,58 +635,62 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_payment_method_reservedetail" />
             </android.support.constraint.ConstraintLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView132"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView132"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="21dp"
+                        android:fontFamily="@font/kopub_bold"
+                        android:text="고객의 짐"
+                        android:textColor="#464646"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/layout_picture_reservedetail"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginTop="27dp"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="고객의 짐"
-                    android:textColor="#464646"
-                    android:textSize="16sp"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline50"
                     app:layout_constraintStart_toStartOf="@+id/guideline51"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView132">
 
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline50"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.9708029" />
+                    <ImageView
+                        android:id="@+id/btn_picture_reservedetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/reservation_bt_photo"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginRight="16dp"/>
+                </android.support.constraint.ConstraintLayout>
 
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline51"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.03163017" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_luggage_picture"
-                    android:layout_width="0dp"
-                    android:layout_height="108dp"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="23dp"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline50"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guideline51"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_picture_reservedetail" />
+                    app:layout_constraintTop_toBottomOf="@+id/layout_picture_reservedetail" />
 
 
-                <ImageView
-                    android:id="@+id/btn_picture_reservedetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:src="@drawable/reservation_bt_photo"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline50"
-                    app:layout_constraintTop_toBottomOf="@+id/textView132" />
-            </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/layout_storage_reservedetail"
@@ -704,7 +727,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
-            
+
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/layout_storage_ing_reservedetail"
                 android:layout_width="match_parent"
@@ -726,10 +749,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="9dp"
-                    android:text="*QR코드 촬영할 시, 픽업 버튼이 활성화됩니다."
-                    android:textSize="12sp"
-                    android:textColor="#494949"
                     android:fontFamily="@font/kopub_medium"
+                    android:text="*QR코드 촬영할 시, 픽업 버튼이 활성화됩니다."
+                    android:textColor="#494949"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/btn_storage_ing_reservedetail"
                     app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>

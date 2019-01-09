@@ -3,10 +3,7 @@ package com.hyeran.android.tooc.network
 import com.google.gson.JsonObject
 import com.hyeran.android.tooc.model.ProfileResponseData
 import com.hyeran.android.tooc.model.ReservationPriceListResponseData
-import com.hyeran.android.tooc.model.mypage.FavoriteResponseData
-import com.hyeran.android.tooc.model.mypage.InquiryResponseData
-import com.hyeran.android.tooc.model.mypage.ReviewLookupData
-import com.hyeran.android.tooc.model.mypage.ReviewSaveResponseData
+import com.hyeran.android.tooc.model.mypage.*
 import com.hyeran.android.tooc.model.region.RegionResponseData
 import com.hyeran.android.tooc.model.reservation.ReservationReserveCodeData
 import com.hyeran.android.tooc.model.reservation.ReservationSaveRequestData
@@ -113,6 +110,11 @@ interface NetworkService {
             @Header("jwt") jwt: String?
     ): Call<ArrayList<FavoriteResponseData>>
 
+    @PUT("/api/favorite/{storeIdx}")
+    fun putStoreFavoriteResponse(
+            @Header("jwt") jwt: String?,
+            @Path("storeIdx") storeIdx: Int
+    ): Call<StoreFavoriteResponseData>
 
     //@@@@@@@@@@@@@@@ review-controller @@@@@@@@@@@@@@@
 

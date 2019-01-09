@@ -225,7 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="1"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView104"
                     app:layout_constraintTop_toTopOf="@+id/textView104" />
@@ -245,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="3500"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView106"
                     app:layout_constraintTop_toTopOf="@+id/textView106" />
@@ -267,7 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="1"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView108"
                     app:layout_constraintTop_toTopOf="@+id/textView108" />
@@ -287,7 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="3500"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView110"
                     app:layout_constraintTop_toTopOf="@+id/textView110" />
@@ -523,8 +523,8 @@
 
                 <View
                     android:id="@+id/view31"
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
+                    android:layout_width="366dp"
+                    android:layout_height="5dp"
                     android:layout_marginTop="18dp"
                     android:background="#CCCCCC"
                     app:layout_constraintEnd_toStartOf="@+id/guideline46"
@@ -544,15 +544,15 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline47"
                     app:layout_constraintTop_toBottomOf="@+id/view31" />
 
-                <RelativeLayout
+                <ImageView
                     android:id="@+id/iv_no_payment_reservedetail"
                     android:layout_width="72dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="2dp"
-                    android:background="@drawable/box_line"
+                    android:src="@drawable/box_line"
                     app:layout_constraintBottom_toBottomOf="@+id/textView100"
                     app:layout_constraintEnd_toStartOf="@+id/guideline46"
-                    app:layout_constraintTop_toTopOf="@+id/textView100"></RelativeLayout>
+                    app:layout_constraintTop_toTopOf="@+id/textView100"></ImageView>
 
                 <TextView
                     android:id="@+id/textView123"

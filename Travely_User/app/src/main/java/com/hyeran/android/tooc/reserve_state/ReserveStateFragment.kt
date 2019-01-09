@@ -289,7 +289,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             Log.d("TAGG", "bagDtos : " + bagDtos.toString())
                             var final_priceUnit = response.body()!!.priceUnit + response.body()!!.extraChargeCount * response.body()!!.extraCharge
                             var total_amount: Int = 0
-                            for (i in 0..response.body()!!.bagDtos.size - 1) {
+                            for (i in 0 until response.body()!!.bagDtos.size) {
                                 Log.d("TAGGG", "bagDtos = " + response.body()!!.bagDtos[i].bagType)
                                 if (response.body()!!.bagDtos[i].bagType == "CARRIER") {
                                     total_amount += response.body()!!.bagDtos[i].bagCount

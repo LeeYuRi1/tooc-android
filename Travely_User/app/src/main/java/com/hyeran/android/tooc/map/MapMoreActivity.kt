@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log.i
 import android.view.Gravity
 import android.widget.LinearLayout
+import com.bumptech.glide.Glide
 import com.hyeran.android.tooc.MainActivity
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.adapter.PhotoRecylerViewAdapter
@@ -20,8 +22,11 @@ import com.hyeran.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.activity_map_more.*
 import org.jetbrains.anko.toast
 import com.hyeran.android.tooc.data.ReviewData
+import com.hyeran.android.tooc.model.ProfileResponseData
+import com.hyeran.android.tooc.model.mypage.StoreFavoriteResponseData
 import com.hyeran.android.tooc.reserve.ReserveFragment
 import kotlinx.android.synthetic.main.fragment_map_more.*
+import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.jetbrains.anko.activityManager
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
@@ -41,13 +46,11 @@ class MapMoreActivity : AppCompatActivity() {
     var lng: Double = 0.0
     var lat: Double = 0.0
 
-    var storeIdx : Int = 0
+    var storeIdx: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map_more)
-
-        btn_map_more_act_favorite.isSelected = false
 
         storeIdx = intent.getIntExtra("storeIdx", 0)
 
@@ -61,6 +64,7 @@ class MapMoreActivity : AppCompatActivity() {
         lng = intent.getDoubleExtra("lng", 0.0)
 //        toast(lat.toString() + "!@#!@#!@#!#" + lng.toString())
         setOnBtnClickListener()
+
     }
 
 
@@ -74,7 +78,7 @@ class MapMoreActivity : AppCompatActivity() {
         iv_reserve_map_more.setOnClickListener {
             var reserve = SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")
 
-            if(reserve == false) {
+            if (reserve == false) {
                 var intent = Intent()
                 intent.putExtra("storeIdx", storeIdx)
                 setResult(777, intent)
@@ -85,8 +89,16 @@ class MapMoreActivity : AppCompatActivity() {
         }
 
         btn_map_more_act_favorite.setOnClickListener {
-            btn_map_more_act_favorite.isSelected = !btn_map_more_act_favorite.isSelected
+            if(btn_map_more_act_favorite.isSelected == true){
+                putFavoriteResponse()
+            }else if(btn_map_more_act_favorite.isSelected == false){
+                putFavoriteResponse()
+            }else {
+
+            }
         }
+
+
     }
 
     private fun init() {
@@ -103,7 +115,6 @@ class MapMoreActivity : AppCompatActivity() {
         dataList1.add(PhotoData("img_default_big"))
         dataList1.add(PhotoData("img_default_big"))
     }
-
 
 
     // 세부 정보 조회 함수
@@ -123,24 +134,24 @@ class MapMoreActivity : AppCompatActivity() {
                             tv_address_map_more.text = response.body()!!.address
                             tv_address_number_map_more.text = response.body()!!.addressNumber
 
-                            var open_time : Long = response.body()!!.openTime.toLong()
+                            var open_time: Long = response.body()!!.openTime.toLong()
 
-                            if(Timestamp(open_time).hours.toString().trim().length == 1) {
-                                tv_opentime_hour_map_more.text = "0"+Timestamp(open_time).hours.toString().trim()
+                            if (Timestamp(open_time).hours.toString().trim().length == 1) {
+                                tv_opentime_hour_map_more.text = "0" + Timestamp(open_time).hours.toString().trim()
                             } else {
                                 tv_opentime_hour_map_more.text = Timestamp(open_time).hours.toString().trim()
                             }
 
-                            if(Timestamp(open_time).minutes.toString().trim().length == 1) {
-                                tv_opentime_minute_map_more.text = "0"+Timestamp(open_time).minutes.toString().trim()
+                            if (Timestamp(open_time).minutes.toString().trim().length == 1) {
+                                tv_opentime_minute_map_more.text = "0" + Timestamp(open_time).minutes.toString().trim()
                             } else {
                                 tv_opentime_minute_map_more.text = Timestamp(open_time).minutes.toString().trim()
                             }
 
-                            var close_time : Long = response.body()!!.closeTime.toLong()
-                            if(Timestamp(close_time).hours.toString().trim().length == 1) {
+                            var close_time: Long = response.body()!!.closeTime.toLong()
+                            if (Timestamp(close_time).hours.toString().trim().length == 1) {
                                 var close_hour = "0" + Timestamp(close_time).hours.toString().trim()
-                                if(close_hour == "00") {
+                                if (close_hour == "00") {
                                     close_hour = "24"
                                     tv_closetime_hour_map_more.text = "24"
                                 }
@@ -150,38 +161,44 @@ class MapMoreActivity : AppCompatActivity() {
                                 tv_closetime_hour_map_more.text = Timestamp(close_time).hours.toString().trim()
                             }
 
-                            if(Timestamp(close_time).minutes.toString().trim().length == 1) {
-                                tv_closetime_minute_map_more.text = "0"+Timestamp(close_time).minutes.toString().trim()
+                            if (Timestamp(close_time).minutes.toString().trim().length == 1) {
+                                tv_closetime_minute_map_more.text = "0" + Timestamp(close_time).minutes.toString().trim()
                             } else {
                                 tv_closetime_minute_map_more.text = Timestamp(close_time).minutes.toString().trim()
                             }
 
-                            var current_time : Long = System.currentTimeMillis()
+                            var current_time: Long = System.currentTimeMillis()
 
-                            if((Timestamp(open_time).hours < Timestamp(current_time).hours)&&(Timestamp(current_time).hours < close_time.toInt())) {
+                            if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < close_time.toInt())) {
                                 iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                            }
-                            else if(Timestamp(open_time).hours == Timestamp(current_time).hours) {
-                                if((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
+                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {
+                                if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                }
-                                else {
+                                } else {
                                     iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
-                            }
-                            else if(close_time.toInt() == Timestamp(current_time).hours) {
-                                if((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
+                            } else if (close_time.toInt() == Timestamp(current_time).hours) {
+                                if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                }
-                                else {
+                                } else {
                                     iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
-                            }
-                            else {
+                            } else {
                                 iv_working_map_more.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                             }
                             tv_store_url_map_more.text = response.body()!!.storeUrl
                             tv_store_call_map_more.text = response.body()!!.storeCall
+
+                            //favorite
+                            if(response.body()!!.isFavorite == 1){   //즐겨찾기됨
+                                btn_map_more_act_favorite.isSelected = true
+
+                            }else if(response.body()!!.isFavorite == -1){   //즐겨찾기안됨
+                                btn_map_more_act_favorite.isSelected = false
+
+                            }else {
+                            }
+
                         }
                         500 -> {
                             toast("서버 에러")
@@ -193,5 +210,48 @@ class MapMoreActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun putFavoriteResponse() {
+
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        val putStoreFavoriteResponse = networkService.putStoreFavoriteResponse(jwt, storeIdx)
+
+        putStoreFavoriteResponse!!.enqueue(object : Callback<StoreFavoriteResponseData> {
+            override fun onFailure(call: Call<StoreFavoriteResponseData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<StoreFavoriteResponseData>, response: Response<StoreFavoriteResponseData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            //favorite
+                            if(response.body()!!.isFavorite == 1){   //즐겨찾기됨
+                                btn_map_more_act_favorite.isSelected = true
+
+                            }else if(response.body()!!.isFavorite == -1){   //즐겨찾기안됨
+                                btn_map_more_act_favorite.isSelected = false
+
+                            }else {
+                            }
+
+                            toast("즐겨찾기 변경 성공")
+                        }
+                        400 -> {
+                            toast("잘못된 요청")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+
     }
 }

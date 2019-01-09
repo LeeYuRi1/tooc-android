@@ -94,6 +94,7 @@ class MypageFragment : Fragment() {
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.addToBackStack(null)
         transaction.replace(R.id.frame_main, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 
@@ -163,6 +164,12 @@ class MypageFragment : Fragment() {
 //                                mypageRecent = dataList_recent
 //                                mypageRecentStoreAdapter.notifyItemInserted(position)
                                 //mypageRecentStoreAdapter.dataList.clear()
+
+//                                var position = mypageRecentStoreAdapter.itemCount
+//                                //mypageRecentStoreAdapter.dataList.clear()
+//                                mypageRecentStoreAdapter.dataList.addAll(dataList_recent)
+//                                mypageRecentStoreAdapter.notifyItemInserted(position)
+
                             } else {
                             }
                         }
