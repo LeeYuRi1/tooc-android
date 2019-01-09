@@ -1,5 +1,6 @@
 package com.hyeran.android.tooc
 
+import android.app.Activity
 import android.content.Intent
 import android.media.Image
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import com.hyeran.android.tooc.map.MapFragment
 import com.hyeran.android.tooc.map.MapMorePreviewFragment
 import com.hyeran.android.tooc.mypage.MypageFragment
@@ -20,6 +22,12 @@ import kotlinx.android.synthetic.main.fragment_reserve.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
+import android.R.attr.fragment
+import android.support.v4.app.FragmentManager
+import android.R.attr.fragment
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,12 +35,33 @@ class MainActivity : AppCompatActivity() {
 
     var storeIdx: Int = 0
 
+    var backKeyPressedTime: Long = 0
+
+//    override fun onBackPressed() {
+//        Log.d("TAGG",System.currentTimeMillis().toString())
+//        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+//            backKeyPressedTime = System.currentTimeMillis()
+//            showGuide()
+//            return
+//        }
+//        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+//            finish()
+//        }
+////        super.onBackPressed()
+//    }
+
+    fun showGuide() {
+        var toast: Toast? = null
+        toast = Toast.makeText(ctx, "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_LONG)
+        toast!!.show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //TODO 타임리밋값넣어야함!!!!!!!!!!!!!!!!!!
-        args!!.putInt("timeLimit",9)
+        args!!.putInt("timeLimit", 9)
 
         init()
     }
@@ -43,8 +72,8 @@ class MainActivity : AppCompatActivity() {
         setOnClickListener()
     }
 
-    fun getStoreIdx(storeIdx : Int) {
-        Log.d("@storeIdx통신@", "MainActivity의 getSoreIdx 함수에 들어왔다. storeIdx의 값은? "+ storeIdx)
+    fun getStoreIdx(storeIdx: Int) {
+        Log.d("@storeIdx통신@", "MainActivity의 getSoreIdx 함수에 들어왔다. storeIdx의 값은? " + storeIdx)
         var mapMorePreviewFragment = MapMorePreviewFragment()
         var bundle = Bundle()
         bundle.putInt("storeIdx", storeIdx)
@@ -53,10 +82,10 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(mapMorePreviewFragment)
     }
 
-    fun selectedTabChangeColor(flag : Int) {
+    fun selectedTabChangeColor(flag: Int) {
         clearSelected()
-        var img : ImageView? = null
-        when(flag) {
+        var img: ImageView? = null
+        when (flag) {
             0 -> {
                 img = iv_search_bottom_tab
             }
@@ -108,7 +137,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int,storeIdx:Int) {
+
+    fun getTimeSettingDialog(tsmmddee: String, tshh: Int, tsmm: Int, ttmmddee: String, tthh: Int, ttmm: Int, tsValue: Int, ttValue: Int, storeIdx: Int) {
 
         args!!.putString("smmddee", tsmmddee)
         args!!.putInt("shh", tshh)
@@ -141,8 +171,15 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
-        transaction.addToBackStack(null)
+//        transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    fun replaceFragment2(fragment: Fragment) {
+            val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            transaction.addToBackStack(null)
+            transaction.replace(R.id.frame_main, fragment)
+            transaction.commit()
     }
 
 }

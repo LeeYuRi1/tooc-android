@@ -2,6 +2,7 @@ package com.hyeran.android.tooc.mypage
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,8 @@ import com.hyeran.android.tooc.model.mypage.ReviewLookupData
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import com.hyeran.android.tooc.R
+import com.hyeran.android.tooc.R.id.iv_back_mypage
+import com.hyeran.android.tooc.R.id.rv_review_myreview
 import com.hyeran.android.tooc.adapter.MypageLikeAdapter
 import com.hyeran.android.tooc.data.MypageMyReviewData
 import com.hyeran.android.tooc.model.StoreInfoResponseData
@@ -39,6 +42,9 @@ class MyreviewFragment:Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_myreview, container, false)
+        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.addToBackStack(null)
+        transaction.commit()
         init()
         getReviewLookupResponse()
         return v
@@ -49,7 +55,9 @@ class MyreviewFragment:Fragment() {
         setRecyclerView()
 
         iv_back_mypage.setOnClickListener {
+            var fm = fragmentManager
             (ctx as MainActivity).replaceFragment(MypageFragment())
+            fm!!.popBackStack()
         }
     }
 
@@ -76,17 +84,8 @@ class MyreviewFragment:Fragment() {
                             } else {
 
                             }
-
-                            toast("리뷰 조회 성공")
                         }
                         204 -> {
-                            toast("작성 리뷰 없음")
-                        }
-                        400 -> {
-                            toast("잘못된 접근")
-                        }
-                        500 -> {
-                            toast("서버에러")
                         }
                         else -> {
                             toast("error")

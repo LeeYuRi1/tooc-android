@@ -75,7 +75,9 @@ class ProfileFragment : Fragment() {
         }
 
         iv_back_profile.setOnClickListener {
+            var fm = fragmentManager
             (ctx as MainActivity).replaceFragment(MypageFragment())
+            fm!!.popBackStack()
         }
 
 
