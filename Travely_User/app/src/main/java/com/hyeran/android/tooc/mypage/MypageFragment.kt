@@ -163,12 +163,16 @@ class MypageFragment : Fragment() {
 //                                var position = mypageRecentStoreAdapter.itemCount
 //                                mypageRecent = dataList_recent
 //                                mypageRecentStoreAdapter.notifyItemInserted(position)
+//
+//                                var position = mypageRecentStoreAdapter.itemCount
+//                                //mypageRecentStoreAdapter.dataList.clear()
+//                                mypageRecentStoreAdapter.dataList.addAll(dataList_recent)
+//                                mypageRecentStoreAdapter.notifyItemInserted(position)
 
                                 var position = mypageRecentStoreAdapter.itemCount
-                                //mypageRecentStoreAdapter.dataList.clear()
+                                mypageRecentStoreAdapter.dataList.clear()
                                 mypageRecentStoreAdapter.dataList.addAll(dataList_recent)
-                                mypageRecentStoreAdapter.notifyItemInserted(position)
-
+                                mypageRecentStoreAdapter.notifyItemChanged(position)
                             } else {
 
                             }

@@ -155,7 +155,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
             <TextView
-                android:id="@+id/textView87"
+                android:id="@+id/tv_num2_review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kopub_medium"
