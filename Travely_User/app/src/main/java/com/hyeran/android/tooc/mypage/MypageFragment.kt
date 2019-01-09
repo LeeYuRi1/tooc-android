@@ -99,6 +99,7 @@ class MypageFragment : Fragment() {
     fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 

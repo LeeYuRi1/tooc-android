@@ -2,6 +2,7 @@ package com.hyeran.android.tooc.mypage
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
@@ -49,6 +50,7 @@ class MyreviewFragment:Fragment() {
         setRecyclerView()
 
         iv_back_mypage.setOnClickListener {
+            fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             (ctx as MainActivity).replaceFragment(MypageFragment())
         }
     }
