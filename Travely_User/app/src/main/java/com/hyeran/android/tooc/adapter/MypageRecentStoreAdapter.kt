@@ -21,6 +21,9 @@ import java.util.ArrayList
 
 
 class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreInfoResponseData>) : RecyclerView.Adapter<MypageRecentStoreAdapter.Holder>() {
+
+    var reviewStoreIdx = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_recentstore, parent, false)
         return Holder(view)
@@ -29,6 +32,8 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
+        reviewStoreIdx = dataList[position].storeIdx
 
         Glide.with(holder!!.itemView.context)
                 .load(dataList[position].storeImage)

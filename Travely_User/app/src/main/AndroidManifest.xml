@@ -48,6 +48,7 @@
         <activity android:name=".map.LocationListActivity" />
         <activity android:name=".reserve.KakaopayWebView" />
         <activity android:name=".map.MapMoreActivity" />
+        <activity android:name=".mypage.HowtouseActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

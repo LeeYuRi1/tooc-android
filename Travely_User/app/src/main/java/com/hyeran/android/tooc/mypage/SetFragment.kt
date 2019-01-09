@@ -1,5 +1,6 @@
 package com.hyeran.android.tooc.mypage
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -27,6 +28,10 @@ class SetFragment : Fragment() {
         btn_whatistooc_set.setOnClickListener {
             replaceFragment(ToocFragment())
         }
+        btn_howtouse_set.setOnClickListener {
+            val intent = Intent(ctx, HowtouseActivity::class.java)
+            startActivity(intent)
+        }
         btn_faq_set.setOnClickListener {
             replaceFragment(FaqFragment())
         }
@@ -36,6 +41,7 @@ class SetFragment : Fragment() {
         btn_question_set.setOnClickListener {
             replaceFragment(QuestionFragment())
         }
+
         iv_back_set.setOnClickListener {
             fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             (ctx as MainActivity).replaceFragment(MypageFragment())

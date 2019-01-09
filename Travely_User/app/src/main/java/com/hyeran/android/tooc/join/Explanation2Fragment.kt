@@ -5,7 +5,12 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hyeran.android.tooc.MainActivity
 import com.hyeran.android.tooc.R
+import com.hyeran.android.tooc.mypage.SetFragment
+import kotlinx.android.synthetic.main.fragment_explanation1.*
+import kotlinx.android.synthetic.main.fragment_explanation2.*
+import org.jetbrains.anko.support.v4.ctx
 
 class Explanation2Fragment : Fragment() {
 
@@ -25,4 +30,5 @@ class Explanation2Fragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_explanation2, container, false)
         return v
     }
+
 }
