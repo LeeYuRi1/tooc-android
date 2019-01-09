@@ -160,16 +160,7 @@ class MypageFragment : Fragment() {
                             //Log.d("@@@@@@@@@@@@", dataList_recent.toString())
 
                             if (dataList_recent.size > 0) {
-//                                var mypageRecent = mypageRecentStoreAdapter.dataList
-//                                var position = mypageRecentStoreAdapter.itemCount
-//                                mypageRecent = dataList_recent
-//                                mypageRecentStoreAdapter.notifyItemInserted(position)
-
-//                                var position = mypageRecentStoreAdapter.itemCount
-//                                //mypageRecentStoreAdapter.dataList.clear()
-//                                mypageRecentStoreAdapter.dataList.addAll(dataList_recent)
-//                                mypageRecentStoreAdapter.notifyItemInserted(position)
-
+                                
                             } else {
 
                             }
