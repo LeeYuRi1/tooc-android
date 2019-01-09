@@ -14,7 +14,7 @@ data class ReviewLookupData(
         var openTime : Long,
         var ownerIdx : Long,
         var regionIdx : Long,
-        var reviewIdx : Long,
+        var reviewIdx : Int,
         var storeCall : String,
         var storeIdx : Long,
         var storeUrl : String

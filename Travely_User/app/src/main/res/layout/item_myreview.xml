@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/tv_name_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="21dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/kopub_medium"
         android:text="롭스 홍대2호점"
@@ -38,7 +38,7 @@
     <TextView
         android:id="@+id/tv_area_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="11dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/kopub_medium"
         android:text="서울시 마포구 샬라샬라"
         android:textColor="#707070"
@@ -49,7 +49,7 @@
     <TextView
         android:id="@+id/tv_ymd_myreview"
         android:layout_width="wrap_content"
-        android:layout_height="12dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/kopub_medium"
         android:text="2018.12.23"
@@ -135,15 +135,15 @@
         app:layout_constraintTop_toTopOf="@+id/tv_name_myreview" />
 
     <TextView
-        android:id="@+id/textView67"
+        android:id="@+id/btn_delete_myreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="27dp"
         android:fontFamily="@font/kopub_medium"
         android:text="삭제하기"
-        android:textSize="12sp"
         android:textColor="#707070"
+        android:textSize="12sp"
+        android:padding="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintTop_toBottomOf="@+id/tv_content_myreview" />
 
@@ -151,14 +151,14 @@
         android:id="@+id/textView68"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="13dp"
-        android:text="수정하기"
-        android:textSize="12sp"
         android:fontFamily="@font/kopub_medium"
+        android:padding="8dp"
+        android:text="수정하기"
         android:textColor="#707070"
-        app:layout_constraintBottom_toBottomOf="@+id/textView67"
-        app:layout_constraintEnd_toStartOf="@+id/textView67"
-        app:layout_constraintTop_toTopOf="@+id/textView67" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_delete_myreview"
+        app:layout_constraintEnd_toStartOf="@+id/btn_delete_myreview"
+        app:layout_constraintTop_toTopOf="@+id/btn_delete_myreview" />
 
     <View
         android:id="@+id/view"
@@ -168,7 +168,7 @@
         android:background="#CCCCCC"
         app:layout_constraintEnd_toStartOf="@+id/guideline40"
         app:layout_constraintStart_toStartOf="@+id/guideline39"
-        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_delete_myreview" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline39"

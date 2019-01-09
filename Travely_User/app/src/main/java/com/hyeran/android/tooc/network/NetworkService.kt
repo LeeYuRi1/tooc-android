@@ -124,6 +124,21 @@ interface NetworkService {
             @Header("jwt") jwt : String?
     ) : Call<ArrayList<ReviewLookupData>>
 
+    //리뷰 저장
+    @POST("/api/review/save")
+    fun postReviewSaveResponse(
+            @Header("Content-Type") content_type: String,
+            @Header("jwt") jwt: String?,
+            @Body() reviewSaveResponseData: ReviewSaveResponseData
+    ) : Call<ReviewSaveResponseData>
+
+    //리뷰 삭제
+    @DELETE("/api/review/delete/{reviewIdx}")
+    fun deleteReviewResponse(
+            @Header("jwt") jwt: String?,
+            @Path("reviewIdx") reviewIdx : Int
+    ): Call<Any>
+
     //@@@@@@@@@@@@@@@ inquiry-controller @@@@@@@@@@@@@@@
 
     @POST("/api/inquiry")
@@ -133,13 +148,6 @@ interface NetworkService {
             @Body() inquiryResponseData: InquiryResponseData
     ): Call<InquiryResponseData>
 
-    //@@@@@@@@@@@@@@@ review-controller @@@@@@@@@@@@@@@
-    //리뷰 저장
-    @POST("/api/review/save")
-    fun postReviewSaveResponse(
-            @Header("Content-Type") content_type: String,
-            @Header("jwt") jwt: String?,
-            @Body() reviewSaveResponseData: ReviewSaveResponseData
-    ) : Call<ReviewSaveResponseData>
+
 
 }
