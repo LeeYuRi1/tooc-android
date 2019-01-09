@@ -1,7 +1,6 @@
 package com.hyeran.android.travely_manager
 
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,16 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reserve_detail.*
-import kotlinx.android.synthetic.main.fragment_reserve_detail.view.*
-import android.R.attr.data
-import android.support.v4.app.NotificationCompat.getExtras
-import android.graphics.Bitmap
 import android.util.Log
-import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.hyeran.android.travely_manager.db.SharedPreferencesController
 import com.hyeran.android.travely_manager.model.BagDtos
 import com.hyeran.android.travely_manager.model.ReserveDetailResponseData
-import com.hyeran.android.travely_manager.mypage.CashInfoDialog
 import com.hyeran.android.travely_manager.network.ApplicationController
 import com.hyeran.android.travely_manager.network.NetworkService
 import org.jetbrains.anko.support.v4.ctx
@@ -26,7 +20,6 @@ import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
 
@@ -107,15 +100,45 @@ class ReserveDetailFragment : Fragment() {
                             else {
                                 tv_payment_reservedetail.text = "카카오페이"
                             }
-                            var bagDtoList : ArrayList<BagDtos> = response.body()!!.bagDtoList
-                            var total_count = 0
-                            for (i in 0 until response.body()!!.bagDtoList.size) {
-                                total_count += bagDtoList[i].bagCount.toInt()
+                            var bagDtoList_ : ArrayList<BagDtos> = response.body()!!.bagDtoList
+                            var totalCnt = 0
+                            var carrierCnt = 0
+                            var bagCnt = 0
+
+
+                            Log.d("@@@@@@@@@@@@@@@@TAG", bagDtoList_.toString())
+
+                            for (i in 0 until bagDtoList_.size) {
+                                if (bagDtoList_[i].bagType == "CARRIER") {
+                                    totalCnt += bagDtoList_[i].bagCount.toInt()
+                                    carrierCnt = bagDtoList_[i].bagCount.toInt()
+                                    tv_carrier_num_reservedetail.text = carrierCnt.toString()
+                                    Log.d("@@@@@@@@@@@@@CARRIER", bagDtoList_[i].bagCount.toInt().toString())
+                                } else {
+                                    totalCnt += bagDtoList_[i].bagCount.toInt()
+                                    bagCnt = bagDtoList_[i].bagCount.toInt()
+                                    tv_bag_num_reservedetail.text = bagCnt.toString()
+                                    Log.d("@@@@@@@@@@@@@@BAG", bagDtoList_[i].bagCount.toInt().toString())
+                                }
                             }
-                            tv_num_reservedetail.text = total_count.toString()
-                            var storeTime = Timestamp(response.body()!!.startTime)
+                            tv_num_reservedetail.text = totalCnt.toString()
+
+                            var priceUnit = response.body()!!.price/totalCnt
+
+                            tv_carrier_money_reservedetail.text = (priceUnit * carrierCnt).toString()
+                            tv_bag_money_reservedetail.text = (priceUnit * bagCnt).toString()
+
+                            tv_total_num_reservedetail.text = totalCnt.toString()
+                            tv_total_money_reservedetail.text = priceUnit.toString()
+                            tv_payment_amount_reservedetail.text = response.body()!!.price.toString()
+
+                            if (response.body()!!.payType != "RESERVED") {
+                                iv_no_payment_reservedetail.setImageResource(R.drawable.reserve_pay_rect_gray)
+                                btn_picture_reservedetail.visibility = View.INVISIBLE
+                            }
+
                             //(
-                            var allDateFormat = SimpleDateFormat("yy년 MM월 dd일 EEE")
+                            var allDateFormat = SimpleDateFormat("yy년 MM월 dd일 E요일")
                             var allTimeFormat = SimpleDateFormat("aa HH시 mm분")
                             var StoreDateText = allDateFormat.format(response.body()!!.startTime)
                             var StoreTimeText = allTimeFormat.format(response.body()!!.startTime)
@@ -167,6 +190,10 @@ class ReserveDetailFragment : Fragment() {
                                     }
                                 }
                             }
+
+                            Glide.with(this@ReserveDetailFragment)
+                                    .load(response.body()!!.userImgUrl)
+                                    .into(iv_profile_reservedetail)
                         }
                         400 -> {
                             toast("예약 및 보관내역 없음")
