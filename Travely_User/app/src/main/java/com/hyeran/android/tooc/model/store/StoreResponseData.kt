@@ -7,6 +7,7 @@ data class StoreResponseData (
         var closeTime : String,
         var currentBag : Int,
         var grade : Double,
+        var isFavorite : Int,
         var latitude : Double,
         var limit : Int,
         var longitude : Double,
