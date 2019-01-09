@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
@@ -50,6 +51,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
     var shop_longitude: Double = 0.0
     var shop_name: String = ""
 
+    var isAvailable = true
 
     override fun onConnected(bundle: Bundle?) {
         if (ActivityCompat.checkSelfPermission(activity!!,
@@ -198,18 +200,22 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         }
 
         view2.iv_reserve_map_more_preview.setOnClickListener {
-            var reserve = SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")
-
-            if(reserve == false) {
-                var args: Bundle = Bundle()
-                var fragment: Fragment = ReserveFragment()
-                args.putInt("storeIdx", storeIdx)
-                fragment.arguments = args
-
-                (activity as MainActivity).replaceFragment(fragment)
-            } else {
-                toast("이미 예약 내역이 존재합니다.")
-            }
+            //            var reserve = SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")
+            getStoreReserve()
+//            if (isAvailable == false) {
+//                toast("더 이상 해당 상가의 예약이 불가능합니다.")
+//            } else {
+//                if (reserve == false) {
+//                    var args: Bundle = Bundle()
+//                    var fragment: Fragment = ReserveFragment()
+//                    args.putInt("storeIdx", storeIdx)
+//                    fragment.arguments = args
+//
+//                    (activity as MainActivity).replaceFragment(fragment)
+//                } else {
+//                    toast("이미 예약 내역이 존재합니다.")
+//                }
+//            }
         }
 
         return view2
@@ -470,7 +476,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                             setGoogleMap()
 
-
                             tv_store_name_map_more_preview.text = response.body()!!.storeName
                             tv_address_map_more_preview.text = response.body()!!.address
 
@@ -494,7 +499,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             if (Timestamp(close_time).hours.toString().trim().length == 1) {
                                 var close_hour = "0" + Timestamp(close_time).hours.toString().trim()
                                 if (close_hour == "00") {
-                                    close_hour = "24"
                                     tv_closetime_hour_map_more_preview.text = "24"
                                 }
                             } else {
@@ -511,8 +515,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                             if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                            }
-                            else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
+                            } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
                                 if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                                     toast("##")
@@ -520,8 +523,7 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                                 } else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
-                            }
-                            else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
+                            } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
                                 if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                                     toast("$$")
@@ -529,15 +531,14 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                                 } else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
-                            }
-                            else {
+                            } else {
                                 iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                             }
 
                             Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
                             Log.d("@@@현재 시간: ", Timestamp(current_time).hours.toString())
 
-//
+
 //                            var current_time: Long = System.currentTimeMillis()
 //
 //                            Log.d("@@@영업중 시간: ", Timestamp(open_time).hours.toString() + "~" + Timestamp(close_time).hours.toString())
@@ -571,6 +572,53 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 //                            else {
 //                                iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
 //                            }
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error" + it.code())
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+
+    private fun getStoreReserve() {
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        val getStoreResponse = networkService.getStoreResponse(jwt, storeIdx)
+        getStoreResponse.enqueue(object : Callback<StoreResponseData> {
+            override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
+            }
+            override fun onResponse(call: Call<StoreResponseData>, response: Response<StoreResponseData>) {
+                response.let {
+                    when (it.code()) {
+                        200 -> {
+                            isAvailable = response.body()!!.available != -1
+                            var reserve = SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve")
+
+                            if (response.body()!!.currentBag < response.body()!!.limit) {
+
+                                if (isAvailable == false) {
+                                    toast("더 이상 해당 상가의 예약이 불가능합니다.")
+                                } else {
+                                    if (reserve == false) {
+                                        var args: Bundle = Bundle()
+                                        var fragment: Fragment = ReserveFragment()
+                                        args.putInt("storeIdx", storeIdx)
+                                        fragment.arguments = args
+
+                                        (activity as MainActivity).replaceFragment(fragment)
+                                    } else {
+                                        toast("이미 예약 내역이 존재합니다.")
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(ctx, "해당 상가는 예약 가능한 상태가 아닙니다.", Toast.LENGTH_LONG).show()
+                            }
+
                         }
                         500 -> {
                             toast("서버 에러")

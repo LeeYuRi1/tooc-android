@@ -10,10 +10,12 @@ import com.hyeran.android.tooc.MainActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.activity_join.*
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
@@ -25,7 +27,26 @@ import java.util.regex.Pattern
 class JoinActivity : AppCompatActivity() {
 
     lateinit var networkService : NetworkService
+    var backKeyPressedTime: Long = 0
 
+    override fun onBackPressed() {
+        Log.d("TAGG",System.currentTimeMillis().toString())
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis()
+            showGuide()
+            return
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish()
+        }
+        super.onBackPressed()
+    }
+
+    fun showGuide() {
+        var toast: Toast? = null
+        toast = Toast.makeText(ctx, "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_LONG)
+        toast!!.show()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)

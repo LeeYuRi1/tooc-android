@@ -26,6 +26,7 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hyeran.android.tooc.MainActivity
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.adapter.LuggagePictureAdapter
 import com.hyeran.android.tooc.dialog.BagSizeDialog
@@ -38,6 +39,7 @@ import com.hyeran.android.tooc.model.reservation.bagDtosData
 import com.hyeran.android.tooc.model.reservation.bagImgDtos
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
+import com.hyeran.android.tooc.reserve.NoReserveFragment
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
@@ -167,17 +169,12 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
             mapChoiceDialog2.window.setGravity(Gravity.BOTTOM)
             mapChoiceDialog2.show()
         }
-
         return v
     }
-
     override fun onStart() {
         super.onStart()
         mapView3.onStart()
-
-//        setRecyclerView()
     }
-
     override fun onStop() {
         super.onStop()
 
@@ -242,7 +239,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             var latitude = response.body()!!.store.latitude
                             var longitude = response.body()!!.store.longitude
                             generateQRCode(v, response.body()!!.reserveCode)
-                            toast("stateType = " + stateType)
                             if (stateType == "RESERVED") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
@@ -291,7 +287,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             setGoogleMap(response.body()!!.store.storeName, latitude, longitude)
                             //bagDtos//TODO bagDtos해야함
                             Log.d("TAGG", "bagDtos : " + bagDtos.toString())
-                            toast("bagDtos Size : " + response.body()!!.bagDtos.size)
                             var final_priceUnit = response.body()!!.priceUnit + response.body()!!.extraChargeCount * response.body()!!.extraCharge
                             var total_amount: Int = 0
                             for (i in 0 until response.body()!!.bagDtos.size) {
@@ -306,7 +301,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                     tv_bag_money_reservestate.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
                                 }
                                 mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
-
 
                                 tv_total_num_reservestate.text = total_amount.toString()
                                 tv_total_money_reservestate.text = (final_priceUnit * total_amount).toString()
@@ -384,7 +378,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
                                 if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    toast("##")
 
                                 } else {
                                     iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
@@ -392,8 +385,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
                                 if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    toast("$$")
-
                                 } else {
                                     iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
@@ -402,11 +393,16 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             }
                             Log.d("TAGGGG", "startTime = " + allDateStamp.format(startTime) + "  closeHour = " + allDateStamp.format(endTime))
                         }
+                        400->{
+                            (ctx as MainActivity).replaceFragment(NoReserveFragment())
+                            SharedPreferencesController.instance!!.setPrefData("is_reserve",false)
+                        }
                         500 -> {
                             toast("500 error")
                         }
                         else -> {
                             toast("error")
+
                             Log.d("TAGG", "reserveStateFragment code = " + response.code().toString())
                         }
                     }

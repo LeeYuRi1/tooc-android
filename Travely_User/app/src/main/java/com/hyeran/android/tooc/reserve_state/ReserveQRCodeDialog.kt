@@ -22,9 +22,7 @@ class ReserveQRCodeDialog(var ctx :Context?, var qrCode:String) :Dialog(ctx){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_qrcode_enlarge)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
         generateQRCode(qrCode)
-
         btn_qrcode_enlarge_close.setOnClickListener{
             dismiss()
         }

@@ -52,11 +52,11 @@ class LikeFragment : Fragment() {
         getFavoriteResponse()
 
         iv_back_like.setOnClickListener {
+            var fm = fragmentManager
             fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             (ctx as MainActivity).replaceFragment(MypageFragment())
+            fm!!.popBackStack()
         }
-
-        toast("즐겨찾기")
     }
 
     private fun setRecyclerView() {
@@ -91,18 +91,13 @@ class LikeFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-
                             var dataList_favorite: ArrayList<FavoriteResponseData> = response.body()!!
-
                             if (dataList_favorite.size > 0) {
                                 val position = mypageAreaLikeAdapter.itemCount
                                 mypageAreaLikeAdapter.dataList.addAll(dataList_favorite)
                                 mypageAreaLikeAdapter.notifyItemInserted(position)
                             }else {
-
                             }
-
-                            toast("즐겨찾기 조회 성공")
                         }
                         400 -> {
                             toast("잘못된 요청")

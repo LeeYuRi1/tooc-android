@@ -40,9 +40,7 @@ class MypageFragment : Fragment() {
         }
     }
 
-    val dataList: ArrayList<StoreInfoResponseData> by lazy {
-        ArrayList<StoreInfoResponseData>()
-    }
+    var dataList= ArrayList<StoreInfoResponseData>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_mypage, container, false)
@@ -57,7 +55,6 @@ class MypageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
 
-        setRecyclerView()
 
     }
 
@@ -93,16 +90,15 @@ class MypageFragment : Fragment() {
         iv_set_mypage.setOnClickListener {
             replaceFragment(SetFragment())
         }
-
     }
 
     fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.addToBackStack(null)
         transaction.replace(R.id.frame_main, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }
-
 
     private fun getProfileResponse() {
 
@@ -118,7 +114,7 @@ class MypageFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            tv_name_mypage.text = response.body()!!.name
+                            tv_name_mypage.text = response.body()?.name
                             tv_mybag_cnt_mypage.text = response.body()!!.myBagCount.toString()
                             tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
                             tv_review_cnt_mypage.text = response.body()!!.reviewCount.toString()
@@ -126,8 +122,6 @@ class MypageFragment : Fragment() {
                             Glide.with(this@MypageFragment)
                                     .load(response.body()!!.profileImg)
                                     .into(iv_profile_mypage)
-
-                            toast("프로필 조회 성공")
                         }
                         500 -> {
                             toast("서버 에러")
@@ -144,28 +138,43 @@ class MypageFragment : Fragment() {
 
     private fun getRecentStoreResponse() {
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-
         val getProfileResponse = networkService.getProfileResponse(jwt)
-
         getProfileResponse!!.enqueue(object : Callback<ProfileResponseData> {
             override fun onFailure(call: Call<ProfileResponseData>, t: Throwable) {
             }
-
             override fun onResponse(call: Call<ProfileResponseData>, response: Response<ProfileResponseData>) {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            var dataList_recent: ArrayList<StoreInfoResponseData> = response.body()!!.storeInfoResponseDtoList
-
                             //Log.d("@@@@@@@@@@@@", dataList_recent.toString())
 
-                            if (dataList_recent.size > 0) {
-                                
+                            if (response.body()!!.storeInfoResponseDtoList.size > 0) {
+                                dataList = response.body()!!.storeInfoResponseDtoList
+                                Log.d("TAGG",dataList.toString())
+//                                setRecyclerView()
+//                                var mypageRecentStoreAdapter = MypageRecentStoreAdapter()
+                                var mypageRecentStoreAdapter = MypageRecentStoreAdapter(activity!!, dataList)
+                                rv_recentstore_mypage.adapter = mypageRecentStoreAdapter
+                                rv_recentstore_mypage.setNestedScrollingEnabled(false)
+                                //rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
+                                //val mLayoutManager = LinearLayoutManager(this.activity)
+
+                                val mLayoutManager = LinearLayoutManager(activity)
+
+                                rv_recentstore_mypage.setLayoutManager(mLayoutManager)
+//                                var mypageRecent = mypageRecentStoreAdapter.dataList
+//                                var position = mypageRecentStoreAdapter.itemCount
+//                                mypageRecent = dataList_recent
+//                                mypageRecentStoreAdapter.notifyItemInserted(position)
+                                //mypageRecentStoreAdapter.dataList.clear()
+
+//                                var position = mypageRecentStoreAdapter.itemCount
+//                                //mypageRecentStoreAdapter.dataList.clear()
+//                                mypageRecentStoreAdapter.dataList.addAll(dataList_recent)
+//                                mypageRecentStoreAdapter.notifyItemInserted(position)
+
                             } else {
-
                             }
-
-                            toast("최근 예약 상가 조회 성공")
                         }
                         500 -> {
                             toast("서버 에러")

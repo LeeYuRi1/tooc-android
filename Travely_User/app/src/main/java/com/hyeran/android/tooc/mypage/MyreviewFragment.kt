@@ -3,22 +3,24 @@ package com.hyeran.android.tooc.mypage
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hyeran.android.tooc.MainActivity
+import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.adapter.MypageMyReviewAdapter
+import com.hyeran.android.tooc.model.mypage.ReviewLookupData
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
-import com.hyeran.android.tooc.model.mypage.ReviewLookupData
+import kotlinx.android.synthetic.main.fragment_myreview.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
-import com.hyeran.android.tooc.R
-import kotlinx.android.synthetic.main.fragment_myreview.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MyreviewFragment:Fragment() {
     lateinit var networkService : NetworkService
@@ -33,6 +35,9 @@ class MyreviewFragment:Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_myreview, container, false)
+        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.addToBackStack(null)
+        transaction.commit()
         init()
         getReviewLookupResponse()
         return v
@@ -43,8 +48,10 @@ class MyreviewFragment:Fragment() {
         setRecyclerView()
 
         iv_back_mypage.setOnClickListener {
+            var fm = fragmentManager
             fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             (ctx as MainActivity).replaceFragment(MypageFragment())
+            fm!!.popBackStack()
         }
     }
 
@@ -81,7 +88,6 @@ class MyreviewFragment:Fragment() {
                             } else {
 
                             }
-
                             toast("리뷰 조회 성공")
                         }
                         204 -> {
@@ -92,6 +98,8 @@ class MyreviewFragment:Fragment() {
                         }
                         500 -> {
                             toast("서버에러")
+                        }
+                        204 -> {
                         }
                         else -> {
                             toast("error")
