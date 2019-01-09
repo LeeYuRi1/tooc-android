@@ -488,6 +488,41 @@
                     app:layout_constraintBottom_toBottomOf="@+id/tv_num_reservedetail"
                     app:layout_constraintEnd_toStartOf="@+id/tv_num_reservedetail" />
 
+                <TextView
+                    android:id="@+id/tv_number_reservedetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="31dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:text="2334189"
+                    android:textColor="#8d8d8d"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView71"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline44"
+                    app:layout_constraintTop_toTopOf="@+id/textView71" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="1dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#8d8d8d"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_number_reservedetail"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_number_reservedetail"
+                    app:layout_constraintTop_toTopOf="@+id/tv_number_reservedetail"
+                    app:srcCompat="@android:color/background_dark" />
+
+                <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/kopub_medium"
+                    android:text="예약번호"
+                    android:textColor="#8d8d8d"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_number_reservedetail"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView10"
+                    app:layout_constraintTop_toTopOf="@+id/tv_number_reservedetail" />
+
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout

@@ -69,6 +69,7 @@ class ReviewFragment : Fragment() {
                     when (it.code()) {
                         200 -> {
                             tv_num_review.text = response.body()!!.storeGradeReview.count.toString()
+                            tv_num2_review.text = response.body()!!.storeGradeReview.count.toString()
                             tv_grade_review.text = response.body()!!.storeGradeReview.grade.toString()
                             ratingBar_review.rating = response.body()!!.storeGradeReview.grade.toFloat()
 
