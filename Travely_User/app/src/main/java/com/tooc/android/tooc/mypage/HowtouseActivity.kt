@@ -3,6 +3,7 @@ package com.tooc.android.tooc.mypage
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.ExplanationPagerAdapter
 import com.tooc.android.tooc.join.*
 import com.tooc.android.tooc.network.NetworkService

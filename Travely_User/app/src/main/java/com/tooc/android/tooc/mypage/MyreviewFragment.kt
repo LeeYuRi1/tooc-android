@@ -14,6 +14,7 @@ import com.tooc.android.tooc.adapter.MypageMyReviewAdapter
 import com.tooc.android.tooc.model.mypage.ReviewLookupData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_like.*
 import kotlinx.android.synthetic.main.fragment_myreview.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
@@ -62,12 +63,14 @@ class MyreviewFragment:Fragment() {
     private fun setRecyclerView() {
         mypageMyReviewAdapter = MypageMyReviewAdapter(activity!!, dataList)
         rv_review_myreview.adapter = mypageMyReviewAdapter
+        rv_review_myreview.layoutManager = LinearLayoutManager(activity)
 
-        val mLayoutManager = LinearLayoutManager(this.activity)
-        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
-        mLayoutManager.stackFromEnd = true
 
-        rv_review_myreview.setLayoutManager(mLayoutManager)
+//        val mLayoutManager = LinearLayoutManager(this.activity)
+//        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
+//        mLayoutManager.stackFromEnd = true
+//
+//        rv_review_myreview.setLayoutManager(mLayoutManager)
     }
 
     private fun getReviewLookupResponse() {
