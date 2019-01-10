@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.tooc.android.tooc.R
 import android.widget.LinearLayout
+import com.hyeran.android.tooc.R
 import com.tooc.android.tooc.map.LocationListActivity
 import com.tooc.android.tooc.model.region.SimpleStoreResponseData
 

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.tooc.android.tooc.R
+import com.hyeran.android.tooc.R
 import com.tooc.android.tooc.model.region.RegionResponseData
 import com.tooc.android.tooc.model.region.SimpleStoreResponseData
 

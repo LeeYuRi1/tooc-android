@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.tooc.android.tooc.R
+import com.hyeran.android.tooc.R
 import com.tooc.android.tooc.model.mypage.FavoriteResponseData
 import com.tooc.android.tooc.model.mypage.SimpleStoreResponseDtosData
 import java.util.ArrayList

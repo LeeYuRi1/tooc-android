@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import com.tooc.android.tooc.R
+import com.hyeran.android.tooc.R
 
 class PhotoPagerAdapter : PagerAdapter {
     var context : Context
