@@ -2,6 +2,7 @@ package com.hyeran.android.travely_manager.db
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.hyeran.android.travely_manager.model.BitmapData
 
 class SharedPreferencesController {
     private  var pref: SharedPreferences?=null
@@ -79,7 +80,6 @@ class SharedPreferencesController {
         editor.putString(key, value)
         editor.commit()
     }
-
 
     fun setPrefDatas(values: Map<String, Any>) {
         val editor = pref!!.edit()

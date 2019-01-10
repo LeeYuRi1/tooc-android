@@ -45,9 +45,12 @@ class ReserveDetailFragment : Fragment() {
     lateinit var bitmapRVAdapter: BitmapRVAdapter
 
     var pick_reserveIdx = 0.toLong()
-
+//
     lateinit var bitmap : BitmapData
     lateinit var bitmapArray : ArrayList<BitmapData>
+
+
+    var dataList: ArrayList<BitmapData> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_reserve_detail, container, false)
@@ -78,17 +81,10 @@ class ReserveDetailFragment : Fragment() {
             getDetailReserveResponse()
         }
 
-        var dataList: ArrayList<BagImgDtos> = ArrayList()
-//        dataList.add(BagImgDtos(0))
-//        dataList.add(BagImgDtos(0))
-//        dataList.add(BagImgDtos(0))
 
 
-        setClickListener()
+
         getStoreIdxReserveCodeResponse()
-//        photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, dataList)
-//        v.rv_luggage_picture.adapter = photoStorageDetailRVAdapter
-//        v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
 
         return v
     }
@@ -117,6 +113,8 @@ class ReserveDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setClickListener()
+
         btn_picture_reservedetail.setOnClickListener {
             takePhoto()
         }
@@ -148,13 +146,13 @@ class ReserveDetailFragment : Fragment() {
 
             var file = context!!.cacheDir.toString() + "tooc"
             imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
-
-            bitmapArray.add(BitmapData(imageBitmap))
-
-
-            bitmapRVAdapter = BitmapRVAdapter(context, bitmapArray)
-            v.rv_luggage_picture.adapter = bitmapRVAdapter
-            v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
+//
+//            bitmapArray.add(BitmapData(imageBitmap))
+//
+//
+//            bitmapRVAdapter = BitmapRVAdapter(context, bitmapArray)
+//            v.rv_luggage_picture.adapter = bitmapRVAdapter
+//            v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
 //
 //            photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, bitmapArray)
 //            rv_by_area_temp.adapter = locationRVAdapter
@@ -168,12 +166,21 @@ class ReserveDetailFragment : Fragment() {
             var mImage = MultipartBody.Part.createFormData("data", f.name, photoBody);
 //            var mImage = MultipartBody.Part.createFormData("data", , photoBody);
             postImgResponse(mImage)
+
+
+            dataList.add(BitmapData(imageBitmap))
+
+            bitmapRVAdapter = BitmapRVAdapter(context, dataList)
+            v.rv_luggage_picture.adapter = bitmapRVAdapter
+            var mLayoutManager = LinearLayoutManager(context)
+            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            v.rv_luggage_picture.layoutManager = mLayoutManager
         }
     }
 
     fun takePhoto() {
-        var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(takePictureIntent, REQ_CODE_SELECT_IMAGE);
+        var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(takePictureIntent, REQ_CODE_SELECT_IMAGE)
     }
 
     private fun postImgResponse(a: MultipartBody.Part) {
