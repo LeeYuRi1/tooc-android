@@ -111,44 +111,7 @@ class ReserveDetailFragment : Fragment() {
         if (requestCode === REQ_CODE_SELECT_IMAGE && resultCode === RESULT_OK) {
             val extras = data!!.getExtras()
             val imageBitmap = extras.get("data") as Bitmap
-//            SaveBitmapToFileCache(imageBitmap, "tooc")
 
-//
-//            val filesDir = getAppContext().getFilesDir()
-//            val imageFile = File(filesDir, name.toString() + ".jpg")
-//
-//            data?.let {
-//                var selectedPictureUri = it.data
-//                val options = BitmapFactory.Options()
-//                val contentResolver = activity!!.contentResolver
-//                val inputStream: InputStream = contentResolver.openInputStream(selectedPictureUri)
-//                val bitmap = BitmapFactory.decodeStream(inputStream, null, options)
-//                val byteArrayOutputStream = ByteArrayOutputStream()
-//                bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
-//                val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray())
-//                //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
-//                var mImage = MultipartBody.Part.createFormData("photo", File(selectedPictureUri.toString()).name, photoBody)
-//                Log.d("@@@@@@@TAG", mImage.toString())
-//                //Glide을 사진 URI를 ImageView에 넣은 방식. 외부 URI가 아니라 굳이 Glide을 안써도 되지만 ㅎㅎ!
-////                Glide.with(this@WriteActivity).load(selectedPictureUri).thumbnail(0.1f).into(iv_write_act_choice_image)
-//            }
-//            iv_profile_reservedetail.setImageBitmap(imageBitmap)
-//
-//            Log.d("@@@@@@@@@TAG", imageBitmap.toString())
-
-//            data?.let {
-//                var selectedPictureUri = it.data
-//                val options = BitmapFactory.Options()
-//                var contentResolver = ContentResolver.
-//                val inputStream: InputStream = contentResolver.openInputStream(selectedPictureUri)
-//                val bitmap = BitmapFactory.decodeStream(inputStream, null, options)
-//                val byteArrayOutputStream = ByteArrayOutputStream()
-//                bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
-//                val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray())
-//                //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
-//                var mImage = MultipartBody.Part.createFormData("photo", File(selectedPictureUri.toString()).name, photoBody)
-//                Log.d("@@@@@@@@@TAG", mImage.toString())
-//            }
 //
             val bmp: Bitmap? = imageBitmap
             val stream = ByteArrayOutputStream()
@@ -157,39 +120,21 @@ class ReserveDetailFragment : Fragment() {
 
             var f : File = File(context!!.cacheDir, "tooc.jpg")
             f.createNewFile()
-            Log.d("@@@@absoultuePath", f.absolutePath.toString())
-            Log.d("@@@@canonicalPath", f.canonicalPath.toString())
-            Log.d("@@@@name", f.extension)
             var fos : FileOutputStream = FileOutputStream(f)
             fos.write(byteArray)
             fos.flush()
             fos.close()
 
-            var file = context!!.cacheDir.toString()+"tooc"
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
+
 
             val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
             //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
-            var mImage = MultipartBody.Part.createFormData("data", file, photoBody);
+            var mImage = MultipartBody.Part.createFormData("data", f.name, photoBody);
+//            var mImage = MultipartBody.Part.createFormData("data", , photoBody);
             postImgResponse(mImage)
         }
     }
-
-    private fun SaveBitmapToFileCache(bitmap: Bitmap, strFilePath: String) {
-
-        var fileCacheItem: File = File(strFilePath);
-        var out: OutputStream? = null;
-
-        fileCacheItem.createNewFile();
-        out = FileOutputStream(fileCacheItem);
-
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-
-        Log.d("@@@@@fileCacheItem", fileCacheItem.toString())
-        Log.d("@@@@@out", out.toString())
-
-        out.close();
-    }
-
 
     fun takePhoto() {
         var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -216,6 +161,7 @@ class ReserveDetailFragment : Fragment() {
                         }
                         201 -> {
                             toast("저장 성공")
+                            Log.d("@@@@@@@@@@", response.body().toString())
                         }
                         401 -> {
                             toast("권한 없음")
