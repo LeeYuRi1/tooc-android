@@ -14,12 +14,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.hyeran.android.tooc.R
 import com.tooc.android.tooc.dialog.WriteReviewDialog
 import com.tooc.android.tooc.model.StoreInfoResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.MainActivity
-import com.tooc.android.tooc.R
 import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.reserve.ReserveFragment
 import retrofit2.Call

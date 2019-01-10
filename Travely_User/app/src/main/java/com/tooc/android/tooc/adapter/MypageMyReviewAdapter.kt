@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.tooc.android.tooc.model.mypage.ReviewLookupData
 import java.text.SimpleDateFormat
-import com.tooc.android.tooc.R
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import retrofit2.Call

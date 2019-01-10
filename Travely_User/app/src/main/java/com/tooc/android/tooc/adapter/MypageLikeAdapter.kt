@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
+import com.hyeran.android.tooc.R
 import com.tooc.android.tooc.MainActivity
-import com.tooc.android.tooc.R
 import com.tooc.android.tooc.model.mypage.SimpleStoreResponseDtosData
 import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.mypage.LikeFragment
