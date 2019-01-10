@@ -19,6 +19,7 @@ import com.hyeran.android.travely_manager.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve_detail.view.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,6 +58,8 @@ class ReserveDetailFragment : Fragment() {
     private val REQ_CODE_SELECT_IMAGE = 100
 
     lateinit var photoStorageDetailRVAdapter: PhotoStorageDetailRVAdapter
+    var pick_reserveIdx = 0.toLong()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_reserve_detail, container, false)
@@ -350,6 +353,11 @@ class ReserveDetailFragment : Fragment() {
                             Glide.with(this@ReserveDetailFragment)
                                     .load(response.body()!!.userImgUrl)
                                     .into(iv_profile_reservedetail)
+
+                            //짐 보관, 픽업
+                            pick_reserveIdx = response.body()!!.reserveIdx
+
+
                         }
                         400 -> {
                             toast("예약 및 보관내역 없음")
@@ -368,5 +376,39 @@ class ReserveDetailFragment : Fragment() {
             }
 
         })
+    }
+
+
+    private fun putStorePickupResponse() {
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        val putStorePickUpResponse = networkService.putStorePickUpResponse(jwt, pick_reserveIdx)
+
+        putStorePickUpResponse!!.enqueue(object : Callback<Any> {
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+
+                            toast("짐 보관 및 픽업 성공")
+                        }
+                        401 -> {
+                            toast("인증 에러")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+
     }
 }
