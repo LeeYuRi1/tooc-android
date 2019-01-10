@@ -35,7 +35,6 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
     lateinit var networkService: NetworkService
 
     var reviewStoreIdx = 0
-    //var writeReviewDialog = WriteReviewDialog(ctx)
 
     var storeIdx : Int=0
     var isAvailable = true
