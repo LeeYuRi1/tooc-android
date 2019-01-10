@@ -334,10 +334,10 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         // 위치 정보가 없을 때는 업데이트 안 함
         // 상황에 따라 짧아질 수 있음, 정확하지 않음
         // 다른 앱에서 짧은 인터벌로 위치 정보를 요청하면 짧아질 수 있음
-        locationRequest2.interval = 10000
+//        locationRequest2.interval = 10000
 
         // 정확함. 이것보다 짧은 업데이트는 하지 않음
-        locationRequest2.fastestInterval = 5000
+//        locationRequest2.fastestInterval = 5000
     }
 
     @SuppressLint("MissingPermission")
