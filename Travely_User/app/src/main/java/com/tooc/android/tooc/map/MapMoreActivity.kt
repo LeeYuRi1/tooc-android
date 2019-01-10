@@ -38,7 +38,7 @@ class MapMoreActivity : AppCompatActivity() {
 
     var storeIdx: Int = 0
 
-    val dataList : ArrayList<StoreImageResponseData> by lazy {
+    val dataList: ArrayList<StoreImageResponseData> by lazy {
         ArrayList<StoreImageResponseData>()
     }
 
@@ -57,7 +57,6 @@ class MapMoreActivity : AppCompatActivity() {
         lng = intent.getDoubleExtra("lng", 0.0)
 //        toast(lat.toString() + "!@#!@#!@#!#" + lng.toString())
         setOnBtnClickListener()
-
 
 
     }
@@ -84,11 +83,11 @@ class MapMoreActivity : AppCompatActivity() {
         }
 
         btn_map_more_act_favorite.setOnClickListener {
-            if(btn_map_more_act_favorite.isSelected == true){
+            if (btn_map_more_act_favorite.isSelected == true) {
                 putFavoriteResponse()
-            }else if(btn_map_more_act_favorite.isSelected == false){
+            } else if (btn_map_more_act_favorite.isSelected == false) {
                 putFavoriteResponse()
-            }else {
+            } else {
 
             }
         }
@@ -197,52 +196,53 @@ class MapMoreActivity : AppCompatActivity() {
                             }
 
 
-                    }
-                    500 -> {
-                }
-                    else -> {
-                }
-                }
-            }
-        }
-    })
-}
-
-private fun putFavoriteResponse() {
-
-    var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-
-    val putStoreFavoriteResponse = networkService.putStoreFavoriteResponse(jwt, storeIdx)
-
-    putStoreFavoriteResponse!!.enqueue(object : Callback<StoreFavoriteResponseData> {
-        override fun onFailure(call: Call<StoreFavoriteResponseData>, t: Throwable) {
-        }
-
-        override fun onResponse(call: Call<StoreFavoriteResponseData>, response: Response<StoreFavoriteResponseData>) {
-            response?.let {
-                when (it.code()) {
-                    200 -> {
-                        //favorite
-                        if (response.body()!!.isFavorite == 1) {   //즐겨찾기됨
-                            btn_map_more_act_favorite.isSelected = true
-
-                        } else if (response.body()!!.isFavorite == -1) {   //즐겨찾기안됨
-                            btn_map_more_act_favorite.isSelected = false
-
-                        } else {
+                        }
+                        500 -> {
+                        }
+                        else -> {
                         }
                     }
-                    400 -> {
-                    }
-                    500 -> {
-                    }
-                    else -> {
+                }
+            }
+        })
+    }
+
+    private fun putFavoriteResponse() {
+
+
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        val putStoreFavoriteResponse = networkService.putStoreFavoriteResponse(jwt, storeIdx)
+
+        putStoreFavoriteResponse!!.enqueue(object : Callback<StoreFavoriteResponseData> {
+            override fun onFailure(call: Call<StoreFavoriteResponseData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<StoreFavoriteResponseData>, response: Response<StoreFavoriteResponseData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            //favorite
+                            if (response.body()!!.isFavorite == 1) {   //즐겨찾기됨
+                                btn_map_more_act_favorite.isSelected = true
+
+                            } else if (response.body()!!.isFavorite == -1) {   //즐겨찾기안됨
+                                btn_map_more_act_favorite.isSelected = false
+
+                            } else {
+                            }
+                        }
+                        400 -> {
+                        }
+                        500 -> {
+                        }
+                        else -> {
+                        }
                     }
                 }
             }
-        }
 
-    })
+        })
 
-}
+    }
 }

@@ -30,8 +30,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.WelcomeActivity" />
-        <activity android:name=".login.ExplanationActivity"></activity>
+        <activity android:name=".mypage.HowtouseActivity" />
+
     </application>
 
 </manifest>

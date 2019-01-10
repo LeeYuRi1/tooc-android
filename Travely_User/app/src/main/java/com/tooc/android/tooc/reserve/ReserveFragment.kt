@@ -71,11 +71,7 @@ class ReserveFragment : Fragment() {
         var args: Bundle? = arguments
         storeIdx = args!!.getInt("storeIdx")
 
-        toast("storeIdx = " + storeIdx.toString())
-
         getReservationPriceListResponse()
-
-//        calPrice()
 
         //피커뷰와 데이터 통신을 하기 위한 코드
 
@@ -298,7 +294,7 @@ class ReserveFragment : Fragment() {
                             toast("200")
                         }
                         201 -> {
-                            toast("예약 성공")
+                            toast("예약되었습니다.")
                             if (rb_kakaopay_reserve.isChecked) {
                                 val intent: Intent = Intent(context, KakaopayWebView::class.java)
                                 startActivityForResult(intent, 9999)
@@ -349,7 +345,7 @@ class ReserveFragment : Fragment() {
     fun getStoreResponseInfo() { //상가 세부정보 조회
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var getStoreInfo = networkService.getStoreResponse(jwt, storeIdx)
-        toast("In getStoreResponseInfo" + storeIdx)
+//        toast("In getStoreResponseInfo" + storeIdx)
         getStoreInfo.enqueue(object : Callback<StoreResponseData> {
             override fun onFailure(call: Call<StoreResponseData>, t: Throwable) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

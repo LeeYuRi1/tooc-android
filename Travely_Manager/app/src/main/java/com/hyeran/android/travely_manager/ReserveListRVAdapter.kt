@@ -2,6 +2,8 @@ package com.hyeran.android.travely_manager
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
+import android.support.v4.app.BundleCompat
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -32,7 +34,6 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
         var paymentStatus: String
         var date : String = dateFormat.format(dataList[position].startTime)
         var time : String = timeFormat.format(dataList[position].startTime)
-
         //TODO 의심리스트!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         var amount : Int =0
         for(i in 0..dataList[position].bagDtos.size-1){
@@ -55,20 +56,23 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
         holder.r_view.setOnClickListener {
             val manager = (ctx as AppCompatActivity).supportFragmentManager
             val transaction : FragmentTransaction = manager.beginTransaction()
-            transaction.replace(R.id.frame_main, ReserveDetailFragment())
+            var args =Bundle()
+            args.putString("reserveIdx",dataList[position].reserveIdx.toString())
+            var fragment = ReserveDetailFragment()
+            fragment.arguments = args
+            transaction.replace(R.id.frame_main, fragment)
+            transaction.addToBackStack(null)
             transaction.commit()
         }
     }
 
     inner class r_Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-//        val r_profile : ImageView = itemView.findViewById(R.id.iv_profile_item_reserve_list) as ImageView
         val r_name : TextView = itemView.findViewById(R.id.tv_name_item_reserve_list) as TextView
         val r_payment_status : TextView = itemView.findViewById(R.id.tv_payment_status_item_reserve_list) as TextView
         val r_date : TextView = itemView.findViewById(R.id.tv_date_item_reserve_list) as TextView
         val r_price : TextView = itemView.findViewById(R.id.tv_price_item_reserve_list) as TextView
         val r_amount : TextView = itemView.findViewById(R.id.tv_amount_item_reserve_list) as TextView
         val r_time : TextView = itemView.findViewById(R.id.tv_time_item_reserve_list) as TextView
-
-        val r_view : RelativeLayout = itemView.findViewById(R.id.item_reserve_list) as RelativeLayout
+        val r_view : RelativeLayout = itemView.findViewById(R.id.rv_reserve_list_btn) as RelativeLayout
     }
 }

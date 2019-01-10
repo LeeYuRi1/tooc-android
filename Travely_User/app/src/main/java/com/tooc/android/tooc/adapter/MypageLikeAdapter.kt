@@ -11,12 +11,18 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
+import com.tooc.android.tooc.R.id.btn_map_more_act_favorite
+import com.tooc.android.tooc.map.MapMoreActivity
 import com.tooc.android.tooc.model.mypage.SimpleStoreResponseDtosData
+import com.tooc.android.tooc.model.mypage.StoreFavoriteResponseData
 import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.mypage.LikeFragment
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.reserve.ReserveFragment
+import kotlinx.android.synthetic.main.activity_map_more.*
+import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +34,9 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
     var storeIdx : Int=0
     var isAvailable = true
     var likeFragment = LikeFragment()
+
+
+    lateinit var delete : Any
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_like, parent, false)
@@ -76,8 +85,13 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
 
         holder.like_heart.isSelected = true
 
+        //즐겨찾기 취소
         holder.like_heart.setOnClickListener {
             holder.like_heart.isSelected = false
+ //           delete = this.dataList.get(position)
+ //           (ctx as MapMoreActivity).putFavoriteResponse()
+//            likeFragment.likedelete = delete
+
         }
 
         holder.like_reserve_btn.setOnClickListener{
@@ -141,4 +155,6 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
             }
         })
     }
+
+
 }

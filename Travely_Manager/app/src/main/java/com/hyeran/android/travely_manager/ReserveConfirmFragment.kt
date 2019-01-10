@@ -29,7 +29,6 @@ class ReserveConfirmFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_reserve_confirm, container, false)
 
-
         v.iv_qrcode_scan_reserve_confirm.setOnClickListener {
             IntentIntegrator(activity).initiateScan()
         }
