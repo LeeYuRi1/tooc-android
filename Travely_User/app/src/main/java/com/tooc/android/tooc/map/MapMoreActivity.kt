@@ -9,7 +9,7 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.R.drawable.img_default_big
-import com.tooc.android.tooc.R.id.btn_map_more_act_favorite
+import com.tooc.android.tooc.R.id.*
 import com.tooc.android.tooc.adapter.PhotoRecylerViewAdapter
 import com.tooc.android.tooc.adapter.ReviewRecyclerViewAdapter
 import com.tooc.android.tooc.data.PhotoData
@@ -85,12 +85,15 @@ class MapMoreActivity : AppCompatActivity() {
         btn_map_more_act_favorite.setOnClickListener {
             if (btn_map_more_act_favorite.isSelected == true) {
                 putFavoriteResponse()
-            } else if (btn_map_more_act_favorite.isSelected == false) {
+                btn_map_more_act_favorite.isSelected = false
+            }else if(btn_map_more_act_favorite.isSelected == false){
                 putFavoriteResponse()
-            } else {
+                btn_map_more_act_favorite.isSelected = true
+            }else {
+            }
 
             }
-        }
+
     }
 
     private fun init() {
@@ -222,15 +225,7 @@ class MapMoreActivity : AppCompatActivity() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            //favorite
-                            if (response.body()!!.isFavorite == 1) {   //즐겨찾기됨
-                                btn_map_more_act_favorite.isSelected = true
 
-                            } else if (response.body()!!.isFavorite == -1) {   //즐겨찾기안됨
-                                btn_map_more_act_favorite.isSelected = false
-
-                            } else {
-                            }
                         }
                         400 -> {
                         }
