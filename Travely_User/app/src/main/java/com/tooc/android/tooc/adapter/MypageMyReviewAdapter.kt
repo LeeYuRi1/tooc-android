@@ -95,16 +95,12 @@ class MypageMyReviewAdapter(val ctx: Context, val dataList : ArrayList<ReviewLoo
                         200 -> {
                             this@MypageMyReviewAdapter.dataList.remove(delete)
                             this@MypageMyReviewAdapter.notifyDataSetChanged()
-                            Toast.makeText(ctx, "리뷰 삭제 성공", Toast.LENGTH_SHORT).show()
                         }
                         400 -> {
-                            Toast.makeText(ctx, "잘못된 접근", Toast.LENGTH_SHORT).show()
                         }
                         500 -> {
-                            Toast.makeText(ctx, "서버에러", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            Toast.makeText(ctx, "error", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

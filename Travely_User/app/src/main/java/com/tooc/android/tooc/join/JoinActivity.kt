@@ -202,7 +202,6 @@ class JoinActivity : AppCompatActivity() {
                 response?.let {
                     when (it.code()) {
                         201 -> {
-                            toast("회원가입이 완료되었습니다.")
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
@@ -220,10 +219,8 @@ class JoinActivity : AppCompatActivity() {
                             toast("중복된 이메일입니다.")
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }

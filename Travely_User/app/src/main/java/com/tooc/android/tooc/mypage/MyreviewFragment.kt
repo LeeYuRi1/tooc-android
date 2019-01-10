@@ -91,21 +91,16 @@ class MyreviewFragment:Fragment() {
                             } else {
 
                             }
-                            toast("리뷰 조회 성공")
                         }
                         204 -> {
-                            toast("작성 리뷰 없음")
                         }
                         400 -> {
-                            toast("잘못된 접근")
                         }
                         500 -> {
-                            toast("서버에러")
                         }
                         204 -> {
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }
