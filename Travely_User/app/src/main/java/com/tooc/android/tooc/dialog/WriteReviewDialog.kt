@@ -34,8 +34,6 @@ class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.d("TAGGGGGGGGGGGGGGGGGGG","In Dialog storeIdx = "+storeIdx)
-
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_writereview)
@@ -68,10 +66,10 @@ class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
         var reviewSave: ReviewSaveResponseData
 
         reviewSave = ReviewSaveResponseData(storeIdx, content, rating)   //storeidx꺼내서 쓰기
+//        Log.d("TAGGGG","storeIdx = "+storeIdx+"   content")
 
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         val postReviewSaveResponse = networkService.postReviewSaveResponse("application/json", jwt, reviewSave)
-
 
         postReviewSaveResponse.enqueue(object : Callback<ReviewSaveResponseData> {
             override fun onFailure(call: Call<ReviewSaveResponseData>?, t: Throwable?) {
@@ -80,7 +78,12 @@ class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
             override fun onResponse(call: Call<ReviewSaveResponseData>?, response: Response<ReviewSaveResponseData>?) {
                 response?.let {
                     when (it.code()) {
+                        200 -> {
+                            dismiss()
+                            Toast.makeText(context, "리뷰 OK", Toast.LENGTH_SHORT).show()
+                        }
                         201 -> {
+                            dismiss()
                             Toast.makeText(context, "리뷰 저장 성공", Toast.LENGTH_SHORT).show()
                         }
                         400 -> {
@@ -90,8 +93,6 @@ class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
                             Toast.makeText(context, "서버 에러", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            //Toast.makeText(context, reviewSave.toString(), Toast.LENGTH_SHORT).show()
-                            Log.d("ddddddddd","error:   "+it.message())
                             Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
                         }
                     }

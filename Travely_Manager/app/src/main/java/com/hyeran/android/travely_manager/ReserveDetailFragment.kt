@@ -198,8 +198,7 @@ class ReserveDetailFragment : Fragment() {
                                     .load(response.body()!!.userImgUrl)
                                     .into(iv_profile_reservedetail)
 
-
-                            //짐 보관 및 픽업
+                            //짐 보관, 픽업
                             pick_reserveIdx = response.body()!!.reserveIdx
 
 
