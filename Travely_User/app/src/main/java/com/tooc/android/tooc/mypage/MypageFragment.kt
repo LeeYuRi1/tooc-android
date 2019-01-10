@@ -129,10 +129,8 @@ class MypageFragment : Fragment() {
                                     .into(iv_profile_mypage)
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }
@@ -182,10 +180,8 @@ class MypageFragment : Fragment() {
                             }
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }
