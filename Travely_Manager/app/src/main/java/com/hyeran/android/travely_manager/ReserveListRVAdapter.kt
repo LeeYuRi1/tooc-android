@@ -58,13 +58,15 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
             val transaction : FragmentTransaction = manager.beginTransaction()
             var args =Bundle()
             args.putString("reserveIdx",dataList[position].reserveIdx.toString())
-            transaction.replace(R.id.frame_main, ReserveDetailFragment())
+            var fragment = ReserveDetailFragment()
+            fragment.arguments = args
+            transaction.replace(R.id.frame_main, fragment)
+            transaction.addToBackStack(null)
             transaction.commit()
         }
     }
 
     inner class r_Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-//        val r_profile : ImageView = itemView.findViewById(R.id.iv_profile_item_reserve_list) as ImageView
         val r_name : TextView = itemView.findViewById(R.id.tv_name_item_reserve_list) as TextView
         val r_payment_status : TextView = itemView.findViewById(R.id.tv_payment_status_item_reserve_list) as TextView
         val r_date : TextView = itemView.findViewById(R.id.tv_date_item_reserve_list) as TextView

@@ -71,11 +71,7 @@ class ReserveFragment : Fragment() {
         var args: Bundle? = arguments
         storeIdx = args!!.getInt("storeIdx")
 
-//        toast("storeIdx = " + storeIdx.toString())
-
         getReservationPriceListResponse()
-
-//        calPrice()
 
         //피커뷰와 데이터 통신을 하기 위한 코드
 
