@@ -50,7 +50,7 @@ interface NetworkService{
     @PUT("/api/owner/reserve/{reserveIdx}")
     fun putStorePickUpResponse(
             @Header("jwt") jwt: String?,
-            @Path("reserveIdx") reserveIdx: Int
+            @Path("reserveIdx") reserveIdx: Long
     ) : Call<Any>
 
     // 예약코드 조회

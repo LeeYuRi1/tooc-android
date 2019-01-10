@@ -48,6 +48,10 @@ class ReserveCancelPasswordDialog(val ctx : Context?) : Dialog(ctx){
                 dismiss()
             }
         }
+
+        iv_x_cancel_password.setOnClickListener {
+            dismiss()
+        }
     }
 
     private fun init() {

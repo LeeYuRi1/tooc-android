@@ -28,7 +28,7 @@ class MyreviewFragment:Fragment() {
     lateinit var mypageMyReviewAdapter: MypageMyReviewAdapter
 
     lateinit var v : View
-    var  reviewIdx : Int =0
+
     val dataList : ArrayList<ReviewLookupData> by lazy {
         ArrayList<ReviewLookupData>()
     }
