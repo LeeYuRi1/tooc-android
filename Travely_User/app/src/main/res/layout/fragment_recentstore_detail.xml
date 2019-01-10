@@ -148,65 +148,6 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView6"
                     app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
-                <TextView
-                    android:id="@+id/textView76"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="년 "
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/tv_put_year_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_put_year_recentdetail" />
-
-                <TextView
-                    android:id="@+id/tv_put_month_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="10"
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView76"
-                    app:layout_constraintTop_toTopOf="@+id/textView76" />
-
-                <TextView
-                    android:id="@+id/textView78"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="월 "
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/tv_put_month_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_put_month_recentdetail" />
-
-                <TextView
-                    android:id="@+id/tv_put_day_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="23"
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView78"
-                    app:layout_constraintTop_toTopOf="@+id/textView78" />
-
-                <TextView
-                    android:id="@+id/textView80"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="일 "
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/tv_put_day_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_put_day_recentdetail" />
-
-                <TextView
-                    android:id="@+id/tv_put_weekday_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="수요일"
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView80"
-                    app:layout_constraintTop_toTopOf="@+id/textView80" />
 
                 <TextView
                     android:id="@+id/tv_put_ampm_recentdetail"
@@ -219,45 +160,6 @@
                     app:layout_constraintStart_toStartOf="@+id/tv_put_year_recentdetail"
                     app:layout_constraintTop_toBottomOf="@+id/tv_put_year_recentdetail" />
 
-                <TextView
-                    android:id="@+id/tv_put_hour_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="07"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/tv_put_ampm_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_put_ampm_recentdetail" />
-
-                <TextView
-                    android:id="@+id/textView84"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="시 "
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/tv_put_hour_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_put_hour_recentdetail" />
-
-                <TextView
-                    android:id="@+id/tv_put_minutes_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="55"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView84"
-                    app:layout_constraintTop_toTopOf="@+id/textView84" />
-
-                <TextView
-                    android:id="@+id/textView86"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="분"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/tv_put_minutes_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_put_minutes_recentdetail" />
 
                 <TextView
                     android:id="@+id/tv_find_year_recentdetail"
@@ -271,65 +173,7 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView6"
                     app:layout_constraintTop_toBottomOf="@+id/tv_put_ampm_recentdetail" />
 
-                <TextView
-                    android:id="@+id/textView89"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="년 "
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/tv_find_year_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_find_year_recentdetail" />
 
-                <TextView
-                    android:id="@+id/tv_find_month_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="10"
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView89"
-                    app:layout_constraintTop_toTopOf="@+id/textView89" />
-
-                <TextView
-                    android:id="@+id/textView91"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="월 "
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/tv_find_month_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_find_month_recentdetail" />
-
-                <TextView
-                    android:id="@+id/tv_find_day_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="24"
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView91"
-                    app:layout_constraintTop_toTopOf="@+id/textView91" />
-
-                <TextView
-                    android:id="@+id/textView93"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="일 "
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/tv_find_day_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_find_day_recentdetail" />
-
-                <TextView
-                    android:id="@+id/tv_find_weekday_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="목요일"
-                    android:textColor="#262626"
-                    app:layout_constraintStart_toEndOf="@+id/textView93"
-                    app:layout_constraintTop_toTopOf="@+id/textView93" />
 
                 <TextView
                     android:id="@+id/tv_find_ampm_recentdetail"
@@ -342,45 +186,6 @@
                     app:layout_constraintStart_toStartOf="@+id/tv_find_year_recentdetail"
                     app:layout_constraintTop_toBottomOf="@+id/tv_find_year_recentdetail" />
 
-                <TextView
-                    android:id="@+id/tv_find_hour_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="02"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/tv_find_ampm_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_find_ampm_recentdetail" />
-
-                <TextView
-                    android:id="@+id/textView97"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="시 "
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/tv_find_hour_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_find_hour_recentdetail" />
-
-                <TextView
-                    android:id="@+id/tv_find_minutes_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="55"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView97"
-                    app:layout_constraintTop_toTopOf="@+id/textView97" />
-
-                <TextView
-                    android:id="@+id/textView99"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="분"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/tv_find_minutes_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_find_minutes_recentdetail" />
 
                 <TextView
                     android:id="@+id/textView101"
@@ -505,7 +310,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView102" />
 
                 <TextView
-                    android:id="@+id/textView112"
+                    android:id="@+id/textView1120"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
@@ -516,65 +321,26 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline45"
                     app:layout_constraintTop_toBottomOf="@+id/view29" />
 
-                <TextView
-                    android:id="@+id/tv_totaltime_hour_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="3"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView112"
-                    app:layout_constraintTop_toTopOf="@+id/textView112" />
 
-                <TextView
-                    android:id="@+id/textView114"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="시간 "
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/tv_totaltime_hour_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_totaltime_hour_recentdetail" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_total_hour_recentdetail"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/kopub_bold"-->
+                    <!--android:text="4"-->
+                    <!--android:textColor="#262626"-->
+                    <!--app:layout_constraintEnd_toStartOf="@+id/textView118"-->
+                    <!--app:layout_constraintTop_toTopOf="@+id/textView118" />-->
 
-                <TextView
-                    android:id="@+id/tv_totaltime_minutes_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="51"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/textView114"
-                    app:layout_constraintTop_toTopOf="@+id/textView114" />
-
-                <TextView
-                    android:id="@+id/textView116"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="분"
-                    android:textColor="#8d8d8d"
-                    app:layout_constraintStart_toEndOf="@+id/tv_totaltime_minutes_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_totaltime_minutes_recentdetail" />
-
-                <TextView
-                    android:id="@+id/tv_total_hour_recentdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="4"
-                    android:textColor="#262626"
-                    app:layout_constraintEnd_toStartOf="@+id/textView118"
-                    app:layout_constraintTop_toTopOf="@+id/textView118" />
-
-                <TextView
-                    android:id="@+id/textView118"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kopub_bold"
-                    android:text="시간 기본 요금 : "
-                    android:textColor="#262626"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_total_num_recentdetail"
-                    app:layout_constraintTop_toTopOf="@+id/tv_total_num_recentdetail" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textView118"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/kopub_bold"-->
+                    <!--android:text="시간 기본 요금 : "-->
+                    <!--android:textColor="#262626"-->
+                    <!--app:layout_constraintEnd_toStartOf="@+id/tv_total_num_recentdetail"-->
+                    <!--app:layout_constraintTop_toTopOf="@+id/tv_total_num_recentdetail" />-->
 
                 <TextView
                     android:id="@+id/tv_total_num_recentdetail"
@@ -614,9 +380,9 @@
                     android:fontFamily="@font/kopub_bold"
                     android:text="원"
                     android:textColor="#262626"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView112"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView1120"
                     app:layout_constraintEnd_toStartOf="@+id/guideline44"
-                    app:layout_constraintTop_toTopOf="@+id/textView112" />
+                    app:layout_constraintTop_toTopOf="@+id/textView1120" />
 
                 <View
                     android:id="@+id/view30"
@@ -626,7 +392,7 @@
                     android:background="#e7e7e7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView112" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView1120" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -829,7 +595,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/iv_store_guide_recentdetail"
+                    android:id="@+id/iv_store_guide_recentdetail_find_road"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -865,7 +631,7 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline48"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <com.google.android.gms.maps.MapView
                     android:id="@+id/iv_store_map_recentdetail"
                     android:layout_width="0dp"
                     android:layout_height="152dp"
@@ -896,7 +662,8 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline48"
                     app:layout_constraintTop_toBottomOf="@+id/tv_store_name_recentdetail">
 
-                    <TextView
+                    <ImageView
+                        android:id="@+id/iv_open_close_sign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"

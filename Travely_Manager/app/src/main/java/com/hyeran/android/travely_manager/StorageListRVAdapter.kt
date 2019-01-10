@@ -1,6 +1,7 @@
 package com.hyeran.android.travely_manager
 
 import android.content.Context
+import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
@@ -53,7 +54,12 @@ class StorageListRVAdapter(val ctx : Context?, val dataList : ArrayList<StoreRes
         holder.s_view.setOnClickListener {
             val manager = (ctx as AppCompatActivity).supportFragmentManager
             val transaction: FragmentTransaction = manager.beginTransaction()
-            transaction.replace(R.id.frame_main, ReserveDetailFragment())
+            var args = Bundle()
+            var fragment = ReserveDetailFragment()
+            args.putString("reserveIdx",dataList[position].reserveIdx.toString())
+            fragment.arguments = args
+            transaction.replace(R.id.frame_main, fragment)
+            transaction.addToBackStack(null)
             transaction.commit()
         }
     }

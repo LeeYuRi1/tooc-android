@@ -34,12 +34,10 @@ import java.io.*
 
 class ReserveDetailFragment : Fragment() {
 
-
-    lateinit var networkService: NetworkService
-
-    lateinit var v: View
-
-    var reserveCode: String = ""
+    lateinit var networkService : NetworkService
+    lateinit var v : View
+    var reserveCode : String = ""
+    var reserveIdx : String = ""
 
     private val REQ_CODE_SELECT_IMAGE = 100
 
@@ -68,11 +66,17 @@ class ReserveDetailFragment : Fragment() {
 //        }
 
         var bundle: Bundle? = arguments
-        reserveCode = bundle!!.getString("reserveCode")
-
+        reserveCode = bundle!!.getString("reserveCode","")
+        reserveIdx = bundle!!.getString("reserveIdx","")
+        Log.d("TAGGGG",reserveIdx)
         v.tv_number_reservedetail.text = reserveCode
 
-        getStoreIdxReserveCodeResponse()
+        if(reserveCode!="") {
+            getStoreIdxReserveCodeResponse()
+        }
+        else{
+            getDetailReserveResponse()
+        }
 
         var dataList: ArrayList<BagImgDtos> = ArrayList()
 //        dataList.add(BagImgDtos(0))
@@ -178,7 +182,6 @@ class ReserveDetailFragment : Fragment() {
             }
         })
     }
-
     private fun getStoreIdxReserveCodeResponse() {
 
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
@@ -208,7 +211,6 @@ class ReserveDetailFragment : Fragment() {
                             var totalCnt = 0
                             var carrierCnt = 0
                             var bagCnt = 0
-
 
                             Log.d("@@@@@@@@@@@@@@@@TAG", bagDtoList_.toString())
 
@@ -355,6 +357,141 @@ class ReserveDetailFragment : Fragment() {
                 }
             }
 
+        })
+
+    }
+    private fun getDetailReserveResponse(){
+        var jwt = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+        var getDetailReserveResponse = networkService.getDetailReserveResponse(jwt,reserveIdx.toInt())
+        getDetailReserveResponse.enqueue(object : Callback<ReserveDetailResponseData>{
+            override fun onFailure(call: Call<ReserveDetailResponseData>, t: Throwable) {
+                toast("onFailure")
+            }
+
+            override fun onResponse(call: Call<ReserveDetailResponseData>, response: Response<ReserveDetailResponseData>) {
+                response?.let {
+                    when(it.code()){
+                        200->{
+                            toast("예약코드 조회 성공")
+                            tv_name_reservedetail.text = response.body()!!.userName
+                            tv_phone_reservedetail.text = response.body()!!.userPhone
+                            if (response.body()!!.payType == "CASH") {
+                                tv_payment_reservedetail.text = "현금"
+                            } else {
+                                tv_payment_reservedetail.text = "카카오페이"
+                            }
+                            var bagDtoList_: ArrayList<BagDtos> = response.body()!!.bagDtoList
+                            var totalCnt = 0
+                            var carrierCnt = 0
+                            var bagCnt = 0
+
+                            Log.d("@@@@@@@@@@@@@@@@TAG", bagDtoList_.toString())
+
+                            for (i in 0 until bagDtoList_.size) {
+                                if (bagDtoList_[i].bagType == "CARRIER") {
+                                    totalCnt += bagDtoList_[i].bagCount.toInt()
+                                    carrierCnt = bagDtoList_[i].bagCount.toInt()
+                                    tv_carrier_num_reservedetail.text = carrierCnt.toString()
+                                    Log.d("@@@@@@@@@@@@@CARRIER", bagDtoList_[i].bagCount.toInt().toString())
+                                } else {
+                                    totalCnt += bagDtoList_[i].bagCount.toInt()
+                                    bagCnt = bagDtoList_[i].bagCount.toInt()
+                                    tv_bag_num_reservedetail.text = bagCnt.toString()
+                                    Log.d("@@@@@@@@@@@@@@BAG", bagDtoList_[i].bagCount.toInt().toString())
+                                }
+                            }
+                            tv_num_reservedetail.text = totalCnt.toString()
+
+                            var priceUnit = response.body()!!.price / totalCnt
+
+                            tv_carrier_money_reservedetail.text = (priceUnit * carrierCnt).toString()
+                            tv_bag_money_reservedetail.text = (priceUnit * bagCnt).toString()
+
+                            tv_total_num_reservedetail.text = totalCnt.toString()
+                            tv_total_money_reservedetail.text = priceUnit.toString()
+                            tv_payment_amount_reservedetail.text = response.body()!!.price.toString()
+
+                            toast(response.body()!!.progressType)
+
+                            if (response.body()!!.progressType == "DONE") {
+                                iv_no_payment_reservedetail.setImageResource(R.drawable.reserve_pay_rect_gray)
+                                btn_picture_reservedetail.visibility = View.INVISIBLE
+                            }
+
+                            //(
+                            var allDateFormat = SimpleDateFormat("yy년 MM월 dd일 E요일")
+                            var allTimeFormat = SimpleDateFormat("aa HH시 mm분")
+                            var StoreDateText = allDateFormat.format(response.body()!!.startTime)
+                            var StoreTimeText = allTimeFormat.format(response.body()!!.startTime)
+                            var TakeDateText = allDateFormat.format(response.body()!!.endTime)
+                            var TakeTimeText = allTimeFormat.format(response.body()!!.endTime)
+
+                            tv_startday_reservedetail.text = StoreDateText
+                            tv_starttime_reservedetail.text = StoreTimeText
+                            tv_endday_reservedetail.text = TakeDateText
+                            tv_endtime_reservedetail.text = TakeTimeText
+
+                            //총 시간                             textView112
+                            var zero = 0
+//                            var allDateStamp = SimpleDateFormat("총 yy d일 HH시간 mm분")
+                            var minTime = (response.body()!!.endTime - response.body()!!.startTime)
+                            var allDay = minTime / 86400000
+                            var allHour: Long
+                            var allMinute: Long
+
+
+                            if (allDay == zero.toLong()) {
+                                allHour = (response.body()!!.endTime - response.body()!!.startTime) / 3600000
+                                if (allHour == zero.toLong()) {
+                                    allMinute = minTime / 60000
+                                    tv_total_day_reservedetail.text = allMinute.toString() + "분"
+                                } else {
+                                    var allMinute = (minTime - (allHour * 3600000)) / 60000
+                                    if (allMinute == zero.toLong()) {
+                                        tv_total_day_reservedetail.text = allHour.toString() + "시간 "
+                                    } else {
+                                        tv_total_day_reservedetail.text = allHour.toString() + "시간 " + allMinute + "분"
+                                    }
+                                }
+                            } else {
+                                allHour = (minTime - (allDay * 86400000)) / 3600000
+                                if (allHour == zero.toLong()) {
+                                    allMinute = (minTime - (allDay * 86400000)) / 60000
+                                    if (allMinute == zero.toLong()) {
+                                        tv_total_day_reservedetail.text = allDay.toString() + "일"
+                                    } else {
+                                        tv_total_day_reservedetail.text = allDay.toString() + "일 " + allMinute + "분"
+                                    }
+                                } else {
+                                    allMinute = (minTime - (allDay * 86400000) - (allHour * 3600000)) / 60000
+                                    if (allMinute == zero.toLong()) {
+                                        tv_total_day_reservedetail.text = allDay.toString() + "일 " + allHour + "시간 "
+                                    } else {
+                                        tv_total_day_reservedetail.text = allDay.toString() + "일 " + allHour + "시간 " + allMinute + "분"
+                                    }
+                                }
+                            }
+
+                            Glide.with(this@ReserveDetailFragment)
+                                    .load(response.body()!!.userImgUrl)
+                                    .into(iv_profile_reservedetail)
+
+                            //짐 보관, 픽업
+                            pick_reserveIdx = response.body()!!.reserveIdx
+
+                        }
+                        403->{
+                            toast("인증에러")
+                        }
+                        500->{
+                            toast("서버에러")
+                        }
+                        else->{
+                            toast("Else Error")
+                        }
+                    }
+                }
+            }
         })
 
     }
