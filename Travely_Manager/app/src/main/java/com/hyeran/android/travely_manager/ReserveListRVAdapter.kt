@@ -2,6 +2,8 @@ package com.hyeran.android.travely_manager
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
+import android.support.v4.app.BundleCompat
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -32,7 +34,6 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
         var paymentStatus: String
         var date : String = dateFormat.format(dataList[position].startTime)
         var time : String = timeFormat.format(dataList[position].startTime)
-
         //TODO 의심리스트!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         var amount : Int =0
         for(i in 0..dataList[position].bagDtos.size-1){
@@ -55,6 +56,8 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
         holder.r_view.setOnClickListener {
             val manager = (ctx as AppCompatActivity).supportFragmentManager
             val transaction : FragmentTransaction = manager.beginTransaction()
+            var args =Bundle()
+            args.putString("reserveIdx",dataList[position].reserveIdx.toString())
             transaction.replace(R.id.frame_main, ReserveDetailFragment())
             transaction.commit()
         }
@@ -68,7 +71,6 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
         val r_price : TextView = itemView.findViewById(R.id.tv_price_item_reserve_list) as TextView
         val r_amount : TextView = itemView.findViewById(R.id.tv_amount_item_reserve_list) as TextView
         val r_time : TextView = itemView.findViewById(R.id.tv_time_item_reserve_list) as TextView
-
-        val r_view : RelativeLayout = itemView.findViewById(R.id.item_reserve_list) as RelativeLayout
+        val r_view : RelativeLayout = itemView.findViewById(R.id.rv_reserve_list_btn) as RelativeLayout
     }
 }

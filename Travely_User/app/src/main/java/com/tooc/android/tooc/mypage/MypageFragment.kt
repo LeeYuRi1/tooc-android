@@ -42,9 +42,7 @@ class MypageFragment : Fragment() {
             return mInstance!!
         }
     }
-
     var dataList= ArrayList<StoreInfoResponseData>()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_mypage, container, false)
         init()
@@ -57,8 +55,6 @@ class MypageFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
-
-
     }
 
     private fun init() {

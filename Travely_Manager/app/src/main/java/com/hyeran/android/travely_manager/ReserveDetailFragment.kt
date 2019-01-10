@@ -25,13 +25,9 @@ import java.text.SimpleDateFormat
 
 class ReserveDetailFragment : Fragment() {
 
-
     lateinit var networkService : NetworkService
-
     lateinit var v : View
-
     var reserveCode : String = ""
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_reserve_detail, container, false)
@@ -51,7 +47,7 @@ class ReserveDetailFragment : Fragment() {
 //        }
 
         var bundle : Bundle? = arguments
-        reserveCode = bundle!!.getString("reserveCode")
+        //reserveCode = bundle!!.getString("reserveCode")
 
         toast(reserveCode)
 

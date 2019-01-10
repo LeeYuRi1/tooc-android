@@ -33,6 +33,8 @@ import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.reserve.NoReserveFragment
 import com.tooc.android.tooc.reserve_state.ReserveStateFragment
+import kotlinx.android.synthetic.main.fragment_recentstore_detail.*
+import kotlinx.android.synthetic.main.fragment_recentstore_detail.view.*
 import kotlinx.android.synthetic.main.fragment_reserve_state.*
 import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.ctx
@@ -46,6 +48,8 @@ import java.text.SimpleDateFormat
 class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
     lateinit var networkService: NetworkService
     var reserveIdx: Int = 0
+    lateinit var v: View
+
     private lateinit var mMap3: GoogleMap
     private lateinit var mapView3: MapView
     private lateinit var mGoogleApiClient: GoogleApiClient
@@ -79,7 +83,7 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         MapsInitializer.initialize(context)
         mMap3 = googleMap
-        getgetStoreResponse(v)
+        getgetStoreResponse()
         if (ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap3.isMyLocationEnabled = true
@@ -118,7 +122,6 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
         arguments?.let { password = it.getString("password") }
     }
 
-    lateinit var v: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_recentstore_detail, container, false)
 
@@ -129,11 +132,11 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
         reserveIdx = args!!.getInt("reserveIdx")
         Log.d("TAGGGGGGGGGGGGGGGGGGG","reserveIdx !!="+reserveIdx + "^^^"+args!!.getInt("reserveIdx"))
 
-        mapView3 = v.findViewById(R.id.mv_store_map_reservestate)
+        mapView3 = v.findViewById(R.id.iv_store_map_recentdetail)
         mapView3.onCreate(savedInstanceState)
         mapView3.getMapAsync(this)
 
-        v.iv_store_guide_reservestate.setOnClickListener {
+        v.iv_store_guide_recentdetail_find_road.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(activity!!,
                             android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(activity!!,
@@ -165,7 +168,7 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
     }
 
     //통신
-    fun getgetStoreResponse(v: View) {
+    fun getgetStoreResponse() {
         var jwt = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var getStoreResponse = networkService.getRecentReservationReserveResponse(jwt, reserveIdx)
         getStoreResponse.enqueue(object : Callback<ReservationReserveCodeData> {
@@ -184,49 +187,47 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
                             bagDtos = response.body()!!.bagDtos
                             var latitude = response.body()!!.store.latitude
                             var longitude = response.body()!!.store.longitude
-                            if (stateType == "RESERVED") {
-                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_no)
-                                btn_reservecancel_to_dialog.visibility = View.VISIBLE
-                                const_luggage_reservestate.visibility = View.GONE
-                            } else if (stateType == "PAYED") {
-                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
-                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
-                                btn_reservecancel_to_dialog.visibility = View.VISIBLE
-                                const_luggage_reservestate.visibility = View.GONE
-                            } else if (stateType == "ARCHIVE") {
-                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
-                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
-                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
-                                btn_reservecancel_to_dialog.visibility = View.GONE
-                                const_luggage_reservestate.visibility = View.VISIBLE
-
-                            } else if (stateType == "PICKUP") {
-                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
-                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
-                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_fill)
-                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
-                                btn_reservecancel_to_dialog.visibility = View.GONE
-                                const_luggage_reservestate.visibility = View.VISIBLE
-                            } else if (stateType == "CANCEL") {
-                                ReserveCancelDialog(ctx).show()
-                                //ReserveCancelPasswordConfirmDialog(ctx).show()
-                            }
+//                            if (stateType == "RESERVED") {
+//                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_no)
+//                                btn_reservecancel_to_dialog.visibility = View.VISIBLE
+//                                const_luggage_reservestate.visibility = View.GONE
+//                            } else if (stateType == "PAYED") {
+//                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
+//                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
+//                                btn_reservecancel_to_dialog.visibility = View.VISIBLE
+//                                const_luggage_reservestate.visibility = View.GONE
+//                            } else if (stateType == "ARCHIVE") {
+//                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
+//                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
+//                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
+//                                btn_reservecancel_to_dialog.visibility = View.GONE
+//                                const_luggage_reservestate.visibility = View.VISIBLE
+//
+//                            } else if (stateType == "PICKUP") {
+//                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
+//                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
+//                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_fill)
+//                                iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
+//                                btn_reservecancel_to_dialog.visibility = View.GONE
+//                                const_luggage_reservestate.visibility = View.VISIBLE
+//                            } else if (stateType == "CANCEL") {
+//                                ReserveCancelDialog(ctx).show()
+//                                //ReserveCancelPasswordConfirmDialog(ctx).show()
+//                            }
                             //DATE
                             var dateTextFormat = SimpleDateFormat("yy년 MM월 dd일 EE요일")
-                            tv_put_year_reservestate.text = dateTextFormat.format(startTime)
-                            tv_find_year_reservestate.text = dateTextFormat.format(endTime)
+                            tv_put_year_recentdetail.text = dateTextFormat.format(startTime)
+                            tv_find_year_recentdetail.text = dateTextFormat.format(endTime)
                             //시간
                             var timeTextFormat = SimpleDateFormat("a hh시 mm분")
-                            tv_put_ampm_reservestate.text = timeTextFormat.format(startTime)
-                            tv_find_ampm_reservestate.text = timeTextFormat.format(endTime)
-                            //QR
-                            tv_qr_reserveCode.text = reserveCode.toString()
+                            tv_put_ampm_recentdetail.text = timeTextFormat.format(startTime)
+                            tv_find_ampm_recentdetail.text = timeTextFormat.format(endTime)
                             //위도경도
                             setGoogleMap(response.body()!!.store.storeName, latitude, longitude)
                             //bagDtos//TODO bagDtos해야함
@@ -237,40 +238,39 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
                                 Log.d("TAGGG", "bagDtos = " + response.body()!!.bagDtos[i].bagType)
                                 if (response.body()!!.bagDtos[i].bagType == "CARRIER") {
                                     total_amount += response.body()!!.bagDtos[i].bagCount
-                                    tv_carrier_num_reservestate.text = response.body()!!.bagDtos[i].bagCount.toString()
-                                    tv_carrier_money_reservestate.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
+                                    tv_carrier_num_recentdetail.text = response.body()!!.bagDtos[i].bagCount.toString()
+                                    tv_carrier_money_recentdetail.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
                                 } else {
                                     total_amount += response.body()!!.bagDtos[i].bagCount
-                                    tv_bag_num_reservestate.text = response.body()!!.bagDtos[i].bagCount.toString()
-                                    tv_bag_money_reservestate.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
+                                    tv_bag_num_recentdetail.text = response.body()!!.bagDtos[i].bagCount.toString()
+                                    tv_bag_money_recentdetail.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
                                 }
                                 mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
 
-                                tv_total_num_reservestate.text = total_amount.toString()
-                                tv_total_money_reservestate.text = (final_priceUnit * total_amount).toString()
-
-                                tv_payment_amount_reservestate.text = (total_amount * response.body()!!.price).toString()
+                                tv_total_num_recentdetail.text = total_amount.toString()
+                                tv_total_money_recentdetail.text = (final_priceUnit * total_amount).toString()
+                                tv_payment_amount_recentdetail.text = (total_amount * response.body()!!.price).toString()
 
                                 var dataList: ArrayList<bagImgDtos> = response.body()!!.bagImgDtos
 
                                 luggagePictureAdapter = LuggagePictureAdapter(activity!!, dataList)
-                                rv_luggage_picture.adapter = luggagePictureAdapter
+                                rv_luggage_picture_recentdetail.adapter = luggagePictureAdapter
                                 var mLayoutManager = LinearLayoutManager(context)
                                 mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-                                rv_luggage_picture.layoutManager = mLayoutManager
+                                rv_luggage_picture_recentdetail.layoutManager = mLayoutManager
 
-                                tv_store_name_reservestate.text = response.body()!!.store.storeName
-                                tv_store_location_reservestate.text = response.body()!!.store.address
+                                tv_store_name_recentdetail.text = response.body()!!.store.storeName
+                                tv_store_location_recentdetail.text = response.body()!!.store.address
                             }
                             //상가정보 입력
-                            tv_store_name_reservestate.text = response.body()!!.store.storeName
-                            tv_store_location_reservestate.text = response.body()!!.store.address
+                            tv_store_name_recentdetail.text = response.body()!!.store.storeName
+                            tv_store_location_recentdetail.text = response.body()!!.store.address
 
                             var timeDateFormat = SimpleDateFormat("HH:mm")
                             var openTime: String = timeDateFormat.format(response.body()!!.store.openTime)
                             var closeTime: String = timeDateFormat.format(response.body()!!.store.closeTime)
-                            tv_store_start_reservestate.text = openTime
-                            tv_store_end_reservestate.text = closeTime
+                            tv_store_start_recentdetail.text = openTime
+                            tv_store_end_recentdetail.text = closeTime
 
                             //총 시간                             textView112
                             var zero = 0
@@ -285,13 +285,13 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
                                 allHour = (endTime as Long - startTime as Long) / 3600000
                                 if (allHour == zero.toLong()) {
                                     allMinute = minTime / 60000
-                                    textView112.text = "총 " + allMinute + "분"
+                                    textView1120.text = "총 " + allMinute + "분"
                                 } else {
                                     var allMinute = (minTime - (allHour * 3600000)) / 60000
                                     if (allMinute == zero.toLong()) {
-                                        textView112.text = "총 " + allHour + "시간 "
+                                        textView1120.text = "총 " + allHour + "시간 "
                                     } else {
-                                        textView112.text = "총 " + allHour + "시간 " + allMinute + "분"
+                                        textView1120.text = "총 " + allHour + "시간 " + allMinute + "분"
                                     }
                                 }
                             } else {
@@ -299,16 +299,16 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
                                 if (allHour == zero.toLong()) {
                                     allMinute = (minTime - (allDay * 86400000)) / 60000
                                     if (allMinute == zero.toLong()) {
-                                        textView112.text = "총 " + allDay + "일"
+                                        textView1120.text = "총 " + allDay + "일"
                                     } else {
-                                        textView112.text = "총 " + allDay + "일 " + allMinute + "분"
+                                        textView1120.text = "총 " + allDay + "일 " + allMinute + "분"
                                     }
                                 } else {
                                     allMinute = (minTime - (allDay * 86400000) - (allHour * 3600000)) / 60000
                                     if (allMinute == zero.toLong()) {
-                                        textView112.text = "총 " + allDay + "일 " + allHour + "시간 "
+                                        textView1120.text = "총 " + allDay + "일 " + allHour + "시간 "
                                     } else {
-                                        textView112.text = "총 " + allDay + "일 " + allHour + "시간 " + allMinute + "분"
+                                        textView1120.text = "총 " + allDay + "일 " + allHour + "시간 " + allMinute + "분"
                                     }
                                 }
                             }
@@ -318,22 +318,22 @@ class RecentstoreDetailFragment : Fragment(), OnMapReadyCallback {
                             var close_time: Long = response.body()!!.store.closeTime.toLong()
 
                             if ((Timestamp(open_time).hours < Timestamp(current_time).hours) && (Timestamp(current_time).hours < Timestamp(close_time).hours)) {
-                                iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                iv_open_close_sign.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                             } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
                                 if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
-                                    iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    iv_open_close_sign.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
 
                                 } else {
-                                    iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                    iv_open_close_sign.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
                                 if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
-                                    iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
+                                    iv_open_close_sign.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
                                 } else {
-                                    iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                    iv_open_close_sign.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                                 }
                             } else {
-                                iv_store_working_reserve_state.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
+                                iv_open_close_sign.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
                             }
                             Log.d("TAGGGG", "startTime = " + allDateStamp.format(startTime) + "  closeHour = " + allDateStamp.format(endTime))
                         }
