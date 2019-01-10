@@ -15,12 +15,13 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.tooc.android.tooc.dialog.WriteReviewDialog
+import com.tooc.android.tooc.join.RecentstoreDetailFragment
+import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.model.StoreInfoResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
-import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.reserve.ReserveFragment
 import retrofit2.Call
 import retrofit2.Callback
@@ -67,15 +68,15 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
         }
 
         //TODO 최근보관한 곳 누를 시 예약현황으로 가야하는 곳 구현 미완성!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//        holder.recent_detail.setOnClickListener {
-//            Log.d("TAGGGGGG","reserveIdx = "+dataList[position].reserveIdx.toString()+"    storeIdx = "+dataList[position].storeIdx)
-//
-//            var args =Bundle()
-//            var fragment = RecentstoreDetailFragment()
-//            args.putInt("reserveIdx",dataList[position].reserveIdx)
-//            fragment.arguments = args
-//            (ctx as MainActivity).replaceFragment2(fragment)
-//        }
+        holder.recent_detail.setOnClickListener {
+            Log.d("TAGGGGGG","reserveIdx = "+dataList[position].reserveIdx.toString()+"    storeIdx = "+dataList[position].storeIdx)
+
+            var args =Bundle()
+            var fragment = RecentstoreDetailFragment()
+            args.putInt("reserveIdx",dataList[position].reserveIdx)
+            fragment.arguments = args
+            (ctx as MainActivity).replaceFragment2(fragment)
+        }
 
         holder.reserve_btn.setOnClickListener {
             storeIdx = dataList[position].storeIdx
@@ -166,4 +167,3 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
     }
 
 }
-
