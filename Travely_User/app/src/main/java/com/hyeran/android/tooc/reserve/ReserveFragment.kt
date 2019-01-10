@@ -69,8 +69,6 @@ class ReserveFragment : Fragment() {
         networkService = ApplicationController.instance.networkService
 
         var args: Bundle? = arguments
-
-
         storeIdx = args!!.getInt("storeIdx")
 
         toast("storeIdx = " + storeIdx.toString())
@@ -361,7 +359,6 @@ class ReserveFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            toast("200" + response.body()!!.closeTime)
                             openTime = response.body()!!.openTime.toLong()
                             closeTime = response.body()!!.closeTime.toLong()
                             for (i in 0..response.body()!!.restWeekResponseDtos.size - 1) {
@@ -380,7 +377,6 @@ class ReserveFragment : Fragment() {
                                 } else if (response.body()!!.restWeekResponseDtos[i].week == 7) {
                                     offday.add("토")
                                 }
-                                toast(offday[i])
                             }
                         }
                         500 -> {

@@ -96,8 +96,7 @@ class LikeFragment : Fragment() {
                                 val position = mypageAreaLikeAdapter.itemCount
                                 mypageAreaLikeAdapter.dataList.addAll(dataList_favorite)
                                 mypageAreaLikeAdapter.notifyItemInserted(position)
-                            }else {
-                            }
+                            }else { }
                         }
                         400 -> {
                             toast("잘못된 요청")

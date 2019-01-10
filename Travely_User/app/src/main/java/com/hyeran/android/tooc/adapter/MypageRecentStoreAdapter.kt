@@ -59,12 +59,21 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
         holder.reviewwrite.setOnClickListener {
             WriteReviewDialog(ctx).show()
         }
-        holder.recent_detail.setOnClickListener {
-            (ctx as MainActivity).replaceFragment2(RecentstoreDetailFragment())
-        }
+
+        //TODO 최근보관한 곳 누를 시 예약현황으로 가야하는 곳 구현 미완성!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//        holder.recent_detail.setOnClickListener {
+//            Log.d("TAGGGGGG","reserveIdx = "+dataList[position].reserveIdx.toString()+"    storeIdx = "+dataList[position].storeIdx)
+//
+//            var args =Bundle()
+//            var fragment = RecentstoreDetailFragment()
+//            args.putInt("reserveIdx",dataList[position].reserveIdx)
+//            fragment.arguments = args
+//            (ctx as MainActivity).replaceFragment2(fragment)
+//        }
 
         holder.reserve_btn.setOnClickListener {
             storeIdx = dataList[position].storeIdx
+
             getStoreReserve()
         }
 

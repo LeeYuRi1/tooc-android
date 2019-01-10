@@ -9,13 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.hyeran.android.tooc.MainActivity
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.adapter.MypageRecentStoreAdapter
 import com.hyeran.android.tooc.model.ProfileResponseData
 import com.hyeran.android.tooc.model.StoreInfoResponseData
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
+import com.hyeran.android.tooc.reserve_state.ReserveStateFragment
 import kotlinx.android.synthetic.main.fragment_mypage.*
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -88,6 +91,10 @@ class MypageFragment : Fragment() {
         iv_set_mypage.setOnClickListener {
             replaceFragment(SetFragment())
         }
+        layout_state_mypage.setOnClickListener{
+            replaceFragment(ReserveStateFragment())
+            (ctx as MainActivity).selectedTabChangeColor(1)
+        }
     }
 
     fun replaceFragment(fragment: Fragment) {
@@ -116,7 +123,6 @@ class MypageFragment : Fragment() {
                             tv_mybag_cnt_mypage.text = response.body()!!.myBagCount.toString()
                             tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
                             tv_review_cnt_mypage.text = response.body()!!.reviewCount.toString()
-
                             Glide.with(this@MypageFragment)
                                     .load(response.body()!!.profileImg)
                                     .into(iv_profile_mypage)

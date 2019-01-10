@@ -11,5 +11,6 @@ data class StoreInfoResponseData (
         var storeIdx : Int,
         var storeImage : String,
         var storeName : String,
-        var storeUrl : String
+        var storeUrl : String,
+        var reserveIdx : Int
 )

@@ -92,6 +92,12 @@ interface NetworkService {
             @Header("jwt") jwt: String?
     ): Call<ReservationReserveCodeData>
 
+    @GET("/api/reservation/{reserveIdx}")
+    fun getRecentReservationReserveResponse(
+            @Header("jwt") jwt: String?,
+            @Path("reserveIdx") reserveIdx : Int
+    ):Call<ReservationReserveCodeData>
+
     //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
 
     // 상가 세부정보 조회
