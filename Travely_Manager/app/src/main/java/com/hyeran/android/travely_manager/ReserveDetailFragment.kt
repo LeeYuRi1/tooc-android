@@ -66,7 +66,6 @@ class ReserveDetailFragment : Fragment() {
 //                StorePhotoDialog(context).show()
 //            }
 //        }
-
         var bundle: Bundle? = arguments
         reserveCode = bundle!!.getString("reserveCode","")
         reserveIdx = bundle!!.getString("reserveIdx","")
@@ -86,7 +85,6 @@ class ReserveDetailFragment : Fragment() {
 //        dataList.add(BagImgDtos(0))
 
 
-        setClickListener()
         getStoreIdxReserveCodeResponse()
 //        photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, dataList)
 //        v.rv_luggage_picture.adapter = photoStorageDetailRVAdapter
@@ -113,6 +111,8 @@ class ReserveDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setClickListener()
+
         btn_picture_reservedetail.setOnClickListener {
             takePhoto()
         }
@@ -121,45 +121,49 @@ class ReserveDetailFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-
         if (requestCode === REQ_CODE_SELECT_IMAGE && resultCode === RESULT_OK) {
-            val extras = data!!.getExtras()
-            val imageBitmap = extras.get("data") as Bitmap
+            if(data!=null) {
+                val extras = data!!.getExtras()
+                val imageBitmap = extras.get("data") as Bitmap
 
-//
-            val bmp: Bitmap? = imageBitmap
-            val stream = ByteArrayOutputStream()
-            bmp!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-            val byteArray = stream.toByteArray()
+                val bmp: Bitmap? = imageBitmap
+                val stream = ByteArrayOutputStream()
+                bmp!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                val byteArray = stream.toByteArray()
 
-            var f : File = File(context!!.cacheDir, "tooc.jpg")
-            f.createNewFile()
-            var fos : FileOutputStream = FileOutputStream(f)
-            fos.write(byteArray)
-            fos.flush()
-            fos.close()
+                var f: File = File(context!!.cacheDir, "tooc.jpg")
+                f.createNewFile()
+                var fos: FileOutputStream = FileOutputStream(f)
+                fos.write(byteArray)
+                fos.flush()
+                fos.close()
 
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
 
-            bitmapArray.add(BitmapData(imageBitmap))
+                bitmapArray.add(BitmapData(imageBitmap))
 
 
-            bitmapRVAdapter = BitmapRVAdapter(context, bitmapArray)
-            v.rv_luggage_picture.adapter = bitmapRVAdapter
-            v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
-//
-//            photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, bitmapArray)
-//            rv_by_area_temp.adapter = locationRVAdapter
-//            rv_by_area_temp.layoutManager = LinearLayoutManager(this)
+                bitmapRVAdapter = BitmapRVAdapter(context, bitmapArray)
+                v.rv_luggage_picture.adapter = bitmapRVAdapter
+                v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
 
 //            photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, bitmapArray)
 //            rv_by_area_temp.adapter = locationRVAdapter
 //            rv_by_area_temp.layoutManager = LinearLayoutManager(this)
-            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
-            //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
-            var mImage = MultipartBody.Part.createFormData("data", f.name, photoBody);
+
+//            photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, bitmapArray)
+//            rv_by_area_temp.adapter = locationRVAdapter
+//            rv_by_area_temp.layoutManager = LinearLayoutManager(this)
+                val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
+                //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
+                var mImage = MultipartBody.Part.createFormData("data", f.name, photoBody);
 //            var mImage = MultipartBody.Part.createFormData("data", , photoBody);
-            postImgResponse(mImage)
+                postImgResponse(mImage)
+            }
+            else{
+                Log.d("TAGGGG",data)
+                //??????????????????????????????????????????????????????????????????????????
+            }
         }
     }
 
@@ -454,7 +458,6 @@ class ReserveDetailFragment : Fragment() {
                                 btn_picture_reservedetail.visibility = View.INVISIBLE
                             }
 
-                            //(
                             var allDateFormat = SimpleDateFormat("yy년 MM월 dd일 E요일")
                             var allTimeFormat = SimpleDateFormat("aa HH시 mm분")
                             var StoreDateText = allDateFormat.format(response.body()!!.startTime)
@@ -469,12 +472,10 @@ class ReserveDetailFragment : Fragment() {
 
                             //총 시간                             textView112
                             var zero = 0
-//                            var allDateStamp = SimpleDateFormat("총 yy d일 HH시간 mm분")
                             var minTime = (response.body()!!.endTime - response.body()!!.startTime)
                             var allDay = minTime / 86400000
                             var allHour: Long
                             var allMinute: Long
-
 
                             if (allDay == zero.toLong()) {
                                 allHour = (response.body()!!.endTime - response.body()!!.startTime) / 3600000

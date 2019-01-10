@@ -402,7 +402,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                         }
                         else -> {
                             toast("error")
-
                             Log.d("TAGG", "reserveStateFragment code = " + response.code().toString())
                         }
                     }
