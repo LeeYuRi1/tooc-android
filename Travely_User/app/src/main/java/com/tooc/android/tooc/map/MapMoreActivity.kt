@@ -195,7 +195,7 @@ class MapMoreActivity : AppCompatActivity() {
         })
     }
 
-    private fun putFavoriteResponse() {
+    fun putFavoriteResponse() {
 
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
 

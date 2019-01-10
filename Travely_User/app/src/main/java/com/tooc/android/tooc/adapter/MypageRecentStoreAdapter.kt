@@ -60,9 +60,9 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
                 .into(holder!!.recent_image)
         holder.recent_name.text = dataList[position].storeName
         holder.recent_addr.text = dataList[position].address
+
+        //리뷰 작성
         holder.reviewwrite.setOnClickListener {
-            Log.d("TAGG","StoreIdx = "+reviewStoreIdx.toString())
-            Log.d("TAGG","dataList = "+dataList[position].storeIdx.toString())
             WriteReviewDialog(ctx,dataList[position].storeIdx).show()
         }
 

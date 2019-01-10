@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.MypageAreaLikeAdapter
+import com.tooc.android.tooc.adapter.MypageMyReviewAdapter
 import com.tooc.android.tooc.model.mypage.FavoriteResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
@@ -28,6 +29,7 @@ class LikeFragment : Fragment() {
     lateinit var mypageAreaLikeAdapter: MypageAreaLikeAdapter
 
     var storeIdx: Int = 0
+
 
     val dataList: ArrayList<FavoriteResponseData> by lazy {
         ArrayList<FavoriteResponseData>()
@@ -88,6 +90,7 @@ class LikeFragment : Fragment() {
                                 mypageAreaLikeAdapter.dataList.addAll(dataList_favorite)
                                 mypageAreaLikeAdapter.notifyItemInserted(position)
                             }else { }
+
                         }
                         400 -> {
                         }

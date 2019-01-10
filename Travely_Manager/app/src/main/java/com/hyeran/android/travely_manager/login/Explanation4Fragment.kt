@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.hyeran.android.travely_manager.R
 
-class Explanation2Fragment : Fragment() {
+class Explanation4Fragment : Fragment() {
 
     companion object {
         private const val CATEGORY = "category"
 
-        fun newInstance(sectionCategory: String): Explanation2Fragment {
-            val fragment = Explanation2Fragment()
+        fun newInstance(sectionCategory: String): Explanation4Fragment {
+            val fragment = Explanation4Fragment()
             val args : Bundle? = Bundle()
             args?.putString(CATEGORY, sectionCategory)
             fragment.arguments = args
@@ -22,7 +22,7 @@ class Explanation2Fragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_explanation2, container, false)
+        val v = inflater.inflate(R.layout.fragment_explanation4, container, false)
         return v
     }
 

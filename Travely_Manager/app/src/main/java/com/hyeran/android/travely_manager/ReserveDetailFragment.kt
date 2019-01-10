@@ -58,9 +58,27 @@ class ReserveDetailFragment : Fragment() {
 
         toast(reserveCode)
 
+        setClickListener()
         getStoreIdxReserveCodeResponse()
 
         return v
+    }
+
+    private fun setClickListener() {
+        btn_storage_reservedetail.setOnClickListener {
+            if(cb_confirm_reservedetail.isChecked){
+                putStorePickupResponse()
+                getStoreIdxReserveCodeResponse()
+            }else{
+                toast("동의해주세요")
+            }
+        }
+
+        btn_pickup_reservedetail.setOnClickListener {
+            putStorePickupResponse()
+            getStoreIdxReserveCodeResponse()
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -200,6 +218,19 @@ class ReserveDetailFragment : Fragment() {
 
                             //짐 보관, 픽업
                             pick_reserveIdx = response.body()!!.reserveIdx
+
+                            if(response.body()!!.stateType == "RESERVED"){   //예약상태
+                                layout_storage_reservedetail.visibility = View.VISIBLE
+                                layout_pickup_reservedetail.visibility = View.GONE
+                            } else if(response.body()!!.stateType == "ARCHIVE"){   //보관상태
+                                layout_storage_reservedetail.visibility = View.GONE
+                                layout_pickup_reservedetail.visibility = View.VISIBLE
+//                            }else if(response.body()!!.stateType == "PICKUP"){
+//                                layout_storage_reservedetail.visibility = View.GONE
+//                                layout_pickup_reservedetail.visibility = View.VISIBLE
+                            }else{
+
+                            }
 
 
                         }
