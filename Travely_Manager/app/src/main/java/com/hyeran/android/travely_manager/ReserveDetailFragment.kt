@@ -32,6 +32,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.*
 
+
+
 class ReserveDetailFragment : Fragment() {
 
     lateinit var networkService : NetworkService
@@ -84,8 +86,29 @@ class ReserveDetailFragment : Fragment() {
 //        dataList.add(BagImgDtos(0))
 
 
+        setClickListener()
+        getStoreIdxReserveCodeResponse()
+//        photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, dataList)
+//        v.rv_luggage_picture.adapter = photoStorageDetailRVAdapter
+//        v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
 
         return v
+    }
+
+    private fun setClickListener() {
+        btn_storage_reservedetail.setOnClickListener {
+            if (cb_confirm_reservedetail.isChecked) {
+                putStorePickupResponse()
+                getStoreIdxReserveCodeResponse()
+            } else {
+                toast("동의해주세요")
+            }
+        }
+
+        btn_pickup_reservedetail.setOnClickListener {
+            putStorePickupResponse()
+            getStoreIdxReserveCodeResponse()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -305,6 +328,19 @@ class ReserveDetailFragment : Fragment() {
 
                             //짐 보관, 픽업
                             pick_reserveIdx = response.body()!!.reserveIdx
+
+                            if(response.body()!!.stateType == "RESERVED"){   //예약상태
+                                layout_storage_reservedetail.visibility = View.VISIBLE
+                                layout_pickup_reservedetail.visibility = View.GONE
+                            } else if(response.body()!!.stateType == "ARCHIVE"){   //보관상태
+                                layout_storage_reservedetail.visibility = View.GONE
+                                layout_pickup_reservedetail.visibility = View.VISIBLE
+//                            }else if(response.body()!!.stateType == "PICKUP"){
+//                                layout_storage_reservedetail.visibility = View.GONE
+//                                layout_pickup_reservedetail.visibility = View.VISIBLE
+                            }else{
+
+                            }
 
 
                         }
