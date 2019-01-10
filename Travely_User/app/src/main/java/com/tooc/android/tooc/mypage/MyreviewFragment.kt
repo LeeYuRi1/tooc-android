@@ -14,6 +14,7 @@ import com.tooc.android.tooc.adapter.MypageMyReviewAdapter
 import com.tooc.android.tooc.model.mypage.ReviewLookupData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_like.*
 import kotlinx.android.synthetic.main.fragment_myreview.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
@@ -28,7 +29,7 @@ class MyreviewFragment:Fragment() {
     lateinit var mypageMyReviewAdapter: MypageMyReviewAdapter
 
     lateinit var v : View
-    var  reviewIdx : Int =0
+
     val dataList : ArrayList<ReviewLookupData> by lazy {
         ArrayList<ReviewLookupData>()
     }
@@ -62,12 +63,14 @@ class MyreviewFragment:Fragment() {
     private fun setRecyclerView() {
         mypageMyReviewAdapter = MypageMyReviewAdapter(activity!!, dataList)
         rv_review_myreview.adapter = mypageMyReviewAdapter
+        rv_review_myreview.layoutManager = LinearLayoutManager(activity)
 
-        val mLayoutManager = LinearLayoutManager(this.activity)
-        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
-        mLayoutManager.stackFromEnd = true
 
-        rv_review_myreview.setLayoutManager(mLayoutManager)
+//        val mLayoutManager = LinearLayoutManager(this.activity)
+//        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
+//        mLayoutManager.stackFromEnd = true
+//
+//        rv_review_myreview.setLayoutManager(mLayoutManager)
     }
 
     private fun getReviewLookupResponse() {
@@ -85,24 +88,21 @@ class MyreviewFragment:Fragment() {
                                 val position = mypageMyReviewAdapter.itemCount
                                 mypageMyReviewAdapter.dataList.addAll(dataList_myreview)
                                 mypageMyReviewAdapter.notifyItemInserted(position)
+
+                                tv_review_cnt_myreview.setText(dataList_myreview.size.toString())
                             } else {
 
                             }
-                            toast("리뷰 조회 성공")
                         }
                         204 -> {
-                            toast("작성 리뷰 없음")
                         }
                         400 -> {
-                            toast("잘못된 접근")
                         }
                         500 -> {
-                            toast("서버에러")
                         }
                         204 -> {
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }

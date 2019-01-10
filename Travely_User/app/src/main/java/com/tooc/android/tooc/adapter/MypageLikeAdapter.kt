@@ -133,10 +133,8 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
                             }
                         }
                         500 -> {
-                            Toast.makeText(ctx,"서버 에러", Toast.LENGTH_LONG).show()
                         }
                         else -> {
-                            Toast.makeText(ctx,"error", Toast.LENGTH_LONG).show()
                         }
                     }
                 }

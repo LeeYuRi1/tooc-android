@@ -63,7 +63,6 @@ class LoginActivity : AppCompatActivity() {
         btn_login_login.setOnClickListener {
             //toast("버튼은 눌렸음")
             postLoginResponse()
-            toast("로그인 성공")
 
             finish()
         }
@@ -89,7 +88,6 @@ class LoginActivity : AppCompatActivity() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            toast("로그인 성공")
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
@@ -102,10 +100,8 @@ class LoginActivity : AppCompatActivity() {
                             toast("로그인 실패")
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }

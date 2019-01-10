@@ -207,13 +207,10 @@ class ProfileFragment : Fragment() {
                             et_email_profile.setText(response.body()!!.email)
                             et_phone_profile.setText(response.body()!!.phone)
 
-                            toast("프로필 조회 성공")
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }

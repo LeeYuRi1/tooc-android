@@ -46,8 +46,7 @@ class MypageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_mypage, container, false)
         init()
-        getProfileResponse()
-        getRecentStoreResponse()
+
 
         return v
     }
@@ -55,6 +54,8 @@ class MypageFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
+        getProfileResponse()
+        getRecentStoreResponse()
     }
 
     private fun init() {
@@ -62,16 +63,15 @@ class MypageFragment : Fragment() {
     }
 
     private fun setRecyclerView() {
-        mypageRecentStoreAdapter = MypageRecentStoreAdapter(activity!!, dataList)
+        mypageRecentStoreAdapter = MypageRecentStoreAdapter(ctx, dataList)
         rv_recentstore_mypage.adapter = mypageRecentStoreAdapter
-        //rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
-        //val mLayoutManager = LinearLayoutManager(this.activity)
+        rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
 
-        val mLayoutManager = LinearLayoutManager(this.activity)
-        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
-        mLayoutManager.stackFromEnd = true
-
-        rv_recentstore_mypage.setLayoutManager(mLayoutManager)
+//        val mLayoutManager = LinearLayoutManager(this.activity)
+//        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
+//        mLayoutManager.stackFromEnd = true
+//
+//        rv_recentstore_mypage.setLayoutManager(mLayoutManager)
 
     }
 
@@ -126,10 +126,8 @@ class MypageFragment : Fragment() {
                                     .into(iv_profile_mypage)
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }
@@ -179,10 +177,8 @@ class MypageFragment : Fragment() {
                             }
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }

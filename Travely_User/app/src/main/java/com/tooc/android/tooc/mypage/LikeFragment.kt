@@ -90,13 +90,10 @@ class LikeFragment : Fragment() {
                             }else { }
                         }
                         400 -> {
-                            toast("잘못된 요청")
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }

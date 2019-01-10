@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Toast
 import com.tooc.android.tooc.R
@@ -18,11 +19,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WriteReviewDialog(ctx : Context?) : Dialog(ctx){
+class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
 
     lateinit var networkService: NetworkService
 
     lateinit var mypageRecentStoreAdapter : MypageRecentStoreAdapter
+//    var content = et_review_writereview!!.text.toString()
+//    var rating = ratingBar_writereview!!.rating.toLong()
 
     val dataList: ArrayList<StoreInfoResponseData> by lazy {
         ArrayList<StoreInfoResponseData>()
@@ -34,6 +37,7 @@ class WriteReviewDialog(ctx : Context?) : Dialog(ctx){
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_writereview)
+
 
         networkService = ApplicationController.instance.networkService
 
@@ -54,27 +58,32 @@ class WriteReviewDialog(ctx : Context?) : Dialog(ctx){
     }
 
 
-
     private fun postWriteReviewResponse(){
-        var storeIdx = mypageRecentStoreAdapter.reviewStoreIdx
+        //var storeIdx = mypageRecentStoreAdapter.reviewStoreIdx
         var content = et_review_writereview.text.toString()
         var rating = ratingBar_writereview.rating.toLong()
 
-        var ReviewSave: ReviewSaveResponseData
+        var reviewSave: ReviewSaveResponseData
 
-        ReviewSave = ReviewSaveResponseData(storeIdx, content, rating)   //storeidx꺼내서 쓰기
+        reviewSave = ReviewSaveResponseData(storeIdx, content, rating)   //storeidx꺼내서 쓰기
+//        Log.d("TAGGGG","storeIdx = "+storeIdx+"   content")
 
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-        val postReviewSaveResponse = networkService.postReviewSaveResponse("application/json", jwt, ReviewSave)
+        val postReviewSaveResponse = networkService.postReviewSaveResponse("application/json", jwt, reviewSave)
 
-        postReviewSaveResponse!!.enqueue(object : Callback<ReviewSaveResponseData> {
+        postReviewSaveResponse.enqueue(object : Callback<ReviewSaveResponseData> {
             override fun onFailure(call: Call<ReviewSaveResponseData>?, t: Throwable?) {
             }
 
             override fun onResponse(call: Call<ReviewSaveResponseData>?, response: Response<ReviewSaveResponseData>?) {
                 response?.let {
                     when (it.code()) {
+                        200 -> {
+                            dismiss()
+                            Toast.makeText(context, "리뷰 OK", Toast.LENGTH_SHORT).show()
+                        }
                         201 -> {
+                            dismiss()
                             Toast.makeText(context, "리뷰 저장 성공", Toast.LENGTH_SHORT).show()
                         }
                         400 -> {
