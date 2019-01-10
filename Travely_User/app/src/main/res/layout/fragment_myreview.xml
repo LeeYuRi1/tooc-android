@@ -58,13 +58,13 @@
                 android:text="후기 "
                 android:textColor="@color/mainColor"
                 android:textSize="30sp"
-                app:layout_constraintEnd_toStartOf="@+id/textView9"
+                app:layout_constraintEnd_toStartOf="@+id/tv_review_cnt_myreview"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@+id/guideline20"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/tv_review_cnt_myreview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_bold"
@@ -84,8 +84,8 @@
                 android:text="개"
                 android:textColor="@color/mainColor"
                 android:textSize="30sp"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
-                app:layout_constraintTop_toTopOf="@+id/textView9" />
+                app:layout_constraintStart_toEndOf="@+id/tv_review_cnt_myreview"
+                app:layout_constraintTop_toTopOf="@+id/tv_review_cnt_myreview" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_review_myreview"

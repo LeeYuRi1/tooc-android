@@ -85,6 +85,8 @@ class MyreviewFragment:Fragment() {
                                 val position = mypageMyReviewAdapter.itemCount
                                 mypageMyReviewAdapter.dataList.addAll(dataList_myreview)
                                 mypageMyReviewAdapter.notifyItemInserted(position)
+
+                                tv_review_cnt_myreview.setText(dataList_myreview.size.toString())
                             } else {
 
                             }

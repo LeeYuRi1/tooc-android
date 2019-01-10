@@ -201,10 +201,8 @@ class MapMoreActivity : AppCompatActivity() {
 
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error" + it.code())
                         }
                     }
                 }
@@ -235,17 +233,12 @@ class MapMoreActivity : AppCompatActivity() {
 
                             }else {
                             }
-
-                            toast("즐겨찾기 변경 성공")
                         }
                         400 -> {
-                            toast("잘못된 요청")
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }

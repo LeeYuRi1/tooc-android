@@ -18,12 +18,11 @@ import com.hyeran.android.tooc.MainActivity
 import com.hyeran.android.tooc.R
 import com.hyeran.android.tooc.join.RecentstoreDetailFragment
 import com.hyeran.android.tooc.model.StoreInfoResponseData
-import com.hyeran.android.tooc.dialog.WriteReviewDialog
 import com.hyeran.android.tooc.model.store.StoreResponseData
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
 import com.hyeran.android.tooc.reserve.ReserveFragment
-import org.jetbrains.anko.support.v4.toast
+import com.tooc.android.tooc.dialog.WriteReviewDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,11 +32,13 @@ import java.util.ArrayList
 
 class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreInfoResponseData>) : RecyclerView.Adapter<MypageRecentStoreAdapter.Holder>() {
 
-    var reviewStoreIdx = 0
     lateinit var networkService: NetworkService
+
+    var reviewStoreIdx = 0
+    //var writeReviewDialog = WriteReviewDialog(ctx)
+
     var storeIdx : Int=0
     var isAvailable = true
-
 
     private fun init() {
         networkService = ApplicationController.instance.networkService
@@ -51,8 +52,8 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        init()
 
+        init()
         reviewStoreIdx = dataList[position].storeIdx
 
         Glide.with(holder!!.itemView.context)
@@ -61,23 +62,16 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
         holder.recent_name.text = dataList[position].storeName
         holder.recent_addr.text = dataList[position].address
         holder.reviewwrite.setOnClickListener {
-            WriteReviewDialog(ctx).show()
+            Log.d("TAGG","StoreIdx = "+reviewStoreIdx.toString())
+            Log.d("TAGG","dataList = "+dataList[position].storeIdx.toString())
+            WriteReviewDialog(ctx,dataList[position].storeIdx).show()
         }
-
-        //TODO 최근보관한 곳 누를 시 예약현황으로 가야하는 곳 구현 미완성!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//        holder.recent_detail.setOnClickListener {
-//            Log.d("TAGGGGGG","reserveIdx = "+dataList[position].reserveIdx.toString()+"    storeIdx = "+dataList[position].storeIdx)
-//
-//            var args =Bundle()
-//            var fragment = RecentstoreDetailFragment()
-//            args.putInt("reserveIdx",dataList[position].reserveIdx)
-//            fragment.arguments = args
-//            (ctx as MainActivity).replaceFragment2(fragment)
-//        }
+        holder.recent_detail.setOnClickListener {
+            (ctx as MainActivity).replaceFragment2(RecentstoreDetailFragment())
+        }
 
         holder.reserve_btn.setOnClickListener {
             storeIdx = dataList[position].storeIdx
-
             getStoreReserve()
         }
 
@@ -164,5 +158,5 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
             }
         })
     }
-}
 
+}

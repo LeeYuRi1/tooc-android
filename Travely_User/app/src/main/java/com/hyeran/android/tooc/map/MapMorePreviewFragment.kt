@@ -172,7 +172,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
         var bundle: Bundle? = arguments
         storeIdx = bundle!!.getInt("storeIdx")
 
-        toast(storeIdx.toString())
 
         getStoreResponse()
 
@@ -253,7 +252,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
         init()
 
-        toast("onCreate")
 
         mGoogleApiClient2 = GoogleApiClient.Builder(activity!!)
                 .addApi(LocationServices.API)
@@ -518,7 +516,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             } else if (Timestamp(open_time).hours == Timestamp(current_time).hours) {//연시각과 현재시각이 같을때
                                 if ((Timestamp(open_time).minutes <= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    toast("##")
 
                                 } else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
@@ -526,7 +523,6 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
                             } else if (Timestamp(close_time).hours == Timestamp(current_time).hours) {//닫는시각과 현재시각이 같을때
                                 if ((Timestamp(close_time).minutes >= Timestamp(current_time).minutes)) {  // 영업중
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_working))
-                                    toast("$$")
 
                                 } else {
                                     iv_working_map_more_preview.setImageDrawable(resources.getDrawable(R.drawable.ic_not_working))
@@ -574,10 +570,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 //                            }
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error" + it.code())
                         }
                     }
                 }
@@ -621,10 +615,8 @@ class MapMorePreviewFragment : Fragment(), OnMapReadyCallback,
 
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error" + it.code())
                         }
                     }
                 }

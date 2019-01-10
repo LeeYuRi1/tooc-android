@@ -99,10 +99,8 @@ class LocationListActivity : AppCompatActivity() {
                             }
                         }
                         500 -> {
-                            toast("서버 에러")
                         }
                         else -> {
-                            toast("error")
                         }
                     }
                 }
