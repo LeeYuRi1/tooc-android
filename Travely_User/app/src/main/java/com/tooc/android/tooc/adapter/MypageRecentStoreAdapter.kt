@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +14,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.tooc.android.tooc.MainActivity
-import com.tooc.android.tooc.R
-import com.tooc.android.tooc.model.StoreInfoResponseData
 import com.tooc.android.tooc.dialog.WriteReviewDialog
-import com.tooc.android.tooc.model.store.StoreResponseData
+import com.tooc.android.tooc.model.StoreInfoResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
+import com.tooc.android.tooc.MainActivity
+import com.tooc.android.tooc.R
+import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.reserve.ReserveFragment
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,11 +31,13 @@ import java.util.ArrayList
 
 class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreInfoResponseData>) : RecyclerView.Adapter<MypageRecentStoreAdapter.Holder>() {
 
-    var reviewStoreIdx = 0
     lateinit var networkService: NetworkService
+
+    var reviewStoreIdx = 0
+    //var writeReviewDialog = WriteReviewDialog(ctx)
+
     var storeIdx : Int=0
     var isAvailable = true
-
 
     private fun init() {
         networkService = ApplicationController.instance.networkService
@@ -48,8 +51,8 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        init()
 
+        init()
         reviewStoreIdx = dataList[position].storeIdx
 
         Glide.with(holder!!.itemView.context)
@@ -58,7 +61,9 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
         holder.recent_name.text = dataList[position].storeName
         holder.recent_addr.text = dataList[position].address
         holder.reviewwrite.setOnClickListener {
-            WriteReviewDialog(ctx).show()
+            Log.d("TAGG","StoreIdx = "+reviewStoreIdx.toString())
+            Log.d("TAGG","dataList = "+dataList[position].storeIdx.toString())
+            WriteReviewDialog(ctx,dataList[position].storeIdx).show()
         }
 
         //TODO 최근보관한 곳 누를 시 예약현황으로 가야하는 곳 구현 미완성!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -161,5 +166,6 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
             }
         })
     }
+
 }
 

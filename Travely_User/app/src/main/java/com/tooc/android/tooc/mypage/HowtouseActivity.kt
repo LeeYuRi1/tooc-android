@@ -3,14 +3,11 @@ package com.tooc.android.tooc.mypage
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.ExplanationPagerAdapter
-import com.tooc.android.tooc.join.Explanation1Fragment
-import com.tooc.android.tooc.join.Explanation2Fragment
-import com.tooc.android.tooc.join.Explanation3Fragment
-import com.tooc.android.tooc.join.Explanation4Fragment
+import com.tooc.android.tooc.join.*
 import com.tooc.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.activity_howtouse.*
+
 
 class HowtouseActivity : AppCompatActivity() {
 
@@ -26,6 +23,7 @@ class HowtouseActivity : AppCompatActivity() {
 
         back_howtouse.setOnClickListener {
             //(ctx as MainActivity).replaceFragment(SetFragment())
+            finish()
         }
     }
 
@@ -40,9 +38,10 @@ class HowtouseActivity : AppCompatActivity() {
         explanationPagerAdapter.addItem(Explanation2Fragment.newInstance("2"))
         explanationPagerAdapter.addItem(Explanation3Fragment.newInstance("3"))
         explanationPagerAdapter.addItem(Explanation4Fragment.newInstance("4"))
+        explanationPagerAdapter.addItem(WelcomeFragment.newInstance("5"))
 
 
-        vp_explanation1.offscreenPageLimit = 4
+        vp_explanation1.offscreenPageLimit = 5
         indicator_explanation1.setItemMargin(10)
         indicator_explanation1.setAnimDuration(300)
         indicator_explanation1.createDotPanel(explanationPagerAdapter.count, R.drawable.indicator_empty_circle, R.drawable.indicator_full_circle)
