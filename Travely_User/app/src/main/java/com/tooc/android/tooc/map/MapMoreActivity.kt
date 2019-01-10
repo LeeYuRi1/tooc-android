@@ -74,8 +74,10 @@ class MapMoreActivity : AppCompatActivity() {
         btn_map_more_act_favorite.setOnClickListener {
             if(btn_map_more_act_favorite.isSelected == true){
                 putFavoriteResponse()
+                btn_map_more_act_favorite.isSelected = false
             }else if(btn_map_more_act_favorite.isSelected == false){
                 putFavoriteResponse()
+                btn_map_more_act_favorite.isSelected = true
             }else {
 
             }
@@ -207,15 +209,8 @@ class MapMoreActivity : AppCompatActivity() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            //favorite
-                            if(response.body()!!.isFavorite == 1){   //즐겨찾기됨
-                                btn_map_more_act_favorite.isSelected = true
 
-                            }else if(response.body()!!.isFavorite == -1){   //즐겨찾기안됨
-                                btn_map_more_act_favorite.isSelected = false
-
-                            }else {
-                            }
+                            
                         }
                         400 -> {
                         }
