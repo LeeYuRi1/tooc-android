@@ -166,4 +166,3 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
     }
 
 }
-
