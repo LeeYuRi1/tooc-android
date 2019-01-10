@@ -1,6 +1,5 @@
 package com.hyeran.android.travely_manager
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -19,32 +18,19 @@ import com.hyeran.android.travely_manager.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve_detail.view.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import android.graphics.Bitmap
-import android.R.attr.data
 import android.app.Activity.RESULT_OK
-import android.content.ContentResolver
-import android.graphics.BitmapFactory
-import android.support.v4.app.ActivityCompat.startActivityForResult
-import android.support.v4.app.NotificationCompat.getExtras
 import android.support.v7.widget.LinearLayoutManager
 import com.hyeran.android.travely_manager.model.BagImgDtos
+import com.hyeran.android.travely_manager.model.BitmapData
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.*
-import android.R.attr.name
-import android.graphics.Canvas
-import kotlin.math.log
-
-//import sun.awt.AppContext.getAppContext
-
-
-
 
 class ReserveDetailFragment : Fragment() {
 
@@ -57,9 +43,12 @@ class ReserveDetailFragment : Fragment() {
 
     private val REQ_CODE_SELECT_IMAGE = 100
 
-    lateinit var photoStorageDetailRVAdapter: PhotoStorageDetailRVAdapter
+    lateinit var bitmapRVAdapter: BitmapRVAdapter
+
     var pick_reserveIdx = 0.toLong()
 
+    lateinit var bitmap : BitmapData
+    lateinit var bitmapArray : ArrayList<BitmapData>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_reserve_detail, container, false)
@@ -90,9 +79,7 @@ class ReserveDetailFragment : Fragment() {
 //        dataList.add(BagImgDtos(0))
 //        dataList.add(BagImgDtos(0))
 
-        photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, dataList)
-        v.rv_luggage_picture.adapter = photoStorageDetailRVAdapter
-        v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
+
 
         return v
     }
@@ -127,7 +114,20 @@ class ReserveDetailFragment : Fragment() {
 
             imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
 
+            bitmapArray.add(BitmapData(imageBitmap))
 
+
+            bitmapRVAdapter = BitmapRVAdapter(context, bitmapArray)
+            v.rv_luggage_picture.adapter = bitmapRVAdapter
+            v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
+//
+//            photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, bitmapArray)
+//            rv_by_area_temp.adapter = locationRVAdapter
+//            rv_by_area_temp.layoutManager = LinearLayoutManager(this)
+
+//            photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, bitmapArray)
+//            rv_by_area_temp.adapter = locationRVAdapter
+//            rv_by_area_temp.layoutManager = LinearLayoutManager(this)
             val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
             //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
             var mImage = MultipartBody.Part.createFormData("data", f.name, photoBody);
@@ -162,6 +162,7 @@ class ReserveDetailFragment : Fragment() {
                         201 -> {
                             toast("저장 성공")
                             Log.d("@@@@@@@@@@", response.body().toString())
+
                         }
                         401 -> {
                             toast("권한 없음")
