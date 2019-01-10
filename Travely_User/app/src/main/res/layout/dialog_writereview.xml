@@ -44,6 +44,7 @@
         android:layout_marginStart="8dp"
         android:scaleX="0.7"
         android:scaleY="0.7"
+        android:stepSize="1"
         android:theme="@style/WriteReviewRatingBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
