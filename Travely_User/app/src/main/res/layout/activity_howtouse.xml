@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></android.support.v4.view.ViewPager>
 
-    <com.hyeran.android.tooc.join.circleIndicator
+    <com.tooc.android.tooc.join.circleIndicator
         android:id="@+id/indicator_explanation1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></com.hyeran.android.tooc.join.circleIndicator>
+        app:layout_constraintStart_toStartOf="parent"></com.tooc.android.tooc.join.circleIndicator>
 
     <ImageView
         android:id="@+id/back_howtouse"
