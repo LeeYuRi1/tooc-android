@@ -32,6 +32,8 @@ import java.util.ArrayList
 
 
 class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreInfoResponseData>) : RecyclerView.Adapter<MypageRecentStoreAdapter.Holder>() {
+
+    var reviewStoreIdx = 0
     lateinit var networkService: NetworkService
     var storeIdx : Int=0
     var isAvailable = true
@@ -50,6 +52,8 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         init()
+
+        reviewStoreIdx = dataList[position].storeIdx
 
         Glide.with(holder!!.itemView.context)
                 .load(dataList[position].storeImage)

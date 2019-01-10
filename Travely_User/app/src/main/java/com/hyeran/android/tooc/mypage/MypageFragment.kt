@@ -72,6 +72,8 @@ class MypageFragment : Fragment() {
         //val mLayoutManager = LinearLayoutManager(this.activity)
 
         val mLayoutManager = LinearLayoutManager(this.activity)
+        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
+        mLayoutManager.stackFromEnd = true
 
         rv_recentstore_mypage.setLayoutManager(mLayoutManager)
 
@@ -151,6 +153,7 @@ class MypageFragment : Fragment() {
                     when (it.code()) {
                         200 -> {
                             //Log.d("@@@@@@@@@@@@", dataList_recent.toString())
+
                             if (response.body()!!.storeInfoResponseDtoList.size > 0) {
                                 dataList = response.body()!!.storeInfoResponseDtoList
                                 Log.d("TAGG",dataList.toString())

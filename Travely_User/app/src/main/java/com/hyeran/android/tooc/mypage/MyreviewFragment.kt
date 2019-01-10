@@ -2,6 +2,8 @@ package com.hyeran.android.tooc.mypage
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -12,16 +14,13 @@ import com.hyeran.android.tooc.adapter.MypageMyReviewAdapter
 import com.hyeran.android.tooc.model.mypage.ReviewLookupData
 import com.hyeran.android.tooc.network.ApplicationController
 import com.hyeran.android.tooc.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_myreview.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
-
-import android.support.v4.app.FragmentTransaction
-import android.support.v4.app.FragmentManager
-
-import kotlinx.android.synthetic.main.fragment_myreview.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MyreviewFragment:Fragment() {
     lateinit var networkService : NetworkService
@@ -29,7 +28,7 @@ class MyreviewFragment:Fragment() {
     lateinit var mypageMyReviewAdapter: MypageMyReviewAdapter
 
     lateinit var v : View
-
+    var  reviewIdx : Int =0
     val dataList : ArrayList<ReviewLookupData> by lazy {
         ArrayList<ReviewLookupData>()
     }
@@ -60,6 +59,17 @@ class MyreviewFragment:Fragment() {
         networkService = ApplicationController.instance.networkService
     }
 
+    private fun setRecyclerView() {
+        mypageMyReviewAdapter = MypageMyReviewAdapter(activity!!, dataList)
+        rv_review_myreview.adapter = mypageMyReviewAdapter
+
+        val mLayoutManager = LinearLayoutManager(this.activity)
+        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
+        mLayoutManager.stackFromEnd = true
+
+        rv_review_myreview.setLayoutManager(mLayoutManager)
+    }
+
     private fun getReviewLookupResponse() {
         var jwt : String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var getReviewLookupResponse = networkService.getReviewLookupResponse(jwt)
@@ -71,7 +81,6 @@ class MyreviewFragment:Fragment() {
                     when (it.code()) {
                         200 -> {
                             var dataList_myreview : ArrayList<ReviewLookupData> = response.body()!!
-
                             if (dataList_myreview.size > 0) {
                                 val position = mypageMyReviewAdapter.itemCount
                                 mypageMyReviewAdapter.dataList.addAll(dataList_myreview)
@@ -79,6 +88,16 @@ class MyreviewFragment:Fragment() {
                             } else {
 
                             }
+                            toast("리뷰 조회 성공")
+                        }
+                        204 -> {
+                            toast("작성 리뷰 없음")
+                        }
+                        400 -> {
+                            toast("잘못된 접근")
+                        }
+                        500 -> {
+                            toast("서버에러")
                         }
                         204 -> {
                         }
@@ -91,15 +110,7 @@ class MyreviewFragment:Fragment() {
         })
     }
 
-    private fun setRecyclerView() {
-//        var dataList: ArrayList<MypageMyReviewData> = ArrayList()
-//        dataList.add(MypageMyReviewData("동대문엽기떡볶이 홍대점", "서울시 마포구 샬라샬라", "2018","3","11", "위치가 역이랑 가까워서 좋았어요!\n건물도 깨끗했고, 상가 근처에 예쁜 카페가 많아서 구경할거리도 많더라구요!"))
-//        dataList.add(MypageMyReviewData("동대문엽기떡볶이 강남점", "서울시 마포구 샬라샬라2", "2017","1","23","감사합니다." ))
-//        dataList.add(MypageMyReviewData("동대문엽기떡볶이 수유점", "서울시 마포구 샬라샬라3", "2016","7","9", "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"))
 
-        mypageMyReviewAdapter = MypageMyReviewAdapter(activity!!, dataList)
-        rv_review_myreview.adapter = mypageMyReviewAdapter
-        rv_review_myreview.layoutManager = LinearLayoutManager(activity)
-    }
+
 
 }
