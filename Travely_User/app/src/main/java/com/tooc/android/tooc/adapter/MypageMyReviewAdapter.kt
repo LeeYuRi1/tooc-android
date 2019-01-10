@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.tooc.android.tooc.R
+import com.tooc.android.tooc.dialog.WriteReviewDialog
 import com.tooc.android.tooc.model.mypage.ReviewLookupData
 import java.text.SimpleDateFormat
 import com.tooc.android.tooc.network.ApplicationController
@@ -57,9 +59,16 @@ class MypageMyReviewAdapter(val ctx: Context, val dataList : ArrayList<ReviewLoo
         holder.review_content.text = dataList[position].content
         holder.review_rating.rating = dataList[position].liked.toFloat()
 
+
+        //리뷰 수정
+        holder.review_change.setOnClickListener {
+            WriteReviewDialog(ctx,dataList[position].storeIdx).show()
+        }
+
+        //리뷰 삭제
         holder.review_delete.setOnClickListener {
             deleteReviewResponse()
-            delete = this.dataList.get(position)
+            //delete = this.dataList.get(position)
         }
 
     }
@@ -76,6 +85,7 @@ class MypageMyReviewAdapter(val ctx: Context, val dataList : ArrayList<ReviewLoo
         var review_ymd : TextView = itemView.findViewById(R.id.tv_ymd_myreview) as TextView
         val review_content : TextView = itemView.findViewById(R.id.tv_content_myreview) as TextView
         var review_rating : RatingBar = itemView.findViewById(R.id.ratingBar_myreview) as RatingBar
+        var review_change : TextView = itemView.findViewById(R.id.btn_change_myreview) as TextView
         var review_delete : TextView = itemView.findViewById(R.id.btn_delete_myreview) as TextView
     }
 
@@ -91,8 +101,8 @@ class MypageMyReviewAdapter(val ctx: Context, val dataList : ArrayList<ReviewLoo
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            this@MypageMyReviewAdapter.dataList.remove(delete)
-                            this@MypageMyReviewAdapter.notifyDataSetChanged()
+                            //this@MypageMyReviewAdapter.notifyDataSetChanged()
+
                         }
                         400 -> {
                         }
