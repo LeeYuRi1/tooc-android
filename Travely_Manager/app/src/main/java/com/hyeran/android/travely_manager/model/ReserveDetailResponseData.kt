@@ -11,6 +11,7 @@ data class ReserveDetailResponseData (
         var progressType : String,
         var reserveIdx : Long,
         var startTime : Long,
+        var stateType : String,
         var takeTime : Long,
         var userIdx : Long,
         var userImgUrl : String,

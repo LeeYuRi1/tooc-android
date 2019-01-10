@@ -19,30 +19,18 @@ import com.hyeran.android.travely_manager.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve_detail.view.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import android.graphics.Bitmap
-import android.R.attr.data
 import android.app.Activity.RESULT_OK
-import android.content.ContentResolver
-import android.graphics.BitmapFactory
-import android.support.v4.app.ActivityCompat.startActivityForResult
-import android.support.v4.app.NotificationCompat.getExtras
 import android.support.v7.widget.LinearLayoutManager
 import com.hyeran.android.travely_manager.model.BagImgDtos
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.*
-import android.R.attr.name
-import android.graphics.Canvas
-import kotlin.math.log
-
-//import sun.awt.AppContext.getAppContext
-
 
 
 
@@ -93,11 +81,29 @@ class ReserveDetailFragment : Fragment() {
 //        dataList.add(BagImgDtos(0))
 //        dataList.add(BagImgDtos(0))
 
+        setClickListener()
+        getStoreIdxReserveCodeResponse()
         photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, dataList)
         v.rv_luggage_picture.adapter = photoStorageDetailRVAdapter
         v.rv_luggage_picture.layoutManager = LinearLayoutManager(context)
 
         return v
+    }
+
+    private fun setClickListener() {
+        btn_storage_reservedetail.setOnClickListener {
+            if (cb_confirm_reservedetail.isChecked) {
+                putStorePickupResponse()
+                getStoreIdxReserveCodeResponse()
+            } else {
+                toast("동의해주세요")
+            }
+        }
+
+        btn_pickup_reservedetail.setOnClickListener {
+            putStorePickupResponse()
+            getStoreIdxReserveCodeResponse()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -357,6 +363,19 @@ class ReserveDetailFragment : Fragment() {
 
                             //짐 보관, 픽업
                             pick_reserveIdx = response.body()!!.reserveIdx
+
+                            if(response.body()!!.stateType == "RESERVED"){   //예약상태
+                                layout_storage_reservedetail.visibility = View.VISIBLE
+                                layout_pickup_reservedetail.visibility = View.GONE
+                            } else if(response.body()!!.stateType == "ARCHIVE"){   //보관상태
+                                layout_storage_reservedetail.visibility = View.GONE
+                                layout_pickup_reservedetail.visibility = View.VISIBLE
+//                            }else if(response.body()!!.stateType == "PICKUP"){
+//                                layout_storage_reservedetail.visibility = View.GONE
+//                                layout_pickup_reservedetail.visibility = View.VISIBLE
+                            }else{
+
+                            }
 
 
                         }
