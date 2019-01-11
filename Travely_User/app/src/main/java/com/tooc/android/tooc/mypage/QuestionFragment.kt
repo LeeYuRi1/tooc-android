@@ -154,7 +154,7 @@ class QuestionFragment : Fragment() {
                             if (content.isNotEmpty()) {
                                 (ctx as MainActivity).replaceFragment(SetFragment())
                                 toast("문의사항 작성 성공")
-                                toast(content)
+//                                toast(content)
                             } else {
                                 toast("문의사항을 작성해주세요")
                             }
