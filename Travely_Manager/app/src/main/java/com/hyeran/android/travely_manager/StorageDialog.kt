@@ -17,10 +17,5 @@ class StorageDialog(val ctx : Context?) : Dialog(ctx) {
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_storage)
 
-        btn_reserve_storage_complete.setOnClickListener {
-            dismiss()
-            (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
-        }
-
     }
 }
