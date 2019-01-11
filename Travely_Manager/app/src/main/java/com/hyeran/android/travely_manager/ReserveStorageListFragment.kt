@@ -29,6 +29,17 @@ class ReserveStorageListFragment : Fragment() {
     var r_dataList : ArrayList<ReserveResponseDto> = ArrayList()
     var s_dataList : ArrayList<StoreResponseDto> = ArrayList()
 
+    companion object {
+        var mInstance: ReserveStorageListFragment? = null
+        @Synchronized
+        fun getInstance(): ReserveStorageListFragment {
+            if (mInstance == null) {
+                mInstance = ReserveStorageListFragment()
+            }
+            return mInstance!!
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v =  inflater.inflate(R.layout.fragment_reserve_storage_list, container, false)
         networkService = ApplicationController.instance.networkService

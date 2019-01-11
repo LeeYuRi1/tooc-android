@@ -64,7 +64,6 @@ class LoginActivity : AppCompatActivity() {
             //toast("버튼은 눌렸음")
             postLoginResponse()
 
-            finish()
         }
     }
 
@@ -98,7 +97,6 @@ class LoginActivity : AppCompatActivity() {
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", response.body()!!.isReserve)
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            finish()
                         }
                         403 -> {
                             Log.d("TAGGGGGG","403")

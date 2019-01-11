@@ -26,6 +26,7 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.tooc.android.tooc.ImgUrlRVAdapter
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.LuggagePictureAdapter
@@ -74,6 +75,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationProviderClient2: FusedLocationProviderClient
     private lateinit var locationRequest2: LocationRequest
     private lateinit var locationCallback2: MapMorePreviewFragment.MyLocationCallBack2
+
+    lateinit var imgUrlRVAdapter: ImgUrlRVAdapter
 
     companion object {
         var mInstance: ReserveStateFragment? = null
@@ -140,8 +143,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
             ReserveCancelDialog(context).show()
         }
         v.iv_qrimage_reservestate.setOnClickListener {
-//            startActivity<ReserveQRCodeDialog>("qrCode" to qrCode)
-            ReserveQRCodeDialog(context,qrCode).show()
+            //            startActivity<ReserveQRCodeDialog>("qrCode" to qrCode)
+            ReserveQRCodeDialog(context, qrCode).show()
         }
 
         v.btn_price_reservestate.setOnClickListener {
@@ -162,9 +165,11 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                     && ActivityCompat.checkSelfPermission(activity!!,
                             android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                var mLastKnownLocation: Location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient)
-                latitude3 = mLastKnownLocation.latitude
-                longitude3 = mLastKnownLocation.longitude
+                var mLastKnownLocation: Location? = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient)
+                if(mLastKnownLocation != null) {
+                    latitude3 = mLastKnownLocation!!.latitude
+                    longitude3 = mLastKnownLocation.longitude
+                }
 
 //                Log.d("ReserveStateFragment", "위도 : $latitude3, 경도 : $longitude3")
             }
@@ -175,10 +180,12 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
         }
         return v
     }
+
     override fun onStart() {
         super.onStart()
         mapView3.onStart()
     }
+
     override fun onStop() {
         super.onStop()
 
@@ -397,9 +404,9 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             }
                             Log.d("TAGGGG", "startTime = " + allDateStamp.format(startTime) + "  closeHour = " + allDateStamp.format(endTime))
                         }
-                        400->{
+                        400 -> {
                             (ctx as MainActivity).replaceFragment(NoReserveFragment())
-                            SharedPreferencesController.instance!!.setPrefData("is_reserve",false)
+                            SharedPreferencesController.instance!!.setPrefData("is_reserve", false)
                         }
                         500 -> {
                             toast("500 error")

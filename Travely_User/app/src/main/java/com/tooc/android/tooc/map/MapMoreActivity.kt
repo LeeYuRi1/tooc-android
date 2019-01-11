@@ -48,6 +48,8 @@ class MapMoreActivity : AppCompatActivity() {
 
         storeIdx = intent.getIntExtra("storeIdx", 0)
 
+        networkService = ApplicationController.instance.networkService
+
         init()
 
         setRecyclerView()
@@ -236,8 +238,8 @@ class MapMoreActivity : AppCompatActivity() {
                     }
                 }
             }
-
         })
-
     }
+
+
 }

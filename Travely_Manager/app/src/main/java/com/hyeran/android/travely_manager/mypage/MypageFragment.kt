@@ -19,10 +19,22 @@ import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 
 class MypageFragment : Fragment() {
 
     lateinit var networkService: NetworkService
+
+    companion object {
+        var mInstance: MypageFragment? = null
+        @Synchronized
+        fun getInstance(): MypageFragment {
+            if (mInstance == null) {
+                mInstance = getInstance()
+            }
+            return mInstance!!
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_mypage, container, false)
@@ -86,11 +98,16 @@ class MypageFragment : Fragment() {
                         200 -> {
                             tv_name_mypage.text = response.body()!!.ownerName
                             tv_current_bag_mypage.text = response.body()!!.serviceCount.toString()
-//                            tv_favorite_mypage.text = response.body()!!.
                             tv_review_mypage.text = response.body()!!.reviewCount.toString()
                             tv_store_name_mypage.text = response.body()!!.storeName
                             tv_address_mypage.text = response.body()!!.address
                             tv_address_number_mypage.text = response.body()!!.addressNumber
+                            var timeFormat = SimpleDateFormat("HH:mm")
+                            var openTimeText = timeFormat.format(response.body()!!.openTime)
+                            var closeTimeText = timeFormat.format(response.body()!!.closeTime)
+                            tv_opening_hour_mypage.text = openTimeText+" ~ "+closeTimeText
+                            tv_homepage_mypage.text = response.body()!!.storeUrl
+                            tv_call_num_mypage.text = response.body()!!.storeCall
 
                             Log.d("@@@@@@@@TAG", "서버에서 받은 onoff"+response.body()!!.onOff.toString())
                             if (response.body()!!.onOff == 1) {
