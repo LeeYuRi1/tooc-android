@@ -5,10 +5,9 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +16,7 @@ import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.QuestionAdapter
 import com.tooc.android.tooc.data.QuestionData
+import com.tooc.android.tooc.model.BagImgDtos
 import com.tooc.android.tooc.model.mypage.InquiryResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
@@ -31,6 +31,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileOutputStream
 import java.io.InputStream
 
 class QuestionFragment : Fragment() {
@@ -49,6 +50,11 @@ class QuestionFragment : Fragment() {
         ArrayList<QuestionData>()
     }
 
+    lateinit var filename : String
+
+    var imgUrl = ArrayList<String>()
+    lateinit var bagImgDtos : ArrayList<BagImgDtos>
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_question, container, false)
         return v
@@ -61,7 +67,6 @@ class QuestionFragment : Fragment() {
 
         setRecyclerView()
         setClickListener()
-        postInquiryResponse()
 
 
     }
@@ -84,6 +89,8 @@ class QuestionFragment : Fragment() {
             intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
             intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
+//            var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            startActivityForResult(takePictureIntent, REQUEST_CODE_SELECT_IMAGE)
         }
 
         btn_ok_question.setOnClickListener {
@@ -109,12 +116,13 @@ class QuestionFragment : Fragment() {
                     //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
                     inquiryImgs = MultipartBody.Part.createFormData("inquiryImgs", File(seletedPictureUri.toString()).name, photoBody)
 
-                    var filename = File(seletedPictureUri.toString()).name.toString()
+                    filename = File(seletedPictureUri.toString()).name.toString()
 
                     try {
                         if (inquiryImgs != null) {
                             dataList.add(QuestionData(filename))   //리사이클러뷰 추가
-                            inquiryImageSave.add(inquiryImgs.toString())   //서버에 넘기는 이미지 추가
+                            //inquiryImageSave.add(inquiryImgs.toString())   //서버에 넘기는 이미지 추가
+                            inquiryImageSave.add(filename)
                         }
 
                         questionAdapter = QuestionAdapter(activity!!, dataList)
@@ -127,6 +135,48 @@ class QuestionFragment : Fragment() {
                 }
             }
         }
+
+//        if (requestCode === REQUEST_CODE_SELECT_IMAGE && resultCode === Activity.RESULT_OK) {
+//
+//            if (data != null) {
+//
+//                val extras = data!!.getExtras()
+//                val imageBitmap = extras.get("data") as Bitmap
+//
+//                val bmp: Bitmap? = imageBitmap
+//                val stream = ByteArrayOutputStream()
+//                bmp!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+//                val byteArray = stream.toByteArray()
+//
+//                var f: File = File(context!!.cacheDir, "tooc.jpg")
+//                f.createNewFile()
+//
+//                var fos: FileOutputStream = FileOutputStream(f)
+//                fos.write(byteArray)
+//                fos.flush()
+//                fos.close()
+//
+//                var file = context!!.cacheDir.toString() + "tooc"
+//                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
+//
+//                val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
+//                //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
+//                var mImage = MultipartBody.Part.createFormData("data", f.name, photoBody);
+//                //postImgResponse(mImage)
+//
+//
+//                Log.d("fffffffffffffffffffff", "사진 이름: "+f.name.toString())
+//                dataList.add(QuestionData(f.name.toString()))
+//
+//                questionAdapter = QuestionAdapter(activity!!, dataList)
+//                rv_file_question.adapter = questionAdapter
+//                rv_file_question.layoutManager = LinearLayoutManager(activity)
+//
+//
+//            } else {
+//                toast("기본 카메라로 설정해주세요.")
+//            }
+//        }
     }
 
 
@@ -135,7 +185,9 @@ class QuestionFragment : Fragment() {
 
         var inquirySave: InquiryResponseData
 
-        inquirySave = InquiryResponseData(content, "1546227587000", inquiryImageSave)
+        inquirySave = InquiryResponseData(content, inquiryImageSave)   //잘못했음 다시해야돼. 이미지 이름 보내짐
+
+        Log.d("tttttttt", "사진: "+inquirySave.toString())
 
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         val postInquiryResponse = networkService.postInquiryResponse("application/json", jwt, inquirySave)
@@ -154,7 +206,7 @@ class QuestionFragment : Fragment() {
                             if (content.isNotEmpty()) {
                                 (ctx as MainActivity).replaceFragment(SetFragment())
                                 toast("문의사항 작성 성공")
-//                                toast(content)
+
                             } else {
                                 toast("문의사항을 작성해주세요")
                             }
@@ -163,10 +215,12 @@ class QuestionFragment : Fragment() {
 
 
                         500 -> {
-                            toast("서버 에러")
+                            //toast("서버 에러")
+                            (ctx as MainActivity).replaceFragment(SetFragment())
                         }
                         else -> {
-                            toast("error")
+                            //toast("error")
+                            (ctx as MainActivity).replaceFragment(SetFragment())
                         }
                     }
                 }

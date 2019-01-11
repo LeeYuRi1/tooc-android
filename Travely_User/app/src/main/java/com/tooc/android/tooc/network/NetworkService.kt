@@ -1,6 +1,7 @@
 package com.tooc.android.tooc.network
 
 import com.google.gson.JsonObject
+import com.tooc.android.tooc.model.BagImgDtos
 import com.tooc.android.tooc.model.ProfileResponseData
 import com.tooc.android.tooc.model.ReservationPriceListResponseData
 import com.tooc.android.tooc.model.mypage.*
@@ -9,6 +10,7 @@ import com.tooc.android.tooc.model.reservation.ReservationReserveCodeData
 import com.tooc.android.tooc.model.reservation.ReservationSaveRequestData
 import com.tooc.android.tooc.model.reservation.UsersLoginResponseData
 import com.tooc.android.tooc.model.store.StoreResponseData
+import okhttp3.MultipartBody
 import retrofit2.http.*
 import retrofit2.Call
 
@@ -154,6 +156,12 @@ interface NetworkService {
             @Body() inquiryResponseData: InquiryResponseData
     ): Call<InquiryResponseData>
 
-
+    // 사진 등록
+    @Multipart
+    @POST("/api/img")
+    fun postImgResponse(
+            @Header("jwt") jwt: String?,
+            @Part data: MultipartBody.Part
+    ): Call<BagImgDtos>
 
 }
