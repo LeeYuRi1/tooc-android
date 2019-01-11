@@ -4,24 +4,19 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.Gravity
 import android.widget.LinearLayout
 import com.tooc.android.tooc.R
-import com.tooc.android.tooc.R.drawable.img_default_big
-import com.tooc.android.tooc.R.id.*
 import com.tooc.android.tooc.adapter.PhotoRecylerViewAdapter
-import com.tooc.android.tooc.adapter.ReviewRecyclerViewAdapter
-import com.tooc.android.tooc.data.PhotoData
+import com.tooc.android.tooc.adapter.StoreReviewAdapter
 import com.tooc.android.tooc.dialog.MapChoiceDialog
-import com.tooc.android.tooc.model.StoreInfoResponseData
-import com.tooc.android.tooc.model.mypage.ReviewLookupData
 import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.activity_map_more.*
 import org.jetbrains.anko.toast
 import com.tooc.android.tooc.model.mypage.StoreFavoriteResponseData
+import com.tooc.android.tooc.model.store.ReviewResponseData
 import com.tooc.android.tooc.model.store.StoreImageResponseData
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,6 +25,7 @@ import java.sql.Timestamp
 
 class MapMoreActivity : AppCompatActivity() {
     lateinit var photoRecyclerViewAdapter: PhotoRecylerViewAdapter
+    lateinit var storeReviewAdapter: StoreReviewAdapter
 
     lateinit var networkService: NetworkService
 
@@ -41,6 +37,8 @@ class MapMoreActivity : AppCompatActivity() {
     val dataList: ArrayList<StoreImageResponseData> by lazy {
         ArrayList<StoreImageResponseData>()
     }
+
+    lateinit var reviewDataList: ArrayList<ReviewResponseData>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -189,6 +187,14 @@ class MapMoreActivity : AppCompatActivity() {
                             }
                             tv_store_url_map_more.text = response.body()!!.storeUrl
                             tv_store_call_map_more.text = response.body()!!.storeCall
+
+                            tv_hour_rv_item.text = reviewDataList.size.toString()
+
+                            reviewDataList = response.body()!!.reviewResponseDtos
+
+                            storeReviewAdapter = StoreReviewAdapter(this@MapMoreActivity, reviewDataList)
+                            rv_map_more_act_review_list.adapter = storeReviewAdapter
+                            rv_map_more_act_review_list.layoutManager = LinearLayoutManager(this@MapMoreActivity)
 
                             //favorite
                             if (response.body()!!.isFavorite == 1) {   //즐겨찾기됨
