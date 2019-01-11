@@ -45,7 +45,6 @@ class SetFragment : Fragment() {
         iv_back_set.setOnClickListener {
             var fm = fragmentManager
             (ctx as MainActivity).replaceFragment(MypageFragment())
-            fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             fm!!.popBackStack()
         }
 
