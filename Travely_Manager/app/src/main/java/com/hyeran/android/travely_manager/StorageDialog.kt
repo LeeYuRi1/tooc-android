@@ -19,7 +19,7 @@ class StorageDialog(val ctx : Context?) : Dialog(ctx) {
 
         btn_reserve_storage_complete.setOnClickListener {
             dismiss()
-//            (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
+            (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
         }
 
     }

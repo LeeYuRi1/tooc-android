@@ -593,7 +593,7 @@ class ReserveDetailFragment : Fragment() {
                                 btn_storage_reservedetail.setOnClickListener {
                                     if (cb_confirm_reservedetail.isChecked) {
                                         putStorePickupResponse()
-//                                        StorageDialog(context).show()
+                                        StorageDialog(context).show()
 //                                        (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
                                     } else {
                                         toast("동의해주세요")
