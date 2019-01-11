@@ -24,8 +24,6 @@ class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
     lateinit var networkService: NetworkService
 
     lateinit var mypageRecentStoreAdapter : MypageRecentStoreAdapter
-//    var content = et_review_writereview!!.text.toString()
-//    var rating = ratingBar_writereview!!.rating.toLong()
 
     val dataList: ArrayList<StoreInfoResponseData> by lazy {
         ArrayList<StoreInfoResponseData>()
@@ -80,20 +78,15 @@ class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
                     when (it.code()) {
                         200 -> {
                             dismiss()
-                            Toast.makeText(context, "리뷰 OK", Toast.LENGTH_SHORT).show()
                         }
                         201 -> {
                             dismiss()
-                            Toast.makeText(context, "리뷰 저장 성공", Toast.LENGTH_SHORT).show()
                         }
                         400 -> {
-                            Toast.makeText(context, "잘못 된 정보 주입 시도", Toast.LENGTH_SHORT).show()
                         }
                         500 -> {
-                            Toast.makeText(context, "서버 에러", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

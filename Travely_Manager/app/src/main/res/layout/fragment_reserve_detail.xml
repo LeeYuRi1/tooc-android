@@ -267,7 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="1"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView108"
                     app:layout_constraintTop_toTopOf="@+id/textView108" />
@@ -663,8 +663,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline50"
-                    app:layout_constraintStart_toStartOf="@+id/guideline51"
                     app:layout_constraintTop_toBottomOf="@+id/textView132">
 
                     <ImageView
@@ -685,9 +683,7 @@
                     android:layout_marginBottom="23dp"
                     android:layout_marginTop="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline50"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guideline51"
                     app:layout_constraintTop_toBottomOf="@+id/layout_picture_reservedetail" />
 
 

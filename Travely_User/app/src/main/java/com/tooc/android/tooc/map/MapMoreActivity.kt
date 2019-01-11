@@ -3,18 +3,26 @@ package com.tooc.android.tooc.map
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Gravity
+import android.widget.LinearLayout
 import com.tooc.android.tooc.R
+import com.tooc.android.tooc.R.drawable.img_default_big
+import com.tooc.android.tooc.R.id.*
 import com.tooc.android.tooc.adapter.PhotoRecylerViewAdapter
 import com.tooc.android.tooc.adapter.ReviewRecyclerViewAdapter
 import com.tooc.android.tooc.data.PhotoData
 import com.tooc.android.tooc.dialog.MapChoiceDialog
+import com.tooc.android.tooc.model.StoreInfoResponseData
+import com.tooc.android.tooc.model.mypage.ReviewLookupData
 import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.activity_map_more.*
 import org.jetbrains.anko.toast
 import com.tooc.android.tooc.model.mypage.StoreFavoriteResponseData
+import com.tooc.android.tooc.model.store.StoreImageResponseData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +30,6 @@ import java.sql.Timestamp
 
 class MapMoreActivity : AppCompatActivity() {
     lateinit var photoRecyclerViewAdapter: PhotoRecylerViewAdapter
-    lateinit var reviewRecyclerViewAdapter: ReviewRecyclerViewAdapter
 
     lateinit var networkService: NetworkService
 
@@ -30,6 +37,10 @@ class MapMoreActivity : AppCompatActivity() {
     var lat: Double = 0.0
 
     var storeIdx: Int = 0
+
+    val dataList: ArrayList<StoreImageResponseData> by lazy {
+        ArrayList<StoreImageResponseData>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,14 +50,14 @@ class MapMoreActivity : AppCompatActivity() {
 
         init()
 
-        getStoreResponse()
-
         setRecyclerView()
+        getStoreResponse()
 
         lat = intent.getDoubleExtra("lat", 0.0)
         lng = intent.getDoubleExtra("lng", 0.0)
 //        toast(lat.toString() + "!@#!@#!@#!#" + lng.toString())
         setOnBtnClickListener()
+
 
     }
 
@@ -72,15 +83,16 @@ class MapMoreActivity : AppCompatActivity() {
         }
 
         btn_map_more_act_favorite.setOnClickListener {
-            if(btn_map_more_act_favorite.isSelected == true){
+            if (btn_map_more_act_favorite.isSelected == true) {
                 putFavoriteResponse()
+                btn_map_more_act_favorite.isSelected = false
             }else if(btn_map_more_act_favorite.isSelected == false){
                 putFavoriteResponse()
+                btn_map_more_act_favorite.isSelected = true
             }else {
+            }
 
             }
-        }
-
 
     }
 
@@ -89,14 +101,9 @@ class MapMoreActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerView() {
-        // 임시 데이터 1
-        val dataList1: ArrayList<PhotoData> = ArrayList()
-        dataList1.add(PhotoData("img_default_big"))
-        dataList1.add(PhotoData("img_default_big"))
-        dataList1.add(PhotoData("img_default_big"))
-        dataList1.add(PhotoData("img_default_big"))
-        dataList1.add(PhotoData("img_default_big"))
-        dataList1.add(PhotoData("img_default_big"))
+        photoRecyclerViewAdapter = PhotoRecylerViewAdapter(this, dataList)
+        rv_map_more_act_photo_list.adapter = photoRecyclerViewAdapter
+        rv_map_more_act_photo_list.layoutManager = LinearLayoutManager(this, LinearLayout.HORIZONTAL, false)
     }
 
 
@@ -112,6 +119,15 @@ class MapMoreActivity : AppCompatActivity() {
                 response.let {
                     when (it.code()) {
                         200 -> {
+                            //storeimage
+                            var dataList_image: ArrayList<StoreImageResponseData> = response.body()!!.storeImageResponseDtos
+                            if (dataList_image.size > 0) {
+                                val position = photoRecyclerViewAdapter.itemCount
+                                photoRecyclerViewAdapter.dataList.addAll(dataList_image)
+                                photoRecyclerViewAdapter.notifyItemInserted(position)
+                            } else {
+                            }
+
                             tv_store_name_map_more.text = response.body()!!.storeName
                             tv_grade_map_more.text = response.body()!!.grade.toString()
                             tv_address_map_more.text = response.body()!!.address
@@ -173,14 +189,15 @@ class MapMoreActivity : AppCompatActivity() {
                             tv_store_call_map_more.text = response.body()!!.storeCall
 
                             //favorite
-                            if(response.body()!!.isFavorite == 1){   //즐겨찾기됨
+                            if (response.body()!!.isFavorite == 1) {   //즐겨찾기됨
                                 btn_map_more_act_favorite.isSelected = true
 
-                            }else if(response.body()!!.isFavorite == -1){   //즐겨찾기안됨
+                            } else if (response.body()!!.isFavorite == -1) {   //즐겨찾기안됨
                                 btn_map_more_act_favorite.isSelected = false
 
-                            }else {
+                            } else {
                             }
+
 
                         }
                         500 -> {
@@ -195,6 +212,7 @@ class MapMoreActivity : AppCompatActivity() {
 
     fun putFavoriteResponse() {
 
+
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
 
         val putStoreFavoriteResponse = networkService.putStoreFavoriteResponse(jwt, storeIdx)
@@ -207,15 +225,7 @@ class MapMoreActivity : AppCompatActivity() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            //favorite
-                            if(response.body()!!.isFavorite == 1){   //즐겨찾기됨
-                                btn_map_more_act_favorite.isSelected = true
 
-                            }else if(response.body()!!.isFavorite == -1){   //즐겨찾기안됨
-                                btn_map_more_act_favorite.isSelected = false
-
-                            }else {
-                            }
                         }
                         400 -> {
                         }

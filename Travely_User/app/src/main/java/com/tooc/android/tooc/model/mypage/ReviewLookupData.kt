@@ -16,6 +16,6 @@ data class ReviewLookupData(
         var regionIdx : Long,
         var reviewIdx : Int,
         var storeCall : String,
-        var storeIdx : Long,
+        var storeIdx : Int,
         var storeUrl : String
 )

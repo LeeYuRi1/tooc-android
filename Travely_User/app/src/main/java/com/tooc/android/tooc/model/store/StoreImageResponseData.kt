@@ -1,6 +1,6 @@
 package com.tooc.android.tooc.model.store
 
 data class StoreImageResponseData (
-        var storeImage : String,
+        var storeImg : String,
         var storeImgIdx : Int
 )

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.hyeran.android.travely_manager.R
 import com.hyeran.android.travely_manager.db.SharedPreferencesController
 import com.hyeran.android.travely_manager.model.MypageResponseData
@@ -103,7 +104,13 @@ class MypageFragment : Fragment() {
 //                            tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
 //                            tv_review_cnt_mypage.text = response.body()!!.reviewCount.toString()
 //
+
+                            val requestOptions = RequestOptions()
+                            requestOptions.placeholder(R.drawable.mypage_bt_default)
+                            requestOptions.error(R.drawable.mypage_bt_default)
+
                             Glide.with(this@MypageFragment)
+                                    .setDefaultRequestOptions(requestOptions)
                                     .load(response.body()!!.ownerImgUrl)
                                     .into(iv_profile_mypage)
 

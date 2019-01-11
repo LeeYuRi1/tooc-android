@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.hyeran.android.travely_manager.R
 import com.hyeran.android.travely_manager.model.ReviewUserImgData
+import java.sql.Timestamp
 
 
 class ReviewListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReviewUserImgData>) : RecyclerView.Adapter<ReviewListRVAdapter.Holder>() {
@@ -23,12 +25,18 @@ class ReviewListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReviewUse
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
+        val requestOptions = RequestOptions()
+                requestOptions.placeholder(R.drawable.mypage_bt_default)
+                requestOptions.error(R.drawable.mypage_bt_default)
+
         Glide.with(holder!!.itemView.context)
+                .setDefaultRequestOptions(requestOptions)
                 .load(dataList[position].userImgUrl)
                 .into(holder!!.profile)
 
         holder.name.text = dataList[position].userName
-        //holder.hour.text = dataList[position].hour.toString()
+        var currentTime = System.currentTimeMillis()
+        holder.hour.text = Timestamp(currentTime - dataList[position].createdAt).hours.toString()
         holder.start_num.text = dataList[position].like.toString()
         holder.content.text = dataList[position].content
     }
