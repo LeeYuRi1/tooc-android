@@ -83,11 +83,15 @@ class LoginActivity : AppCompatActivity() {
 
         postLoginResponse!!.enqueue(object : Callback<UsersLoginResponseData> {
             override fun onFailure(call: Call<UsersLoginResponseData>, t: Throwable) {
+                Log.d("TAGGGGGG","onFailure")
+
             }
             override fun onResponse(call: Call<UsersLoginResponseData>, response: Response<UsersLoginResponseData>) {
                 response?.let {
                     when (it.code()) {
                         200 -> {
+                            Log.d("TAGGGGGG","200")
+
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
@@ -97,11 +101,15 @@ class LoginActivity : AppCompatActivity() {
                             finish()
                         }
                         403 -> {
-                            toast("로그인 실패")
+                            Log.d("TAGGGGGG","403")
+
                         }
                         500 -> {
+                            Log.d("TAGGGGGG","500")
+
                         }
                         else -> {
+                            Log.d("TAGGGGGG","else")
                         }
                     }
                 }

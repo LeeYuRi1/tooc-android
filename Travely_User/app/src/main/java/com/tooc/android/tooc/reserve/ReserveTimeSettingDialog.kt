@@ -263,10 +263,10 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         val dates = ArrayList<String>()
         if (openTime < 10) {
             for (i in openTime..9) dates.add("0" + i)
+            for (i in 10..closeHour) dates.add(i.toString())
         } else {
-            for (i in 0..9) dates.add("0" + i)
+            for (i in 10..closeHour) dates.add(i.toString())
         }
-        for (i in 10..closeHour) dates.add(i.toString())
         return dates.toTypedArray()
     }
 
@@ -329,7 +329,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                     break
                 }
             }
-//            Toast.makeText(context,"closeHour = "+closeHour+"    closeMinute = "+closeMinute,Toast.LENGTH_LONG).show()
 
             if (closeHour == snumhh && snummm > closeMinute) {
                 ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
@@ -345,7 +344,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                 } else {
                     if (alertFlag == 0 && notOffDay == true) {
                         vs_custom_date_picker.showNext()
-                        alertFlag = 1;
+                        alertFlag = 1
                         setTakeClickViewChange()
                     } else {
                         ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.", Toast.LENGTH_LONG)
@@ -358,7 +357,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
 
         btn_time_confirm.setOnClickListener {
             notOffDay = true
-
             for (i in 0..offdaySize) {
                 if (takeProhibit == offday[i]) {
                     notOffDay = false

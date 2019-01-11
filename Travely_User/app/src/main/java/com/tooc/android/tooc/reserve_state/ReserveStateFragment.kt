@@ -46,6 +46,7 @@ import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Response
 import java.sql.Timestamp
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
 
@@ -55,6 +56,9 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap3: GoogleMap
     private lateinit var mapView3: MapView
     private lateinit var mGoogleApiClient: GoogleApiClient
+
+    var decimalFormat = DecimalFormat("###,###")
+
 
     var latitude3: Double = 0.0
     var longitude3: Double = 0.0
@@ -294,18 +298,18 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 if (response.body()!!.bagDtos[i].bagType == "CARRIER") {
                                     total_amount += response.body()!!.bagDtos[i].bagCount
                                     tv_carrier_num_reservestate.text = response.body()!!.bagDtos[i].bagCount.toString()
-                                    tv_carrier_money_reservestate.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
+                                    tv_carrier_money_reservestate.text = decimalFormat.format(final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
                                 } else {
                                     total_amount += response.body()!!.bagDtos[i].bagCount
                                     tv_bag_num_reservestate.text = response.body()!!.bagDtos[i].bagCount.toString()
-                                    tv_bag_money_reservestate.text = (final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
+                                    tv_bag_money_reservestate.text = decimalFormat.format(final_priceUnit * response.body()!!.bagDtos[i].bagCount).toString()
                                 }
                                 mMap3.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 17f))
 
                                 tv_total_num_reservestate.text = total_amount.toString()
-                                tv_total_money_reservestate.text = (final_priceUnit * total_amount).toString()
+                                tv_total_money_reservestate.text = decimalFormat.format(response.body()!!.price/total_amount).toString()
 
-                                tv_payment_amount_reservestate.text = (total_amount * response.body()!!.price).toString()
+                                tv_payment_amount_reservestate.text = decimalFormat.format(response.body()!!.price).toString()
 
                                 var dataList: ArrayList<bagImgDtos> = response.body()!!.bagImgDtos
 

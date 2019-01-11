@@ -454,7 +454,6 @@ class ReserveDetailFragment : Fragment() {
             }
 
         })
-
     }
 
     private fun getDetailReserveResponse() {
@@ -613,8 +612,6 @@ class ReserveDetailFragment : Fragment() {
                             } else {
 
                             }
-
-
                         }
                         403 -> {
                             toast("인증에러")
