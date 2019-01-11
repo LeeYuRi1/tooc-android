@@ -18,8 +18,8 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
-import com.hyeran.android.tooc.R
 import com.tooc.android.tooc.MainActivity
+import com.tooc.android.tooc.R
 import kotlinx.android.synthetic.main.fragment_map.view.*
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.support.v4.alert

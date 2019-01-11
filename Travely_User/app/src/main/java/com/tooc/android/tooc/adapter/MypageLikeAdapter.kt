@@ -36,8 +36,6 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
     var likeFragment = LikeFragment()
 
 
-    lateinit var delete : Any
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.item_like, parent, false)
         return Holder(view)
@@ -88,11 +86,9 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
         //즐겨찾기 취소
         holder.like_heart.setOnClickListener {
             holder.like_heart.isSelected = false
- //           delete = this.dataList.get(position)
- //           (ctx as MapMoreActivity).putFavoriteResponse()
-//            likeFragment.likedelete = delete
-
+            (ctx as MapMoreActivity).putFavoriteResponse()
         }
+
 
         holder.like_reserve_btn.setOnClickListener{
             storeIdx = dataList[position].storeIdx

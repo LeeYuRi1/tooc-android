@@ -24,5 +24,9 @@ class ReserveNumberDialog(val ctx : Context?) : Dialog(ctx){
             dismiss()
             (ctx as MainActivity).qrCode(etReserveNumber.text.toString())
         }
+
+        btn_cancle_number.setOnClickListener {
+            dismiss()
+        }
     }
 }

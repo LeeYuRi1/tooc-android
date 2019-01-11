@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.TextView
-import com.hyeran.android.tooc.R
+import com.tooc.android.tooc.R
 import kotlinx.android.synthetic.main.item_faq_group.view.*
 
 class FaqAdapter(var context: Context, var faqexpandedView: ExpandableListView, var header: MutableList<String>, var body: MutableList<MutableList<String>>) : BaseExpandableListAdapter() {
