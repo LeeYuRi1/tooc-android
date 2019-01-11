@@ -103,7 +103,6 @@ class MainActivity : AppCompatActivity() {
             selectedTabChangeColor(1)
         }
         tab_three_main.setOnClickListener {
-            //            replaceFragment(ShipFragment())
             replaceFragment(ShipFragment())
             selectedTabChangeColor(2)
         }

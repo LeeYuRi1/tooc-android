@@ -112,7 +112,11 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         pv_store_hour.minValue = 0
         pv_store_hour.maxValue = hours!!.size - 1
         pv_store_hour.displayedValues = hours
-        pv_store_hour.value = snumhh - openTime
+        if(snumhh>=openTime) {
+            pv_store_hour.value = snumhh - openTime
+        }else{
+            pv_store_hour.value = 0
+        }
         if (pv_store_hour.value + openTime < 10) {
             shh = "0" + (pv_store_hour.value + openTime).toString()
         } else shh = (pv_store_hour.value+ openTime ).toString()
@@ -165,7 +169,12 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         pv_take_hour.minValue = 0
         pv_take_hour.maxValue = hours!!.size - 1
         pv_take_hour.displayedValues = hours
-        pv_take_hour.value = tnumhh - openTime
+        if(tnumhh>=openTime) {
+            pv_take_hour.value = tnumhh - openTime
+        }else{
+            pv_take_hour.value = 0
+        }
+//        pv_take_hour.value = tnumhh - openTime
         if (openTime < 10) {
             thh = "0" + (pv_take_hour.value + openTime).toString()
         } else thh = (pv_take_hour.value+ openTime ).toString()

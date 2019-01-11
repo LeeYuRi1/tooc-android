@@ -92,16 +92,20 @@ class ReserveDetailFragment : Fragment() {
 
     private fun setClickListener() {
         btn_storage_reservedetail.setOnClickListener {
-            putStorePickupResponse()
-            layout_storage_reservedetail.visibility = View.GONE
-            layout_pickup_reservedetail.visibility = View.VISIBLE
-            layout_picture_reservedetail.visibility = View.GONE
 
-            imgUrlRVAdapter = ImgUrlRVAdapter(context, bagImgDtos)
-            rv_luggage_picture.adapter = imgUrlRVAdapter
-            var mLayoutManager = LinearLayoutManager(context)
-            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-            rv_luggage_picture.layoutManager = mLayoutManager
+            toast("@@@@@@@@@@@@")
+
+//            layout_storage_reservedetail.visibility = View.GONE
+//            layout_pickup_reservedetail.visibility = View.VISIBLE
+//            layout_picture_reservedetail.visibility = View.GONE
+//
+//            imgUrlRVAdapter = ImgUrlRVAdapter(context, bagImgDtos)
+//            rv_luggage_picture.adapter = imgUrlRVAdapter
+//            var mLayoutManager = LinearLayoutManager(context)
+//            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+//            rv_luggage_picture.layoutManager = mLayoutManager
+
+            putStorePickupResponse()
         }
 
         btn_pickup_reservedetail.setOnClickListener {
@@ -598,7 +602,25 @@ class ReserveDetailFragment : Fragment() {
 
                                 btn_storage_reservedetail.setOnClickListener {
                                     if (cb_confirm_reservedetail.isChecked) {
-                                        putStorePickupResponse()
+                                        Log.d("@@@@@@@@@TAG", dataList.toString())
+                                        if (dataList.size == 0) {
+                                            toast("짐 사진을 찍어주세요.")
+                                        }
+                                        else {
+                                            putStorePickupResponse()
+
+                                            layout_storage_reservedetail.visibility = View.GONE
+                                            layout_pickup_reservedetail.visibility = View.VISIBLE
+                                            layout_picture_reservedetail.visibility = View.GONE
+                                        }
+//
+//                                        imgUrlRVAdapter = ImgUrlRVAdapter(context, bagImgDtos)
+//                                        rv_luggage_picture.adapter = imgUrlRVAdapter
+//                                        var mLayoutManager = LinearLayoutManager(context)
+//                                        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+//                                        rv_luggage_picture.layoutManager = mLayoutManager
+
+
 //                                        StorageDialog(context).show()
 //                                        (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
                                     } else {
