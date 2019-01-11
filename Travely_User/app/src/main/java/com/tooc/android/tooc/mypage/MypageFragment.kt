@@ -46,8 +46,6 @@ class MypageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_mypage, container, false)
         init()
-
-
         return v
     }
 
@@ -186,5 +184,6 @@ class MypageFragment : Fragment() {
 
         })
     }
+
 
 }
