@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         args.putString("reserveCode", reserveNumberConfirm)
         fragment.arguments = args
         replaceFragment(fragment)
+        Log.d("TAGGGGGGGGGGGG",args.toString())
 //        if(reserveNumberConfirm == "123") {
 //            Log.d("TAGGGG","RTYRTYTYT")
 //            replaceFragment(ReserveDetailFragment())

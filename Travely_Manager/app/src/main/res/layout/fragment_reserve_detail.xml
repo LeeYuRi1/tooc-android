@@ -155,7 +155,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/kopub_bold"
-                    android:text="18"
+                    android:text=""
                     android:textColor="#262626"
                     app:layout_constraintStart_toEndOf="@+id/imageView6"
                     app:layout_constraintTop_toTopOf="@+id/imageView6" />
@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="오후"
+                    android:text=""
                     android:textColor="#8d8d8d"
                     app:layout_constraintStart_toStartOf="@+id/tv_startday_reservedetail"
                     app:layout_constraintTop_toBottomOf="@+id/tv_startday_reservedetail" />
@@ -178,7 +178,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="38dp"
                     android:fontFamily="@font/kopub_bold"
-                    android:text="18"
+                    android:text=""
                     android:textColor="#262626"
                     app:layout_constraintStart_toEndOf="@+id/imageView6"
                     app:layout_constraintTop_toBottomOf="@+id/tv_starttime_reservedetail" />
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="오전 "
+                    android:text=""
                     android:textColor="#8d8d8d"
                     app:layout_constraintStart_toStartOf="@+id/tv_endday_reservedetail"
                     app:layout_constraintTop_toBottomOf="@+id/tv_endday_reservedetail" />
@@ -225,7 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="1"
+                    android:text=""
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView104"
                     app:layout_constraintTop_toTopOf="@+id/textView104" />
@@ -245,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="3500"
+                    android:text="0"
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView106"
                     app:layout_constraintTop_toTopOf="@+id/textView106" />
@@ -267,7 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="0"
+                    android:text=""
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView108"
                     app:layout_constraintTop_toTopOf="@+id/textView108" />
@@ -287,7 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="3500"
+                    android:text=""
                     android:textColor="#494949"
                     app:layout_constraintEnd_toStartOf="@+id/textView110"
                     app:layout_constraintTop_toTopOf="@+id/textView110" />
@@ -343,7 +343,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
-                    android:text="2"
+                    android:text=""
                     android:textColor="#262626"
                     app:layout_constraintEnd_toStartOf="@+id/textView120"
                     app:layout_constraintTop_toTopOf="@+id/textView120" />
@@ -363,7 +363,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
-                    android:text="3500"
+                    android:text=""
                     android:textColor="#262626"
                     app:layout_constraintEnd_toStartOf="@+id/textView122"
                     app:layout_constraintTop_toTopOf="@+id/textView122" />
@@ -396,7 +396,7 @@
                     android:layout_height="73dp"
                     android:layout_marginStart="7dp"
                     android:layout_marginTop="15dp"
-                    android:src="@android:color/holo_orange_light"
+                    android:src="@drawable/mypage_bt_default"
                     app:layout_constraintStart_toStartOf="@+id/textView71"
                     app:layout_constraintTop_toBottomOf="@+id/textView71" />
 
@@ -427,7 +427,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="31dp"
                     android:layout_marginTop="16dp"
-                    android:text="김민경"
+                    android:text=""
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline44"
                     app:layout_constraintTop_toTopOf="@+id/iv_profile_reservedetail" />
@@ -438,7 +438,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="8dp"
-                    android:text="010 - 1234 - 5678"
+                    android:text=""
                     app:layout_constraintBottom_toBottomOf="@+id/iv_profile_reservedetail"
                     app:layout_constraintEnd_toEndOf="@+id/tv_name_reservedetail"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name_reservedetail" />
@@ -474,7 +474,7 @@
                     android:id="@+id/tv_num_reservedetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
+                    android:text="0"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView65"
                     app:layout_constraintEnd_toStartOf="@+id/textView65" />
@@ -494,7 +494,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/kopub_medium"
-                    android:text="2334189"
+                    android:text=""
                     android:textColor="#8d8d8d"
                     app:layout_constraintBottom_toBottomOf="@+id/textView71"
                     app:layout_constraintEnd_toStartOf="@+id/guideline44"
@@ -608,7 +608,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kopub_bold"
-                    android:text="7000"
+                    android:text=""
                     android:textColor="@color/mainColor"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/textView123"
