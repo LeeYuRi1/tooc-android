@@ -345,6 +345,7 @@
             android:lineSpacingExtra="2sp"
             android:text="확인"
             android:textColor="#ffffff"
+            android:fontFamily="@font/kopub_medium"
             android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

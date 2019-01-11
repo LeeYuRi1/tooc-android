@@ -7,11 +7,15 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
+import android.widget.PopupMenu
 import android.widget.Toast
+import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.MypageRecentStoreAdapter
 import com.tooc.android.tooc.model.StoreInfoResponseData
 import com.tooc.android.tooc.model.mypage.ReviewSaveResponseData
+import com.tooc.android.tooc.mypage.MypageFragment
+import com.tooc.android.tooc.mypage.MyreviewFragment
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.dialog_writereview.*
@@ -19,11 +23,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
+class WriteReviewDialog(var ctx : Context?,var storeIdx:Int) : Dialog(ctx){
 
     lateinit var networkService: NetworkService
 
     lateinit var mypageRecentStoreAdapter : MypageRecentStoreAdapter
+
+    var onDismissListener : android.support.v7.widget.PopupMenu.OnDismissListener? = null
 
     val dataList: ArrayList<StoreInfoResponseData> by lazy {
         ArrayList<StoreInfoResponseData>()
@@ -77,7 +83,9 @@ class WriteReviewDialog(ctx : Context?,var storeIdx:Int) : Dialog(ctx){
                 response?.let {
                     when (it.code()) {
                         200 -> {
+                            (ctx as MainActivity).replaceFragment(MypageFragment())
                             dismiss()
+
                         }
                         201 -> {
                             dismiss()

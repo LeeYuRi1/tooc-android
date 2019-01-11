@@ -9,9 +9,12 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.dialog.WriteReviewDialog
 import com.tooc.android.tooc.model.mypage.ReviewLookupData
+import com.tooc.android.tooc.mypage.MypageFragment
+import com.tooc.android.tooc.mypage.MyreviewFragment
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 
@@ -69,7 +72,6 @@ class MypageMyReviewAdapter(val ctx: Context, val dataList : ArrayList<ReviewLoo
         //리뷰 삭제
         holder.review_delete.setOnClickListener {
             deleteReviewResponse()
-            //delete = this.dataList.get(position)
         }
 
     }
@@ -102,8 +104,7 @@ class MypageMyReviewAdapter(val ctx: Context, val dataList : ArrayList<ReviewLoo
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            //this@MypageMyReviewAdapter.notifyDataSetChanged()
-
+                            (ctx as MainActivity).replaceFragment(MyreviewFragment())
                         }
                         400 -> {
                         }
