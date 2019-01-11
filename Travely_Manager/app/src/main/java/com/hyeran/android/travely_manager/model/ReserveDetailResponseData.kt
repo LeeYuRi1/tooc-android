@@ -16,5 +16,6 @@ data class ReserveDetailResponseData (
         var userIdx : Long,
         var userImgUrl : String,
         var userName : String,
-        var userPhone : String
+        var userPhone : String,
+        var reserveCode : String
 )

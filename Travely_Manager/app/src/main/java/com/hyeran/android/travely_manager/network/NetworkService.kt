@@ -51,7 +51,8 @@ interface NetworkService {
     @PUT("/api/owner/reserve/{reserveIdx}")
     fun putStorePickUpResponse(
             @Header("jwt") jwt: String?,
-            @Body() pickupData : PickupData,
+            @Header("Content-Type") content_type: String,
+            @Body() bagImgRequestDto : BagImgRequestDtoData,
             @Path("reserveIdx") reserveIdx: Long
     ) : Call<Any>
 
