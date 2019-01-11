@@ -300,6 +300,7 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             Log.d("TAGG", "bagDtos : " + bagDtos.toString())
                             var final_priceUnit = response.body()!!.priceUnit + response.body()!!.extraChargeCount * response.body()!!.extraCharge
                             var total_amount: Int = 0
+
                             for (i in 0 until response.body()!!.bagDtos.size) {
                                 Log.d("TAGGG", "bagDtos = " + response.body()!!.bagDtos[i].bagType)
                                 if (response.body()!!.bagDtos[i].bagType == "CARRIER") {
@@ -329,6 +330,8 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 tv_store_name_reservestate.text = response.body()!!.store.storeName
                                 tv_store_location_reservestate.text = response.body()!!.store.address
                             }
+
+                            tv_my_num_reservestate.text = total_amount.toString()
                             //상가정보 입력
                             tv_store_name_reservestate.text = response.body()!!.store.storeName
                             tv_store_location_reservestate.text = response.body()!!.store.address

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import com.hyeran.android.travely_manager.model.BitmapData
 
 class BitmapRVAdapter(val ctx : Context?, val dataList : ArrayList<BitmapData>) : RecyclerView.Adapter<BitmapRVAdapter.Holder>() {

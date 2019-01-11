@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.SplashActivity
@@ -197,7 +198,12 @@ class ProfileFragment : Fragment() {
                     when (it.code()) {
                         200 -> {
 
+                            val requestOptions = RequestOptions()
+                            requestOptions.placeholder(R.drawable.mypage_bt_default)
+                            requestOptions.error(R.drawable.mypage_bt_default)
+
                             Glide.with(this@ProfileFragment)
+                                    .setDefaultRequestOptions(requestOptions)
                                     .load(response.body()!!.profileImg)
                                     .into(iv_profileimage_profile)
 
