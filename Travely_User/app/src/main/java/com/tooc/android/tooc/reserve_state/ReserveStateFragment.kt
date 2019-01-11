@@ -251,16 +251,16 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             var longitude = response.body()!!.store.longitude
                             generateQRCode(v, response.body()!!.reserveCode)
                             if (stateType == "RESERVED") {
-                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_no)
                                 btn_reservecancel_to_dialog.visibility = View.VISIBLE
                                 const_luggage_reservestate.visibility = View.GONE
                             } else if (stateType == "PAYED") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
-                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
-                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_empty)
+//                                iv_circle_collect_reservestate.setImageResource(R.drawable.ic_circle_empty)
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
                                 btn_reservecancel_to_dialog.visibility = View.VISIBLE
                                 const_luggage_reservestate.visibility = View.GONE
@@ -271,7 +271,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                                 iv_payment_complete_reservestate.setImageResource(R.drawable.box_pay_yes)
                                 btn_reservecancel_to_dialog.visibility = View.GONE
                                 const_luggage_reservestate.visibility = View.VISIBLE
-
                             } else if (stateType == "PICKUP") {
                                 iv_circle_settlement_reservestate.setImageResource(R.drawable.ic_circle_fill)
                                 iv_circle_storage_reservestate.setImageResource(R.drawable.ic_circle_fill)
@@ -349,7 +348,6 @@ class ReserveStateFragment : Fragment(), OnMapReadyCallback {
                             var allDay = minTime / 86400000
                             var allHour: Long
                             var allMinute: Long
-
 
                             if (allDay == zero.toLong()) {
                                 allHour = (endTime as Long - startTime as Long) / 3600000

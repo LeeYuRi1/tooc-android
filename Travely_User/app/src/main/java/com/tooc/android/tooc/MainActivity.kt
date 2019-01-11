@@ -118,7 +118,6 @@ class MainActivity : AppCompatActivity() {
 //            var fragment: Fragment = ReserveFragment()
 //            fragment.arguments = args
 //            replaceFragment(fragment)
-
         }
         tab_four_main.setOnClickListener {
             replaceFragment(MypageFragment.getInstance())
