@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.tooc.android.tooc.R
 import com.tooc.android.tooc.model.mypage.ReviewLookupData
 import java.text.SimpleDateFormat
 import com.tooc.android.tooc.network.ApplicationController

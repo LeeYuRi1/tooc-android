@@ -730,39 +730,10 @@
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/layout_storage_ing_reservedetail"
-                android:layout_width="match_parent"
-                android:layout_height="93dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/btn_storage_ing_reservedetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:src="@drawable/bt_pickup_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView72"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:fontFamily="@font/kopub_medium"
-                    android:text="*QR코드 촬영할 시, 픽업 버튼이 활성화됩니다."
-                    android:textColor="#494949"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="@+id/btn_storage_ing_reservedetail"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
                 android:id="@+id/layout_pickup_reservedetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/btn_pickup_reservedetail"
