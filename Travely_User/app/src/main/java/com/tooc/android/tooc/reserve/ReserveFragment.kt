@@ -28,11 +28,13 @@ import org.jetbrains.anko.support.v4.ctx
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 class ReserveFragment : Fragment() {
+var decimalFormat =DecimalFormat("###,###")
 
     var carrier_amount: Int = 0
     var etc_amount: Int = 0
@@ -154,8 +156,8 @@ class ReserveFragment : Fragment() {
                 if (isChecked) {
                     v.linear_carrier_more_reserve.visibility = View.VISIBLE
                     carrier_price = calPriceUnit(afterParseStore, afterParseTake)
-                    v.tv_price_carrier_reserve.text = carrier_price.toString()
-                    v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
+                    v.tv_price_carrier_reserve.text = decimalFormat.format(carrier_price).toString()
+                    v.tv_total_price_reserve.text = decimalFormat.format(carrier_price + etc_price).toString()
                     carrier_amount = 1
 
                     v.iv_carrier_amount_up_reserve.setOnClickListener {
@@ -164,7 +166,7 @@ class ReserveFragment : Fragment() {
                         v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                         v.tv_carrier_amount_reserve.text = carrier_amount.toString()
                         carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
-                        v.tv_price_carrier_reserve.text = carrier_price.toString()
+                        v.tv_price_carrier_reserve.text = decimalFormat.format(carrier_price).toString()
                         v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     }
                     v.iv_carrier_amount_down_reserve.setOnClickListener {
@@ -175,7 +177,7 @@ class ReserveFragment : Fragment() {
                             v.tv_carrier_changing_amount_reserve.text = carrier_amount.toString()
                             v.tv_carrier_amount_reserve.text = carrier_amount.toString()
                             carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
-                            v.tv_price_carrier_reserve.text = carrier_price.toString()
+                            v.tv_price_carrier_reserve.text = decimalFormat.format(carrier_price).toString()
                             v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                         }
                     }
@@ -194,7 +196,7 @@ class ReserveFragment : Fragment() {
                 if (isChecked) {
                     v.linear_etc_more_reserve.visibility = View.VISIBLE
                     etc_price = calPriceUnit(afterParseStore, afterParseTake)
-                    v.tv_price_etc_reserve.text = etc_price.toString()
+                    v.tv_price_etc_reserve.text = decimalFormat.format(etc_price).toString()
                     v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                     etc_amount = 1
                     // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
@@ -205,7 +207,7 @@ class ReserveFragment : Fragment() {
                         v.tv_etc_changing_amount_reserve.text = etc_amount.toString()
                         v.tv_etc_amount_reserve.text = etc_amount.toString()
                         etc_price = etc_amount * calPriceUnit(afterParseStore, afterParseTake)
-                        v.tv_price_etc_reserve.text = etc_price.toString()
+                        v.tv_price_etc_reserve.text = decimalFormat.format(etc_price).toString()
                         v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                         //  v.tv_result_amount_etc_reserve.text = etc_amount.toString()
                     }
@@ -216,7 +218,7 @@ class ReserveFragment : Fragment() {
                             v.tv_etc_changing_amount_reserve.text = etc_amount.toString()
                             v.tv_etc_amount_reserve.text = etc_amount.toString()
                             etc_price = etc_amount * calPriceUnit(afterParseStore, afterParseTake)
-                            v.tv_price_etc_reserve.text = etc_price.toString()
+                            v.tv_price_etc_reserve.text = decimalFormat.format(etc_price).toString()
                             v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
                             // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
                         }
@@ -233,7 +235,7 @@ class ReserveFragment : Fragment() {
 
         v.btn_reserve_reserve.setOnClickListener {
 
-            toast("맡기는시간 : " +dateParseFormat.format(afterParseStore) + "  찾는 시간 : "+dateParseFormat.format(afterParseTake))
+//            toast("맡기는시간 : " +dateParseFormat.format(afterParseStore) + "  찾는 시간 : "+dateParseFormat.format(afterParseTake))
             if (smmddee != tmmddee || snumhh != tnumhh || snummm != tnummm) {
 
                 if (v.rb_kakaopay_reserve.isChecked || v.rb_cash_reserve.isChecked) {
@@ -243,22 +245,17 @@ class ReserveFragment : Fragment() {
                         if (v.cb_confirm_reserve.isChecked) {
                             //통신
                             postReserveInfo()
-
                         } else {
                             toast("결제 동의를 체크해주세요.")
-
                         }
                     } else {
                         toast("짐 종류를 선택해주세요.")
-
                     }
                 } else {
                     toast("결제 방법을 선택해주세요.")
-
                 }
             } else {
                 toast("날짜 및 시간을 선택해주세요.")
-
             }
         }
     }

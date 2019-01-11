@@ -78,7 +78,7 @@ class ReserveStorageListFragment : Fragment() {
                 response?.let {
                     when(it.code()){
                         200->{
-                        toast("서버성공!!")
+//                        toast("서버성공!!")
                             r_dataList = response.body()!!.reserveResponseDtoList
                             s_dataList = response.body()!!.storeResponseDtoList
                             Log.d("TAGGGG",response.body().toString())

@@ -78,6 +78,7 @@ class MypageFragment : Fragment() {
     private fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 
@@ -134,7 +135,7 @@ class MypageFragment : Fragment() {
                             setClickListener()
 
 //
-                            toast("프로필 조회 성공")
+//                            toast("프로필 조회 성공")
                         }
                         500 -> {
                             toast("서버 에러")

@@ -196,12 +196,14 @@ class JoinActivity : AppCompatActivity() {
         postJoinResponse!!.enqueue(object : Callback<Any>{
             override fun onFailure(call: Call<Any>, t: Throwable) {
                 Log.d("Error JoinActivity : ", t.message)
+                toast("Failure")
             }
 
             override fun onResponse(call: Call<Any>, response: Response<Any>) {
                 response?.let {
                     when (it.code()) {
                         201 -> {
+                            toast("201")
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
@@ -219,8 +221,12 @@ class JoinActivity : AppCompatActivity() {
                             toast("중복된 이메일입니다.")
                         }
                         500 -> {
+                            toast("500")
+
                         }
                         else -> {
+                            toast("else")
+
                         }
                     }
                 }
