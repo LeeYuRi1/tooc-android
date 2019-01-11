@@ -46,6 +46,7 @@ class ReserveDetailFragment : Fragment() {
 
     var pick_reserveIdx = 0.toLong()
     //
+
     lateinit var bitmap: BitmapData
     lateinit var bitmapArray: ArrayList<BitmapData>
 
@@ -136,6 +137,7 @@ class ReserveDetailFragment : Fragment() {
 
 
         if (requestCode === REQ_CODE_SELECT_IMAGE && resultCode === RESULT_OK) {
+
             if (data != null) {
 
                 val extras = data!!.getExtras()
@@ -412,7 +414,6 @@ class ReserveDetailFragment : Fragment() {
                     }
                 }
             }
-
         })
     }
 

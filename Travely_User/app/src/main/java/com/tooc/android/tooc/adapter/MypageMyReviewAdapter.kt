@@ -12,9 +12,10 @@ import com.bumptech.glide.Glide
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.dialog.WriteReviewDialog
 import com.tooc.android.tooc.model.mypage.ReviewLookupData
-import java.text.SimpleDateFormat
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
+
+import java.text.SimpleDateFormat
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

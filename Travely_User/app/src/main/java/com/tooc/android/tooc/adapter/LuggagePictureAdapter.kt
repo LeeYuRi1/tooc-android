@@ -9,6 +9,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.model.reservation.bagImgDtos
+import java.util.*
 
 
 class LuggagePictureAdapter(val ctx: Context, val dataList: ArrayList<bagImgDtos>) : RecyclerView.Adapter<LuggagePictureAdapter.Holder>() {
