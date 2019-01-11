@@ -11,8 +11,6 @@ import kotlinx.android.synthetic.main.fragment_reserve_detail.*
 import android.util.Log
 import com.bumptech.glide.Glide
 import com.hyeran.android.travely_manager.db.SharedPreferencesController
-import com.hyeran.android.travely_manager.model.BagDtos
-import com.hyeran.android.travely_manager.model.ReserveDetailResponseData
 import com.hyeran.android.travely_manager.network.ApplicationController
 import com.hyeran.android.travely_manager.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_reserve_detail.view.*
@@ -25,8 +23,9 @@ import java.text.SimpleDateFormat
 import android.graphics.Bitmap
 import android.app.Activity.RESULT_OK
 import android.support.v7.widget.LinearLayoutManager
-import com.hyeran.android.travely_manager.model.BagImgDtos
-import com.hyeran.android.travely_manager.model.BitmapData
+import com.bumptech.glide.request.RequestOptions
+import com.hyeran.android.travely_manager.model.*
+import kotlinx.android.synthetic.main.fragment_reserve_storage_list.view.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -43,12 +42,15 @@ class ReserveDetailFragment : Fragment() {
     private val REQ_CODE_SELECT_IMAGE = 100
 
     lateinit var bitmapRVAdapter: BitmapRVAdapter
+    lateinit var imgUrlRVAdapter: ImgUrlRVAdapter
 
     var pick_reserveIdx = 0.toLong()
-//
-    lateinit var bitmap : BitmapData
-    lateinit var bitmapArray : ArrayList<BitmapData>
+    //
+    lateinit var bitmap: BitmapData
+    lateinit var bitmapArray: ArrayList<BitmapData>
 
+    var imgUrl = ArrayList<String>()
+//     lateinit var bagImgRequestDtoData : BagImgRequestDtoData
 
     var dataList: ArrayList<BitmapData> = ArrayList()
 
@@ -82,14 +84,25 @@ class ReserveDetailFragment : Fragment() {
         }
 
 
-
-
-        getStoreIdxReserveCodeResponse()
+//        getStoreIdxReserveCodeResponse()
 
         return v
     }
 
     private fun setClickListener() {
+        btn_storage_reservedetail.setOnClickListener {
+//            toast("!!")
+            putStorePickupResponse()
+        }
+
+        btn_pickup_reservedetail.setOnClickListener {
+            putStorePickupResponse()
+        }
+        btn_picture_reservedetail.setOnClickListener {
+            takePhoto()
+        }
+
+
 //        if(layout_storage_reservedetail.visibility == View.VISIBLE){
 //            btn_storage_reservedetail.setOnClickListener {
 //                if (cb_confirm_reservedetail.isChecked) {
@@ -102,8 +115,8 @@ class ReserveDetailFragment : Fragment() {
 //        } else if(layout_pickup_reservedetail.visibility == View.VISIBLE) {
 //
 //        }
-
-
+//
+//
 //        btn_pickup_reservedetail.setOnClickListener {
 //            putStorePickupResponse()
 //            getStoreIdxReserveCodeResponse()
@@ -115,9 +128,7 @@ class ReserveDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
 
-        btn_picture_reservedetail.setOnClickListener {
-            takePhoto()
-        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -125,27 +136,29 @@ class ReserveDetailFragment : Fragment() {
 
 
         if (requestCode === REQ_CODE_SELECT_IMAGE && resultCode === RESULT_OK) {
-            val extras = data!!.getExtras()
-            val imageBitmap = extras.get("data") as Bitmap
+            if (data != null) {
+
+                val extras = data!!.getExtras()
+                val imageBitmap = extras.get("data") as Bitmap
 
 //
-            val bmp: Bitmap? = imageBitmap
-            val stream = ByteArrayOutputStream()
-            bmp!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-            val byteArray = stream.toByteArray()
+                val bmp: Bitmap? = imageBitmap
+                val stream = ByteArrayOutputStream()
+                bmp!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+                val byteArray = stream.toByteArray()
 
-            var f: File = File(context!!.cacheDir, "tooc.jpg")
-            f.createNewFile()
-            Log.d("@@@@absoultuePath", f.absolutePath.toString())
-            Log.d("@@@@canonicalPath", f.canonicalPath.toString())
-            Log.d("@@@@name", f.extension)
-            var fos: FileOutputStream = FileOutputStream(f)
-            fos.write(byteArray)
-            fos.flush()
-            fos.close()
+                var f: File = File(context!!.cacheDir, "tooc.jpg")
+                f.createNewFile()
+                Log.d("@@@@absoultuePath", f.absolutePath.toString())
+                Log.d("@@@@canonicalPath", f.canonicalPath.toString())
+                Log.d("@@@@name", f.extension)
+                var fos: FileOutputStream = FileOutputStream(f)
+                fos.write(byteArray)
+                fos.flush()
+                fos.close()
 
-            var file = context!!.cacheDir.toString() + "tooc"
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
+                var file = context!!.cacheDir.toString() + "tooc"
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
 //
 //            bitmapArray.add(BitmapData(imageBitmap))
 //
@@ -161,22 +174,29 @@ class ReserveDetailFragment : Fragment() {
 //            photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, bitmapArray)
 //            rv_by_area_temp.adapter = locationRVAdapter
 //            rv_by_area_temp.layoutManager = LinearLayoutManager(this)
-            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
-            //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
-            var mImage = MultipartBody.Part.createFormData("data", f.name, photoBody);
+                val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
+                //첫번째 매개변수 String을 꼭! 꼭! 서버 API에 명시된 이름으로 넣어주세요!!!
+                var mImage = MultipartBody.Part.createFormData("data", f.name, photoBody);
 //            var mImage = MultipartBody.Part.createFormData("data", , photoBody);
-            postImgResponse(mImage)
+                postImgResponse(mImage)
 
 
-            dataList.add(BitmapData(imageBitmap))
+                dataList.add(BitmapData(imageBitmap))
 
-            bitmapRVAdapter = BitmapRVAdapter(context, dataList)
-            v.rv_luggage_picture.adapter = bitmapRVAdapter
-            var mLayoutManager = LinearLayoutManager(context)
-            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-            v.rv_luggage_picture.layoutManager = mLayoutManager
+                bitmapRVAdapter = BitmapRVAdapter(context, dataList)
+                v.rv_luggage_picture.adapter = bitmapRVAdapter
+                var mLayoutManager = LinearLayoutManager(context)
+                mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                v.rv_luggage_picture.layoutManager = mLayoutManager
+
+
+
+            } else {
+                toast("기본 카메라로 설정해주세요.")
+            }
         }
     }
+
 
     fun takePhoto() {
         var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -203,7 +223,8 @@ class ReserveDetailFragment : Fragment() {
                         }
                         201 -> {
                             toast("저장 성공")
-                            Log.d("@@@@@@@@@@", response.body().toString())
+                            imgUrl.add(response.body()!!.bagImgUrl)
+                                                                                                                                                                                                                                                                                                                                                Log.d("@@@@@@@@@@", response.body().toString())
 
                         }
                         401 -> {
@@ -238,7 +259,7 @@ class ReserveDetailFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-
+                            reserveIdx = response.body()!!.reserveIdx.toString()
                             //toast("예약코드 조회 성공")
                             tv_name_reservedetail.text = response.body()!!.userName
                             tv_phone_reservedetail.text = response.body()!!.userPhone
@@ -252,7 +273,7 @@ class ReserveDetailFragment : Fragment() {
                             var carrierCnt = 0
                             var bagCnt = 0
 
-                            Log.d("@@@@@@@@@@@@@@@@TAG", bagDtoList_.toString())
+                            Log.d("@@@@@@@@@@@@@@@@TAG", response.body()!!.bagImgDtos.toString())
 
                             for (i in 0 until bagDtoList_.size) {
                                 if (bagDtoList_[i].bagType == "CARRIER") {
@@ -339,11 +360,40 @@ class ReserveDetailFragment : Fragment() {
                                 }
                             }
 
+                            toast(response.body()!!.stateType)
+
+
                             Glide.with(this@ReserveDetailFragment)
                                     .load(response.body()!!.userImgUrl)
                                     .into(iv_profile_reservedetail)
 
+                            if (response.body()!!.stateType == "RESERVED") {
+                                toast("reserved")
+                                layout_pickup_reservedetail.visibility = View.GONE
+                                layout_storage_reservedetail.visibility = View.VISIBLE
+                                layout_picture_reservedetail.visibility = View.VISIBLE
+                            }
+//                            else if(response.body()!!.stateType == "PAYED"){
+//                                layout_pickup_reservedetail.visibility = View.INVISIBLE
+//                                layout_storage_reservedetail.visibility = View.VISIBLE
+//                            }
+                            else if (response.body()!!.stateType == "ARCHIVE") {
+                                toast("archive")
+                                layout_pickup_reservedetail.visibility = View.VISIBLE
+                                layout_storage_reservedetail.visibility = View.GONE
+                                layout_picture_reservedetail.visibility = View.GONE
 
+
+
+                                Log.d("@@@@@!!!@@@@", response.body()!!.bagImgDtos.toString())
+                                imgUrlRVAdapter = ImgUrlRVAdapter(context,response.body()!!.bagImgDtos )
+                                rv_luggage_picture.adapter = imgUrlRVAdapter
+                                var mLayoutManager = LinearLayoutManager(context)
+                                mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                                 rv_luggage_picture.layoutManager = mLayoutManager
+                            } else {
+                                toast("else")
+                            }
 
 
                         }
@@ -367,40 +417,44 @@ class ReserveDetailFragment : Fragment() {
     }
 
 
-//    private fun putStorePickupResponse() {
-//        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
-//
-//        val putStorePickUpResponse = networkService.putStorePickUpResponse(jwt, ,pick_reserveIdx)
-//
-//        putStorePickUpResponse!!.enqueue(object : Callback<Any> {
-//            override fun onFailure(call: Call<Any>, t: Throwable) {
-//            }
-//
-//            override fun onResponse(call: Call<Any>, response: Response<Any>) {
-//                response?.let {
-//                    when (it.code()) {
-//                        200 -> {
-//
-//                            toast("짐 보관 및 픽업 성공")
-//                        }
-//                        401 -> {
-//                            toast("인증 에러")
-//                        }
-//                        500 -> {
-//                            toast("서버 에러")
-//                        }
-//                        else -> {
-//                            toast("error")
-//                            Log.d("!!!!!!!!!!" , "!!!!!!!!!!" + it.errorBody().toString())
-//
-//                        }
-//                    }
-//                }
-//            }
-//
-//        })
-//
-//    }
+    private fun putStorePickupResponse() {
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+//        bagImgRequestDtoData.bagImgUrl = imgUrl
+        var vd = BagImgRequestDtoData(imgUrl)
+//        var asd : BagImgRequestDtoData = imgUrl
+//        asd.bagImgUrl = imgUrl
+        val putStorePickUpResponse = networkService.putStorePickUpResponse(jwt, "application/json", vd, reserveIdx.toLong())
+
+        putStorePickUpResponse!!.enqueue(object : Callback<Any> {
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                Log.d("@@@@@TAG", t.message)
+            }
+
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+
+                            toast("짐 보관 및 픽업 성공")
+                        }
+                        401 -> {
+                            toast("인증 에러")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                            Log.d("!!!!!!!!!!", "!!!!!!!!!!" + it.errorBody().toString())
+
+                        }
+                    }
+                }
+            }
+
+        })
+
+    }
 
     private fun getDetailReserveResponse() {
         var jwt = SharedPreferencesController.instance!!.getPrefStringData("jwt")
@@ -414,6 +468,8 @@ class ReserveDetailFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
+                            tv_number_reservedetail.text = response.body()!!.reserveCode
+
                             toast("예약코드 조회 성공")
                             tv_name_reservedetail.text = response.body()!!.userName
                             tv_phone_reservedetail.text = response.body()!!.userPhone
@@ -460,7 +516,6 @@ class ReserveDetailFragment : Fragment() {
                                 btn_picture_reservedetail.visibility = View.INVISIBLE
                             }
 
-                            //(
                             var allDateFormat = SimpleDateFormat("yy년 MM월 dd일 E요일")
                             var allTimeFormat = SimpleDateFormat("aa HH시 mm분")
                             var StoreDateText = allDateFormat.format(response.body()!!.startTime)
@@ -514,7 +569,13 @@ class ReserveDetailFragment : Fragment() {
                                 }
                             }
 
+                            val requestOptions = RequestOptions()
+                            requestOptions.placeholder(R.drawable.mypage_bt_default)
+                            requestOptions.error(R.drawable.mypage_bt_default)
+
+
                             Glide.with(this@ReserveDetailFragment)
+                                    .setDefaultRequestOptions(requestOptions)
                                     .load(response.body()!!.userImgUrl)
                                     .into(iv_profile_reservedetail)
 
@@ -529,7 +590,7 @@ class ReserveDetailFragment : Fragment() {
 
                                 btn_storage_reservedetail.setOnClickListener {
                                     if (cb_confirm_reservedetail.isChecked) {
-                                        //putStorePickupResponse()
+                                        putStorePickupResponse()
                                     } else {
                                         toast("동의해주세요")
                                     }
@@ -538,6 +599,13 @@ class ReserveDetailFragment : Fragment() {
                             } else if (response.body()!!.stateType == "ARCHIVE") {   //보관상태
                                 layout_storage_reservedetail.visibility = View.GONE
                                 layout_pickup_reservedetail.visibility = View.VISIBLE
+                                layout_picture_reservedetail.visibility = View.GONE
+
+                                imgUrlRVAdapter = ImgUrlRVAdapter(context,response.body()!!.bagImgDtos )
+                                rv_luggage_picture.adapter = imgUrlRVAdapter
+                                var mLayoutManager = LinearLayoutManager(context)
+                                mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                                rv_luggage_picture.layoutManager = mLayoutManager
 //                            }else if(response.body()!!.stateType == "PICKUP"){
 //                                layout_storage_reservedetail.visibility = View.GONE
 //                                layout_pickup_reservedetail.visibility = View.VISIBLE

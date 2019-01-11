@@ -14,6 +14,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import org.w3c.dom.Text
 import android.support.v7.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.hyeran.android.travely_manager.model.ReserveResponseDto
 import com.hyeran.android.travely_manager.model.StoreResponseDto
 import java.text.SimpleDateFormat
@@ -53,6 +55,15 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
         holder.r_amount.text = amount.toString()
         holder.r_time.text = time
 
+        val requestOptions = RequestOptions()
+        requestOptions.placeholder(R.drawable.mypage_bt_default)
+        requestOptions.error(R.drawable.mypage_bt_default)
+
+        Glide.with(ctx!!)
+                .setDefaultRequestOptions(requestOptions)
+                .load(dataList[position].userImg)
+                .into(holder.photo)
+
         holder.r_view.setOnClickListener {
             val manager = (ctx as AppCompatActivity).supportFragmentManager
             val transaction : FragmentTransaction = manager.beginTransaction()
@@ -74,5 +85,6 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
         val r_amount : TextView = itemView.findViewById(R.id.tv_amount_item_reserve_list) as TextView
         val r_time : TextView = itemView.findViewById(R.id.tv_time_item_reserve_list) as TextView
         val r_view : RelativeLayout = itemView.findViewById(R.id.rv_reserve_list_btn) as RelativeLayout
+        val photo : ImageView = itemView.findViewById(R.id.iv_profile_item_reserve_list) as ImageView
     }
 }
