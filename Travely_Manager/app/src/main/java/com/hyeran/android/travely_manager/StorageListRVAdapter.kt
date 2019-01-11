@@ -13,9 +13,12 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.hyeran.android.travely_manager.model.StoreResponseDto
 import org.w3c.dom.Text
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
 class StorageListRVAdapter(val ctx : Context?, val dataList : ArrayList<StoreResponseDto>) : RecyclerView.Adapter<StorageListRVAdapter.s_Holder>() {
+    var decimalFormat = DecimalFormat("###,###")
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): s_Holder {
         // 뷰 인플레이트!!
         val s_view : View = LayoutInflater.from(ctx).inflate(R.layout.item_storage_list, parent, false)
@@ -47,7 +50,7 @@ class StorageListRVAdapter(val ctx : Context?, val dataList : ArrayList<StoreRes
         holder.s_name.text = dataList[position].userName
         holder.s_payment_status.text = paymentStatus
         holder.s_date.text = date
-        holder.s_price.text = dataList[position].price.toString()
+        holder.s_price.text = decimalFormat.format(dataList[position].price).toString()
         holder.s_amount.text = amount.toString()
         holder.s_time.text = time
 

@@ -18,9 +18,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hyeran.android.travely_manager.model.ReserveResponseDto
 import com.hyeran.android.travely_manager.model.StoreResponseDto
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
 class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveResponseDto>) : RecyclerView.Adapter<ReserveListRVAdapter.r_Holder>() {
+    var decimalFormat = DecimalFormat("###,###")
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): r_Holder {
         // 뷰 인플레이트!!
         val r_view : View = LayoutInflater.from(ctx).inflate(R.layout.item_reserve_list, parent, false)
@@ -51,7 +55,7 @@ class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveR
         holder.r_name.text = dataList[position].userName
         holder.r_payment_status.text = paymentStatus
         holder.r_date.text = date
-        holder.r_price.text = dataList[position].price.toString()
+        holder.r_price.text = decimalFormat.format(dataList[position].price).toString()
         holder.r_amount.text = amount.toString()
         holder.r_time.text = time
 

@@ -29,6 +29,7 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.*
+import java.text.DecimalFormat
 
 
 class ReserveDetailFragment : Fragment() {
@@ -38,6 +39,7 @@ class ReserveDetailFragment : Fragment() {
     var reserveCode: String = ""
     var reserveIdx: String = ""
 
+    var decimalFormat = DecimalFormat("###,###")
     private val REQ_CODE_SELECT_IMAGE = 100
 
     lateinit var bitmapRVAdapter: BitmapRVAdapter
@@ -306,12 +308,12 @@ class ReserveDetailFragment : Fragment() {
 
                             var priceUnit = response.body()!!.price / totalCnt
 
-                            tv_carrier_money_reservedetail.text = (priceUnit * carrierCnt).toString()
-                            tv_bag_money_reservedetail.text = (priceUnit * bagCnt).toString()
+                            tv_carrier_money_reservedetail.text = decimalFormat.format(priceUnit * carrierCnt).toString()
+                            tv_bag_money_reservedetail.text = decimalFormat.format(priceUnit * bagCnt).toString()
 
                             tv_total_num_reservedetail.text = totalCnt.toString()
-                            tv_total_money_reservedetail.text = priceUnit.toString()
-                            tv_payment_amount_reservedetail.text = response.body()!!.price.toString()
+                            tv_total_money_reservedetail.text = decimalFormat.format(priceUnit).toString()
+                            tv_payment_amount_reservedetail.text = decimalFormat.format(response.body()!!.price).toString()
 
                             toast(response.body()!!.progressType)
 
@@ -514,12 +516,12 @@ class ReserveDetailFragment : Fragment() {
 
                             var priceUnit = response.body()!!.price / totalCnt
 
-                            tv_carrier_money_reservedetail.text = (priceUnit * carrierCnt).toString()
-                            tv_bag_money_reservedetail.text = (priceUnit * bagCnt).toString()
+                            tv_carrier_money_reservedetail.text = decimalFormat.format(priceUnit * carrierCnt).toString()
+                            tv_bag_money_reservedetail.text = decimalFormat.format(priceUnit * bagCnt).toString()
 
                             tv_total_num_reservedetail.text = totalCnt.toString()
-                            tv_total_money_reservedetail.text = priceUnit.toString()
-                            tv_payment_amount_reservedetail.text = response.body()!!.price.toString()
+                            tv_total_money_reservedetail.text = decimalFormat.format(priceUnit).toString()
+                            tv_payment_amount_reservedetail.text = decimalFormat.format(response.body()!!.price).toString()
 
                             toast(response.body()!!.progressType)
 
