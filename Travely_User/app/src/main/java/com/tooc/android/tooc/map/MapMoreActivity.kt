@@ -214,6 +214,7 @@ class MapMoreActivity : AppCompatActivity() {
 
     fun putFavoriteResponse() {
 
+
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
 
         val putStoreFavoriteResponse = networkService.putStoreFavoriteResponse(jwt, storeIdx)

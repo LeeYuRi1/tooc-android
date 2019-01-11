@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.MypageRecentStoreAdapter
@@ -16,6 +17,7 @@ import com.tooc.android.tooc.model.ProfileResponseData
 import com.tooc.android.tooc.model.StoreInfoResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
+import com.tooc.android.tooc.reserve.NoReserveFragment
 import com.tooc.android.tooc.reserve_state.ReserveStateFragment
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.jetbrains.anko.support.v4.ctx
@@ -87,17 +89,16 @@ class MypageFragment : Fragment() {
         iv_set_mypage.setOnClickListener {
             replaceFragment(SetFragment())
         }
-        layout_state_mypage.setOnClickListener{
-            replaceFragment(ReserveStateFragment())
-            (ctx as MainActivity).selectedTabChangeColor(1)
-        }
+//        layout_state_mypage.setOnClickListener{
+//            replaceFragment(ReserveStateFragment())
+//            (ctx as MainActivity).selectedTabChangeColor(1)
+//        }
     }
 
     fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.addToBackStack(null)
         transaction.replace(R.id.frame_main, fragment)
-        transaction.addToBackStack(null)
         transaction.commit()
     }
 
@@ -115,13 +116,37 @@ class MypageFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            tv_name_mypage.text = response.body()?.name
+                            tv_name_mypage.text = response.body()!!.name.toString()
                             tv_mybag_cnt_mypage.text = response.body()!!.myBagCount.toString()
                             tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
                             tv_review_cnt_mypage.text = response.body()!!.reviewCount.toString()
+
+                            val requestOptions = RequestOptions()
+                            requestOptions.placeholder(R.drawable.mypage_bt_default)
+                            requestOptions.error(R.drawable.mypage_bt_default)
+
                             Glide.with(this@MypageFragment)
+                                    .setDefaultRequestOptions(requestOptions)
                                     .load(response.body()!!.profileImg)
                                     .into(iv_profile_mypage)
+
+                            layout_state_mypage.setOnClickListener{
+                                if(response.body()!!.myBagCount!=0) {
+//                                    replaceFragment(ReserveStateFragment())
+                                    val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+                                    transaction.addToBackStack(null)
+                                    transaction.replace(R.id.frame_main, ReserveStateFragment())
+                                    transaction.commit()
+                                }
+                                else{
+//                                    replaceFragment(NoReserveFragment())
+                                    val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+                                    transaction.addToBackStack(null)
+                                    transaction.replace(R.id.frame_main, NoReserveFragment())
+                                    transaction.commit()
+                                }
+                                (ctx as MainActivity).selectedTabChangeColor(1)
+                            }
                         }
                         500 -> {
                         }
@@ -145,7 +170,6 @@ class MypageFragment : Fragment() {
                     when (it.code()) {
                         200 -> {
                             //Log.d("@@@@@@@@@@@@", dataList_recent.toString())
-
                             if (response.body()!!.storeInfoResponseDtoList.size > 0) {
                                 dataList = response.body()!!.storeInfoResponseDtoList
                                 Log.d("TAGG",dataList.toString())

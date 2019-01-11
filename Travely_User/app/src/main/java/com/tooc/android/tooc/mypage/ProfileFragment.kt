@@ -58,14 +58,13 @@ class ProfileFragment : Fragment() {
             val intent = Intent(activity, SplashActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
             startActivity(intent)
         }
 
         iv_back_profile.setOnClickListener {
             var fm = fragmentManager
-            fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             (ctx as MainActivity).replaceFragment(MypageFragment())
+            fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             fm!!.popBackStack()
         }
 

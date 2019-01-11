@@ -51,7 +51,9 @@ class MyreviewFragment:Fragment() {
         iv_back_mypage.setOnClickListener {
             var fm = fragmentManager
             fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
             (ctx as MainActivity).replaceFragment(MypageFragment())
+//            fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             fm!!.popBackStack()
         }
     }

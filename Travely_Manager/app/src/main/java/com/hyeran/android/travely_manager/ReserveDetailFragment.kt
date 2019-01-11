@@ -437,6 +437,7 @@ class ReserveDetailFragment : Fragment() {
                         200 -> {
 
                             toast("짐 보관 및 픽업 성공")
+                            StorageDialog(context).show()
                         }
                         401 -> {
                             toast("인증 에러")
@@ -454,7 +455,6 @@ class ReserveDetailFragment : Fragment() {
             }
 
         })
-
     }
 
     private fun getDetailReserveResponse() {
@@ -592,6 +592,8 @@ class ReserveDetailFragment : Fragment() {
                                 btn_storage_reservedetail.setOnClickListener {
                                     if (cb_confirm_reservedetail.isChecked) {
                                         putStorePickupResponse()
+//                                        StorageDialog(context).show()
+//                                        (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
                                     } else {
                                         toast("동의해주세요")
                                     }
@@ -607,14 +609,15 @@ class ReserveDetailFragment : Fragment() {
                                 var mLayoutManager = LinearLayoutManager(context)
                                 mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
                                 rv_luggage_picture.layoutManager = mLayoutManager
+
+//                                PickUpDialog(context).show()
+//                                (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
 //                            }else if(response.body()!!.stateType == "PICKUP"){
 //                                layout_storage_reservedetail.visibility = View.GONE
 //                                layout_pickup_reservedetail.visibility = View.VISIBLE
                             } else {
 
                             }
-
-
                         }
                         403 -> {
                             toast("인증에러")

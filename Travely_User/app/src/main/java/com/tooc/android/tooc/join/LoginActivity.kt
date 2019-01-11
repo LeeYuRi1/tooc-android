@@ -64,7 +64,6 @@ class LoginActivity : AppCompatActivity() {
             //toast("버튼은 눌렸음")
             postLoginResponse()
 
-            finish()
         }
     }
 
@@ -83,25 +82,32 @@ class LoginActivity : AppCompatActivity() {
 
         postLoginResponse!!.enqueue(object : Callback<UsersLoginResponseData> {
             override fun onFailure(call: Call<UsersLoginResponseData>, t: Throwable) {
+                Log.d("TAGGGGGG","onFailure")
+
             }
             override fun onResponse(call: Call<UsersLoginResponseData>, response: Response<UsersLoginResponseData>) {
                 response?.let {
                     when (it.code()) {
                         200 -> {
+                            Log.d("TAGGGGGG","200")
+
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
                             SharedPreferencesController.instance!!.setPrefData("auto_login", true)
                             SharedPreferencesController.instance!!.setPrefData("user_email", input_email)
                             SharedPreferencesController.instance!!.setPrefData("user_pw", input_pw)
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", response.body()!!.isReserve)
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            finish()
                         }
                         403 -> {
-                            toast("로그인 실패")
+                            Log.d("TAGGGGGG","403")
+
                         }
                         500 -> {
+                            Log.d("TAGGGGGG","500")
+
                         }
                         else -> {
+                            Log.d("TAGGGGGG","else")
                         }
                     }
                 }

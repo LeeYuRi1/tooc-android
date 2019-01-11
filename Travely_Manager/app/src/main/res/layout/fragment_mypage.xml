@@ -325,7 +325,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView55" />
 
             <TextView
-                android:id="@+id/textView57"
+                android:id="@+id/tv_opening_hour_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kopub_medium"
@@ -355,7 +355,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
             <TextView
-                android:id="@+id/textView58"
+                android:id="@+id/tv_homepage_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -367,7 +367,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
             <TextView
-                android:id="@+id/textView59"
+                android:id="@+id/tv_call_num_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

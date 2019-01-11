@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         btn_login_login.setOnClickListener {
             //toast("버튼은 눌렸음")
             postLoginResponse()
-            toast("로그인 성공")
+//            toast("로그인 성공")
 
             finish()
         }
