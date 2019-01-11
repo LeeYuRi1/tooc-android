@@ -1,4 +1,4 @@
-package com.hyeran.android.travely_manager.mypage
+package com.hyeran.android.travely_user.mypage
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.TextView
 import com.hyeran.android.travely_manager.R
-
+import kotlinx.android.synthetic.main.item_faq_group.view.*
 
 class FaqAdapter(var context: Context, var faqexpandedView: ExpandableListView, var header: MutableList<String>, var body: MutableList<MutableList<String>>) : BaseExpandableListAdapter() {
     override fun getGroup(groupPosition: Int): Any {
@@ -34,20 +34,15 @@ class FaqAdapter(var context: Context, var faqexpandedView: ExpandableListView, 
         title?.setOnClickListener {
             if (faqexpandedView.isGroupExpanded(groupPosition)) {
                 faqexpandedView.collapseGroup(groupPosition)
-                //convertView!!.imageView.isPressed = false
+
 
             } else {
                 faqexpandedView.expandGroup(groupPosition)
-                //convertView!!.imageView.isPressed = true
+
             }
         }
-//        if (isExpanded) {
-//            //title?.setCompoundDrawablesWithIntrinsicBounds(0, 0,R.drawable.ic_up, 0);
-//            convertView.notice_arrow.isPressed = true  // 버튼클릭시 이미지 UP으로 변경
-//        } else {
-//            //title?.setCompoundDrawablesWithIntrinsicBounds(0, 0,R.drawable.ic_down, 0);
-//            convertView.notice_arrow.isPressed = false // 버튼다시클릭시 이미지 Down으로  변경
-//        }
+        convertView.notice_arrow.isPressed = isExpanded
+
         return convertView
     }
 

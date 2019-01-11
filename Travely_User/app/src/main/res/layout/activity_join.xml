@@ -65,12 +65,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/iv_back_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="8dp"
+            android:padding="8dp"
             android:src="@drawable/setting_bt_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +100,7 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/bt_signin_empty"
         android:text="가입완료"
+        android:textColor="@color/mainColor"
         android:textSize="16sp"
         android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -143,7 +145,8 @@
                 android:fontFamily="@font/kopub_medium"
                 android:hint="이름"
                 android:inputType="textPersonName"
-                android:textColor="#8d8d8d"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/view2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -178,7 +181,8 @@
                 android:fontFamily="@font/kopub_medium"
                 android:hint="이메일"
                 android:inputType="textPersonName"
-                android:textColor="#8d8d8d"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iv_email_check_join"
@@ -190,11 +194,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/signin_ic_check"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_email_join" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -222,9 +225,10 @@
                 android:background="#ffffff"
                 android:ems="10"
                 android:fontFamily="@font/kopub_medium"
-                android:hint="비밀번호"
+                android:hint="비밀번호 (문자와 숫자를 포함한 8-20자)"
                 android:inputType="textPassword"
-                android:textColor="#8d8d8d"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/view9"
                 app:layout_constraintEnd_toStartOf="@+id/iv_password_check_join"
@@ -236,11 +240,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/signin_ic_check"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_password_join" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -271,7 +274,8 @@
                 android:fontFamily="@font/kopub_medium"
                 android:hint="비밀번호 확인"
                 android:inputType="textPassword"
-                android:textColor="#8d8d8d"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/view10"
                 app:layout_constraintEnd_toStartOf="@+id/iv_passwordconfirm_check_join"
@@ -283,11 +287,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/signin_ic_check"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_password_confilm_join" />
 
             <ImageView
                 android:id="@+id/iv_passwordconfirm_x_join"
@@ -340,9 +343,10 @@
                 android:background="#ffffff"
                 android:ems="10"
                 android:fontFamily="@font/kopub_medium"
-                android:hint="전화번호"
+                android:hint="전화번호 (- 없이)"
                 android:inputType="textPersonName"
-                android:textColor="#8d8d8d"
+                android:textColor="#262626"
+                android:textColorHint="#8d8d8d"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/view11"
                 app:layout_constraintEnd_toEndOf="parent"

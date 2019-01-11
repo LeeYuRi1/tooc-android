@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_storeimage_myreview"
         android:layout_width="62dp"
         android:layout_height="62dp"
         android:layout_marginTop="22dp"
@@ -30,39 +30,43 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/kopub_medium"
         android:text="롭스 홍대2호점"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        android:textColor="#262626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_storeimage_myreview"
+        app:layout_constraintTop_toTopOf="@+id/iv_storeimage_myreview" />
 
     <TextView
         android:id="@+id/tv_area_myreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:fontFamily="@font/kopub_medium"
         android:text="서울시 마포구 샬라샬라"
+        android:textColor="#707070"
         android:textSize="12sp"
-        android:fontFamily="@font/kopub_light"
         app:layout_constraintStart_toStartOf="@+id/tv_name_myreview"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_myreview" />
 
     <TextView
-        android:id="@+id/tv_year_myreview"
+        android:id="@+id/tv_ymd_myreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2018"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/kopub_medium"
+        android:text="2018.12.23"
+        android:textColor="#707070"
         android:textSize="12sp"
-        android:fontFamily="@font/kopub_light"
         app:layout_constraintStart_toStartOf="@+id/tv_area_myreview"
         app:layout_constraintTop_toBottomOf="@+id/tv_area_myreview" />
 
+    <!--
     <TextView
         android:id="@+id/textView62"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="."
         android:textSize="12sp"
-        android:fontFamily="@font/kopub_light"
+        android:textColor="#707070"
+        android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/tv_year_myreview"
         app:layout_constraintStart_toEndOf="@+id/tv_year_myreview" />
 
@@ -72,7 +76,8 @@
         android:layout_height="wrap_content"
         android:text="12"
         android:textSize="12sp"
-        android:fontFamily="@font/kopub_light"
+        android:textColor="#707070"
+        android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/textView62"
         app:layout_constraintStart_toEndOf="@+id/textView62" />
 
@@ -82,7 +87,8 @@
         android:layout_height="wrap_content"
         android:text="."
         android:textSize="12sp"
-        android:fontFamily="@font/kopub_light"
+        android:textColor="#707070"
+        android:fontFamily="@font/kopub_medium"
         app:layout_constraintBottom_toBottomOf="@+id/tv_month_myreview"
         app:layout_constraintStart_toEndOf="@+id/tv_month_myreview" />
 
@@ -90,23 +96,27 @@
         android:id="@+id/tv_day_myreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/kopub_light"
+        android:fontFamily="@font/kopub_medium"
         android:text="23"
         android:textSize="12sp"
+        android:textColor="#707070"
         app:layout_constraintBottom_toBottomOf="@+id/textView64"
         app:layout_constraintStart_toEndOf="@+id/textView64" />
+
+        -->
 
     <TextView
         android:id="@+id/tv_content_myreview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
-        android:fontFamily="@font/kopub_light"
+        android:fontFamily="@font/kopub_medium"
         android:text="위치가 역이랑 가까워서 좋았어요!\n건물도 깨끗했고, 상가 근처에 예쁜 카페가 많아서 구경할거리도 많더라구요!"
         android:textSize="12sp"
+        android:textColor="#262626"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintStart_toStartOf="@+id/guideline37"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_storeimage_myreview" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline38"
@@ -120,32 +130,35 @@
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:theme="@style/WriteReviewRatingBar"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintTop_toTopOf="@+id/tv_name_myreview" />
 
     <TextView
-        android:id="@+id/textView67"
+        android:id="@+id/btn_delete_myreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="27dp"
         android:fontFamily="@font/kopub_medium"
         android:text="삭제하기"
-        android:textSize="10sp"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        android:padding="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintTop_toBottomOf="@+id/tv_content_myreview" />
 
     <TextView
-        android:id="@+id/textView68"
+        android:id="@+id/btn_change_myreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="13dp"
-        android:text="수정하기"
-        android:textSize="10sp"
         android:fontFamily="@font/kopub_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/textView67"
-        app:layout_constraintEnd_toStartOf="@+id/textView67"
-        app:layout_constraintTop_toTopOf="@+id/textView67" />
+        android:padding="8dp"
+        android:text="수정하기"
+        android:textColor="#707070"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_delete_myreview"
+        app:layout_constraintEnd_toStartOf="@+id/btn_delete_myreview"
+        app:layout_constraintTop_toTopOf="@+id/btn_delete_myreview" />
 
     <View
         android:id="@+id/view"
@@ -155,7 +168,7 @@
         android:background="#CCCCCC"
         app:layout_constraintEnd_toStartOf="@+id/guideline40"
         app:layout_constraintStart_toStartOf="@+id/guideline39"
-        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_delete_myreview" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline39"

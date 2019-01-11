@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.hyeran.android.travely_manager.model.BagImgDtos
 
-class PhotoStorageDetailRVAdapter(val ctx : Context?, val dataList : ArrayList<PhotoStorageDetailTempData>) : RecyclerView.Adapter<PhotoStorageDetailRVAdapter.Holder>() {
+class PhotoStorageDetailRVAdapter(val ctx : Context?, val dataList : ArrayList<BagImgDtos>) : RecyclerView.Adapter<PhotoStorageDetailRVAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.item_photo_storage_detail, parent, false)
 
@@ -17,7 +18,7 @@ class PhotoStorageDetailRVAdapter(val ctx : Context?, val dataList : ArrayList<P
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.photo.setImageResource(dataList[position].photo)
+//        holder.photo.setImageResource(dataList[position].bagImgUrl)
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {

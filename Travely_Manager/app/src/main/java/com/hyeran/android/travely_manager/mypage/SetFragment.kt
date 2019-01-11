@@ -1,13 +1,17 @@
 package com.hyeran.android.travely_manager.mypage
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hyeran.android.travely_manager.MainActivity
 import com.hyeran.android.travely_manager.R
 import kotlinx.android.synthetic.main.fragment_set.*
+import org.jetbrains.anko.support.v4.ctx
 
 
 class SetFragment : Fragment() {
@@ -22,6 +26,14 @@ class SetFragment : Fragment() {
     }
 
     private fun setClickListener() {
+        btn_whatistooc_set.setOnClickListener {
+            replaceFragment(ToocFragment())
+        }
+        btn_howtouse_set.setOnClickListener {
+            val intent = Intent(ctx, HowtouseActivity::class.java)
+            startActivity(intent)
+        }
+
         btn_faq_set.setOnClickListener {
             replaceFragment(FaqFragment())
         }
@@ -30,6 +42,12 @@ class SetFragment : Fragment() {
         }
         btn_question_set.setOnClickListener {
             replaceFragment(QuestionFragment())
+        }
+        iv_back_set.setOnClickListener {
+            var fm = fragmentManager
+            fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            (ctx as MainActivity).replaceFragment(MypageFragment())
+            fm!!.popBackStack()
         }
 
     }

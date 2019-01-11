@@ -15,6 +15,11 @@
 
     </com.google.android.gms.maps.MapView>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/map_gradient"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -24,125 +29,83 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/nanum_bold"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/nanum_extrabold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="3sp"
-            android:textColor="#4c64fd"
+            android:textColor="@color/mainColor"
             android:textSize="20sp"
             android:text="tooc" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_marginTop="39dp"
             android:layout_gravity="center_horizontal"
-            android:background="#fbfbf9"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
-            android:layout_width="313dp"
-            android:layout_height="80dp">
+            android:background="@drawable/bar_searching"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:background="#fbfbf9"
-                android:orientation="horizontal"
-                android:layout_width="313dp"
-                android:layout_height="40dp">
-
-                <ImageView
-                    android:layout_marginLeft="23dp"
-                    android:layout_marginRight="23dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_circle_gray"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp" />
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:text="현위치 : 서울시 강남구 역삼동 818-12"
-                    android:fontFamily="@font/kopub_medium"
-                    android:textSize="14sp"
-                    android:textColor="#cecece"
-                    android:lineSpacingExtra="2sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:layout_centerInParent="true"
+                android:id="@+id/btn_fragment_map_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:clickable="true"
-                android:id = "@+id/btn_fragment_map_question"
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:layout_width="313dp"
-                android:layout_height="40dp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_marginLeft="23dp"
-                    android:layout_marginRight="23dp"
-                    android:layout_gravity="center"
-                    android:background = "@drawable/ic_rectangle_fill"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp" />
+                <LinearLayout
+                    android:layout_width="313dp"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_gravity="center"
-                    android:text="짐을 맡겨드릴까요?"
-                    android:fontFamily="@font/kopub_medium"
-                    android:textSize="14sp"
-                    android:textColor="#262626"
-                    android:lineSpacingExtra="2sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="23dp"
+                        android:layout_marginRight="23dp"
+                        android:src="@drawable/ic_circle_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/kopub_medium"
+                        android:lineSpacingExtra="2sp"
+                        android:text="현위치 : 서울시 강남구 역삼동 818-12"
+                        android:textColor="#cecece"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="313dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="23dp"
+                        android:layout_marginRight="23dp"
+                        android:background="@drawable/ic_rectangle_fill" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/kopub_medium"
+                        android:lineSpacingExtra="2sp"
+                        android:text="짐을 맡겨드릴까요?"
+                        android:textColor="#262626"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
+        </RelativeLayout>
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!--
-    <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="320dp"
-            android:layout_height="40dp">
-
-            <ImageView
-                android:background = "@color/colorAccent"
-                android:layout_width="48dp"
-                android:layout_height="40dp" />
-
-            <TextView
-                android:layout_gravity="center"
-                android:text="현위치 : 서울시 강남구 역삼동 818-12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="320dp"
-            android:layout_height="40dp">
-
-            <ImageView
-                android:background = "@color/colorPrimary"
-                android:layout_width="48dp"
-                android:layout_height="40dp" />
-
-            <TextView
-                android:layout_gravity="center"
-                android:text="짐을 맡겨드릴까요?"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
 
     </LinearLayout>
-    -->
 
 </RelativeLayout>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hyeran.android.travely_user">
+    package="com.tooc.android.tooc">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
+    <permission android:name="com.example.maptest.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,7 +16,7 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
-        android:name=".network.ApplicationController"
+        android:name="com.tooc.android.tooc.network.ApplicationController"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,9 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
 
-        </activity>
+        <activity android:name="com.tooc.android.tooc.MainActivity"></activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -40,24 +40,23 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".map.MapActivity"
-            android:label="@string/activity_map">
-        </activity>
-        <activity android:name=".join.LoginActivity"></activity>
-        <activity android:name=".join.JoinActivity" />
-        <activity android:name=".join.WelcomeActivity" />
-        <activity android:name=".join.ExplanationActivity" />
-        <activity android:name=".map.LocationListActivity"></activity>
-        <activity android:name=".reserve_state.ReserveQRCodeActivity" />
-        <activity android:name=".reserve.KakaopayWebView" />
-        <activity android:name=".map.MapMoreActivity">
-        </activity>
-            android:label="@string/activity_map" />
-        <activity android:name=".SplashActivity">
+            android:name="com.tooc.android.tooc.map.MapActivity"
+            android:label="@string/activity_map"></activity>
+        <activity android:name="com.tooc.android.tooc.join.LoginActivity" />
+        <activity android:name="com.tooc.android.tooc.join.JoinActivity" />
+        <!--<activity android:name=".join.WelcomeActivity" />-->
+        <activity android:name="com.tooc.android.tooc.join.ExplanationActivity" />
+        <activity android:name="com.tooc.android.tooc.map.LocationListActivity" />
+        <activity android:name="com.tooc.android.tooc.reserve.KakaopayWebView" />
+        <activity android:name="com.tooc.android.tooc.map.MapMoreActivity" />
+        <activity android:name="com.tooc.android.tooc.mypage.HowtouseActivity" />
+        <activity android:name="com.tooc.android.tooc.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

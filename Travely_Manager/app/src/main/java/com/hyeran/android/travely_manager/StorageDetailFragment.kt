@@ -20,11 +20,11 @@ class StorageDetailFragment : Fragment() {
         var dataList : ArrayList<PhotoStorageDetailTempData> = ArrayList()
         dataList.add(PhotoStorageDetailTempData(0))
         dataList.add(PhotoStorageDetailTempData(0))
-        dataList.add(PhotoStorageDetailTempData(0))
-
-        photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, dataList)
-        v.rv_storage_detail.adapter = photoStorageDetailRVAdapter
-        v.rv_storage_detail.layoutManager = LinearLayoutManager(context)
+//        dataList.add(PhotoStorageDetailTempData(0))
+//
+//        photoStorageDetailRVAdapter = PhotoStorageDetailRVAdapter(context, dataList)
+//        v.rv_storage_detail.adapter = photoStorageDetailRVAdapter
+//        v.rv_storage_detail.layoutManager = LinearLayoutManager(context)
 
 
 

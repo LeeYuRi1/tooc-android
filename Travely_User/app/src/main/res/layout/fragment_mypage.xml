@@ -33,15 +33,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="12dp"
             android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:src="@drawable/bt_settings"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/bt_settings" />
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="55dp"
                 android:fontFamily="@font/nanum_bold"
-                android:text="김민경"
+                android:text=""
                 android:textColor="@color/mainColor"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView46"
@@ -79,6 +80,7 @@
                 android:id="@+id/textView46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
                 android:fontFamily="@font/nanum_bold"
                 android:text="안녕하세요"
                 android:textColor="@color/mainColor"
@@ -95,10 +97,10 @@
                 app:layout_constraintGuide_percent="0.10555556"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_profile_mypage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView46"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/tv_name_mypage"
@@ -115,43 +117,46 @@
                 android:id="@+id/textView48"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/kopub_medium"
                 android:text="내 짐 현황"
-                android:textSize="12sp"
                 android:textColor="#494949"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textView47" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_mybag_cnt_mypage" />
 
             <TextView
                 android:id="@+id/textView50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/kopub_medium"
                 android:text="즐겨찾기"
-                android:textSize="12sp"
                 android:textColor="#494949"
+                android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/textView48"
-                app:layout_constraintTop_toBottomOf="@+id/textView49" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_favorite_cnt_mypage" />
 
             <TextView
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="56dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/kopub_medium"
                 android:text="나의 리뷰"
-                android:textSize="12sp"
                 android:textColor="#494949"
+                android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/textView50"
-                app:layout_constraintTop_toBottomOf="@+id/textView52" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_review_cnt_mypage" />
 
             <TextView
-                android:id="@+id/textView52"
+                android:id="@+id/tv_review_cnt_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kopub_bold"
-                android:text="23"
+                android:text=""
                 android:textColor="#262626"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/textView51"
@@ -197,29 +202,29 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView51"
                 app:layout_constraintEnd_toEndOf="@+id/textView51"
-                app:layout_constraintStart_toStartOf="@+id/textView52"
-                app:layout_constraintTop_toTopOf="@+id/textView52">
+                app:layout_constraintStart_toStartOf="@+id/tv_review_cnt_mypage"
+                app:layout_constraintTop_toTopOf="@+id/tv_review_cnt_mypage">
 
             </android.support.constraint.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textView47"
+                android:id="@+id/tv_mybag_cnt_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="68dp"
                 android:fontFamily="@font/kopub_bold"
-                android:text="3"
+                android:text=""
                 android:textColor="#262626"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
             <TextView
-                android:id="@+id/textView49"
+                android:id="@+id/tv_favorite_cnt_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kopub_bold"
-                android:text="12"
+                android:text=""
                 android:textColor="#262626"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/textView50"
@@ -231,8 +236,8 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView48"
                 app:layout_constraintEnd_toEndOf="@+id/textView48"
-                app:layout_constraintStart_toStartOf="@+id/textView47"
-                app:layout_constraintTop_toTopOf="@+id/textView47">
+                app:layout_constraintStart_toStartOf="@+id/tv_mybag_cnt_mypage"
+                app:layout_constraintTop_toTopOf="@+id/tv_mybag_cnt_mypage">
 
             </android.support.constraint.ConstraintLayout>
 
@@ -242,11 +247,11 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView50"
                 app:layout_constraintEnd_toEndOf="@+id/textView50"
-                app:layout_constraintStart_toStartOf="@+id/textView49"
-                app:layout_constraintTop_toTopOf="@+id/textView49">
+                app:layout_constraintStart_toStartOf="@+id/tv_favorite_cnt_mypage"
+                app:layout_constraintTop_toTopOf="@+id/tv_favorite_cnt_mypage">
 
             </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

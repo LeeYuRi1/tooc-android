@@ -2,6 +2,8 @@ package com.hyeran.android.travely_manager
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
+import android.support.v4.app.BundleCompat
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,48 +14,81 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import org.w3c.dom.Text
 import android.support.v7.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.hyeran.android.travely_manager.model.ReserveResponseDto
+import com.hyeran.android.travely_manager.model.StoreResponseDto
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+
+class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveResponseDto>) : RecyclerView.Adapter<ReserveListRVAdapter.r_Holder>() {
+    var decimalFormat = DecimalFormat("###,###")
 
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): r_Holder {
+        // 뷰 인플레이트!!
+        val r_view : View = LayoutInflater.from(ctx).inflate(R.layout.item_reserve_list, parent, false)
 
-class ReserveListRVAdapter(val ctx : Context?, val dataList : ArrayList<ReserveListTempData>) : RecyclerView.Adapter<ReserveListRVAdapter.Holder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(ctx).inflate(R.layout.item_reserve_list, parent, false)
-
-        return Holder(view)
+        return r_Holder(r_view)
     }
 
     override fun getItemCount(): Int = dataList.size
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.profile.setImageResource(dataList[position].profile)
-        holder.name.text = dataList[position].name
-        holder.payment_status.text = dataList[position].payment_status
-        holder.price.text = dataList[position].price.toString()
-        holder.amount.text = dataList[position].amount.toString()
-        holder.am_pm.text = dataList[position].am_pm
-        holder.hour.text = dataList[position].hour.toString()
-        holder.minute.text = dataList[position].minute.toString()
+    override fun onBindViewHolder(holder: r_Holder, position: Int) {
+        var dateFormat = SimpleDateFormat("yyyy.MM.dd")
+        var timeFormat = SimpleDateFormat("HH:mm")
+        var paymentStatus: String
+        var date : String = dateFormat.format(dataList[position].startTime)
+        var time : String = timeFormat.format(dataList[position].startTime)
+        //TODO 의심리스트!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        var amount : Int =0
+        for(i in 0..dataList[position].bagDtos.size-1){
+            amount+=dataList[position].bagDtos[i].bagCount.toInt()
+        }
+        if(dataList[position].progressType=="ING") {
+            paymentStatus= "결제진행중"
+        }
+        else{
+            paymentStatus = "결제완료"
+        }
 
-        holder.view.setOnClickListener {
+        holder.r_name.text = dataList[position].userName
+        holder.r_payment_status.text = paymentStatus
+        holder.r_date.text = date
+        holder.r_price.text = decimalFormat.format(dataList[position].price).toString()
+        holder.r_amount.text = amount.toString()
+        holder.r_time.text = time
+
+        val requestOptions = RequestOptions()
+        requestOptions.placeholder(R.drawable.mypage_bt_default)
+        requestOptions.error(R.drawable.mypage_bt_default)
+
+        Glide.with(ctx!!)
+                .setDefaultRequestOptions(requestOptions)
+                .load(dataList[position].userImg)
+                .into(holder.photo)
+
+        holder.r_view.setOnClickListener {
             val manager = (ctx as AppCompatActivity).supportFragmentManager
             val transaction : FragmentTransaction = manager.beginTransaction()
-            transaction.replace(R.id.frame_main, ReserveDetailFragment())
+            var args =Bundle()
+            args.putString("reserveIdx",dataList[position].reserveIdx.toString())
+            var fragment = ReserveDetailFragment()
+            fragment.arguments = args
+            transaction.replace(R.id.frame_main, fragment)
+            transaction.addToBackStack(null)
             transaction.commit()
         }
     }
 
-
-
-    inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val profile : ImageView = itemView.findViewById(R.id.iv_profile_item_reserve_list) as ImageView
-        val name : TextView = itemView.findViewById(R.id.tv_name_item_reserve_list) as TextView
-        val payment_status : TextView = itemView.findViewById(R.id.tv_payment_status_item_reserve_list) as TextView
-        val price : TextView = itemView.findViewById(R.id.tv_price_item_reserve_list) as TextView
-        val amount : TextView = itemView.findViewById(R.id.tv_amount_item_reserve_list) as TextView
-        val am_pm : TextView = itemView.findViewById(R.id.tv_am_pm_item_reserve_list) as TextView
-        val hour : TextView = itemView.findViewById(R.id.tv_hour_item_reserve_list) as TextView
-        val minute : TextView = itemView.findViewById(R.id.tv_minute_item_reserve_list) as TextView
-
-        val view : RelativeLayout = itemView.findViewById(R.id.item_reserve_list) as RelativeLayout
+    inner class r_Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+        val r_name : TextView = itemView.findViewById(R.id.tv_name_item_reserve_list) as TextView
+        val r_payment_status : TextView = itemView.findViewById(R.id.tv_payment_status_item_reserve_list) as TextView
+        val r_date : TextView = itemView.findViewById(R.id.tv_date_item_reserve_list) as TextView
+        val r_price : TextView = itemView.findViewById(R.id.tv_price_item_reserve_list) as TextView
+        val r_amount : TextView = itemView.findViewById(R.id.tv_amount_item_reserve_list) as TextView
+        val r_time : TextView = itemView.findViewById(R.id.tv_time_item_reserve_list) as TextView
+        val r_view : RelativeLayout = itemView.findViewById(R.id.rv_reserve_list_btn) as RelativeLayout
+        val photo : ImageView = itemView.findViewById(R.id.iv_profile_item_reserve_list) as ImageView
     }
 }

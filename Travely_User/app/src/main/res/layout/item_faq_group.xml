@@ -13,13 +13,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/kopub_medium"
         android:lineSpacingExtra="5dp"
         android:text="업데이트"
-        android:textColor="#DE000000"
+        android:textColor="#262626"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/notice_arrow"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -27,9 +29,9 @@
 
     <ImageView
         android:id="@+id/notice_arrow"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:background="@color/mainColor"
+        android:layout_width="21dp"
+        android:layout_height="13dp"
+        android:background="@drawable/faq_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,13 +42,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.10555556" />
+        app:layout_constraintGuide_begin="41dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9192708" />
+        app:layout_constraintGuide_end="31dp" />
 
 </android.support.constraint.ConstraintLayout>

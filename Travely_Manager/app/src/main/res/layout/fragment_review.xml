@@ -1,103 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ReviewFragment">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/title_bar_review"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@android:color/darker_gray">
+        android:layout_height="44dp">
 
-        <TextView
+        <ImageView
+            android:id="@+id/iv_back_access_terms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="마이페이지" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@android:color/holo_orange_light" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="별점 통계" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_temp_star" />
+            android:layout_marginStart="12dp"
+            android:padding="8dp"
+            android:src="@drawable/setting_bt_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/textView30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4"
-            android:textSize="20sp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/kopub_bold"
+            android:text="가게 리뷰"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="점"
-            android:textSize="20sp" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_temp_star" />
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_temp_star" />
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_temp_star" />
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_temp_star" />
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_temp_star_border" />
-    </LinearLayout>
-
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginVertical="10dp"></RelativeLayout>
+        android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_review_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="더보기"
-        android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="55dp"
+                android:fontFamily="@font/nanum_bold"
+                android:text="후기 "
+                android:textColor="@color/mainColor"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_num_review"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/nanum_bold"
+                android:text="5"
+                android:textColor="@color/mainColor"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                app:layout_constraintStart_toEndOf="@+id/textView27" />
+
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_bold"
+                android:text="개"
+                android:textColor="@color/mainColor"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_num_review"
+                app:layout_constraintStart_toEndOf="@+id/tv_num_review" />
+
+            <TextView
+                android:id="@+id/textView52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="23dp"
+                android:layout_marginTop="72dp"
+                android:fontFamily="@font/kopub_medium"
+                android:text="점"
+                android:textColor="#494949"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+            <TextView
+                android:id="@+id/tv_grade_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kopub_medium"
+                android:text="4.5"
+                android:textColor="#494949"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView52"
+                app:layout_constraintEnd_toStartOf="@+id/textView52" />
+
+            <TextView
+                android:id="@+id/textView54"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kopub_medium"
+                android:text="총 "
+                android:textColor="#494949"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_grade_review"
+                app:layout_constraintEnd_toStartOf="@+id/tv_grade_review" />
+
+            <RatingBar
+                android:id="@+id/ratingBar_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scaleX="0.85"
+                android:scaleY="0.85"
+                android:theme="@style/WriteReviewRatingBar"
+                android:isIndicator="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_bubble"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar_review" />
+
+            <TextView
+                android:id="@+id/textView70"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:fontFamily="@font/kopub_medium"
+                android:text="리뷰 "
+                android:textColor="#262626"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+            <TextView
+                android:id="@+id/tv_num2_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kopub_medium"
+                android:text="5"
+                android:textColor="#ff7c49"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView70"
+                app:layout_constraintStart_toEndOf="@+id/textView70" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_review_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/imageView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_arrow_down_small"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_review_list" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>

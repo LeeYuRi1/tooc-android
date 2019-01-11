@@ -15,7 +15,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/kopub_bold"
         android:text="리뷰쓰기"
-        android:textColor="#000000"
+        android:textColor="#262626"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,10 +27,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/kopub_medium"
         android:text="서비스는 만족하셨나요?"
-        android:textColor="#000000"
+        android:textColor="#262626"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,11 +42,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
         android:scaleX="0.7"
         android:scaleY="0.7"
+        android:stepSize="1"
         android:theme="@style/WriteReviewRatingBar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -56,9 +56,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/kopub_medium"
         android:text="별을 탭하여 평가해주세요"
-        android:textSize="10sp"
+        android:textSize="12sp"
+        android:textColor="#979797"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar_writereview" />
@@ -72,11 +74,14 @@
         android:ems="10"
         android:fontFamily="@font/kopub_medium"
         android:gravity="top"
-        android:hint="짐을 보관해주신 사장님에게 리뷰를 작성해주세요."
+        android:hint="내용을 입력해주세요. 상세하게 적을수록
+다른 고객에게 큰 도움이 됩니다."
         android:inputType="textMultiLine"
-        android:paddingHorizontal="18dp"
-        android:paddingTop="8dp"
-        android:textSize="12sp"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="13dp"
+        android:textSize="14sp"
+        android:textColor="#262626"
+        android:textColorHint="#b9b9b9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -102,6 +107,7 @@
         android:weightSum="2">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/btn_cancle_writereview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -117,7 +123,7 @@
                 android:fontFamily="@font/kopub_medium"
                 android:text="취소하기"
                 android:textColor="@color/mainColor"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -125,6 +131,7 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/btn_ok_writereview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -141,7 +148,7 @@
                 android:fontFamily="@font/kopub_medium"
                 android:text="등록하기"
                 android:textColor="#ffffff"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

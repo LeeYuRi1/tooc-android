@@ -7,27 +7,41 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
-
 import com.hyeran.android.travely_manager.mypage.MypageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
 import android.Manifest.permission
-import android.Manifest.permission.RECORD_AUDIO
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import java.util.jar.Manifest
-
+import android.util.Log
+import android.widget.ImageView
+import com.hyeran.android.travely_manager.db.SharedPreferencesController
+import com.hyeran.android.travely_manager.model.StoreIdxData
+import com.hyeran.android.travely_manager.network.ApplicationController
+import com.hyeran.android.travely_manager.network.NetworkService
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+    lateinit var reserveCode : String
+    lateinit var networkService : NetworkService
+
+    var storeIdx : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         addFragment(ReserveConfirmFragment.getInstance())
 
+        networkService = ApplicationController.instance.networkService
+
+        getStoreIdxResponse()
+
         checkDangerousPermission()
+
+        iv_qr_bottom_tab.isSelected = true
 
         setOnClickListener()
     }
@@ -39,48 +53,93 @@ class MainActivity : AppCompatActivity() {
             val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
             if (result.contents == null) {
                 // 취소됨
+
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 // 스캔된 QRCode --> result.getContents()
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                //TODO qr코드 스캔값 넣어야함!!
+                reserveCode = result.contents
+                Log.d("TAGGGG","QWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQWEQQWEQWEQWQWEQWEQWEQWEQWE")
+                //     replaceFragment(ReserveDetailFragment())
+                qrCode(reserveCode)
+                // (ctx as MainActivity).qrCode("123")
 
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
-
     }
-
     //qrCode
     fun qrCode(reserveNumberConfirm :String){
-        if(reserveNumberConfirm == "123") {
-            replaceFragment(ReserveDetailFragment())
-        }
+        var args = Bundle()
+        var fragment = ReserveDetailFragment()
+        args.putString("reserveCode", reserveNumberConfirm)
+        fragment.arguments = args
+        replaceFragment(fragment)
+        Log.d("TAGGGGGGGGGGGG",args.toString())
+//        if(reserveNumberConfirm == "123") {
+//            Log.d("TAGGGG","RTYRTYTYT")
+//            replaceFragment(ReserveDetailFragment())
+//        }
+//        if(reserveNumberConfirm == "123") {
+//            Log.d("TAGGGG","RTYRTYTYT")
+//            replaceFragment(ReserveDetailFragment())
+//        }
     }
 
     //photo
     fun gotophotoConfirm(){
-
         val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(cameraIntent, 999)
-
     }
-
 
     fun setOnClickListener() {
         tab_one_main.setOnClickListener {
             replaceFragment(ReserveConfirmFragment())
+            selectedTabChangeColor(0)
         }
         tab_two_main.setOnClickListener {
-            replaceFragment(ReserveListFragment())
+            replaceFragment(ReserveStorageListFragment())
+            selectedTabChangeColor(1)
         }
         tab_three_main.setOnClickListener {
-            //            replaceFragment(ShipFragment())
-            replaceFragment(StorageListFragment())
+            replaceFragment(ShipFragment())
+            selectedTabChangeColor(2)
         }
         tab_four_main.setOnClickListener {
             replaceFragment(MypageFragment())
+            selectedTabChangeColor(3)
         }
+    }
+
+    fun selectedTabChangeColor(flag : Int) {
+        clearSelected()
+        var img : ImageView? = null
+        when(flag) {
+            0 -> {
+                img = iv_qr_bottom_tab
+            }
+            1 -> {
+                img = iv_reserve_bottom_tab
+            }
+            2 -> {
+                img = iv_ship_bottom_tab
+            }
+            3 -> {
+                img = iv_mypage_bottom_tab
+            }
+        }
+        img?.let {
+            img.isSelected = true
+        }
+    }
+
+    private fun clearSelected() {
+        iv_qr_bottom_tab.isSelected = false
+        iv_reserve_bottom_tab.isSelected = false
+        iv_ship_bottom_tab.isSelected = false
+        iv_mypage_bottom_tab.isSelected = false
     }
 
     fun addFragment(fragment : Fragment) {
@@ -92,7 +151,8 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
-        transaction.commit()
+//        transaction.commit()
+        transaction.commitAllowingStateLoss()
     }
 
     private fun checkDangerousPermission() {
@@ -105,7 +165,6 @@ class MainActivity : AppCompatActivity() {
                 break
             }
         }
-
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show()
         } else {
@@ -119,4 +178,39 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun getStoreIdxResponse() {
+
+        var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
+
+        val getStoreIdxResponse = networkService.getStoreIdxResponse(jwt)
+
+        getStoreIdxResponse!!.enqueue(object : Callback<StoreIdxData> {
+            override fun onFailure(call: Call<StoreIdxData>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<StoreIdxData>, response: Response<StoreIdxData>) {
+                response?.let {
+                    when (it.code()) {
+                        200 -> {
+                            toast("관리자 마이페이지")
+                            SharedPreferencesController.instance!!.setPrefData("storeIdx", response.body()!!.storeIdx)
+                        }
+                        400 -> {
+                            toast("잘못된 접근")
+                        }
+                        403 -> {
+                            toast("인증 에러")
+                        }
+                        500 -> {
+                            toast("서버 에러")
+                        }
+                        else -> {
+                            toast("error")
+                        }
+                    }
+                }
+            }
+
+        })
+    }
 }

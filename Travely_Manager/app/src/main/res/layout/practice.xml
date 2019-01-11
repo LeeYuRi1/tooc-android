@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_profile_item_review_list"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@color/mainColor" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.036458332" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9635417" />
+
+    <TextView
+        android:id="@+id/tv_name_review_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:fontFamily="@font/kopub_medium"
+        android:text="김민수"
+        android:textColor="#262626"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_item_review_list"
+        app:layout_constraintTop_toTopOf="@+id/iv_profile_item_review_list" />
+
+    <TextView
+        android:id="@+id/tv_hour_review_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text="22"
+        android:textColor="#8d8d8d"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_review_list"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_review_list" />
+
+    <TextView
+        android:id="@+id/textView125"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text="시간"
+        android:textColor="#8d8d8d"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hour_review_list"
+        app:layout_constraintStart_toEndOf="@+id/tv_hour_review_list" />
+
+    <TextView
+        android:id="@+id/textView126"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text=" 전"
+        android:textColor="#8d8d8d"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView125"
+        app:layout_constraintStart_toEndOf="@+id/textView125" />
+
+    <TextView
+        android:id="@+id/tv_content_review_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/kopub_medium"
+        android:text="사장님이 굉장히 친절하고 덕분에 편안하게 여행했어요 최고~!!!"
+        android:textColor="#262626"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_item_review_list" />
+
+    <TextView
+        android:id="@+id/textView128"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/kopub_medium"
+        android:text="신고하기"
+        android:textColor="#8d8d8d"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toBottomOf="@+id/tv_content_review_list" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#cccccc"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/textView128" />
+
+    <TextView
+        android:id="@+id/textView129"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:fontFamily="@font/kopub_medium"
+        android:text="점"
+        android:textColor="#8d8d8d"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView126"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8" />
+
+    <TextView
+        android:id="@+id/tv_star_num_review_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopub_medium"
+        android:text="4.5"
+        android:textColor="#8d8d8d"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView129"
+        app:layout_constraintEnd_toStartOf="@+id/textView129" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/ic_star_small"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_star_num_review_list"
+        app:layout_constraintEnd_toStartOf="@+id/tv_star_num_review_list"
+        app:layout_constraintTop_toTopOf="@+id/tv_star_num_review_list" />
+</android.support.constraint.ConstraintLayout>
