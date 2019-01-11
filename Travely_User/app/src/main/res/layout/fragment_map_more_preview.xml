@@ -120,7 +120,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/btn_fragment_map_more_preview"
         android:clickable="true"
         android:layout_width="match_parent"
@@ -131,7 +131,8 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/lv_store_info"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="24dp"
@@ -243,21 +244,25 @@
 
             <TextView
                 android:id="@+id/tv_address_map_more_preview"
-                android:layout_width="wrap_content"
+                android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7.8dp"
                 android:fontFamily="@font/kopub_medium"
                 android:lineSpacingExtra="8sp"
                 android:text="서울 동대문구 전농로 151 2층 (전농동)"
                 android:textColor="#494949"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:scrollHorizontally="false"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_toRightOf="@+id/lv_store_info"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+            android:layout_gravity="right"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
@@ -272,6 +277,6 @@
                 android:src="@drawable/ic_resevation" />
 
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
