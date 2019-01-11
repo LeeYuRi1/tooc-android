@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.tooc.android.tooc.R
-import com.tooc.android.tooc.data.ReviewData
+import com.tooc.android.tooc.model.store.ReviewResponseData
+import java.sql.Timestamp
 
-class ReviewRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<ReviewData>)
-    : RecyclerView.Adapter<ReviewRecyclerViewAdapter.Holder>() {
+class StoreReviewAdapter(val ctx : Context, val dataList : ArrayList<ReviewResponseData>)
+    : RecyclerView.Adapter<StoreReviewAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         // 뷰 인플레이트!!
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_review, parent, false)
@@ -22,9 +23,11 @@ class ReviewRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<Revi
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         // 뷰 바인딩!!
-        holder.name.text = dataList[position].name
-        holder.time.text = dataList[position].time.toString()
-        holder.grade.text = dataList[position].grade.toString()
+        holder.name.text = dataList[position].userName
+        holder.grade.text = dataList[position].like.toString()
+        var currentTime : Long = System.currentTimeMillis()
+        var createdAtTime : Long = dataList[position].createdAt
+        holder.time.text = Timestamp(currentTime-createdAtTime).hours.toString()
         holder.content.text = dataList[position].content
     }
 

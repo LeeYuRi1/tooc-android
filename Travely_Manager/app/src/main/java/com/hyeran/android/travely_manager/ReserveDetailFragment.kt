@@ -95,19 +95,32 @@ class ReserveDetailFragment : Fragment() {
     private fun setClickListener() {
         btn_storage_reservedetail.setOnClickListener {
 
-            toast("@@@@@@@@@@@@")
+            if (cb_confirm_reservedetail.isChecked) {
+                Log.d("@@@@@@@@@TAG", dataList.toString())
+                if (dataList.size == 0) {
+                    toast("짐 사진을 찍어주세요.")
+                }
+                else {
+                    putStorePickupResponse()
 
-//            layout_storage_reservedetail.visibility = View.GONE
-//            layout_pickup_reservedetail.visibility = View.VISIBLE
-//            layout_picture_reservedetail.visibility = View.GONE
+                    layout_storage_reservedetail.visibility = View.GONE
+                    layout_pickup_reservedetail.visibility = View.VISIBLE
+                    layout_picture_reservedetail.visibility = View.GONE
+                }
 //
-//            imgUrlRVAdapter = ImgUrlRVAdapter(context, bagImgDtos)
-//            rv_luggage_picture.adapter = imgUrlRVAdapter
-//            var mLayoutManager = LinearLayoutManager(context)
-//            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-//            rv_luggage_picture.layoutManager = mLayoutManager
+                imgUrlRVAdapter = ImgUrlRVAdapter(context, bagImgDtos)
+                rv_luggage_picture.adapter = imgUrlRVAdapter
+                var mLayoutManager = LinearLayoutManager(context)
+                mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                rv_luggage_picture.layoutManager = mLayoutManager
 
-            putStorePickupResponse()
+
+                StorageDialog(context).show()
+                (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
+            } else {
+                toast("동의해주세요")
+            }
+
         }
 
         btn_pickup_reservedetail.setOnClickListener {
@@ -616,15 +629,15 @@ class ReserveDetailFragment : Fragment() {
                                             layout_picture_reservedetail.visibility = View.GONE
                                         }
 //
-//                                        imgUrlRVAdapter = ImgUrlRVAdapter(context, bagImgDtos)
-//                                        rv_luggage_picture.adapter = imgUrlRVAdapter
-//                                        var mLayoutManager = LinearLayoutManager(context)
-//                                        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-//                                        rv_luggage_picture.layoutManager = mLayoutManager
+                                        imgUrlRVAdapter = ImgUrlRVAdapter(context, bagImgDtos)
+                                        rv_luggage_picture.adapter = imgUrlRVAdapter
+                                        var mLayoutManager = LinearLayoutManager(context)
+                                        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                                        rv_luggage_picture.layoutManager = mLayoutManager
 
 
-//                                        StorageDialog(context).show()
-//                                        (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
+                                        StorageDialog(context).show()
+                                        (ctx as MainActivity).replaceFragment(ReserveDetailFragment())
                                     } else {
                                         toast("동의해주세요")
                                     }

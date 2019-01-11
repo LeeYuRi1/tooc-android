@@ -72,9 +72,9 @@ class MypageFragment : Fragment() {
 
     private fun setClickListener() {
 
-//        iv_profile_mypage.setOnClickListener {
-//            replaceFragment(ProfileFragment())
-//        }
+        iv_profile_mypage.setOnClickListener {
+            replaceFragment(ProfileFragment())
+        }
         layout_like_mypage.setOnClickListener {
             replaceFragment(LikeFragment())
         }

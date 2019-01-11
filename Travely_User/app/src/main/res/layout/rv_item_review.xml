@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tv_rv_item_review_time"
+                        android:id="@+id/tv_hour_rv_item"
                         android:text="22"
                         android:fontFamily="@font/kopub_medium"
                         android:textColor="#8D8D8D"
