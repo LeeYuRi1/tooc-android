@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.model.store.ReviewResponseData
 import java.sql.Timestamp
@@ -23,6 +24,10 @@ class StoreReviewAdapter(val ctx : Context, val dataList : ArrayList<ReviewRespo
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         // 뷰 바인딩!!
+//        Glide.with(holder!!.itemView.context)
+//                .load(dataList[position].)
+//                .into(holder!!.reviewer)
+
         holder.name.text = dataList[position].userName
         holder.grade.text = dataList[position].like.toString()
         var currentTime : Long = System.currentTimeMillis()
