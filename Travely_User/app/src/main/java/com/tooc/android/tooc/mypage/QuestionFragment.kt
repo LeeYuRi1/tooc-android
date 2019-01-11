@@ -86,14 +86,12 @@ class QuestionFragment : Fragment() {
             startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
         }
 
+        btn_ok_question.setOnClickListener {
+            postInquiryResponse()
+        }
+
     }
 
-//    fun DataFileXClick() {
-//        //dataList.add(QuestionData(File(seletedPictureUri.toString()).name.toString()))
-//        this.dataList.remove(QuestionData(filename))
-//        inquiryImageSave.remove(this.inquiryImgs.toString())
-//        toast(inquiryImageSave.toString())
-//    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -151,28 +149,16 @@ class QuestionFragment : Fragment() {
                     when (it.code()) {
                         200 -> {
 
-                            et_content_question.addTextChangedListener(object : TextWatcher {
-                                override fun afterTextChanged(s: Editable?) {
-                                    content = et_content_question.text.toString()
-                                }
+                            content = et_content_question.text.toString()
 
-                                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                                }
-
-                                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                                }
-
-                            })
-
-                            btn_ok_question.setOnClickListener {
-                                if (content.isNotEmpty()) {
-                                    (ctx as MainActivity).replaceFragment(SetFragment())
-//                                    toast("문의사항 작성 성공")
-                                    toast(content)
-                                } else {
-                                    toast("문의사항을 작성해주세요")
-                                }
+                            if (content.isNotEmpty()) {
+                                (ctx as MainActivity).replaceFragment(SetFragment())
+                                toast("문의사항 작성 성공")
+                                toast(content)
+                            } else {
+                                toast("문의사항을 작성해주세요")
                             }
+
                         }
 
 

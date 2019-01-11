@@ -68,19 +68,13 @@ class MypageFragment : Fragment() {
         rv_recentstore_mypage.adapter = mypageRecentStoreAdapter
         rv_recentstore_mypage.layoutManager = LinearLayoutManager(activity)
 
-//        val mLayoutManager = LinearLayoutManager(this.activity)
-//        mLayoutManager.reverseLayout = true   //리사이클러뷰 거꾸로
-//        mLayoutManager.stackFromEnd = true
-//
-//        rv_recentstore_mypage.setLayoutManager(mLayoutManager)
-
     }
 
     private fun setClickListener() {
 
-        iv_profile_mypage.setOnClickListener {
-            replaceFragment(ProfileFragment())
-        }
+//        iv_profile_mypage.setOnClickListener {
+//            replaceFragment(ProfileFragment())
+//        }
         layout_like_mypage.setOnClickListener {
             replaceFragment(LikeFragment())
         }
