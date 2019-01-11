@@ -48,6 +48,8 @@ class MapMoreActivity : AppCompatActivity() {
 
         storeIdx = intent.getIntExtra("storeIdx", 0)
 
+        networkService = ApplicationController.instance.networkService
+
         init()
 
         setRecyclerView()
@@ -212,7 +214,6 @@ class MapMoreActivity : AppCompatActivity() {
 
     fun putFavoriteResponse() {
 
-
         var jwt: String? = SharedPreferencesController.instance!!.getPrefStringData("jwt")
 
         val putStoreFavoriteResponse = networkService.putStoreFavoriteResponse(jwt, storeIdx)
@@ -236,8 +237,8 @@ class MapMoreActivity : AppCompatActivity() {
                     }
                 }
             }
-
         })
-
     }
+
+
 }

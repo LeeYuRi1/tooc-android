@@ -32,13 +32,15 @@
 
     <TextView
         android:id="@+id/tv_addr_like"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/kopub_medium"
         android:text="성북구 안암동 123번지"
         android:textColor="#707070"
         android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/iv_heart_like"
         app:layout_constraintStart_toStartOf="@+id/tv_name_like"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_like" />
 
