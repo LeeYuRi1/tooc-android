@@ -1,5 +1,7 @@
 package com.tooc.android.tooc.model
 
+import com.tooc.android.tooc.model.reservation.bagDtosData
+
 data class ProfileResponseData (
         var email : String,
         var favoriteCount : Int,

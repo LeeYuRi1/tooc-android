@@ -15,6 +15,7 @@ import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.MypageRecentStoreAdapter
 import com.tooc.android.tooc.model.ProfileResponseData
 import com.tooc.android.tooc.model.StoreInfoResponseData
+import com.tooc.android.tooc.model.reservation.bagDtosData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.reserve.NoReserveFragment
@@ -116,7 +117,8 @@ class MypageFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-                            tv_name_mypage.text = response.body()!!.name.toString()
+                            tv_name_mypage.text = response.body()!!.name
+                            Log.d("TAGGGGG", response.body()!!.name)
                             tv_mybag_cnt_mypage.text = response.body()!!.myBagCount.toString()
                             tv_favorite_cnt_mypage.text = response.body()!!.favoriteCount.toString()
                             tv_review_cnt_mypage.text = response.body()!!.reviewCount.toString()

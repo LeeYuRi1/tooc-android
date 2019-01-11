@@ -25,7 +25,6 @@ import android.app.Activity.RESULT_OK
 import android.support.v7.widget.LinearLayoutManager
 import com.bumptech.glide.request.RequestOptions
 import com.hyeran.android.travely_manager.model.*
-import kotlinx.android.synthetic.main.fragment_reserve_storage_list.view.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -54,6 +53,7 @@ class ReserveDetailFragment : Fragment() {
 //     lateinit var bagImgRequestDtoData : BagImgRequestDtoData
 
     var dataList: ArrayList<BitmapData> = ArrayList()
+    lateinit var bagImgDtos : ArrayList<BagImgDtos>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_reserve_detail, container, false)
@@ -92,17 +92,25 @@ class ReserveDetailFragment : Fragment() {
 
     private fun setClickListener() {
         btn_storage_reservedetail.setOnClickListener {
-//            toast("!!")
             putStorePickupResponse()
+            layout_storage_reservedetail.visibility = View.GONE
+            layout_pickup_reservedetail.visibility = View.VISIBLE
+            layout_picture_reservedetail.visibility = View.GONE
+
+            imgUrlRVAdapter = ImgUrlRVAdapter(context, bagImgDtos)
+            rv_luggage_picture.adapter = imgUrlRVAdapter
+            var mLayoutManager = LinearLayoutManager(context)
+            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            rv_luggage_picture.layoutManager = mLayoutManager
         }
 
         btn_pickup_reservedetail.setOnClickListener {
             putStorePickupResponse()
+            (ctx as MainActivity).replaceFragment(ReserveStorageListFragment())
         }
         btn_picture_reservedetail.setOnClickListener {
             takePhoto()
         }
-
 
 //        if(layout_storage_reservedetail.visibility == View.VISIBLE){
 //            btn_storage_reservedetail.setOnClickListener {
@@ -435,7 +443,6 @@ class ReserveDetailFragment : Fragment() {
                 response?.let {
                     when (it.code()) {
                         200 -> {
-
                             toast("짐 보관 및 픽업 성공")
                             StorageDialog(context).show()
                         }
@@ -457,7 +464,7 @@ class ReserveDetailFragment : Fragment() {
         })
     }
 
-    private fun getDetailReserveResponse() {
+    fun getDetailReserveResponse() {
         var jwt = SharedPreferencesController.instance!!.getPrefStringData("jwt")
         var getDetailReserveResponse = networkService.getDetailReserveResponse(jwt, reserveIdx.toInt())
         getDetailReserveResponse.enqueue(object : Callback<ReserveDetailResponseData> {
@@ -603,6 +610,8 @@ class ReserveDetailFragment : Fragment() {
                                 layout_storage_reservedetail.visibility = View.GONE
                                 layout_pickup_reservedetail.visibility = View.VISIBLE
                                 layout_picture_reservedetail.visibility = View.GONE
+
+                                bagImgDtos = response.body()!!.bagImgDtos
 
                                 imgUrlRVAdapter = ImgUrlRVAdapter(context,response.body()!!.bagImgDtos )
                                 rv_luggage_picture.adapter = imgUrlRVAdapter
