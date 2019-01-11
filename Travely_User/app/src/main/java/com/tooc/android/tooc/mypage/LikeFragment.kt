@@ -47,7 +47,6 @@ class LikeFragment : Fragment() {
         iv_back_like.setOnClickListener {
             var fm = fragmentManager
             (ctx as MainActivity).replaceFragment(MypageFragment())
-            fragmentManager!!.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             fm!!.popBackStack()
         }
     }
