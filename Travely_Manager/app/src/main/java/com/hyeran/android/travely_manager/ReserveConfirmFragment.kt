@@ -15,13 +15,11 @@ class ReserveConfirmFragment : Fragment() {
 
     companion object {
         var mInstance: ReserveConfirmFragment? = null
-
         @Synchronized
         fun getInstance(): ReserveConfirmFragment {
             if (mInstance == null) {
                 mInstance = ReserveConfirmFragment()
             }
-
             return mInstance!!
         }
     }
