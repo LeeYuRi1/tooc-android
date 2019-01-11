@@ -17,6 +17,7 @@ import com.tooc.android.tooc.model.mypage.SimpleStoreResponseDtosData
 import com.tooc.android.tooc.model.mypage.StoreFavoriteResponseData
 import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.mypage.LikeFragment
+import com.tooc.android.tooc.mypage.MyreviewFragment
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.reserve.ReserveFragment
@@ -170,6 +171,7 @@ class MypageLikeAdapter(val ctx: Context, val dataList: ArrayList<SimpleStoreRes
                 response?.let {
                     when (it.code()) {
                         200 -> {
+                            (ctx as MainActivity).replaceFragment(LikeFragment())
                         }
                         400 -> {
                         }
