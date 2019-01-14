@@ -22,13 +22,13 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_back_reservation" />
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="12dp"-->
+            <!--android:padding="8dp"-->
+            <!--android:src="@drawable/ic_back_reservation" />-->
 
     </RelativeLayout>
 

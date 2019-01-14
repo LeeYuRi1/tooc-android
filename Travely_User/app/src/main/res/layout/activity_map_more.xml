@@ -404,17 +404,17 @@
                     android:textColor="#262626"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_hour_rv_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="6dp"
-                    android:fontFamily="@font/noto_bold"
-                    android:lineSpacingExtra="17sp"
-                    android:text="5"
-                    android:textColor="#ff7c49"
-                    android:textSize="14sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_hour_rv_item"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="6dp"-->
+                    <!--android:fontFamily="@font/noto_bold"-->
+                    <!--android:lineSpacingExtra="17sp"-->
+                    <!--android:text="5"-->
+                    <!--android:textColor="#ff7c49"-->
+                    <!--android:textSize="14sp" />-->
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView

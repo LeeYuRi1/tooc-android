@@ -71,7 +71,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/kopub_medium"
                         android:lineSpacingExtra="2sp"
-                        android:text="현위치 : 서울시 강남구 역삼동 818-12"
+                        android:text="현위치 : 서울시 강남구 역삼로 180"
                         android:textColor="#cecece"
                         android:textSize="14sp" />
 

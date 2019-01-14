@@ -175,7 +175,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             pv_take_hour.value = 0
         }
 //        pv_take_hour.value = tnumhh - openTime
-        if (openTime < 10) {
+        if (openTime + pv_take_hour.value < 10) {
             thh = "0" + (pv_take_hour.value + openTime).toString()
         } else thh = (pv_take_hour.value+ openTime ).toString()
         tv_take_hour.text = thh
@@ -207,7 +207,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
         }
         pv_take_hour.setOnValueChangedListener { numberPicker, i, j ->
             tnumhh = pv_take_hour.value + openTime
-            if (openTime < 10) {
+            if (openTime +pv_take_hour.value< 10) {
                 thh = "0" + (pv_take_hour.value + openTime).toString()
             } else thh = (pv_take_hour.value + openTime).toString()
             tv_take_hour.text = thh
@@ -310,10 +310,10 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                     break
                 }
             }
-            Toast.makeText(context,"closeHour = "+closeHour+"    closeMinute = "+closeMinute,Toast.LENGTH_LONG).show()
+//            Toast.makeText(context,"closeHour = "+closeHour+"    closeMinute = "+closeMinute,Toast.LENGTH_LONG).show()
             if (closeHour == tnumhh && tnummm > closeMinute) {
-                ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
-                        "예약 시간을 다시 설정해주세요./n"+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
+                ttoast = Toast.makeText(context, "     상가 영업시간이 아닙니다.\n" +
+                        "예약 시간을 다시 설정해주세요.\n               "+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
             }else {
@@ -327,7 +327,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                         alertFlag = 0
                         setStoreClickViewChange()
                     } else {
-                        var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요./n"+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
+                        var ttoast: Toast = Toast.makeText(context, "     상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.\n               "+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
                         ttoast.setGravity(Gravity.CENTER, 0, 0)
                         ttoast.show()
                     }
@@ -344,8 +344,8 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
             }
 
             if (closeHour == snumhh && snummm > closeMinute) {
-                ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
-                        "예약 시간을 다시 설정해주세요./n"+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
+                ttoast = Toast.makeText(context, "     상가 영업시간이 아닙니다.\n" +
+                        "예약 시간을 다시 설정해주세요.\n               "+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
             }else {
@@ -360,7 +360,7 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                         alertFlag = 1
                         setTakeClickViewChange()
                     } else {
-                        ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요./n"+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
+                        ttoast = Toast.makeText(context, "     상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.\n               "+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
                         ttoast.setGravity(Gravity.CENTER, 0, 0)
                         ttoast.show()
                     }
@@ -377,20 +377,20 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
                 }
             }
             if (notOffDay == false) {
-                var ttoast: Toast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요./n"+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
+                var ttoast: Toast = Toast.makeText(context, "     상가 영업시간이 아닙니다.\n예약 시간을 다시 설정해주세요.\n               "+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
                 ttoast.setGravity(Gravity.CENTER, 0, 0)
                 ttoast.show()
                 notOffDay = true
             } else {
                 if ((closeHour == snumhh && snummm > closeMinute)||(closeHour == tnumhh && tnummm > closeMinute)) {
-                    ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
-                            "예약 시간을 다시 설정해주세요./n"+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
+                    ttoast = Toast.makeText(context, "     상가 영업시간이 아닙니다.\n" +
+                            "예약 시간을 다시 설정해주세요.\n               "+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
                     ttoast.setGravity(Gravity.CENTER, 0, 0)
                     ttoast.show()
                 } else {
                     if (svalue == 0 && snumhh < currentHour) {
-                        ttoast = Toast.makeText(context, "    상가 영업시간이 아닙니다.\n" +
-                                "예약 시간을 다시 설정해주세요./n"+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
+                        ttoast = Toast.makeText(context, "     상가 영업시간이 아닙니다.\n" +
+                                "예약 시간을 다시 설정해주세요.\n               "+openTimeDialog+" ~ "+closeTImeDialog, Toast.LENGTH_LONG)
                         ttoast.setGravity(Gravity.CENTER, 0, 0)
                         ttoast.show()
                     } else {
