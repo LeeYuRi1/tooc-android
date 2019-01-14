@@ -39,24 +39,23 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name="com.tooc.android.tooc.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.tooc.android.tooc.map.MapActivity"
             android:label="@string/activity_map"></activity>
         <activity android:name="com.tooc.android.tooc.join.LoginActivity" />
         <activity android:name="com.tooc.android.tooc.join.JoinActivity" />
-        <!--<activity android:name=".join.WelcomeActivity" />-->
         <activity android:name="com.tooc.android.tooc.join.ExplanationActivity" />
-        <activity android:name="com.tooc.android.tooc.map.LocationListActivity" />
-        <activity android:name="com.tooc.android.tooc.reserve.KakaopayWebView" />
-        <activity android:name="com.tooc.android.tooc.map.MapMoreActivity" />
         <activity android:name="com.tooc.android.tooc.mypage.HowtouseActivity" />
-        <activity android:name="com.tooc.android.tooc.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name="com.tooc.android.tooc.map.MapMoreActivity" />
+        <activity android:name="com.tooc.android.tooc.map.LocationListActivity" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!--<activity android:name="com.tooc.android.tooc.reserve.KakaopayWebView" />-->
     </application>
 
 </manifest>
