@@ -44,6 +44,7 @@ class MypageFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        switch_available_mypage.isChecked=true
         networkService = ApplicationController.instance.networkService
 
         getProfileResponse()

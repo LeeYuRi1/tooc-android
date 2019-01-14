@@ -25,13 +25,13 @@
 
     <TextView
         android:id="@+id/tv_name_myreview"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/kopub_medium"
         android:text="롭스 홍대2호점"
         android:textColor="#262626"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/iv_storeimage_myreview"
         app:layout_constraintTop_toTopOf="@+id/iv_storeimage_myreview" />
 

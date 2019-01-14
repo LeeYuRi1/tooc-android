@@ -193,7 +193,7 @@ class MapMoreActivity : AppCompatActivity() {
                             tv_store_url_map_more.text = response.body()!!.storeUrl
                             tv_store_call_map_more.text = response.body()!!.storeCall
 
-                            tv_hour_rv_item.text = dataListreview.size.toString()
+//                            tv_hour_rv_item.text = dataListreview.size.toString()
 
 
                             //store 리뷰

@@ -261,7 +261,7 @@ class ReserveDetailFragment : Fragment() {
                             tv_total_money_reservedetail.text = decimalFormat.format(priceUnit).toString()
                             tv_payment_amount_reservedetail.text = decimalFormat.format(response.body()!!.price).toString()
 
-                            toast(response.body()!!.progressType)
+//                            toast(response.body()!!.progressType)
 
                             if (response.body()!!.progressType == "DONE") {
                                 iv_no_payment_reservedetail.setImageResource(R.drawable.reserve_pay_rect_gray)
@@ -322,7 +322,7 @@ class ReserveDetailFragment : Fragment() {
                                 }
                             }
 
-                            toast(response.body()!!.stateType)
+//                            toast(response.body()!!.stateType)
 
                             val requestOptions = RequestOptions()
                             requestOptions.placeholder(R.drawable.mypage_bt_default)
@@ -500,7 +500,7 @@ class ReserveDetailFragment : Fragment() {
                             tv_total_money_reservedetail.text = decimalFormat.format(priceUnit).toString()
                             tv_payment_amount_reservedetail.text = decimalFormat.format(response.body()!!.price).toString()
 
-                            toast(response.body()!!.progressType)
+//                            toast(response.body()!!.progressType)
 
                             if (response.body()!!.progressType == "DONE") {
                                 iv_no_payment_reservedetail.setImageResource(R.drawable.reserve_pay_rect_gray)
@@ -574,7 +574,7 @@ class ReserveDetailFragment : Fragment() {
                             //짐 보관, 픽업
                             pick_reserveIdx = response.body()!!.reserveIdx
 
-                            toast(response.body()!!.stateType)
+//                            toast(response.body()!!.stateType)
                             if (response.body()!!.stateType == "RESERVED") {   //예약상태
                                 layout_storage_reservedetail.visibility = View.VISIBLE
                                 layout_pickup_reservedetail.visibility = View.GONE

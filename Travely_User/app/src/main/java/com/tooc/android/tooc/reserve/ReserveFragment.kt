@@ -167,7 +167,7 @@ var decimalFormat =DecimalFormat("###,###")
                         v.tv_carrier_amount_reserve.text = carrier_amount.toString()
                         carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
                         v.tv_price_carrier_reserve.text = decimalFormat.format(carrier_price).toString()
-                        v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
+                        v.tv_total_price_reserve.text = decimalFormat.format(carrier_price + etc_price).toString()
                     }
                     v.iv_carrier_amount_down_reserve.setOnClickListener {
                         carrier_amount = Integer.parseInt(v.tv_carrier_amount_reserve.text as String?)
@@ -178,13 +178,13 @@ var decimalFormat =DecimalFormat("###,###")
                             v.tv_carrier_amount_reserve.text = carrier_amount.toString()
                             carrier_price = carrier_amount * calPriceUnit(afterParseStore, afterParseTake)
                             v.tv_price_carrier_reserve.text = decimalFormat.format(carrier_price).toString()
-                            v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
+                            v.tv_total_price_reserve.text = decimalFormat.format(carrier_price + etc_price).toString()
                         }
                     }
                 } else {
                     v.linear_carrier_more_reserve.visibility = View.GONE
                     carrier_price = 0
-                    v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
+                    v.tv_total_price_reserve.text = decimalFormat.format(carrier_price + etc_price).toString()
                     carrier_amount = 0
                     // v.tv_result_amount_carrier_reserve.text = carrier_amount.toString()
                 }
@@ -197,7 +197,7 @@ var decimalFormat =DecimalFormat("###,###")
                     v.linear_etc_more_reserve.visibility = View.VISIBLE
                     etc_price = calPriceUnit(afterParseStore, afterParseTake)
                     v.tv_price_etc_reserve.text = decimalFormat.format(etc_price).toString()
-                    v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
+                    v.tv_total_price_reserve.text = decimalFormat.format(carrier_price + etc_price).toString()
                     etc_amount = 1
                     // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
 
@@ -208,7 +208,7 @@ var decimalFormat =DecimalFormat("###,###")
                         v.tv_etc_amount_reserve.text = etc_amount.toString()
                         etc_price = etc_amount * calPriceUnit(afterParseStore, afterParseTake)
                         v.tv_price_etc_reserve.text = decimalFormat.format(etc_price).toString()
-                        v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
+                        v.tv_total_price_reserve.text = decimalFormat.format(carrier_price + etc_price).toString()
                         //  v.tv_result_amount_etc_reserve.text = etc_amount.toString()
                     }
                     v.iv_etc_amount_down_reserve.setOnClickListener {
@@ -219,13 +219,13 @@ var decimalFormat =DecimalFormat("###,###")
                             v.tv_etc_amount_reserve.text = etc_amount.toString()
                             etc_price = etc_amount * calPriceUnit(afterParseStore, afterParseTake)
                             v.tv_price_etc_reserve.text = decimalFormat.format(etc_price).toString()
-                            v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
+                            v.tv_total_price_reserve.text = decimalFormat.format(carrier_price + etc_price).toString()
                             // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
                         }
                     }
                 } else {
                     etc_price = 0
-                    v.tv_total_price_reserve.text = (carrier_price + etc_price).toString()
+                    v.tv_total_price_reserve.text = decimalFormat.format(carrier_price + etc_price).toString()
                     v.linear_etc_more_reserve.visibility = View.GONE
                     etc_amount = 0
                     // v.tv_result_amount_etc_reserve.text = etc_amount.toString()
