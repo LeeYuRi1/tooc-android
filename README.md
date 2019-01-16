@@ -25,15 +25,20 @@ Wherever you go, Be free.
 
 ## Library
 - 위치 정보
+
     implementation 'com.google.android.gms:play-services-location:15.0.1'
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.airbnb.android:lottie:2.6.0-beta19'
+    
 - QR코드 라이브러리
+
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+    
 - Layout
+
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation "org.jetbrains.anko:anko:0.10.7"
     implementation 'me.relex:circleindicator:2.1.0'
