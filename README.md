@@ -24,25 +24,25 @@ Wherever you go, Be free.
 - Target SDK Version - 27
 
 ## Library
-1. 위치 정보
+#### 1. 위치 정보
 - implementation 'com.google.android.gms:play-services-location:15.0.1'
 - implementation 'com.google.android.gms:play-services-maps:15.0.1'
 
-2. 레이아웃
+#### 2. 레이아웃
 - implementation 'com.android.support:recyclerview-v7:27.1.1'
 - implementation 'de.hdodenhof:circleimageview:2.2.0'
 - implementation "org.jetbrains.anko:anko:0.10.7"
 - implementation 'me.relex:circleindicator:2.1.0'
 
-3. 애니메이션 
+#### 3. 애니메이션 
 - implementation 'com.airbnb.android:lottie:2.6.0-beta19'
     
-4. QR코드
+#### 4. QR코드
 - implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 
-5. HTTP REST API
+#### 5. HTTP REST API
 - implementation 'com.squareup.retrofit2:retrofit:2.4.0'
 - implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
-6. Image Load
+#### 6. Image Load
 - implementation 'com.github.bumptech.glide:glide:4.8.0'
