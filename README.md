@@ -19,7 +19,7 @@ Wherever you go, Be free.
 * 보관 및 픽업 과정은 QR 인식 한번이면 끝!
 
 ## Develop Environment
-- Language - Kotlin, java
+- Language - Kotlin, Java
 - Minimum SDK Version - 19
 - Target SDK Version - 27
 
@@ -34,7 +34,7 @@ Wherever you go, Be free.
 - implementation "org.jetbrains.anko:anko:0.10.7"
 - implementation 'me.relex:circleindicator:2.1.0'
 
-#### 3. 애니메이션 
+#### 3. 애니메이션
 - implementation 'com.airbnb.android:lottie:2.6.0-beta19'
     
 #### 4. QR코드
@@ -46,3 +46,8 @@ Wherever you go, Be free.
 
 #### 6. Image Load
 - implementation 'com.github.bumptech.glide:glide:4.8.0'
+
+## 주요기능
+#### 1. 메인화면
+- 사용자는 자신의 현 위치를 중심으로 Google Map에 찍혀 있는 Marker와 지역별 제휴 상가 리스트를 통해 원하는 지역의 제휴 상가를 쉽게 확인할 수 있습니다.
+
