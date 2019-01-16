@@ -1,7 +1,7 @@
 # tooc - for user
 <img src="https://user-images.githubusercontent.com/33562226/51236950-c6b4f100-19b6-11e9-8628-758535bf1588.png" width="150" height="150">
 
-관광객과 쇼핑객을 위한 짐 보관 배송 서비스 플랫폼
+관광객과 쇼핑객을 위한 짐 보관 배송 서비스 플랫폼 
 
 ## 소개
 #### Wherever you go, Be free.
