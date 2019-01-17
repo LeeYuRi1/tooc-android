@@ -20,43 +20,32 @@ import retrofit2.Response
 
 class SplashActivity : AppCompatActivity() {
 
-    lateinit var networkService : NetworkService
+    var networkService : NetworkService = ApplicationController.instance.networkService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
         init()
-
-        val lottie : LottieAnimationView = findViewById(R.id.lottie_splash)
-        lottie.addAnimatorListener(object : Animator.AnimatorListener{
-            override fun onAnimationRepeat(animation: Animator?) {
-            }
-
-            override fun onAnimationCancel(animation: Animator?) {
-            }
-
-            override fun onAnimationStart(animation: Animator?) {
-            }
-
-            override fun onAnimationEnd(animation: Animator?) {
-                val autoLoginFlag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
-                // true: 자동 로그인 O, false: 자동 로그인 X
-                if (autoLoginFlag) {
-                    postLoinResponse() // 자동 로그인 시 토큰 값 받아오기 위한 통신
-                }
-                else {
-                    startActivity<LoginActivity>()
-                }
-                finish()
-            }
-        })
     }
 
     private fun init() {
-        // 최초 화면에서 SharedPreferenceContorller 활성화
-        SharedPreferencesController.instance!!.load(this)
-        networkService = ApplicationController.instance.networkService
+        SharedPreferencesController.instance!!.load(this) // 최초 화면에서 SharedPreferenceController 활성화
+        lottieAnimControl()
+    }
+
+    private fun lottieAnimControl() {
+        val lottie : LottieAnimationView = findViewById(R.id.lottie_splash)
+        lottie.addAnimatorListener(object : Animator.AnimatorListener{
+            override fun onAnimationEnd(animation: Animator?) {
+                val autoLoginFlag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
+                if (autoLoginFlag) postLoinResponse() // 자동 로그인 시 토큰 값 받아오기 위한 통신
+                else startActivity<LoginActivity>()
+                finish()
+            }
+            override fun onAnimationRepeat(animation: Animator?) {}
+            override fun onAnimationCancel(animation: Animator?) {}
+            override fun onAnimationStart(animation: Animator?) {}
+        })
     }
 
     private fun postLoinResponse() {
@@ -73,14 +62,13 @@ class SplashActivity : AppCompatActivity() {
 
         postLoginResponse.enqueue(object : Callback<UsersLoginResponseData> {
             override fun onFailure(call: Call<UsersLoginResponseData>, t: Throwable) {
-                Log.d("Log::SplashActivity76", t.message)
+                Log.d("Log::SplashActivity65", t.message)
             }
 
             override fun onResponse(call: Call<UsersLoginResponseData>, response: Response<UsersLoginResponseData>) {
                 response.let {
                     when (it.code()) {
                         200 -> {
-                            toast("로그인 성공")
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", response.body()!!.isReserve)
                             startActivity<MainActivity>()
@@ -89,7 +77,7 @@ class SplashActivity : AppCompatActivity() {
                         500 -> toast("서버 에러")
                         else -> {
                             toast("error")
-                            Log.d("Log::SplashActivity92", it.code().toString())
+                            Log.d("Log::SplashActivity80", it.code().toString())
                         }
                     }
                 }
