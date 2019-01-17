@@ -22,8 +22,7 @@ class Explanation3Fragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_explanation3, container, false)
-        return v
+        return inflater.inflate(R.layout.fragment_explanation3, container, false)
     }
 
 }

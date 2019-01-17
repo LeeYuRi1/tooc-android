@@ -5,6 +5,7 @@ import android.content.SharedPreferences
  * Created by VictoryWoo
  */
 class SharedPreferencesController {
+
     private  var pref: SharedPreferences?=null
 
     /**

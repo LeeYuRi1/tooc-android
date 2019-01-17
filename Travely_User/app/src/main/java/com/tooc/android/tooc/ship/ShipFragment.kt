@@ -22,7 +22,6 @@ class ShipFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_ship, container, false)
-        return v
+        return inflater.inflate(R.layout.fragment_ship, container, false)
     }
 }

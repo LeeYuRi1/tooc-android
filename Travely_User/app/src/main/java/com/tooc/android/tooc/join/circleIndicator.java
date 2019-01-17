@@ -9,15 +9,12 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class circleIndicator extends LinearLayout {
+public class CircleIndicator extends LinearLayout {
 
     private Context mContext;
 
-    //원 사이의 간격
-    private int itemMargin = 65;
-
-    //애니메이션 시간
-    private int animDuration = 250;
+    private int itemMargin = 65;    // 원 사이의 간격
+    private int animDuration = 250; //애니메이션 시간
 
     private int mDefaultCircle;
     private int mSelectCircle;
@@ -32,18 +29,15 @@ public class circleIndicator extends LinearLayout {
         this.itemMargin = itemMargin;
     }
 
-    public circleIndicator(Context context) {
+    public CircleIndicator(Context context) {
         super(context);
-
         mContext = context;
     }
 
-    public circleIndicator(Context context, AttributeSet attrs) {
+    public CircleIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         mContext = context;
     }
-
 
     /**
      * 기본 점 생성
@@ -75,9 +69,7 @@ public class circleIndicator extends LinearLayout {
             this.addView(imageDot[i]);
         }
 
-
-        //첫인덱스 선택
-        selectDot(0);
+        selectDot(0);   // 첫 인덱스 선택
     }
 
 
@@ -94,7 +86,7 @@ public class circleIndicator extends LinearLayout {
                 selectScaleAnim(imageDot[i], 1f, 1f);
             } else {
 
-                if ((boolean) imageDot[i].getTag(imageDot[i].getId()) == true) {
+                if ((boolean) imageDot[i].getTag(imageDot[i].getId())) {
                     imageDot[i].setImageResource(mDefaultCircle);
                     defaultScaleAnim(imageDot[i], 1f, 1f);
                 }

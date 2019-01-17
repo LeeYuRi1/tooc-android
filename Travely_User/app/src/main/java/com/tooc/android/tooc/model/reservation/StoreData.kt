@@ -1,6 +1,5 @@
 package com.tooc.android.tooc.model.reservation
 
-
 data class StoreData(
         var address : String,
         var avgLike: Int,

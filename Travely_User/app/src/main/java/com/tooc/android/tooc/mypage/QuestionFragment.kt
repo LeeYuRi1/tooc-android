@@ -15,7 +15,6 @@ import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.QuestionAdapter
 import com.tooc.android.tooc.model.QuestionData
-import com.tooc.android.tooc.model.BagImgDtos
 import com.tooc.android.tooc.model.mypage.InquiryResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
@@ -38,7 +37,7 @@ class QuestionFragment : Fragment() {
 
     lateinit var networkService: NetworkService
 
-    val REQUEST_CODE_SELECT_IMAGE: Int = 1004
+    private val REQUEST_CODE_SELECT_IMAGE: Int = 1004
 
     private var inquiryImgs: MultipartBody.Part? = null
 
@@ -50,12 +49,8 @@ class QuestionFragment : Fragment() {
 
     lateinit var filename : String
 
-    var imgUrl = ArrayList<String>()
-    lateinit var bagImgDtos : ArrayList<BagImgDtos>
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_question, container, false)
-        return v
+        return inflater.inflate(R.layout.fragment_question, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -65,16 +60,12 @@ class QuestionFragment : Fragment() {
 
         setRecyclerView()
         setClickListener()
-
-
     }
 
     private fun setRecyclerView() {
         questionAdapter = QuestionAdapter(activity!!, dataList)
         rv_file_question.adapter = questionAdapter
         rv_file_question.layoutManager = LinearLayoutManager(activity)
-
-
     }
 
     private fun setClickListener() {
@@ -96,8 +87,6 @@ class QuestionFragment : Fragment() {
         }
 
     }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

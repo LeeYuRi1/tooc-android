@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.Window
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
-import com.tooc.android.tooc.reserve_state.ReserveStateFragment
+import com.tooc.android.tooc.reservation_status.ReserveStateFragment
 import kotlinx.android.synthetic.main.dialog_reserve_complete.*
 
 class ReserveCompleteDialog(val ctx : Context?) : Dialog(ctx) {

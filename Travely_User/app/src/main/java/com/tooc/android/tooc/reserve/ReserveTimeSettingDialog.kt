@@ -24,7 +24,6 @@ class ReserveTimeSettintDialog(val ctx: Context?, val reiceveArray: ArrayList<An
     var dates: Array<String>? = null
     var hours: Array<String>? = null
     var minutes: Array<String>? = null
-    var rightNow = Calendar.getInstance()
     val weekFormat = SimpleDateFormat("E")
 
     var tcalen = Calendar.getInstance()

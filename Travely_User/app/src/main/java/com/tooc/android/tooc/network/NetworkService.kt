@@ -47,7 +47,6 @@ interface NetworkService {
     ): Call<UsersLoginResponseData>
 
     // 프로필 조회
-    // - 프로필 조회
     @GET("/api/users/profile")
     fun getProfileResponse(
             @Header("jwt") jwt: String?
@@ -62,6 +61,15 @@ interface NetworkService {
             @Header("jwt") jwt: String?
     ): Call<ArrayList<RegionResponseData>>
 
+    //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
+
+    // 상가 세부정보 조회
+    // - 상가 테이블과 지역 테이블을 조인한 모든 칼럼 반환
+    @GET("/api/store/{storeIdx}")
+    fun getStoreResponse(
+            @Header("jwt") jwt: String?,
+            @Path("storeIdx") storeIdx: Int
+    ): Call<StoreResponseData>
 
     //@@@@@@@@@@@@@@@ reservation-controller @@@@@@@@@@@@@@@
 
@@ -75,7 +83,6 @@ interface NetworkService {
     ): Call<JsonObject>
 
     // 가격표 조회
-    // - 가격표 조회
     @GET("/api/reservation/price/list")
     fun getReservationPriceListResponse(
             @Header("jwt") jwt: String?
@@ -94,21 +101,12 @@ interface NetworkService {
             @Header("jwt") jwt: String?
     ): Call<ReservationReserveCodeData>
 
+    // 예약 세부정보 조회
     @GET("/api/reservation/{reserveIdx}")
     fun getRecentReservationReserveResponse(
             @Header("jwt") jwt: String?,
             @Path("reserveIdx") reserveIdx : Int
-    ):Call<ReservationReserveCodeData>
-
-    //@@@@@@@@@@@@@@@ store-controller @@@@@@@@@@@@@@@
-
-    // 상가 세부정보 조회
-    // - 상가 테이블과 지역 테이블을 조인한 모든 칼럼 반환
-    @GET("/api/store/{storeIdx}")
-    fun getStoreResponse(
-            @Header("jwt") jwt: String?,
-            @Path("storeIdx") storeIdx: Int
-    ): Call<StoreResponseData>
+    ): Call<ReservationReserveCodeData>
 
     //@@@@@@@@@@@@@@@ favorite-controller @@@@@@@@@@@@@@@
 
@@ -118,6 +116,8 @@ interface NetworkService {
             @Header("jwt") jwt: String?
     ): Call<ArrayList<FavoriteResponseData>>
 
+    // 상가를 즐겨찾기 하는 기능
+    // - 즐겨찾기 상태 여부에 따라 상태를 바꿔주고 아니었다면 목록에 추가
     @PUT("/api/favorite/{storeIdx}")
     fun putStoreFavoriteResponse(
             @Header("jwt") jwt: String?,
@@ -149,19 +149,11 @@ interface NetworkService {
 
     //@@@@@@@@@@@@@@@ inquiry-controller @@@@@@@@@@@@@@@
 
+    // 문의사항 작성
     @POST("/api/inquiry")
     fun postInquiryResponse(
             @Header("Content-Type") content_type: String,
             @Header("jwt") jwt: String?,
             @Body() inquiryResponseData: InquiryResponseData
     ): Call<InquiryResponseData>
-
-    // 사진 등록
-    @Multipart
-    @POST("/api/img")
-    fun postImgResponse(
-            @Header("jwt") jwt: String?,
-            @Part data: MultipartBody.Part
-    ): Call<BagImgDtos>
-
 }

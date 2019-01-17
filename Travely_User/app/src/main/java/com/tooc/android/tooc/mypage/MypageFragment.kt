@@ -15,14 +15,12 @@ import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.MypageRecentStoreAdapter
 import com.tooc.android.tooc.model.ProfileResponseData
 import com.tooc.android.tooc.model.StoreInfoResponseData
-import com.tooc.android.tooc.model.reservation.bagDtosData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.reserve.NoReserveFragment
-import com.tooc.android.tooc.reserve_state.ReserveStateFragment
+import com.tooc.android.tooc.reservation_status.ReserveStateFragment
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
