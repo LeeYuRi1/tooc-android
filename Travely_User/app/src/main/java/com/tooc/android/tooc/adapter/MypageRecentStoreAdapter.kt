@@ -74,7 +74,7 @@ class MypageRecentStoreAdapter(val ctx: Context, val dataList: ArrayList<StoreIn
             var fragment = RecentstoreDetailFragment()
             args.putInt("reserveIdx",dataList[position].reserveIdx)
             fragment.arguments = args
-            (ctx as MainActivity).replaceFragment2(fragment)
+            (ctx as MainActivity).replaceFragmentBackStack(fragment)
         }
 
         holder.reserve_btn.setOnClickListener {
