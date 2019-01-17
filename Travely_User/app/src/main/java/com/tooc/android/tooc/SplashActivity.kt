@@ -3,8 +3,7 @@ package com.tooc.android.tooc
 import android.animation.Animator
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Intent
-import android.os.Handler
+import android.util.Log
 import com.airbnb.lottie.LottieAnimationView
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -12,6 +11,7 @@ import com.tooc.android.tooc.join.LoginActivity
 import com.tooc.android.tooc.model.reservation.UsersLoginResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
@@ -26,8 +26,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val lottie_splash : LottieAnimationView = findViewById(R.id.lottie_splash)
-        lottie_splash.addAnimatorListener(object : Animator.AnimatorListener{
+        init()
+
+        val lottie : LottieAnimationView = findViewById(R.id.lottie_splash)
+        lottie.addAnimatorListener(object : Animator.AnimatorListener{
             override fun onAnimationRepeat(animation: Animator?) {
             }
 
@@ -38,91 +40,60 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-                val auto_login_flag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
+                val autoLoginFlag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
                 // true: 자동 로그인 O, false: 자동 로그인 X
-                val intent : Intent
-                if (auto_login_flag) {
-                    postLoinResponse()  // 자동 로그인 시 토큰 값 받아오기 위한 통신
-                    intent = Intent(applicationContext, MainActivity::class.java)
+                if (autoLoginFlag) {
+                    postLoinResponse() // 자동 로그인 시 토큰 값 받아오기 위한 통신
                 }
                 else {
-                    intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity<LoginActivity>()
                 }
-                startActivity(intent)
                 finish()
             }
-
         })
-
-        init()
     }
 
     private fun init() {
-        // 초기 화면에 SharedPreferenceContorller의 pref 활성화
+        // 최초 화면에서 SharedPreferenceContorller 활성화
         SharedPreferencesController.instance!!.load(this)
-
         networkService = ApplicationController.instance.networkService
-
-        // 3초 뒤 MainActivity로 이동
-//        moveActivity()
-    }
-
-    private fun moveActivity() {
-        val handler = Handler()
-        handler.postDelayed(Runnable {
-            val auto_login_flag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
-            // true: 자동 로그인 O, false: 자동 로그인 X
-            val intent : Intent
-            if (auto_login_flag) {
-                postLoinResponse()  // 자동 로그인 시 토큰 값 받아오기 위한 통신
-                intent = Intent(applicationContext, MainActivity::class.java)
-            }
-            else {
-                intent = Intent(applicationContext, LoginActivity::class.java)
-            }
-            startActivity(intent)
-            finish()
-        }, 1000)
     }
 
     private fun postLoinResponse() {
-        val user_email = SharedPreferencesController.instance!!.getPrefStringData("user_email")
-        val user_pw = SharedPreferencesController.instance!!.getPrefStringData("user_pw")
+        val userEmail = SharedPreferencesController.instance!!.getPrefStringData("user_email")
+        val userPW = SharedPreferencesController.instance!!.getPrefStringData("user_pw")
 
         var jsonObject = JSONObject()
-        jsonObject.put("email", user_email!!.trim())
-        jsonObject.put("password", user_pw!!.trim())
+        jsonObject.put("email", userEmail!!)
+        jsonObject.put("password", userPW!!)
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
         val postLoginResponse = networkService.postLoginResponse("application/json", gsonObject)
 
-        postLoginResponse!!.enqueue(object : Callback<UsersLoginResponseData> {
+        postLoginResponse.enqueue(object : Callback<UsersLoginResponseData> {
             override fun onFailure(call: Call<UsersLoginResponseData>, t: Throwable) {
+                Log.d("Log::SplashActivity76", t.message)
             }
 
             override fun onResponse(call: Call<UsersLoginResponseData>, response: Response<UsersLoginResponseData>) {
-                response?.let {
+                response.let {
                     when (it.code()) {
                         200 -> {
                             toast("로그인 성공")
                             SharedPreferencesController.instance!!.setPrefData("jwt", response.headers().value(0))
                             SharedPreferencesController.instance!!.setPrefData("is_reserve", response.body()!!.isReserve)
-//                            toast(SharedPreferencesController.instance!!.getPrefBooleanData("is_reserve").toString())
+                            startActivity<MainActivity>()
                         }
-                        403 -> {
-                            toast("로그인 실패")
-                        }
-                        500 -> {
-                            toast("서버 에러")
-                        }
+                        403 -> toast("로그인 실패")
+                        500 -> toast("서버 에러")
                         else -> {
                             toast("error")
+                            Log.d("Log::SplashActivity92", it.code().toString())
                         }
                     }
                 }
             }
-
         })
     }
 }
