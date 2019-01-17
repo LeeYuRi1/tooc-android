@@ -23,6 +23,9 @@
 # for user
 <img src="https://user-images.githubusercontent.com/33562226/51236950-c6b4f100-19b6-11e9-8628-758535bf1588.png" width="150" height="150">
 
+## 앱 스크린샷
+<img src="https://user-images.githubusercontent.com/38368820/51322497-f04e4500-1aa8-11e9-9834-7fb143c10870.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322496-f04e4500-1aa8-11e9-8ca6-6568f052c262.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322493-f04e4500-1aa8-11e9-823f-e34787b18ae6.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322495-f04e4500-1aa8-11e9-8687-57bcfbfb65c6.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322498-f0e6db80-1aa8-11e9-9a4b-336695cc4306.jpg" width="172" height="320">
+
 ## Develop Environment
 - Language - Kotlin, Java
 - Minimum SDK Version - 19
@@ -52,7 +55,7 @@
 #### 6. Image Load
 - implementation 'com.github.bumptech.glide:glide:4.8.0'
 
-## 주요기능
+## 주요 기능
 #### 1. 메인 화면
 - 사용자는 자신의 현 위치를 중심으로 Google Map에 찍혀 있는 Marker와 지역별 제휴 상가 리스트를 통해 원하는 지역의 제휴 상가를 쉽게 확인할 수 있습니다.
 - 상가 선택 시, 해당 상가의 주소와 영업시간 등 상가 세부 정보는 물론, Google Map과 Kakao Map를 통한 길찾기 기능을 제공합니다.
@@ -76,7 +79,7 @@
 - 프로필을 통해 사용자의 정보를 확인할 수 있습니다.
 - 환경 설정을 통해 회사 정보, 사용법, FAQ, 이용약관 등을 확인할 수 있고, 문의사항을 작성할 수 있습니다.
 
-# tooc - for admin
+# for admin
 <img src="https://user-images.githubusercontent.com/38368820/51321967-83867b00-1aa7-11e9-97cb-f9bf9b5c816f.png" width="150" height="150">
 
 
