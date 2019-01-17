@@ -1,7 +1,9 @@
-# tooc
-관광객과 쇼핑객을 위한 짐 보관 배송 서비스 플랫폼 
-
 ![banner](https://user-images.githubusercontent.com/38368820/51322166-0c051b80-1aa8-11e9-942f-8e423866c63f.png)
+
+# tooc
+짐은 '툭' 던져두고 제대로 놀아볼까?
+
+짐 보관/배송 서비스 tooc(툭)
 
 ## 소개
 #### Wherever you go, Be free.
