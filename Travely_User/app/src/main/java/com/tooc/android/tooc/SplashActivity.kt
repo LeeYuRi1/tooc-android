@@ -27,18 +27,17 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         init()
+    }
 
+    private fun init() {
+        SharedPreferencesController.instance!!.load(this) // 최초 화면에서 SharedPreferenceController 활성화
+        networkService = ApplicationController.instance.networkService
+        lottieAnimControl()
+    }
+
+    private fun lottieAnimControl() {
         val lottie : LottieAnimationView = findViewById(R.id.lottie_splash)
         lottie.addAnimatorListener(object : Animator.AnimatorListener{
-            override fun onAnimationRepeat(animation: Animator?) {
-            }
-
-            override fun onAnimationCancel(animation: Animator?) {
-            }
-
-            override fun onAnimationStart(animation: Animator?) {
-            }
-
             override fun onAnimationEnd(animation: Animator?) {
                 val autoLoginFlag = SharedPreferencesController.instance!!.getPrefBooleanData("auto_login")
                 // true: 자동 로그인 O, false: 자동 로그인 X
@@ -50,13 +49,10 @@ class SplashActivity : AppCompatActivity() {
                 }
                 finish()
             }
+            override fun onAnimationRepeat(animation: Animator?) { }
+            override fun onAnimationCancel(animation: Animator?) { }
+            override fun onAnimationStart(animation: Animator?) { }
         })
-    }
-
-    private fun init() {
-        // 최초 화면에서 SharedPreferenceContorller 활성화
-        SharedPreferencesController.instance!!.load(this)
-        networkService = ApplicationController.instance.networkService
     }
 
     private fun postLoinResponse() {
