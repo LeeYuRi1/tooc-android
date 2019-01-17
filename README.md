@@ -75,3 +75,8 @@
 http://52.78.222.197:8080/swagger-ui.html#/
 
 https://github.com/team-travely/travely-server/wiki
+
+-----------------------------
+
+# tooc - for admin
+<img src="https://user-images.githubusercontent.com/38368820/51321967-83867b00-1aa7-11e9-97cb-f9bf9b5c816f.png" width="150" height="150">
