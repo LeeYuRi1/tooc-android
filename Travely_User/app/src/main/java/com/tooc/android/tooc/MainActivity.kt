@@ -94,7 +94,6 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-
     // MapFragment에서 호출
     fun getStoreIdx(storeIdx: Int) {
         var mapMorePreviewFragment = MapMorePreviewFragment()
