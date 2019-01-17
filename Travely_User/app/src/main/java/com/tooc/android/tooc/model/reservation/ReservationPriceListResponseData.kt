@@ -1,4 +1,4 @@
-package com.tooc.android.tooc.model
+package com.tooc.android.tooc.model.reservation
 
 data class ReservationPriceListResponseData (
         var priceIdx : Int,

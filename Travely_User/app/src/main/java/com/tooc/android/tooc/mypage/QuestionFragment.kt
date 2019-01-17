@@ -14,7 +14,7 @@ import android.view.ViewGroup
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.QuestionAdapter
-import com.tooc.android.tooc.model.QuestionData
+import com.tooc.android.tooc.model.mypage.QuestionData
 import com.tooc.android.tooc.model.mypage.InquiryResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService

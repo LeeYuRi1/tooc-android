@@ -13,8 +13,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.MypageRecentStoreAdapter
-import com.tooc.android.tooc.model.ProfileResponseData
-import com.tooc.android.tooc.model.StoreInfoResponseData
+import com.tooc.android.tooc.model.mypage.ProfileResponseData
+import com.tooc.android.tooc.model.store.StoreInfoResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.reserve.NoReserveFragment

@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.tooc.android.tooc.dialog.WriteReviewDialog
 import com.tooc.android.tooc.join.RecentstoreDetailFragment
 import com.tooc.android.tooc.model.store.StoreResponseData
-import com.tooc.android.tooc.model.StoreInfoResponseData
+import com.tooc.android.tooc.model.store.StoreInfoResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.MainActivity
