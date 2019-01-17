@@ -24,7 +24,6 @@ import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.LuggagePictureAdapter
 import com.tooc.android.tooc.dialog.MapChoiceDialog
-import com.tooc.android.tooc.dialog.ReserveCancelDialog
 import com.tooc.android.tooc.map.MapMorePreviewFragment
 import com.tooc.android.tooc.model.reservation.ReservationReserveCodeData
 import com.tooc.android.tooc.model.reservation.bagDtosData
@@ -32,11 +31,9 @@ import com.tooc.android.tooc.model.reservation.bagImgDtos
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import com.tooc.android.tooc.reserve.NoReserveFragment
-import com.tooc.android.tooc.reserve_state.ReserveStateFragment
+import com.tooc.android.tooc.reservation_status.ReserveStateFragment
 import kotlinx.android.synthetic.main.fragment_recentstore_detail.*
 import kotlinx.android.synthetic.main.fragment_recentstore_detail.view.*
-import kotlinx.android.synthetic.main.fragment_reserve_state.*
-import kotlinx.android.synthetic.main.fragment_reserve_state.view.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call

@@ -12,7 +12,6 @@ import org.jetbrains.anko.toast
 class ExplanationActivity : AppCompatActivity() {
 
     lateinit var networkService : NetworkService
-
     lateinit var explanationPagerAdapter : ExplanationPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +19,6 @@ class ExplanationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_explanation)
 
         init()
-        toast("ExplanationActivity 호출됨")
-
     }
 
     private fun init() {
@@ -37,18 +34,15 @@ class ExplanationActivity : AppCompatActivity() {
         explanationPagerAdapter.addItem(Explanation4Fragment.newInstance("4"))
         explanationPagerAdapter.addItem(WelcomeFragment.newInstance("5"))
 
-
         vp_explanation.offscreenPageLimit = 5
         indicator_explanation.setItemMargin(10)
         indicator_explanation.setAnimDuration(300)
         indicator_explanation.createDotPanel(explanationPagerAdapter.count, R.drawable.indicator_empty_circle, R.drawable.indicator_full_circle)
 
         vp_explanation.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-            }
+            override fun onPageScrollStateChanged(state: Int) {}
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
                 indicator_explanation.selectDot(position)

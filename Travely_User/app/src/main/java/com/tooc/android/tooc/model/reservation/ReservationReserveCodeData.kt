@@ -14,7 +14,7 @@ data class ReservationReserveCodeData(
         var progressType : String,
         var startTime : Long,
         var stateType : String,
-        var store : storeInfo,
+        var store : StoreInfoResponseData,
         var takeTime : Long,
         var reserveCode : String
 

@@ -14,7 +14,6 @@ import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.ctx
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
     var backKeyPressedTime: Long = 0
 
     override fun onBackPressed() {
-        Log.d("TAGG",System.currentTimeMillis().toString())
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis()
             showGuide()
@@ -38,32 +36,30 @@ class LoginActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    fun showGuide() {
-        var toast: Toast? = null
-        toast = Toast.makeText(ctx, "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_LONG)
+    private fun showGuide() {
+        var toast: Toast? = Toast.makeText(ctx, "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_LONG)
         toast!!.show()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         init()
-        setClickListener()
     }
 
     fun init() {
         networkService = ApplicationController.instance.networkService
+        setOnClickListener()
+
     }
 
-    private fun setClickListener() {
+    private fun setOnClickListener() {
         tv_join_login.setOnClickListener {
             val intent = Intent(applicationContext, JoinActivity::class.java)
             startActivity(intent)
         }
 
         btn_login_login.setOnClickListener {
-            //toast("버튼은 눌렸음")
             postLoginResponse()
-
         }
     }
 
@@ -82,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
 
         postLoginResponse!!.enqueue(object : Callback<UsersLoginResponseData> {
             override fun onFailure(call: Call<UsersLoginResponseData>, t: Throwable) {
-                Log.d("TAGGGGGG","onFailure")
+                Log.d("Log::LoginActivity","onFailure")
 
             }
             override fun onResponse(call: Call<UsersLoginResponseData>, response: Response<UsersLoginResponseData>) {

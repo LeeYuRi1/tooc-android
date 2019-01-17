@@ -1,4 +1,4 @@
-package com.tooc.android.tooc.reserve_state
+package com.tooc.android.tooc.reservation_status
 
 import android.app.Dialog
 import android.content.Context
@@ -13,7 +13,7 @@ import com.google.zxing.qrcode.QRCodeWriter
 import com.tooc.android.tooc.R
 import kotlinx.android.synthetic.main.dialog_qrcode_enlarge.*
 
-class ReserveQRCodeDialog(var ctx :Context?, var qrCode:String) :Dialog(ctx){
+class ReserveQRCodeDialog(var ctx : Context?, var qrCode : String) : Dialog(ctx){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,20 +25,19 @@ class ReserveQRCodeDialog(var ctx :Context?, var qrCode:String) :Dialog(ctx){
         }
     }
 
-    fun generateQRCode( contents: String) {
+    private fun generateQRCode(contents: String) {
         var qrCodeWriter = QRCodeWriter()
         var bitmap: Bitmap = toBitmap(qrCodeWriter.encode(contents, BarcodeFormat.QR_CODE, 200, 200))
 
         iv_qrimage_enlarge.setImageBitmap(bitmap)
-        Log.v("tag", bitmap.toString())
     }
 
-    fun toBitmap(matrix: BitMatrix): Bitmap {
+    private fun toBitmap(matrix: BitMatrix): Bitmap {
         val height: Int = matrix.height
         val width: Int = matrix.width
         val bmp: Bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-        for (x in 0..width - 1) {
-            for (y in 0..height - 1) {
+        for (x in 0 until width) {
+            for (y in 0 until height) {
                 bmp.setPixel(x, y, if (matrix.get(x, y)) Color.BLACK else Color.WHITE)
             }
         }

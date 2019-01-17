@@ -1,4 +1,4 @@
-package com.tooc.android.tooc.reserve_state
+package com.tooc.android.tooc.reservation_status
 
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -26,7 +26,7 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.tooc.android.tooc.ImgUrlRVAdapter
+import com.tooc.android.tooc.adapter.ImgUrlRVAdapter
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.LuggagePictureAdapter

@@ -10,7 +10,7 @@ import com.tooc.android.tooc.map.MapMorePreviewFragment
 import com.tooc.android.tooc.mypage.MypageFragment
 import com.tooc.android.tooc.reserve.NoReserveFragment
 import com.tooc.android.tooc.reserve.ReserveFragment
-import com.tooc.android.tooc.reserve_state.ReserveStateFragment
+import com.tooc.android.tooc.reservation_status.ReserveStateFragment
 import com.tooc.android.tooc.ship.ShipFragment
 import kotlinx.android.synthetic.main.activity_main.*
 

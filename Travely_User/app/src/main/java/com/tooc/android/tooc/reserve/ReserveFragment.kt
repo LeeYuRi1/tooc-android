@@ -22,7 +22,7 @@ import com.tooc.android.tooc.model.reservation.bagInfo
 import com.tooc.android.tooc.model.store.StoreResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
-import com.tooc.android.tooc.util.SupportUtil
+import com.tooc.android.tooc.util.ErrorMessage
 import kotlinx.android.synthetic.main.fragment_reserve.*
 import org.jetbrains.anko.support.v4.ctx
 import retrofit2.Call
@@ -306,7 +306,7 @@ var decimalFormat =DecimalFormat("###,###")
                         400 -> {
 
                             if (response.errorBody() != null) {
-                                var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
+                                var errorData: ErrorData = ErrorMessage.getErrorMessage(response.errorBody()?.string())
                                 //    toast("TAGG" + )
                                 toast(errorData.message)
                             }
@@ -327,7 +327,7 @@ var decimalFormat =DecimalFormat("###,###")
                             toast("ErroerCheck=" + errorCheck.toString())
                             Log.d("TAGGGGGGGGGGGGGGGGGG", it.code().toString())
                             if (response.errorBody() != null) {
-                                var errorData: ErrorData = SupportUtil.getErrorMessage(response.errorBody()?.string())
+                                var errorData: ErrorData = ErrorMessage.getErrorMessage(response.errorBody()?.string())
                                 toast(errorData.message)
                             }
                             Log.v("TAGG", reserveSave.toString())
