@@ -1,4 +1,3 @@
-![banner](https://user-images.githubusercontent.com/38368820/51322166-0c051b80-1aa8-11e9-942f-8e423866c63f.png)
 # tooc
 관광객과 쇼핑객을 위한 짐 보관 배송 서비스 플랫폼 
 
@@ -16,6 +15,8 @@
 * 단 30초면, 인접한 상점에 보관 예약이 가능해요
 * 경로안내를 통해 상점에 방문, 결제하고 짐을 건내주면 끝!
 * 보관 및 픽업 과정은 QR 인식 한번이면 끝!
+
+![banner](https://user-images.githubusercontent.com/38368820/51322166-0c051b80-1aa8-11e9-942f-8e423866c63f.png)
 
 # for user
 <img src="https://user-images.githubusercontent.com/33562226/51236950-c6b4f100-19b6-11e9-8628-758535bf1588.png" width="150" height="150">
