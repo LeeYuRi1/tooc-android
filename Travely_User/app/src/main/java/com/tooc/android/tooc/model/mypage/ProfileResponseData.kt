@@ -1,6 +1,6 @@
-package com.tooc.android.tooc.model
+package com.tooc.android.tooc.model.mypage
 
-import com.tooc.android.tooc.model.reservation.bagDtosData
+import com.tooc.android.tooc.model.store.StoreInfoResponseData
 
 data class ProfileResponseData (
         var email : String,

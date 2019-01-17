@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.tooc.android.tooc.R
-import com.tooc.android.tooc.model.PhotoData
+import com.tooc.android.tooc.model.reservation.PhotoData
 
 class ImgUrlRVAdapter (val ctx : Context?, var dataList : ArrayList<PhotoData>) : RecyclerView.Adapter<ImgUrlRVAdapter.Holder>(){
 

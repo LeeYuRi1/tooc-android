@@ -1,16 +1,14 @@
 package com.tooc.android.tooc.network
 
 import com.google.gson.JsonObject
-import com.tooc.android.tooc.model.BagImgDtos
-import com.tooc.android.tooc.model.ProfileResponseData
-import com.tooc.android.tooc.model.ReservationPriceListResponseData
+import com.tooc.android.tooc.model.mypage.ProfileResponseData
+import com.tooc.android.tooc.model.reservation.ReservationPriceListResponseData
 import com.tooc.android.tooc.model.mypage.*
 import com.tooc.android.tooc.model.region.RegionResponseData
 import com.tooc.android.tooc.model.reservation.ReservationReserveCodeData
 import com.tooc.android.tooc.model.reservation.ReservationSaveRequestData
 import com.tooc.android.tooc.model.reservation.UsersLoginResponseData
 import com.tooc.android.tooc.model.store.StoreResponseData
-import okhttp3.MultipartBody
 import retrofit2.http.*
 import retrofit2.Call
 

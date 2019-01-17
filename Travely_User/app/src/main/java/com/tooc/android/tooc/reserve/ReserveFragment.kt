@@ -15,7 +15,7 @@ import com.tooc.android.tooc.R
 import com.tooc.android.tooc.dialog.BagSizeDialog
 import com.tooc.android.tooc.dialog.KeepPriceDialog
 import com.tooc.android.tooc.dialog.ReserveCompleteDialog
-import com.tooc.android.tooc.model.ReservationPriceListResponseData
+import com.tooc.android.tooc.model.reservation.ReservationPriceListResponseData
 import com.tooc.android.tooc.model.ErrorData
 import com.tooc.android.tooc.model.reservation.ReservationSaveRequestData
 import com.tooc.android.tooc.model.reservation.bagInfo

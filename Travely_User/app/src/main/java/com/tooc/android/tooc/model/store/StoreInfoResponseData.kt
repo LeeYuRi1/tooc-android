@@ -1,4 +1,4 @@
-package com.tooc.android.tooc.model
+package com.tooc.android.tooc.model.store
 
 data class StoreInfoResponseData (
         var address : String,

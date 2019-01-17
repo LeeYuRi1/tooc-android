@@ -3,7 +3,6 @@ package com.tooc.android.tooc.mypage
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -14,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.SplashActivity
-import com.tooc.android.tooc.model.ProfileResponseData
+import com.tooc.android.tooc.model.mypage.ProfileResponseData
 import com.tooc.android.tooc.network.ApplicationController
 import com.tooc.android.tooc.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -22,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import java.util.regex.Pattern
 import okhttp3.MultipartBody
 import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
