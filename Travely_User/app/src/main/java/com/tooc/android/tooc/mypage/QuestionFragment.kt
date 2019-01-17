@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -15,7 +14,7 @@ import android.view.ViewGroup
 import com.tooc.android.tooc.MainActivity
 import com.tooc.android.tooc.R
 import com.tooc.android.tooc.adapter.QuestionAdapter
-import com.tooc.android.tooc.data.QuestionData
+import com.tooc.android.tooc.model.QuestionData
 import com.tooc.android.tooc.model.BagImgDtos
 import com.tooc.android.tooc.model.mypage.InquiryResponseData
 import com.tooc.android.tooc.network.ApplicationController
@@ -31,7 +30,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.FileOutputStream
 import java.io.InputStream
 
 class QuestionFragment : Fragment() {

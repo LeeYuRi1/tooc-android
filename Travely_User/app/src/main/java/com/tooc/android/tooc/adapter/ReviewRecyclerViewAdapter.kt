@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.tooc.android.tooc.R
-import com.tooc.android.tooc.data.ReviewData
+import com.tooc.android.tooc.model.ReviewData
 
 class ReviewRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<ReviewData>)
     : RecyclerView.Adapter<ReviewRecyclerViewAdapter.Holder>() {

@@ -1,4 +1,4 @@
-package com.tooc.android.tooc.data
+package com.tooc.android.tooc.model
 
 data class ReviewData(
         var reviewer: String,

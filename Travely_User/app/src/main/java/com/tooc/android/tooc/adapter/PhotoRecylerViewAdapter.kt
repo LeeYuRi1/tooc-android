@@ -1,20 +1,14 @@
 package com.tooc.android.tooc.adapter
 
 import android.content.Context
-import android.net.Uri
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.tooc.android.tooc.data.PhotoData
 import com.tooc.android.tooc.R
-import com.tooc.android.tooc.R.id.iv_rv_item_photo
 import com.tooc.android.tooc.model.store.StoreImageResponseData
-import com.tooc.android.tooc.model.store.StoreResponseData
 
 //class PhotoRecylerViewAdapter (val ctx : Context, val data : ArrayList<StoreImageResponseData>, val dataList : ArrayList<PhotoData>)
 class PhotoRecylerViewAdapter (val ctx : Context, val dataList : ArrayList<StoreImageResponseData>)

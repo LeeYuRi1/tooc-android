@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.tooc.android.tooc.R
-import com.tooc.android.tooc.data.QuestionData
+import com.tooc.android.tooc.model.QuestionData
 import com.tooc.android.tooc.mypage.QuestionFragment
 import java.util.ArrayList
 
