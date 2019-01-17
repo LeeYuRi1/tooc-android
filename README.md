@@ -20,11 +20,11 @@
 * 경로안내를 통해 상점에 방문, 결제하고 짐을 건내주면 끝!
 * 보관 및 픽업 과정은 QR 인식 한번이면 끝!
 
-# for user
-<img src="https://user-images.githubusercontent.com/33562226/51236950-c6b4f100-19b6-11e9-8628-758535bf1588.png" width="150" height="150">
-
 ## 앱 스크린샷
 <img src="https://user-images.githubusercontent.com/38368820/51322497-f04e4500-1aa8-11e9-9834-7fb143c10870.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322496-f04e4500-1aa8-11e9-8ca6-6568f052c262.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322493-f04e4500-1aa8-11e9-823f-e34787b18ae6.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322495-f04e4500-1aa8-11e9-8687-57bcfbfb65c6.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322498-f0e6db80-1aa8-11e9-9a4b-336695cc4306.jpg" width="172" height="320">
+
+# for user
+<img src="https://user-images.githubusercontent.com/33562226/51236950-c6b4f100-19b6-11e9-8628-758535bf1588.png" width="150" height="150">
 
 ## Develop Environment
 - Language - Kotlin, Java
