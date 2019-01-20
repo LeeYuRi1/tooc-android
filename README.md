@@ -88,6 +88,52 @@
 ## 워크플로우
 ![-](https://user-images.githubusercontent.com/38368820/51367470-1ec23380-1b2e-11e9-97bc-ff17741cfa1a.jpg)
 
+## Develop Environment
+- Language - Kotlin, Java
+- Minimum SDK Version - 19
+- Target SDK Version - 27
+
+## Library
+#### 1. 레이아웃
+- implementation 'com.android.support:recyclerview-v7:27.1.1'
+- implementation 'de.hdodenhof:circleimageview:2.2.0'
+- implementation 'org.jetbrains.anko:anko:0.10.5'
+- implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+#### 2. 애니메이션
+- implementation 'com.airbnb.android:lottie:2.6.0-beta19'
+    
+#### 3. QR 코드
+- implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
+
+#### 4. HTTP REST API
+- implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+- implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+#### 5. Image Load
+- implementation 'com.github.bumptech.glide:glide:4.8.0'
+
+## 주요 기능
+#### 1. 메인 화면
+- 신속한 결제를 위해 바로 QR코드를 스캔할 수 있도록 구성했습니다. '스캔하기'버튼을 통해 QR을 스캔하여 예약 정보를 가져올 수 있습니다.
+- QR인식에 어려움이 있을 경우, '직접입력'버튼을 통해 예약번호를 직접 입력할 수 있습니다.
+
+#### 2. 예약 및 보관목록
+- 예약목록과 보관목록으로 리스트를 나눔으로써, 예약완료한 고객과 보관완료한 고객들을 한눈에 볼 수 있도록 구성했습니다.
+- 각 view를 클릭 시, 해당 고객의 현황을 볼 수 있습니다.
+
+#### 3. 예약 및 보관 현황
+- QR 및 예약코드를 통해 고객의 예약 및 보관 정보를 볼 수 있습니다.
+- 고객의 짐을 촬영하여야만 예약완료 -> 보관완료 상태를 변경할 수 있도록 했습니다.
+- 보관완료 상태로 변경되면 고객의 application에서도 해당 사진을 볼 수 있습니다.
+- 보관완료 상태가 되면 '픽업완료'버튼이 생성되게 되며, 고객의 짐이 픽업될 시 해당 버튼을 클릭하여 짐 보관 과정을 끝냅니다.
+
+#### 4. Mypage 화면
+- 보관현황을 통해 현재 가게 내 보관되어있는 짐의 갯수를 확인할 수 있습니다.
+- 가게 리뷰를 통해 고객들이 올린 리뷰들을 볼 수 있습니다.
+- 예약 설정을 통해 관리자가 직접 짐 보관 가능 상태를 변경할 수 있도록 했으며, 해당 스위치가 Off일 경우 고객들이 보관할 수 없도록 구성했습니다.
+- 해당 화면 하단에는 관리자의 가게 정보를 볼 수 있습니다.
+
 ## 통신 API 문서
 http://52.78.222.197:8080/swagger-ui.html#/
 
