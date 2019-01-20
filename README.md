@@ -24,7 +24,7 @@
 <img src="https://user-images.githubusercontent.com/38368820/51322497-f04e4500-1aa8-11e9-9834-7fb143c10870.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322496-f04e4500-1aa8-11e9-8ca6-6568f052c262.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322493-f04e4500-1aa8-11e9-823f-e34787b18ae6.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322495-f04e4500-1aa8-11e9-8687-57bcfbfb65c6.jpg" width="172" height="320"><img src="https://user-images.githubusercontent.com/38368820/51322498-f0e6db80-1aa8-11e9-9a4b-336695cc4306.jpg" width="172" height="320">
 
 # for user
-<img src="https://user-images.githubusercontent.com/33562226/51236950-c6b4f100-19b6-11e9-8628-758535bf1588.png" width="150" height="150">
+<img src="https://user-images.githubusercontent.com/33562226/51236950-c6b4f100-19b6-11e9-8628-758535bf1588.png" width="180" height="180">
 
 ## 워크플로우
 ![-](https://user-images.githubusercontent.com/38368820/51367467-1c5fd980-1b2e-11e9-81a0-e1814704a0ff.jpg)
@@ -83,7 +83,7 @@
 - 환경 설정을 통해 회사 정보, 사용법, FAQ, 이용약관 등을 확인할 수 있고, 문의사항을 작성할 수 있습니다.
 
 # for admin
-<img src="https://user-images.githubusercontent.com/38368820/51321967-83867b00-1aa7-11e9-97cb-f9bf9b5c816f.png" width="150" height="150">
+<img src="https://user-images.githubusercontent.com/38368820/51321967-83867b00-1aa7-11e9-97cb-f9bf9b5c816f.png" width="180" height="180">
 
 ## 워크플로우
 ![-](https://user-images.githubusercontent.com/38368820/51367470-1ec23380-1b2e-11e9-97bc-ff17741cfa1a.jpg)
@@ -134,7 +134,8 @@
 - 예약 설정을 통해 관리자가 직접 짐 보관 가능 상태를 변경할 수 있도록 했으며, 해당 스위치가 Off일 경우 고객들이 보관할 수 없도록 구성했습니다.
 - 해당 화면 하단에는 관리자의 가게 정보를 볼 수 있습니다.
 
-## 통신 API 문서
+
+# 통신 API 문서
 http://52.78.222.197:8080/swagger-ui.html#/
 
 https://github.com/team-travely/travely-server/wiki
